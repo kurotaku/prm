@@ -1,0 +1,18 @@
+<div class="table-wrap sp-none">
+  <table class="border-table">
+    <thead>
+      <tr>
+        <td>販売グループ名</td>
+        <td>ベンダー</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% vendor_groups.each do |vendor_group| %>
+        <tr>
+          <td><%= link_to vendor_group.decorate.display_name, vendor_group_path(vendor_group) %></td>
+          <td><%= vendor_group.vendor.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div><!-- .table-wrap -->

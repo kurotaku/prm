@@ -1,0 +1,33 @@
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0">メーカーの持っている商品のマスタ</h1>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+  
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  
+  <div class="table-wrap sp-none">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td>商品名</td>
+          <td>商品コード</td>
+          <td>単価(メーカー以外は見れないように)</td>
+          <td>報酬単価(メーカー以外は見れないように)</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= link_to product.name, product_path(product) %></td>
+            <td><%= product.code %></td>
+            <td><%= product.price.to_s(:delimited) %></td>
+            <td><%= product.incentive.to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

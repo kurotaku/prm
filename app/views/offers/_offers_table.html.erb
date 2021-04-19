@@ -1,0 +1,24 @@
+<div class="table-wrap sp-none">
+  <table class="border-table">
+    <thead>
+      <tr>
+        <td>ユニークキー</td>
+        <td>進捗状況</td>
+        <td>商品名</td>
+        <td>パートナー</td>
+        <td>担当者</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% offers.each do |offer| %>
+        <tr>
+          <td><%= link_to offer.unique_key, offer_path(offer) %></td>
+          <td><%= offer.display_progress %></td>
+          <td><%= offer.product.name %></td>
+          <td><%= offer.agent.company.name %></td>
+          <td><%= offer.user.user_profile.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div><!-- .table-wrap -->

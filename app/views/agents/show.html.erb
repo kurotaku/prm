@@ -1,0 +1,36 @@
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0"><%= @agent.company.name %></h1>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+  
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  <h2>取扱商品</h2>
+  <div class="table-wrap sp-none">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td>メーカー名</td>
+          <td>商品名</td>
+          <td>単価</td>
+          <td>報酬単価</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @agent.agent_products.each do |agent_product| %>
+          <tr>
+            <td><%= agent_product.maker_group.maker.name %></td>
+            <td><%= agent_product.product.name %></td>
+            <td><%= agent_product.price.to_s(:delimited) %></td>
+            <td><%= agent_product.incentive.to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+  <h2><%= @agent.company.name %>配下の販売グループ</h2>
+  <%= render 'vendor_groups/table', vendor_groups: @agent.company.vendor_groups %>
+
+</main><!-- .main-contents -->

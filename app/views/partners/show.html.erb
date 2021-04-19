@@ -1,0 +1,15 @@
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0">[<%= @partner.display_hierarchy %>]<%= @partner.company.name %></h1>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+  
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  
+  <% if @partners.present? %>
+    <h2>傘下の代理店</h2>
+    <%= render 'table', partners: @partners %>
+  <% end %>
+
+</main><!-- .main-contents -->

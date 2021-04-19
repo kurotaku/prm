@@ -1,0 +1,23 @@
+<div class="main-menu-wrap">
+  <nav class="main-menu">
+    <ul class="main-menu-list">
+      <li><%= link_to '[メ]商品マスタ', products_path %></li>
+      <li><%= link_to '[メ]申し込み管理', offers_path %></li>
+      <li><%= link_to 'パートナー管理', partners_path %></li>
+      <li><%= link_to '販売グループ管理', vendor_groups_path %></li>
+    </ul>
+
+    <div class="main-menu-footer">
+      <ul class="main-menu-list">
+        <li>
+          <%= link_to products_path do %>
+            <div><%= @current_company&.name %></div>
+            <div><%= current_user&.user_profile&.name %></div>
+          <% end %>
+        </li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: 'delete' %></li>
+      </ul>
+    </div>
+
+  </nav><!-- .main-menu -->
+</div><!-- .main-menu-wrap -->

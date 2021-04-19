@@ -1,0 +1,22 @@
+<div class="table-wrap sp-none">
+  <table class="border-table">
+    <thead>
+      <tr>
+        <td>会社名</td>
+        <td>階層</td>
+        <td>上位店</td>
+        <td>メーカー</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% partners.each do |partner| %>
+        <tr>
+          <td><%= link_to partner.company.name, partner_path(partner) %></td>
+          <td><%= partner.display_hierarchy %></td>
+          <td><%= partner&.parent&.name %></td>
+          <td><%= partner.maker_group.maker.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div><!-- .table-wrap -->
