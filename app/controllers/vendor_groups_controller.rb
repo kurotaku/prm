@@ -4,7 +4,7 @@ class VendorGroupsController < ApplicationController
   end
 
   def show
-    @vendor_group = VendorGroup.find(params[:id])
+    @vendor_group = VendorGroup.find_by(uid: params[:uid])
     @agents = @vendor_group.agents.where(parent: nil)
   end
 end

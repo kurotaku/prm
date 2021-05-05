@@ -7,7 +7,7 @@
 #  hierarchy      :integer
 #  maker_memo     :text(65535)
 #  status         :integer          default(10), not null
-#  uuid           :string(255)
+#  uid            :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  company_id     :bigint           not null
@@ -27,6 +27,8 @@
 #  fk_rails_...  (parent_id => companies.id)
 #
 class Partner < ApplicationRecord
+  include Uniqueable
+  
   belongs_to :maker_group
   belongs_to :company
   belongs_to :parent, class_name: 'Company', optional: true

@@ -7,6 +7,8 @@ class CreateAgentProducts < ActiveRecord::Migration[6.1]
       t.references :product, null: false, foreign_key: true
       t.integer :price
       t.integer :incentive
+      t.integer :status, default: 10, null: false
+      t.string :uid
 
       t.timestamps
     end

@@ -11,10 +11,10 @@ class CreateCompanies < ActiveRecord::Migration[6.1]
       t.string "phone"
       t.string "fax"
       t.integer "settlement_month"
-      t.text "image"
+      t.string "image"
       t.string "email"
       t.integer :status, default: 10, null: false
-      t.string "uuid"
+      t.string "uid"
       t.datetime "deleted_at"
 
       t.timestamps

@@ -5,7 +5,7 @@ class CreateVendorGroups < ActiveRecord::Migration[6.1]
       t.references :vendor, null: false, foreign_key: { to_table: :companies }
       t.integer :layer
       t.integer :status, default: 10, null: false
-      t.string :uuid
+      t.string :uid
       t.datetime :deleted_at
 
       t.timestamps

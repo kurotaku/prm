@@ -8,7 +8,7 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.integer :incentive
       t.text "description"
       t.integer :status, default: 10, null: false
-      t.string :uuid
+      t.string :uid
       t.datetime :deleted_at
 
       t.timestamps

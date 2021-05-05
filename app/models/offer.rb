@@ -6,7 +6,9 @@
 #  confirmed_at    :datetime
 #  progress        :integer
 #  saled_at        :datetime
+#  status          :integer          default(10), not null
 #  type            :integer
+#  uid             :string(255)
 #  unique_key      :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -33,6 +35,8 @@
 #  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 class Offer < ApplicationRecord
+  include Uniqueable
+  
   belongs_to :maker_group
   belongs_to :vendor_group
   belongs_to :product

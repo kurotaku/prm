@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.bigint "product_id", null: false
     t.integer "price"
     t.integer "incentive"
+    t.integer "status", default: 10, null: false
+    t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["agent_id"], name: "index_agent_products_on_agent_id"
@@ -35,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.bigint "parent_id"
     t.text "vendor_memo"
     t.integer "status", default: 10, null: false
-    t.string "uuid"
+    t.string "uid"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,7 +49,9 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
 
   create_table "boards", charset: "utf8mb4", force: :cascade do |t|
     t.string "related_object"
-    t.integer "related_object_id"
+    t.integer "related_object_uid"
+    t.integer "status", default: 10, null: false
+    t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -63,10 +67,10 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.string "phone"
     t.string "fax"
     t.integer "settlement_month"
-    t.text "image"
+    t.string "image"
     t.string "email"
     t.integer "status", default: 10, null: false
-    t.string "uuid"
+    t.string "uid"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -83,7 +87,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
   create_table "maker_groups", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_id", null: false
     t.integer "status", default: 10, null: false
-    t.string "uuid"
+    t.string "uid"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -95,6 +99,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.string "title"
     t.text "content"
     t.bigint "user_id", null: false
+    t.integer "status", default: 10, null: false
+    t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["maker_group_id"], name: "index_maker_informations_on_maker_group_id"
@@ -105,6 +111,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.bigint "board_id", null: false
     t.bigint "user_id", null: false
     t.text "content"
+    t.integer "status", default: 10, null: false
+    t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["board_id"], name: "index_messages_on_board_id"
@@ -133,6 +141,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.datetime "confirmed_at"
     t.integer "progress"
     t.string "unique_key"
+    t.integer "status", default: 10, null: false
+    t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["agent_id"], name: "index_offers_on_agent_id"
@@ -149,7 +159,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.bigint "parent_id"
     t.text "maker_memo"
     t.integer "status", default: 10, null: false
-    t.string "uuid"
+    t.string "uid"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -194,7 +204,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.integer "incentive"
     t.text "description"
     t.integer "status", default: 10, null: false
-    t.string "uuid"
+    t.string "uid"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -222,8 +232,10 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.bigint "company_id"
+    t.string "image"
+    t.string "name"
     t.integer "status", default: 10, null: false
-    t.string "uuid"
+    t.string "uid"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -237,7 +249,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.bigint "vendor_id", null: false
     t.integer "layer"
     t.integer "status", default: 10, null: false
-    t.string "uuid"
+    t.string "uid"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -251,6 +263,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.string "title"
     t.text "content"
     t.bigint "user_id", null: false
+    t.integer "status", default: 10, null: false
+    t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["maker_group_id"], name: "index_vendor_informations_on_maker_group_id"
@@ -264,6 +278,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.bigint "product_id", null: false
     t.integer "price"
     t.integer "incentive"
+    t.integer "status", default: 10, null: false
+    t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["maker_group_id"], name: "index_vendor_products_on_maker_group_id"

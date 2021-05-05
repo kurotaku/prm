@@ -7,7 +7,7 @@
 #  hierarchy      :integer
 #  maker_memo     :text(65535)
 #  status         :integer          default(10), not null
-#  uuid           :string(255)
+#  uid            :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  company_id     :bigint           not null

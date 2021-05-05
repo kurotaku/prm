@@ -9,14 +9,14 @@
 #  deleted_at       :datetime
 #  email            :string(255)
 #  fax              :string(255)
-#  image            :text(65535)
+#  image            :string(255)
 #  name             :string(255)
 #  name_kana        :string(255)
 #  phone            :string(255)
 #  postcode         :string(255)
 #  settlement_month :integer
 #  status           :integer          default(10), not null
-#  uuid             :string(255)
+#  uid              :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  prefecture_id    :bigint           not null
@@ -30,10 +30,18 @@
 #  fk_rails_...  (prefecture_id => prefectures.id)
 #
 class Company < ApplicationRecord
+  include Uniqueable
+  
   belongs_to :prefecture
   has_many :users
   has_many :maker_groups, foreign_key: 'maker_id', inverse_of: :maker
   has_many :partners, through: :maker_groups
 
   has_many :vendor_groups, foreign_key: 'vendor_id', inverse_of: :vendor
+
+  def maker_group_uid(params)
+    return unless maker_groups.present?
+
+    params[:base_path].present? ? params[:base_path] : maker_groups.first.uid
+  end
 end

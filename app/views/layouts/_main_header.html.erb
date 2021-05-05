@@ -1,0 +1,27 @@
+<header class="main-header d-flex">
+  <div class="maker-info">
+    <%= image_tag @current_maker_group.maker.decorate.thumbnail, class: 'header-icon mr-3' %>
+    <span class="maker-name"><%= @current_maker_group.maker.name %></span>
+  </div>
+
+  <nav id="makerMenu" class="header-menu">
+    <ul>
+      <li><%= link_to '商品マスタ', products_path %></li>
+    </ul>
+  </nav>
+  <div id="makerMenuBg" class="header-menu-bg"></div>
+
+  <div class="ml-auto">
+    <i class="icon-add-fill"></i>
+    <%= image_tag current_user.decorate.thumbnail, class: 'header-icon', id: 'userIcon' %>
+
+    <nav id="userMenu" class="header-menu">
+      <ul>
+        <li><%= link_to 'プロフィール編集', edit_profile_path(uid: current_user.uid) %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: 'delete' %></li>
+      </ul>
+    </nav>
+    <div id="userMenuBg" class="header-menu-bg"></div>
+
+  </div>
+</header>

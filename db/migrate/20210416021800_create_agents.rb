@@ -8,7 +8,7 @@ class CreateAgents < ActiveRecord::Migration[6.1]
       t.references :parent, foreign_key: { to_table: :companies }
       t.text :vendor_memo
       t.integer :status, default: 10, null: false
-      t.string :uuid
+      t.string :uid
       t.datetime :deleted_at
 
       t.timestamps

@@ -7,7 +7,9 @@ ENV APP_ROOT /app
 WORKDIR $APP_ROOT
 
 RUN apt-get update
-RUN apt-get install -y nodejs graphviz vim --no-install-recommends
+RUN apt-get install -y nodejs npm && npm install n -g && n 12.0.0
+RUN apt-get install -y yarn graphviz vim --no-install-recommends
+
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN apt-get install -y curl apt-transport-https wget && \
@@ -35,3 +37,5 @@ RUN bundle install
 ADD . $APP_ROOT
 
 EXPOSE  3000
+
+

@@ -9,7 +9,7 @@
     <tbody>
       <% vendor_groups.each do |vendor_group| %>
         <tr>
-          <td><%= link_to vendor_group.decorate.display_name, vendor_group_path(vendor_group) %></td>
+          <td><%= link_to vendor_group.decorate.display_name, vendor_group_path(uid: vendor_group.uid) %></td>
           <td><%= vendor_group.vendor.name %></td>
         </tr>
       <% end %>

@@ -20,7 +20,7 @@
       <tbody>
         <% @agents.each do |agent| %>
           <tr>
-            <td><%= link_to agent.company.name, agent_path(agent) %></td>
+            <td><%= link_to agent.company.name, agent_path(uid: agent.uid) %></td>
             <td><%= agent.display_hierarchy %></td>
             <td><%= agent&.parent&.name %></td>
             <td><%= agent.maker_group.maker.name %></td>

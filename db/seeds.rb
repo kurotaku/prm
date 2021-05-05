@@ -314,5 +314,15 @@ vendor_group_1.vendor_informations.create!(title: '手数料変更のお知ら�
 vendor_group_1.vendor_informations.create!(title: '担当者のお知らせ', content: '担当者が変更になります', user: partner_1_user_1, maker_group: maker_group_1)
 
 
+
+##########################
+# 商品のチャット
+##########################
+p '=== Message ==='
+board_1 = Board.create!(related_object: 'product', related_object_uid: product_3.uid)
+board_1.messages.create!(user: maker_user_1, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
+board_1.messages.create!(user: maker_user_1, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
+board_1.messages.create!(user: partner_2_user_1, content: '了解しました。')
+
 end #ApplicationRecord.transaction do
 

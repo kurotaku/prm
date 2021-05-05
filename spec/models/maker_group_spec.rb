@@ -5,7 +5,7 @@
 #  id         :bigint           not null, primary key
 #  deleted_at :datetime
 #  status     :integer          default(10), not null
-#  uuid       :string(255)
+#  uid        :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  maker_id   :bigint           not null

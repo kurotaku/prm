@@ -10,7 +10,7 @@
 #  name           :string(255)
 #  price          :integer
 #  status         :integer          default(10), not null
-#  uuid           :string(255)
+#  uid            :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  maker_group_id :bigint           not null
@@ -24,6 +24,8 @@
 #  fk_rails_...  (maker_group_id => maker_groups.id)
 #
 class Product < ApplicationRecord
+  include Uniqueable
+  
   belongs_to :maker_group
   has_many :product_labels
   has_many :product_metas

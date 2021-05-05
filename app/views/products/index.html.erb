@@ -20,7 +20,7 @@
       <tbody>
         <% @products.each do |product| %>
           <tr>
-            <td><%= link_to product.name, product_path(product) %></td>
+            <td><%= link_to product.name, product_path(uid: product.uid) %></td>
             <td><%= product.code %></td>
             <td><%= product.price.to_s(:delimited) %></td>
             <td><%= product.incentive.to_s(:delimited) %></td>

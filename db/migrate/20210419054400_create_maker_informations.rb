@@ -5,6 +5,8 @@ class CreateMakerInformations < ActiveRecord::Migration[6.1]
       t.string :title
       t.text :content
       t.references :user, null: false, foreign_key: true
+      t.integer :status, default: 10, null: false
+      t.string :uid
 
       t.timestamps
     end

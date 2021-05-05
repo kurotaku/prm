@@ -6,7 +6,9 @@
 #  confirmed_at    :datetime
 #  progress        :integer
 #  saled_at        :datetime
+#  status          :integer          default(10), not null
 #  type            :integer
+#  uid             :string(255)
 #  unique_key      :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

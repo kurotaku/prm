@@ -4,7 +4,7 @@ class PartnersController < ApplicationController
   end
 
   def show
-    @partner = Partner.find(params[:id])
+    @partner = Partner.find_by(uid: params[:uid])
     @partners = Partner.where(parent: @partner.company)
   end
 end

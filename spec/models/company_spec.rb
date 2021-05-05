@@ -9,14 +9,14 @@
 #  deleted_at       :datetime
 #  email            :string(255)
 #  fax              :string(255)
-#  image            :text(65535)
+#  image            :string(255)
 #  name             :string(255)
 #  name_kana        :string(255)
 #  phone            :string(255)
 #  postcode         :string(255)
 #  settlement_month :integer
 #  status           :integer          default(10), not null
-#  uuid             :string(255)
+#  uid              :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  prefecture_id    :bigint           not null

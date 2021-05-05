@@ -4,7 +4,9 @@
 #
 #  id              :bigint           not null, primary key
 #  content         :text(65535)
+#  status          :integer          default(10), not null
 #  title           :string(255)
+#  uid             :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  maker_group_id  :bigint           not null
@@ -24,6 +26,8 @@
 #  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 class VendorInformation < ApplicationRecord
+  include Uniqueable
+  
   belongs_to :maker_group
   belongs_to :vendor_group
   belongs_to :user

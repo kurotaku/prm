@@ -6,7 +6,7 @@
 #  deleted_at      :datetime
 #  hierarchy       :integer
 #  status          :integer          default(10), not null
-#  uuid            :string(255)
+#  uid             :string(255)
 #  vendor_memo     :text(65535)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -30,6 +30,8 @@
 #  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 class Agent < ApplicationRecord
+  include Uniqueable
+  
   belongs_to :maker_group
   belongs_to :vendor_group
   belongs_to :company

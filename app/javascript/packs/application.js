@@ -11,3 +11,36 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// Support component names relative to this directory:
+var componentRequireContext = require.context("components", true);
+var ReactRailsUJS = require("react_ujs");
+ReactRailsUJS.useContext(componentRequireContext);
+
+$(document).on('click', '.maker-info', function(){
+  $('#makerMenu').toggle();
+  $('#makerMenuBg').toggle();
+});
+
+$(document).on('click', '#makerMenuBg', function(){
+  $('#makerMenu').toggle();
+  $('#makerMenuBg').toggle();
+});
+
+$(document).on('click', '#userIcon', function(){
+  $('#userMenu').toggle();
+  $('#userMenuBg').toggle();
+});
+
+$(document).on('click', '#userMenuBg', function(){
+  $('#userMenu').toggle();
+  $('#userMenuBg').toggle();
+});
+
+$(document).on('click', '#commentOpen', function(){
+  $('#rightCol').addClass('on');
+});
+
+$(document).on('click', '#rightColClose', function(){
+  $('#rightCol').removeClass('on');
+});

@@ -5,6 +5,8 @@
 #  id              :bigint           not null, primary key
 #  incentive       :integer
 #  price           :integer
+#  status          :integer          default(10), not null
+#  uid             :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  maker_group_id  :bigint           not null
@@ -24,6 +26,8 @@
 #  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 class VendorProduct < ApplicationRecord
+  include Uniqueable
+  
   belongs_to :maker_group
   belongs_to :vendor_group
   belongs_to :product

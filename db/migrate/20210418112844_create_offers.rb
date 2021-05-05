@@ -11,6 +11,8 @@ class CreateOffers < ActiveRecord::Migration[6.1]
       t.datetime :confirmed_at
       t.integer :progress
       t.string :unique_key
+      t.integer :status, default: 10, null: false
+      t.string :uid
 
       t.timestamps
     end
