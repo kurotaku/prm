@@ -1,14 +1,15 @@
 class Api::V1::BoardsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  def create
-  end
+  def create; end
 
   def show
-    render json: Board.find_by(
-                  related_object: params[:related_object],
-                  related_object_uid: params[:related_object_uid]
-                 ), serializer: BoardSerializer
+    p params
+    p params[:related_object]
+    p params[:related_object_uid]
+    board = Board.where(related_object: params[:related_object], related_object_uid: params[:related_object_uid]).last
+    p board
+    render json: board, serializer: BoardSerializer
   end
 
   def message_params

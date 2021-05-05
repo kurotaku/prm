@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
 
   # FIX ME: 複数メーカー対応していない
   def set_current_maker_group
-    @current_maker_group = @current_company.maker_groups.last if @current_company.present?
+    @current_maker_group = MakerGroup.find_by(uid: params[:base_path]) if @current_company.present?
   end
 end

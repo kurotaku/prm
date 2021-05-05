@@ -7,17 +7,31 @@
   <nav id="makerMenu" class="header-menu">
     <ul>
       <li><%= link_to '商品マスタ', products_path %></li>
+      <li><%= link_to 'NG顧客リスト', root_path %></li>
     </ul>
   </nav>
   <div id="makerMenuBg" class="header-menu-bg"></div>
 
-  <div class="ml-auto">
-    <i class="icon-add-fill"></i>
+  <div class="ml-auto d-flex">
+    <ul class="main-header-icon-list">
+      <li><i class="icon-notification"></i></li>
+    </ul>
+
     <%= image_tag current_user.decorate.thumbnail, class: 'header-icon', id: 'userIcon' %>
 
     <nav id="userMenu" class="header-menu">
+      <h2 class="header-menu-title"><i class="icon-company"></i><%= @current_company.name %></h2>
+      <ul class="mb-3">
+        <li><%= link_to '会社情報', company_profiles_path %></li>
+        <li><%= link_to '社員リスト', root_path %></li>
+        <li><%= link_to '権限管理', root_path %></li>
+      </ul>
+
+      <hr />
+
+      <h2 class="header-menu-title"><i class="icon-person"></i><%= current_user.user_profile.name %></h2>
       <ul>
-        <li><%= link_to 'プロフィール編集', edit_profile_path(uid: current_user.uid) %></li>
+        <li><%= link_to 'プロフィール編集', edit_profiles_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: 'delete' %></li>
       </ul>
     </nav>

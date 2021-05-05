@@ -305,6 +305,11 @@ html{
       }
     }
   }
+  .thumb{
+    width: 40px;
+    border-radius: 100%;
+    margin-right: 8px;
+  }
 }
 
 
@@ -837,7 +842,7 @@ html{
     font-size: 1.1rem;
     font-weight: normal;
     letter-spacing: .12em;
-    color: $text-04;
+    color: $text-05;
     width: 40%;
   }
   dd{
@@ -1767,6 +1772,23 @@ header{
       font-weight: 600;
     }
   }
+  .main-header-icon-list{
+    li{
+      background-color: #152134;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      margin-right: 16px;
+      i{
+        font-size: 2.4rem;
+      }
+    }
+  }
   .header-menu{
     display: none;
     background-color: white;
@@ -1776,7 +1798,6 @@ header{
     box-shadow: 0 0 4px rgba(0, 0, 0, .6);
     position: absolute;
     top: 50px;
-    
     z-index: 100;
     ul{
       li{
@@ -1796,8 +1817,20 @@ header{
     &#userMenu{
       right: 24px;
     }
+    .header-menu-title{
+      display: flex;
+      align-items: center;
+      color: $secondary-01;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 4px 16px;
+      margin-bottom: 4px;
+      i{
+        font-size: 1.6rem;
+        margin-right: 6px;
+      }
+    }
   }
-  
   .header-menu-bg{
     display: none;
     position: fixed;
@@ -1933,7 +1966,7 @@ header{
     color: $secondary-01;
   }
   .message-list{
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 280px);
     overflow: auto;
     &>li{
       padding: 24px;

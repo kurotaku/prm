@@ -27,6 +27,6 @@ FactoryBot.define do
     maker_group { nil }
     vendor { nil }
     layer { 1 }
-    uuid { "MyString" }
+    uuid { 'MyString' }
   end
 end

@@ -24,7 +24,7 @@
 #
 class MakerInformation < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :maker_group
   belongs_to :user
 end

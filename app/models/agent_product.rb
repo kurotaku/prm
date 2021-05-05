@@ -30,7 +30,7 @@
 #
 class AgentProduct < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :maker_group
   belongs_to :vendor_group
   belongs_to :agent

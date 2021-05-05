@@ -23,7 +23,7 @@
 #
 class Message < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :board
   belongs_to :user
 end

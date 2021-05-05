@@ -20,7 +20,7 @@
 #
 class MakerGroup < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :maker, class_name: 'Company'
   has_many :partners
   has_many :products

@@ -25,7 +25,7 @@
 #
 class Product < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :maker_group
   has_many :product_labels
   has_many :product_metas

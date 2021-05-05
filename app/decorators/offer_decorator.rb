@@ -9,5 +9,4 @@ class OfferDecorator < ApplicationDecorator
       DefaultLabel.where(order: object.progress).last.name
     end
   end
-
 end

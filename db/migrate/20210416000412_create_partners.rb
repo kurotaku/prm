@@ -9,7 +9,7 @@ class CreatePartners < ActiveRecord::Migration[6.1]
       t.integer :status, default: 10, null: false
       t.string :uid
       t.datetime :deleted_at
-      
+
       t.timestamps
     end
   end

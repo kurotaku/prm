@@ -5,6 +5,7 @@
 #  id               :bigint           not null, primary key
 #  address          :string(255)
 #  address2         :string(255)
+#  contract_type    :integer          default("partner"), not null
 #  coprate_number   :string(255)
 #  deleted_at       :datetime
 #  email            :string(255)

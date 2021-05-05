@@ -24,7 +24,7 @@
 #
 class VendorGroup < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :maker_group
   belongs_to :vendor, class_name: 'Company'
   has_many :agents

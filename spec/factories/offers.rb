@@ -39,9 +39,9 @@ FactoryBot.define do
     maker_group { nil }
     vendor_group { nil }
     product { nil }
-    user {nil}
-    saled_at { "MyString" }
+    user { nil }
+    saled_at { 'MyString' }
     progress { 1 }
-    unique_key { "MyString" }
+    unique_key { 'MyString' }
   end
 end

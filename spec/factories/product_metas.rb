@@ -22,8 +22,8 @@
 FactoryBot.define do
   factory :product_meta do
     product { nil }
-    meta_kay { "MyString" }
-    meta_type { "MyString" }
+    meta_kay { 'MyString' }
+    meta_type { 'MyString' }
     order { 1 }
   end
 end

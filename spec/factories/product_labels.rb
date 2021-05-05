@@ -21,6 +21,6 @@ FactoryBot.define do
   factory :product_label do
     product { nil }
     order { 1 }
-    name { "MyString" }
+    name { 'MyString' }
   end
 end

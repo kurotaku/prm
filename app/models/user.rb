@@ -29,7 +29,7 @@
 #
 class User < ApplicationRecord
   include Uniqueable
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

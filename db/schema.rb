@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
 
   create_table "boards", charset: "utf8mb4", force: :cascade do |t|
     t.string "related_object"
-    t.integer "related_object_uid"
+    t.string "related_object_uid"
     t.integer "status", default: 10, null: false
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.string "image"
     t.string "email"
     t.integer "status", default: 10, null: false
+    t.integer "contract_type", default: 10, null: false
     t.string "uid"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false

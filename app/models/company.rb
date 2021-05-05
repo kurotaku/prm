@@ -5,6 +5,7 @@
 #  id               :bigint           not null, primary key
 #  address          :string(255)
 #  address2         :string(255)
+#  contract_type    :integer          default("partner"), not null
 #  coprate_number   :string(255)
 #  deleted_at       :datetime
 #  email            :string(255)
@@ -31,7 +32,7 @@
 #
 class Company < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :prefecture
   has_many :users
   has_many :maker_groups, foreign_key: 'maker_id', inverse_of: :maker
@@ -39,9 +40,14 @@ class Company < ApplicationRecord
 
   has_many :vendor_groups, foreign_key: 'vendor_id', inverse_of: :vendor
 
-  def maker_group_uid(params)
-    return unless maker_groups.present?
+  enum contract_type: {
+    partner: 10,
+    maker: 20
+  }
 
-    params[:base_path].present? ? params[:base_path] : maker_groups.first.uid
+  def maker_group_uid(params)
+    return unless vendor_groups.present?
+
+    params[:base_path].present? ? params[:base_path] : vendor_groups.first.maker.uid
   end
 end

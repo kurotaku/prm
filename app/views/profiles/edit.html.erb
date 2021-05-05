@@ -14,7 +14,7 @@
     <div class="contents-box">
       <h2 class="contents-box-title mb-5">ユーザー情報</h2>
 
-      <%= form_for(current_user, url: profile_path, html: { method: :patch, class: 'form-default auto-submit-form' }, local: true) do |f| %>
+      <%= form_for(current_user, url: profiles_path, html: { method: :patch, class: 'form-default auto-submit-form' }, local: true) do |f| %>
 
         <%#= render 'shared/error_messages', object: f.object %>
 

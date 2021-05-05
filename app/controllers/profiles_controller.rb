@@ -1,12 +1,8 @@
 class ProfilesController < ApplicationController
-  def edit
-  end
+  def edit; end
 
   def update
-    if current_user.update(user_params)
-      redirect_to root_path
-    else
-    end
+    redirect_to root_path if current_user.update(user_params)
   end
 
   private
@@ -14,5 +10,4 @@ class ProfilesController < ApplicationController
   def user_params
     params.require(:user).permit(:image)
   end
-
 end

@@ -11,6 +11,6 @@
 FactoryBot.define do
   factory :default_label do
     order { 1 }
-    name { "MyString" }
+    name { 'MyString' }
   end
 end

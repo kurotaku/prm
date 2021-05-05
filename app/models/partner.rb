@@ -28,7 +28,7 @@
 #
 class Partner < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :maker_group
   belongs_to :company
   belongs_to :parent, class_name: 'Company', optional: true
