@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
@@ -8,8 +10,7 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   private
-
-  def message_params
-    params.require(:message).permit(:content).merge(user_id: current_user.id)
-  end
+    def message_params
+      params.require(:message).permit(:content).merge(user_id: current_user.id)
+    end
 end

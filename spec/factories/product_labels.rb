@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: product_labels
@@ -21,6 +23,6 @@ FactoryBot.define do
   factory :product_label do
     product { nil }
     order { 1 }
-    name { 'MyString' }
+    name { "MyString" }
   end
 end

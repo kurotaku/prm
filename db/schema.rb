@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_110220) do
+ActiveRecord::Schema.define(version: 2021_05_07_022555) do
 
   create_table "agent_products", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_group_id", null: false
@@ -212,6 +212,24 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.index ["maker_group_id"], name: "index_products_on_maker_group_id"
   end
 
+  create_table "user_action_permissions", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.bigint "user_action_id", null: false
+    t.integer "permit_role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_user_action_permissions_on_company_id"
+    t.index ["user_action_id"], name: "index_user_action_permissions_on_user_action_id"
+  end
+
+  create_table "user_actions", charset: "utf8mb4", force: :cascade do |t|
+    t.string "ctrl_path"
+    t.string "act_path"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "user_profiles", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.string "name"
@@ -235,6 +253,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
     t.bigint "company_id"
     t.string "image"
     t.string "name"
+    t.integer "role", default: 10, null: false
     t.integer "status", default: 10, null: false
     t.string "uid"
     t.datetime "deleted_at"
@@ -314,6 +333,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_110220) do
   add_foreign_key "product_labels", "products"
   add_foreign_key "product_metas", "products"
   add_foreign_key "products", "maker_groups"
+  add_foreign_key "user_action_permissions", "companies"
+  add_foreign_key "user_action_permissions", "user_actions"
   add_foreign_key "user_profiles", "users"
   add_foreign_key "vendor_groups", "companies", column: "vendor_id"
   add_foreign_key "vendor_groups", "maker_groups"

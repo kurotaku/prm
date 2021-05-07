@@ -1,4 +1,6 @@
-class CompanyProfileDecorator < ApplicationDecorator
+# frozen_string_literal: true
+
+class Company::ProfileDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
@@ -9,5 +11,4 @@ class CompanyProfileDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
 end

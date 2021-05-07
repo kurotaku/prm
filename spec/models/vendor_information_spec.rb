@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: vendor_informations
@@ -25,7 +27,7 @@
 #  fk_rails_...  (user_id => users.id)
 #  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe VendorInformation, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"

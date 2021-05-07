@@ -79,6 +79,14 @@ ApplicationRecord.transaction do
   DefaultLabel.create(order: 4, name: '完了')
 
   ##########################
+  # ユーザーアクション
+  ##########################
+  p '=== UserAction ==='
+  UserAction.find_or_create_by!(name: '自社情報閲覧', ctrl_path: 'company_profiles', act_path:'show')
+  UserAction.find_or_create_by!(name: '自社情報編集', ctrl_path: 'company_profiles', act_path:'edit')
+  UserAction.find_or_create_by!(name: 'メーカー商品一覧', ctrl_path: 'products', act_path:'index')
+
+  ##########################
   # 会社
   ##########################
   p '=== Company ==='
@@ -115,6 +123,9 @@ ApplicationRecord.transaction do
   end
 
   p '=== User ==='
+  last_name = %w[佐藤 鈴木 木村 渡辺 加藤 斎藤 近藤 高橋 田中 伊藤 山本 中村 小林 山田 佐々木 井上 林]
+  first_name = %w[太郎 一郎 花子 よし子 優子 健 太一 二郎 真司 剛 翔太 はるか 綾香 美咲 さくら]
+
   maker_user_1 = dumy_force_create(maker_1, 'sample@maker1.com', 'メーカー太郎')
 
   partner_1_user_1 = dumy_force_create(partner_1, 'sample@partner1.com', 'フグ田 マスオ')
@@ -135,6 +146,12 @@ ApplicationRecord.transaction do
   partner_1_1_2_user_1 = dumy_force_create(partner_1_1_2, 'sample@partner1-1-2.com', '八幡三次郎')
   partner_1_1_3_user_1 = dumy_force_create(partner_1_1_3, 'sample@partner1-1-3.com', '小町三次郎')
 
+  (1..200).each do |i|
+    user = Company.all.sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
+    user.skip_confirmation!
+    user.save!
+  end
+  
   ##########################
   # メーカーグループ
   ##########################

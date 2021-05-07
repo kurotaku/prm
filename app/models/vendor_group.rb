@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: vendor_groups
@@ -26,7 +28,7 @@ class VendorGroup < ApplicationRecord
   include Uniqueable
 
   belongs_to :maker_group
-  belongs_to :vendor, class_name: 'Company'
+  belongs_to :vendor, class_name: "Company"
   has_many :agents
   has_many :agent_products
   has_many :vendor_informations

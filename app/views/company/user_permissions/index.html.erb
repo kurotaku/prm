@@ -1,0 +1,59 @@
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>権限設定</h1>
+    <p>自社メンバーの操作を権限によって制限できます。</p>
+  </div>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+  
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  
+  <% if @parmissions.present? %>
+    <div class="table-wrap sp-none">
+      <table class="border-table">
+        <thead>
+          <tr>
+            <td>ユーザー操作</td>
+            <td>権限レベル</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @parmissions.each do |parmission| %>
+            <tr>
+              <td><%= parmission.user_action.name %></td>
+              <td><%= parmission.permit_role_i18n %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- .table-wrap -->
+  <% else %>
+    <p>権限設定はまだありません</p>
+  <% end %>
+
+   <%= form_for(@parmission, url: company_user_permissions_path, html: { method: :post, class: 'form-default auto-submit-form' }, local: true) do |f| %>
+
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.hidden_field :company_id, value: @current_company.id %>
+
+    <div class="form-group">
+      <p class="mb-1"><%= f.label :user_action %><sup class="required">*</sup></p>
+      <div class="select-wrap half">
+        <%= f.collection_select :user_action_id, UserAction.all, :id, :name, {include_blank: '---'},{class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p class="mb-1"><%= f.label :permit_role %><sup class="required">*</sup></p>
+      <div class="select-wrap half">
+        <%= f.select :permit_role, UserActionPermission.permit_roles_i18n.invert.to_a, {}, {class: 'form-control'} %>
+      </div>
+    </div>
+
+    <%= f.submit t('common.create'), class: 'btn btn-m default' %>
+  <% end %>
+
+</main><!-- .main-contents -->

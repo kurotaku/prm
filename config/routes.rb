@@ -1,21 +1,27 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    registrations: "users/registrations",
+    sessions:      "users/sessions",
   }
 
   namespace :api do
     namespace :v1 do
       resources :current_user, only: %i[index]
-      get 'boards/:related_object/:related_object_uid' => 'boards#show', as: :board_messages
+      get "boards/:related_object/:related_object_uid" => "boards#show", as: :board_messages
       resources :boards, only: [:create], param: :uid
       resources :messages, only: [:create], param: :uid
     end
   end
 
-  root 'static_pages#home'
+  root "static_pages#home"
 
-  scope '/:base_path' do
+  scope "/:base_path" do
+    namespace :company do
+      resource :profiles, only: %i[show edit update], param: :uid
+      resources :user_permissions, only: %i[index create update destroy]
+    end
     resource :dashboards, only: %i[show], param: :uid
     resources :partners, param: :uid
     resources :products, param: :uid
@@ -24,6 +30,5 @@ Rails.application.routes.draw do
     resources :offers, param: :uid
     resources :vendor_informations, param: :uid
     resource :profiles, only: %i[edit update], param: :uid
-    resource :company_profiles, only: %i[show edit update], param: :uid
   end
 end

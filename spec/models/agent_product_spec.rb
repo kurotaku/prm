@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: agent_products
@@ -28,7 +30,7 @@
 #  fk_rails_...  (product_id => products.id)
 #  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe AgentProduct, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"

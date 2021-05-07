@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ulid'
+require "ulid"
 
 module Uniqueable
   extend ActiveSupport::Concern

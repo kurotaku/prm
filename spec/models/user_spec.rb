@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -14,6 +16,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
+#  role                   :integer          default("level_one"), not null
 #  status                 :integer          default(10), not null
 #  uid                    :string(255)
 #  unconfirmed_email      :string(255)
@@ -27,7 +30,7 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: offer_metas
@@ -22,8 +24,8 @@
 FactoryBot.define do
   factory :offer_meta do
     offer { nil }
-    meta_kay { 'MyString' }
-    meta_value { 'MyString' }
+    meta_kay { "MyString" }
+    meta_value { "MyString" }
     order { 1 }
   end
 end

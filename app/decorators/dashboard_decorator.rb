@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DashboardDecorator < ApplicationDecorator
   delegate_all
 

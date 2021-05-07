@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: user_profiles
@@ -18,7 +20,7 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe UserProfile, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"

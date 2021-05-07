@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: user_profiles
@@ -20,8 +22,8 @@
 #
 FactoryBot.define do
   factory :user_profile do
-    name { 'MyString' }
-    phone { 'MyString' }
-    email { 'MyString' }
+    name { "MyString" }
+    phone { "MyString" }
+    email { "MyString" }
   end
 end

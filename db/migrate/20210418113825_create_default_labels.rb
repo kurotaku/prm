@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDefaultLabels < ActiveRecord::Migration[6.1]
   def change
     create_table :default_labels do |t|

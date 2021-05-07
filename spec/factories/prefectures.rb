@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: prefectures
@@ -11,7 +13,7 @@
 #
 FactoryBot.define do
   factory :prefecture do
-    code { 'MyString' }
-    name { 'MyString' }
+    code { "MyString" }
+    name { "MyString" }
   end
 end

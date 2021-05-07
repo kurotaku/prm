@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: maker_informations
@@ -25,8 +27,8 @@
 FactoryBot.define do
   factory :maker_information do
     maker_group { nil }
-    title { 'MyString' }
-    content { 'MyText' }
+    title { "MyString" }
+    content { "MyText" }
     user { nil }
   end
 end

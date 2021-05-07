@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: partners
@@ -31,9 +33,9 @@ class Partner < ApplicationRecord
 
   belongs_to :maker_group
   belongs_to :company
-  belongs_to :parent, class_name: 'Company', optional: true
+  belongs_to :parent, class_name: "Company", optional: true
 
   def display_hierarchy
-    hierarchy.to_s + '次店'
+    hierarchy.to_s + "\u6B21\u5E97"
   end
 end

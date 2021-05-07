@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: default_labels
@@ -11,6 +13,6 @@
 FactoryBot.define do
   factory :default_label do
     order { 1 }
-    name { 'MyString' }
+    name { "MyString" }
   end
 end

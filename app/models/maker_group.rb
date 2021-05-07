@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: maker_groups
@@ -21,7 +23,7 @@
 class MakerGroup < ApplicationRecord
   include Uniqueable
 
-  belongs_to :maker, class_name: 'Company'
+  belongs_to :maker, class_name: "Company"
   has_many :partners
   has_many :products
   has_many :vendor_groups

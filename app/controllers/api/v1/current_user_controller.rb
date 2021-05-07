@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::CurrentUserController < ApplicationController
   def index
     if user_signed_in?

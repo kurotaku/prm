@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: messages
@@ -25,7 +27,7 @@ class MessageSerializer < ActiveModel::Serializer
   attributes :uid, :content, :create_datetime, :user_name, :user_thumbnail
 
   def create_datetime
-    object.created_at.strftime('%Y/%m/%d/ %H:%M')
+    object.created_at.strftime("%Y/%m/%d/ %H:%M")
   end
 
   def user_name

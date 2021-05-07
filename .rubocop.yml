@@ -1,0 +1,91 @@
+inherit_gem:
+  rubocop-rails_config:
+    - config/rails.yml
+
+# Override Setting
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - "bin/*"
+    - "node_modules/**/*"
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - "db/seeds.rb"
+
+# 日本語コメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+# 行末のカンマを許可
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+# 1行の長さ
+Metrics/LineLength:
+  Max: 160
+  Exclude:
+    - 'db/**/*'
+    - 'config/initializers/*'
+    - 'bin/*'
+    - 'lib/tasks/auto_annotate_models.rake'
+
+Metrics/ClassLength:
+  Max: 140
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'db/**/*'
+
+Metrics/BlockNesting:
+  Exclude:
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/schema.rb'
+    - 'app/admin/*'
+    - 'config/routes.rb'
+    - "Rakefile"
+    - "**/*.rake"
+    - "spec/**/*.rb"
+    - "Gemfile"
+    - "Guardfile"
+    - "config/environments/*.rb"
+    - "config/routes.rb"
+    - "config/routes/**/*.rb"
+    - "*.gemspec"
+
+Metrics/AbcSize:
+  Max: 23
+  Exclude:
+    - 'db/**/*'
+    - 'app/controllers/users/registrations_controller.rb'
+    - 'app/controllers/users/confirmations_controller.rb'
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 8
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+
+# 改行
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Naming/VariableNumber:
+  Exclude:
+    - 'db/seeds.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - 'bin/*'
+
+Lint/UselessAssignment:
+  Exclude:
+    - 'db/seeds.rb'

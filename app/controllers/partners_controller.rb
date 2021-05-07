@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PartnersController < ApplicationController
   def index
     @partners = Partner.where(parent: @current_company)

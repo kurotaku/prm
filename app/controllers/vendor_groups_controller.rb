@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VendorGroupsController < ApplicationController
   def index
     @vendor_groups = @current_company.vendor_groups.decorate

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StaticPageDecorator < ApplicationDecorator
   delegate_all
 

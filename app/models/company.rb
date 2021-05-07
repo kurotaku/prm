@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: companies
@@ -35,14 +37,14 @@ class Company < ApplicationRecord
 
   belongs_to :prefecture
   has_many :users
-  has_many :maker_groups, foreign_key: 'maker_id', inverse_of: :maker
+  has_many :maker_groups, foreign_key: "maker_id", inverse_of: :maker
   has_many :partners, through: :maker_groups
-
-  has_many :vendor_groups, foreign_key: 'vendor_id', inverse_of: :vendor
+  has_many :vendor_groups, foreign_key: "vendor_id", inverse_of: :vendor
+  has_many :user_action_permissions
 
   enum contract_type: {
     partner: 10,
-    maker: 20
+    maker:   20,
   }
 
   def maker_group_uid(params)

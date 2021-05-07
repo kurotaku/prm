@@ -16,7 +16,7 @@
 
       <%= form_for(current_user, url: profiles_path, html: { method: :patch, class: 'form-default auto-submit-form' }, local: true) do |f| %>
 
-        <%#= render 'shared/error_messages', object: f.object %>
+        <%= render 'shared/error_messages', object: f.object %>
 
         <div class="form-group">
           <p class="mb-1"><%= f.label :image %><sup class="required">*</sup></p>

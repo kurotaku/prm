@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfilesController < ApplicationController
   def edit; end
 
@@ -6,8 +8,7 @@ class ProfilesController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:image)
-  end
+    def user_params
+      params.require(:user).permit(:image)
+    end
 end

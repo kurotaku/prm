@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOfferMetas < ActiveRecord::Migration[6.1]
   def change
     create_table :offer_metas do |t|

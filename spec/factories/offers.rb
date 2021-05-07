@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: offers
@@ -40,8 +42,8 @@ FactoryBot.define do
     vendor_group { nil }
     product { nil }
     user { nil }
-    saled_at { 'MyString' }
+    saled_at { "MyString" }
     progress { 1 }
-    unique_key { 'MyString' }
+    unique_key { "MyString" }
   end
 end

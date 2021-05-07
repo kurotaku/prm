@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfileDecorator < ApplicationDecorator
   delegate_all
 

@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    models:
+      user_action_permission: ユーザー操作権限
+    attributes:
+      user_action_permission:
+        id: ID
+        user_action: ユーザー操作
+        permit_role: 許可する権限レベル
+  enums:
+    user_action_permission:
+      permit_role:
+        level_one: 権限レベル1
+        level_two: 権限レベル2
+        level_three: 権限レベル3
+        level_four: 権限レベル4
+        level_five: 権限レベル5
+  user_action_permission:
+    create:
+      success: ユーザー操作権限の設定を追加しました
+      error: ユーザー操作権限の設定を追加できませんでした
