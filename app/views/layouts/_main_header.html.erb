@@ -22,16 +22,17 @@
     <nav id="userMenu" class="header-menu">
       <h2 class="header-menu-title"><i class="icon-company"></i><%= @current_company.name %></h2>
       <ul class="mb-3">
-        <li><%= link_to '会社情報', company_profiles_path %></li>
+        <li><%= link_to '会社情報', company_page_profile_path %></li>
         <li><%= link_to '社員リスト', root_path %></li>
-        <li><%= link_to '権限管理', company_user_permissions_path %></li>
+        <li><%= link_to '権限管理', company_page_user_permissions_path %></li>
       </ul>
 
       <hr />
 
       <h2 class="header-menu-title"><i class="icon-person"></i><%= current_user.name %></h2>
       <ul>
-        <li><%= link_to 'プロフィール編集', edit_profiles_path %></li>
+        <li><%= link_to 'プロフィール', mypage_profile_path %></li>
+        <li><%= link_to 'ユーザー設定変更', edit_mypage_user_setting_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: 'delete' %></li>
       </ul>
     </nav>

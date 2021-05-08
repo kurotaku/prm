@@ -1,0 +1,39 @@
+<% content_for(:title, 'ユーザー設定') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>ユーザー設定</h1>
+    <p class="mb-0">ユーザーの設定ができます</p>
+  </div>
+</header>
+
+<main class="main-contents">
+  <div class="main-center-col w-100">
+    <div class="contents-box">
+      <h2 class="contents-box-title mb-5">ユーザー情報</h2>
+
+      <%= form_for(current_user, url: mypage_user_setting_path, html: { method: :patch, class: 'form-default auto-submit-form' }, local: true) do |f| %>
+
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="form-group">
+          <p class="mb-1"><%= f.label :image %><sup class="required">*</sup></p>
+
+          <div>
+            <div id="service-logo" class="image-wrap mb-3">
+              <%= image_tag current_user.image.url, alt: 'Image' if current_user.image.present? %>
+              <%= content_tag(:div, '', class: 'image-remove-btn', data: {target: 'service-logo'}) if current_user.image.present? %>  
+            </div>
+          </div>
+          <%= f.file_field :image, id: 'file-field', class: 'file-field', data: {image: 'service-logo'}  %>
+          <%= f.hidden_field :image_cache, data: {image: 'service-logo'} %>
+          <%= hidden_field_tag :remove_image, params['remove_logo'], class: 'remove_field', data: {image: 'service-logo'} %>
+        </div>
+
+        <%= f.submit 'この内容で保存', class: 'btn btn-m default' %>
+      <% end %>
+
+    </div>
+  </div><!-- .main-center-col -->
+
+</main><!-- .main-contents -->

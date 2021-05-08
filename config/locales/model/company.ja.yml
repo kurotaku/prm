@@ -17,6 +17,7 @@ ja:
         email: メールアドレス
         settlement_month: 決算月
         contract_type: 契約タイプ
+        image: ロゴ
   enums:
     company:
       contract_type:
@@ -24,6 +25,8 @@ ja:
         maker: メーカー
   companies:
     update:
-      success: 代理店情報を編集しました。
+      success: 企業情報を更新しました
+      error: 企業情報を更新できませんでした
     destroy:
-      success: 代理店情報を削除しました。
+      success: 企業を削除しました
+      error: 企業を削除できませんでした

@@ -1,0 +1,27 @@
+<% content_for(:title, 'プロフィール') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div class="d-flex align-items-center">
+    <div class="mr-3"><%= image_tag current_user.decorate.thumbnail, class: 'thumb' %></div>
+    <h1 class="mb-0"><%= current_user.name %></h1>
+  </div>
+
+  <div class="ml-auto">
+    <%= link_to t('common.edit'), edit_mypage_profile_path, class: 'btn btn-m border-gray before-icon edit' %>
+  </div>
+</header>
+
+<main class="main-contents">
+  <div class="contents-box">
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.user_profile.name' %></dt>
+      <dd><%= current_user.user_profile.name %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.user_profile.phone' %></dt>
+      <dd><%= current_user.user_profile.phone %></dd>
+    </dl>
+  </div>
+
+</main><!-- .main-contents -->

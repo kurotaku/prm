@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'prm';
   src:
-    url('fonts/prm.ttf?1tsk1z') format('truetype'),
-    url('fonts/prm.woff?1tsk1z') format('woff'),
-    url('fonts/prm.svg?1tsk1z#prm') format('svg');
+    url('fonts/prm.ttf?ou027n') format('truetype'),
+    url('fonts/prm.woff?ou027n') format('woff'),
+    url('fonts/prm.svg?ou027n#prm') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,6 +24,18 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-arrow-bottom:before {
+  content: "\e966";
+}
+.icon-arrow-left:before {
+  content: "\e967";
+}
+.icon-arrow-right:before {
+  content: "\e968";
+}
+.icon-arrow-top:before {
+  content: "\e969";
+}
 .icon-add-fill:before {
   content: "\e900";
 }

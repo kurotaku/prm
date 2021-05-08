@@ -6,7 +6,7 @@ ja:
       user_action_permission:
         id: ID
         user_action: ユーザー操作
-        permit_role: 許可する権限レベル
+        permit_role: 必要な権限レベル
   enums:
     user_action_permission:
       permit_role:
