@@ -22,4 +22,14 @@
 #
 class UserProfile < ApplicationRecord
   belongs_to :user, optional: true
+
+  after_save :store_user_name
+
+  private
+
+  def store_user_name
+    return if user_id.nil?
+    self.user.name = self.name
+    self.user.save!
+  end
 end
