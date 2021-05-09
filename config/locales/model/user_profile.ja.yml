@@ -4,6 +4,8 @@ ja:
       user_profile: ユーザー
     attributes:
       user_profile:
+        uid: ID
+        code: 社員コード
         name: 氏名
         phone: 電話番号
   user_profile:

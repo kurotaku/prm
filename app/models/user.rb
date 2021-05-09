@@ -22,13 +22,17 @@
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  company_id             :bigint
+#  company_id             :bigint           not null
 #
 # Indexes
 #
 #  index_users_on_company_id            (company_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (company_id => companies.id)
 #
 class User < ApplicationRecord
   include Uniqueable
@@ -40,6 +44,8 @@ class User < ApplicationRecord
   belongs_to :company
   has_one :user_profile
 
+  after_create :create_user_profile
+
   enum role: {
     level_one:   10,
     level_two:   20,
@@ -49,4 +55,11 @@ class User < ApplicationRecord
   }
 
   mount_uploader :image, ImageUploader
+
+  def create_user_profile
+    return if user_profile.present?
+    profile = build_user_profile(company_id: company_id, name: name)
+    profile.save!
+  end
+
 end

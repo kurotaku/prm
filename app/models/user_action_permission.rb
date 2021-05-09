@@ -25,7 +25,7 @@ class UserActionPermission < ApplicationRecord
   belongs_to :company
   belongs_to :user_action
 
-  validates :company_id, uniqueness: { scope: :user_action_id, message: "\u91CD\u8907\u3057\u3066\u3044\u307E\u3059" }
+  validates :company_id, uniqueness: { scope: :user_action_id, message: "重複しています" }
 
   enum permit_role: {
     level_one:   10,

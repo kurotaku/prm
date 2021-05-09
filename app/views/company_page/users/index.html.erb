@@ -1,0 +1,47 @@
+<% content_for(:title, '自社社員アカウント') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>社員アカウント</h1>
+    <p class="mb-0">開設している社員のアカウントを管理します。</p>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_company_page_user_path, class: 'btn btn-m default before-icon plus' %>
+  </div>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+  
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  
+  <div class="table-wrap sp-none">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t('activerecord.attributes.user.name') %></td>
+          <td><%= t('activerecord.attributes.user.email') %></td>
+          <td>開設日</td>
+          <td>最終ログイン</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to company_page_user_path(uid: user.uid) do %>
+                <%= image_tag user.decorate.thumbnail, class: 'thumb' %>
+                <%= user.name %>
+              <% end %>
+            </td>
+            <td><%= user.email %></td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

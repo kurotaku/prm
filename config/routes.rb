@@ -17,12 +17,13 @@ Rails.application.routes.draw do
 
   root "static_pages#home"
 
-  scope "/:base_path" do
-    namespace :admin do
-      resources :companies, param: :uid
-      resources :users, param: :uid
-    end
+  namespace :admin do
+    resources :companies
+    resources :users
+    resources :user_actions
+  end
 
+  scope "/:base_path" do
     namespace :mypage do
       resource :user_profile, only: %i[show edit update], controller: 'user_profile', as: 'profile', path: 'profile'
       resource :user, only: %i[show edit update], controller: 'user', as: 'user_setting', path: 'user_setting'
@@ -31,6 +32,11 @@ Rails.application.routes.draw do
 
     namespace :company_page do
       resource :company, only: %i[show edit update], controller: 'company', as: 'profile', path: 'profile'
+      resources :user_profiles, param: :uid
+      resources :users, param: :uid
+      namespace :users, path: 'user' do
+        resources :roles, only: %i[index update], param: :uid
+      end
       resources :user_permissions, only: %i[index create update destroy]
     end
 

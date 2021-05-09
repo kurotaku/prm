@@ -15,9 +15,12 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_permission
+    p controller_path
+    p action_name
     user_action = UserAction.find_by(ctrl_path: controller_path, act_path: action_name)
     return unless user_action
     permission = user_action.user_action_permissions.find_by(company: @current_company)
+    return unless permission
     if current_user.role_before_type_cast < permission.permit_role_before_type_cast
       flash[:danger] = I18n.t("error.messages.check_user_permission", level: permission.permit_role_i18n)
       redirect_to root_path

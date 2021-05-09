@@ -23,8 +23,10 @@
       <h2 class="header-menu-title"><i class="icon-company"></i><%= @current_company.name %></h2>
       <ul class="mb-3">
         <li><%= link_to '会社情報', company_page_profile_path %></li>
-        <li><%= link_to '社員リスト', root_path %></li>
-        <li><%= link_to '権限管理', company_page_user_permissions_path %></li>
+        <li><%= link_to '社員名簿', company_page_user_profiles_path %></li>
+        <li><%= link_to '社員アカウント', company_page_users_path %></li>
+        <li><%= link_to '社員権限管理', company_page_users_roles_path %></li>
+        <li><%= link_to '操作権限設定', company_page_user_permissions_path %></li>
       </ul>
 
       <hr />

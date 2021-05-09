@@ -22,7 +22,7 @@
 #  uid              :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  prefecture_id    :bigint           not null
+#  prefecture_id    :bigint
 #
 # Indexes
 #
@@ -35,8 +35,9 @@
 class Company < ApplicationRecord
   include Uniqueable
 
-  belongs_to :prefecture
+  belongs_to :prefecture, optional: true
   has_many :users
+  has_many :user_profiles
   has_many :maker_groups, foreign_key: "maker_id", inverse_of: :maker
   has_many :partners, through: :maker_groups
   has_many :vendor_groups, foreign_key: "vendor_id", inverse_of: :vendor

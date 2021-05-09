@@ -11,6 +11,7 @@ class CompanyPage::UserPermissionsController < ApplicationController
       redirect_back(fallback_location: company_page_user_permissions_path)
     else
       flash.now[:danger] = t("user_action_permission.create.error")
+      @parmissions = @current_company.user_action_permissions
       render :index
     end
   end

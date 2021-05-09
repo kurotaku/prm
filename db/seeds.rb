@@ -82,9 +82,17 @@ ApplicationRecord.transaction do
   # ユーザーアクション
   ##########################
   p '=== UserAction ==='
-  UserAction.find_or_create_by!(name: '自社情報閲覧', ctrl_path: 'company_profiles', act_path:'show')
-  UserAction.find_or_create_by!(name: '自社情報編集', ctrl_path: 'company_profiles', act_path:'edit')
-  UserAction.find_or_create_by!(name: 'メーカー商品一覧', ctrl_path: 'products', act_path:'index')
+  UserAction.find_or_create_by!(name: '自社プロフィール閲覧', ctrl_path: 'company_page/company', act_path:'show')
+  UserAction.find_or_create_by!(name: '自社プロフィール編集', ctrl_path: 'company_page/company', act_path:'update')
+  UserAction.find_or_create_by!(name: '社員名簿一覧', ctrl_path: 'company_page/user_profiles', act_path:'index')
+  UserAction.find_or_create_by!(name: '社員名簿作成', ctrl_path: 'company_page/user_profiles', act_path:'create')
+  UserAction.find_or_create_by!(name: '社員アカウント一覧', ctrl_path: 'company_page/users', act_path:'index')
+  UserAction.find_or_create_by!(name: '社員アカウント発行', ctrl_path: 'company_page/users', act_path:'create')
+  UserAction.find_or_create_by!(name: '社員権限管理', ctrl_path: 'company_page/users/roles', act_path:'index')
+  UserAction.find_or_create_by!(name: '社員権限変更', ctrl_path: 'company_page/users/roles', act_path:'update')
+  UserAction.find_or_create_by!(name: '操作制限設定閲覧', ctrl_path: 'company_page/user_permissions', act_path:'index')
+  UserAction.find_or_create_by!(name: '操作制限設定追加', ctrl_path: 'company_page/user_permissions', act_path:'create')
+
 
   ##########################
   # 会社
@@ -115,10 +123,9 @@ ApplicationRecord.transaction do
   # ユーザー
   ##########################
   def dumy_force_create(company, email, name)
-    user = company.users.new(email: email, password: 'password')
+    user = company.users.new(name: name, email: email, password: 'password', role: 20)
     user.skip_confirmation!
     user.save!
-    user.create_user_profile(name: name)
     user
   end
 
@@ -129,8 +136,11 @@ ApplicationRecord.transaction do
   maker_user_1 = dumy_force_create(maker_1, 'sample@maker1.com', 'メーカー太郎')
 
   partner_1_user_1 = dumy_force_create(partner_1, 'sample@partner1.com', 'フグ田 マスオ')
+  partner_1_user_2 = dumy_force_create(partner_1, 'sample1@partner1.com', '穴子 太郎')
   partner_2_user_1 = dumy_force_create(partner_2, 'sample@partner2.com', '磯野波平')
+  partner_2_user_2 = dumy_force_create(partner_2, 'sample1@partner2.com', '岡島 太郎')
   partner_3_user_1 = dumy_force_create(partner_3, 'sample@partner3.com', '野原ひろし')
+  partner_3_user_2 = dumy_force_create(partner_3, 'sample1@partner3.com', '川口 太郎')
 
   partner_1_1_user_1 = dumy_force_create(partner_1_1, 'sample@partner1-1.com', '鎌倉二次郎')
   partner_1_2_user_1 = dumy_force_create(partner_1_2, 'sample@partner1-2.com', '大磯二次郎')
@@ -146,10 +156,14 @@ ApplicationRecord.transaction do
   partner_1_1_2_user_1 = dumy_force_create(partner_1_1_2, 'sample@partner1-1-2.com', '八幡三次郎')
   partner_1_1_3_user_1 = dumy_force_create(partner_1_1_3, 'sample@partner1-1-3.com', '小町三次郎')
 
-  (1..200).each do |i|
+  (1..50).each do |i|
     user = Company.all.sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
     user.skip_confirmation!
     user.save!
+  end
+
+  (1..50).each do |i|
+    Company.all.sample.user_profiles.create(name: last_name.sample + " " + first_name.sample)
   end
   
   ##########################

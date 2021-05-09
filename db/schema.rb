@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_022555) do
   end
 
   create_table "companies", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "prefecture_id", null: false
+    t.bigint "prefecture_id"
     t.string "name"
     t.string "name_kana"
     t.string "coprate_number"
@@ -232,15 +232,23 @@ ActiveRecord::Schema.define(version: 2021_05_07_022555) do
 
   create_table "user_profiles", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "company_id", null: false
+    t.integer "status", default: 10, null: false
+    t.string "uid"
+    t.string "code"
     t.string "name"
     t.string "phone"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_user_profiles_on_company_id"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.bigint "company_id", null: false
+    t.integer "role", default: 10, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -250,10 +258,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_022555) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.bigint "company_id"
     t.string "image"
-    t.string "name"
-    t.integer "role", default: 10, null: false
     t.integer "status", default: 10, null: false
     t.string "uid"
     t.datetime "deleted_at"
@@ -335,7 +340,9 @@ ActiveRecord::Schema.define(version: 2021_05_07_022555) do
   add_foreign_key "products", "maker_groups"
   add_foreign_key "user_action_permissions", "companies"
   add_foreign_key "user_action_permissions", "user_actions"
+  add_foreign_key "user_profiles", "companies"
   add_foreign_key "user_profiles", "users"
+  add_foreign_key "users", "companies"
   add_foreign_key "vendor_groups", "companies", column: "vendor_id"
   add_foreign_key "vendor_groups", "maker_groups"
   add_foreign_key "vendor_informations", "maker_groups"

@@ -776,6 +776,11 @@ html{
             color: $shade-grey-01;
           }
         }
+        .thumb{
+          width: 32px;
+          border-radius: 100%;
+          margin-right: 4px;
+        }
       }
       &:first-child{
         td{
