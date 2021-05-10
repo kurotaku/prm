@@ -1253,7 +1253,7 @@ html{
   position: relative;
   display: flex;
   align-items: center;
-  span[class^="icon-"], span[class*=" icon-"]{
+  i[class^="icon-"], i[class*=" icon-"]{
     &:before{
       color: white;
       font-size: 2.0rem;
@@ -1262,7 +1262,7 @@ html{
   &.danger{
     background-color: $warning;
   }
-  .flash-colse{
+  .flash-close{
     cursor: pointer;
     padding: 2px 2px 2px 10px;
     .fill{
@@ -1287,7 +1287,7 @@ html{
       background: white;
       border-radius: 10px;
     }
-  }/* .flash-colse */
+  }/* .flash-close */
 
   p:last-child{
     margin-bottom: 0;
@@ -1768,6 +1768,9 @@ header{
   .header-icon{
     width: 40px;
     border-radius: 100%;
+  }
+  #userIcon{
+    cursor: pointer;
   }
   .maker-info{
     cursor: pointer;

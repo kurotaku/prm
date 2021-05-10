@@ -98,8 +98,9 @@ ApplicationRecord.transaction do
   # 会社
   ##########################
   p '=== Company ==='
-  maker_1 = Company.find_or_create_by!(contract_type: 20, name: 'サンプルメーカー', postcode: '150-0001', prefecture_id: '13',
-                                       address: '都内某所')
+  admin_company = Company.find_or_create_by!(name: 'Admin用企業')
+
+  maker_1 = Company.find_or_create_by!(name: 'サンプルメーカー', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
 
   partner_1 = Company.find_or_create_by!(name: '海山商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
   partner_2 = Company.find_or_create_by!(name: '山川商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
@@ -130,6 +131,8 @@ ApplicationRecord.transaction do
   end
 
   p '=== User ==='
+  admin_user = admin_company.users.create(name: '運営Admin', email: 'admin@admin.com', password: 'password', role: 50, account_type: 30)
+
   last_name = %w[佐藤 鈴木 木村 渡辺 加藤 斎藤 近藤 高橋 田中 伊藤 山本 中村 小林 山田 佐々木 井上 林]
   first_name = %w[太郎 一郎 花子 よし子 優子 健 太一 二郎 真司 剛 翔太 はるか 綾香 美咲 さくら]
 

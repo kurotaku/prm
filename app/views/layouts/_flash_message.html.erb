@@ -8,7 +8,7 @@ flash.each do |message_type, message|
     <div class="flash-message <%= message_type %>">
       <i class="<%= icon_class %> mr-2"></i>
       <div class=""><%= simple_format message %></div>
-      <div class="close-button hover ml-auto"><span class="fill"></span></div>
+      <div class="flash-close hover ml-auto"><span class="fill"></span></div>
     </div>
   <% end %>
 <% end %>

@@ -5,18 +5,24 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  account_type           :integer          default(10), not null
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string(255)
 #  confirmed_at           :datetime
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string(255)
 #  deleted_at             :datetime
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  image                  :string(255)
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string(255)
 #  name                   :string(255)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
 #  role                   :integer          default("level_one"), not null
+#  sign_in_count          :integer          default(0), not null
 #  status                 :integer          default(10), not null
 #  uid                    :string(255)
 #  unconfirmed_email      :string(255)
@@ -52,6 +58,12 @@ class User < ApplicationRecord
     level_three: 30,
     level_four:  40,
     level_five:  50,
+  }
+
+  enum account_type: {
+    normal:   10,
+    demo:   20,
+    admin: 30,
   }
 
   mount_uploader :image, ImageUploader

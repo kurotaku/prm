@@ -46,7 +46,7 @@ $(document).on('click', '#rightColClose', function(){
 });
 
 // Flash Message
-$(document).on('click', '.flash-colse', function(){
+$(document).on('click', '.flash-close', function(){
   console.log($(this).parents().find('.flash-message'));
   $(this).parents().find('.flash-message').hide();
 });
