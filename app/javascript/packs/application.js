@@ -44,3 +44,9 @@ $(document).on('click', '#commentOpen', function(){
 $(document).on('click', '#rightColClose', function(){
   $('#rightCol').removeClass('on');
 });
+
+// Flash Message
+$(document).on('click', '.flash-colse', function(){
+  console.log($(this).parents().find('.flash-message'));
+  $(this).parents().find('.flash-message').hide();
+});

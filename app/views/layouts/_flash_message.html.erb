@@ -1,0 +1,14 @@
+<% 
+success_case = ['success', 'info', 'warning', 'notice']
+danger_case = ['danger']
+icon_class = 'icon-done'
+flash.each do |message_type, message|  
+  icon_class = 'icon-error' if danger_case.include?(message_type)
+  if message != nil %>
+    <div class="flash-message <%= message_type %>">
+      <i class="<%= icon_class %> mr-2"></i>
+      <div class=""><%= simple_format message %></div>
+      <div class="close-button hover ml-auto"><span class="fill"></span></div>
+    </div>
+  <% end %>
+<% end %>
