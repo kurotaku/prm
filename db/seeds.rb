@@ -132,6 +132,8 @@ ApplicationRecord.transaction do
 
   p '=== User ==='
   admin_user = admin_company.users.create(name: '運営Admin', email: 'admin@admin.com', password: 'password', role: 50, account_type: 30)
+  admin_user.skip_confirmation!
+  admin_user.save!
 
   last_name = %w[佐藤 鈴木 木村 渡辺 加藤 斎藤 近藤 高橋 田中 伊藤 山本 中村 小林 山田 佐々木 井上 林]
   first_name = %w[太郎 一郎 花子 よし子 優子 健 太一 二郎 真司 剛 翔太 はるか 綾香 美咲 さくら]
@@ -160,7 +162,7 @@ ApplicationRecord.transaction do
   partner_1_1_3_user_1 = dumy_force_create(partner_1_1_3, 'sample@partner1-1-3.com', '小町三次郎')
 
   (1..50).each do |i|
-    user = Company.all.sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
+    user = Company.where.not(name: 'Admin用企業').sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
     user.skip_confirmation!
     user.save!
   end

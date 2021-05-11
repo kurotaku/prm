@@ -24,6 +24,9 @@ ja:
         partner: パートナー
         maker: メーカー
   companies:
+    create:
+      success: 企業情報を作成しました
+      error: 企業情報を作成できませんでした
     update:
       success: 企業情報を更新しました
       error: 企業情報を更新できませんでした

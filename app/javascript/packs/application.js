@@ -17,6 +17,10 @@ var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 
+$(function(){
+  console.log('fire');
+});
+
 $(document).on('click', '.maker-info', function(){
   $('#makerMenu').toggle();
   $('#makerMenuBg').toggle();
@@ -49,4 +53,8 @@ $(document).on('click', '#rightColClose', function(){
 $(document).on('click', '.flash-close', function(){
   console.log($(this).parents().find('.flash-message'));
   $(this).parents().find('.flash-message').hide();
+});
+
+$(document).on('change', '.autoSubmit', function(){
+  $('.autoSubmitButton').click();
 });

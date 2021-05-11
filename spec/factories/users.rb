@@ -5,7 +5,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
-#  account_type           :integer          default(10), not null
+#  account_type           :integer          default("normal"), not null
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string(255)
 #  confirmed_at           :datetime

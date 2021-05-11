@@ -9,7 +9,7 @@ ja:
       carrierwave_processing_error: 処理できませんでした
       carrierwave_integrity_error: は許可されていないファイルタイプです
       carrierwave_download_error: はダウンロードできません
-      extension_whitelist_error: "%{extension}のアップロードは許可されていません。アップロードできるファイルタイプは %{allowed_types} です。"
+      extension_whitelist_error: "%{extension}のアップロードは許可されていません(アップロードできるファイルタイプ：%{allowed_types})"
       extension_blacklist_error: "%{extension}ファイルのアップロードは許可されていません。アップロードできないファイルタイプ: %{prohibited_types}"
       content_type_whitelist_error: "%{content_type}ファイルのアップロードは許可されていません"
       content_type_blacklist_error: "%{content_type}ファイルのアップロードは許可されていません"
@@ -18,6 +18,7 @@ ja:
       min_size_error: "%{min_size}以上のサイズにしてください"
       max_size_error: "%{max_size}以下のサイズにしてください"
       check_user_permission: "権限エラー：権限管理により制限されています (必要な権限レベル：%{level})"
+      check_admin: 管理者しかアクセスできません
   views:
     pagination:
       previous: "&lsaquo;"

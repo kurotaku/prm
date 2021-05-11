@@ -9,8 +9,10 @@ ja:
         image: プロフィール画像
         email: メールアドレス
         password: パスワード
+        company: 所属企業
         company_id: 所属企業
         role: 権限レベル
+        account_type: アカウント区分
   enums:
     user:
       role:
@@ -19,7 +21,14 @@ ja:
         level_three: 権限レベル3
         level_four: 権限レベル4
         level_five: 権限レベル5
+      account_type:
+        normal: 通常アカウント
+        dumy: ダミーアカウント
+        admin: 運営側Adminアカウント
   users:
+    create:
+      success: ユーザーを作成しました
+      error: ユーザーの作成に失敗しました
     update:
       success: ユーザー情報を更新しました
       error: ユーザー情報の更新に失敗しました
