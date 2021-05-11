@@ -48,7 +48,7 @@ class Company < ApplicationRecord
     maker:   20,
   }
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, FileUploader
 
   def maker_group_uid(params)
     return unless vendor_groups.present?

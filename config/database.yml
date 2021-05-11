@@ -50,6 +50,7 @@ test:
 #
 production:
   <<: *default
-  database: prm_production
-  username: app
-  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+  database: <%= Rails.application.credentials.prd[:db_name] %>
+  username: <%= Rails.application.credentials.prd[:db_user] %>
+  password: <%= Rails.application.credentials.prd[:db_password] %>
+  host: <%= Rails.application.credentials.prd[:db_host] %>

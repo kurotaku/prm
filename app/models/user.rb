@@ -66,7 +66,7 @@ class User < ApplicationRecord
     admin: 30,
   }
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, FileUploader
 
   def create_user_profile
     return if user_profile.present?
