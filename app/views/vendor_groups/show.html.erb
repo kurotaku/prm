@@ -41,7 +41,7 @@
       <tbody>
         <% @vendor_group.vendor_informations.each do |information| %>
           <tr>
-            <td><%= link_to information.title, vendor_information_path(information) %></td>
+            <td><%= link_to information.title, vendor_information_path(uid: information.uid) %></td>
           </tr>
         <% end %>
       </tbody>

@@ -6,6 +6,6 @@ class OffersController < ApplicationController
   end
 
   def show
-    @offer = Offer.find(params[:id]).decorate
+    @offer = Offer.find_by(uid: params[:uid]).decorate
   end
 end

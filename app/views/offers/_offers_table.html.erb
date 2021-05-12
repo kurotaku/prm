@@ -12,7 +12,7 @@
     <tbody>
       <% offers.each do |offer| %>
         <tr>
-          <td><%= link_to offer.unique_key, offer_path(offer) %></td>
+          <td><%= link_to offer.unique_key, offer_path(uid: offer.uid) %></td>
           <td><%= offer.display_progress %></td>
           <td><%= offer.product.name %></td>
           <td><%= offer.agent.company.name %></td>
