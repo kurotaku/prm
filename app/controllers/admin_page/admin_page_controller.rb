@@ -10,7 +10,7 @@ module AdminPage
       return unless current_user
       if current_user.account_type != 'admin'
         # デバッグ用 普段はコメントアウト
-        flash[:danger] = I18n.t("error.messages.check_admin")
+        flash[:danger] = I18n.t("errors.messages.check_admin")
         redirect_to root_path
       end
     end
