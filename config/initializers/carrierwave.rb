@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
   case Rails.env
   when 'production'
     config.fog_directory = Rails.application.credentials.prd[:s3_bucket_name]
-    # config.asset_host = Rails.application.credentials.prd[:s3_host_name]
+    config.asset_host = Rails.application.credentials.prd[:s3_host_name]
   end
 
   config.cache_dir = "#{Rails.root}/tmp/uploads"
