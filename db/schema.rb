@@ -212,10 +212,10 @@ ActiveRecord::Schema.define(version: 2021_05_11_132419) do
     t.index ["maker_group_id"], name: "index_products_on_maker_group_id"
   end
 
-  create_table "shared_f_iles", charset: "utf8mb4", force: :cascade do |t|
+  create_table "shared_files", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_group_id", null: false
     t.bigint "user_id", null: false
-    t.string "uuid"
+    t.string "uid"
     t.string "file"
     t.string "file_name"
     t.string "title"
@@ -223,15 +223,8 @@ ActiveRecord::Schema.define(version: 2021_05_11_132419) do
     t.integer "file_size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["maker_group_id"], name: "index_shared_f_iles_on_maker_group_id"
-    t.index ["user_id"], name: "index_shared_f_iles_on_user_id"
-  end
-
-  create_table "shared_files", charset: "utf8mb4", force: :cascade do |t|
-    t.string "file"
-    t.string "file_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["maker_group_id"], name: "index_shared_files_on_maker_group_id"
+    t.index ["user_id"], name: "index_shared_files_on_user_id"
   end
 
   create_table "user_action_permissions", charset: "utf8mb4", force: :cascade do |t|
@@ -366,8 +359,8 @@ ActiveRecord::Schema.define(version: 2021_05_11_132419) do
   add_foreign_key "product_labels", "products"
   add_foreign_key "product_metas", "products"
   add_foreign_key "products", "maker_groups"
-  add_foreign_key "shared_f_iles", "maker_groups"
-  add_foreign_key "shared_f_iles", "users"
+  add_foreign_key "shared_files", "maker_groups"
+  add_foreign_key "shared_files", "users"
   add_foreign_key "user_action_permissions", "companies"
   add_foreign_key "user_action_permissions", "user_actions"
   add_foreign_key "user_profiles", "companies"
