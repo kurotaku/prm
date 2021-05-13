@@ -43,9 +43,12 @@ module MakerPage
       if %w[development test].include? Rails.env
         send_data shared_file.file.read, filename: shared_file.file_name
       else
-        s3 = Aws::S3::Client.new
-        options = {
+        s3 = Aws::S3::Client.new(
           region: Rails.application.credentials.prd[:s3_region],
+          access_key_id: Rails.application.credentials.prd[:s3_access_key_id],
+          secret_access_key: Rails.application.credentials.prd[:s3_secret_access_key],
+        )
+        options = {
           bucket: Rails.application.credentials.prd[:s3_bucket_name],
           key:    shared_file.file.current_path,
         }
