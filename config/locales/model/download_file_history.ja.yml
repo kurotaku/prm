@@ -5,20 +5,6 @@ ja:
     attributes:
       download_file_history:
         user: ダウンロードした人
-        title: タイトル
-        description: 説明
-        file: ファイル
-        file_name: ファイル名
-        file_size: サイズ
-        company_group_files: ファイルを公開する代理店
-        company_name: アップロード企業
-        user_full_name: アップロード担当者
-        created_at: 作成日
-        updated_at: 最終更新日
-  download_file_histories:
-    create:
-      success: ファイルをアップロードしました
-    update:
-      success: ファイルを更新しました
-    destroy:
-      success: ファイルを削除しました
+        file: 共有ファイル
+        company: 所属企業
+        created_at: ダウンロード日時
