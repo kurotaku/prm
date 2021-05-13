@@ -100,7 +100,7 @@ ApplicationRecord.transaction do
   p '=== Company ==='
   admin_company = Company.find_or_create_by!(name: 'Admin用企業')
 
-  maker_1 = Company.find_or_create_by!(name: 'サンプルメーカー', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  maker_1 = Company.find_or_create_by!(name: 'サンプルメーカー', postcode: '150-0001', prefecture_id: '13', address: '都内某所', contract_type: 20)
 
   partner_1 = Company.find_or_create_by!(name: '海山商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
   partner_2 = Company.find_or_create_by!(name: '山川商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')

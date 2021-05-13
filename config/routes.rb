@@ -21,6 +21,11 @@ Rails.application.routes.draw do
     resources :companies
     resources :users
     resources :user_actions
+    resources :files, param: :uid do
+      member do
+        get 'download', to: 'files#download'
+      end
+    end
   end
 
   scope "/:base_path" do
@@ -41,11 +46,17 @@ Rails.application.routes.draw do
     end
 
     namespace :maker_page do
+      resource :dashboards, only: %i[show], param: :uid
       resources :products, param: :uid
       resources :customers, param: :uid
       resources :vendor_groups, param: :uid
       resources :partners, param: :uid
       resources :offers, param: :uid
+      resources :files, param: :uid do
+      member do
+        get 'download', to: 'files#download'
+      end
+    end
     end
 
     namespace :vendor_page do

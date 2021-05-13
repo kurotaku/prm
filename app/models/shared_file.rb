@@ -25,6 +25,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class SharedFile < ApplicationRecord
+  include Uniqueable
+  mount_uploader :file, FileUploader
+  
   belongs_to :user
   belongs_to :maker_group
   

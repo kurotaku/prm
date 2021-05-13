@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_132419) do
+ActiveRecord::Schema.define(version: 2021_05_12_160447) do
 
   create_table "agent_products", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_group_id", null: false
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(version: 2021_05_11_132419) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "download_file_histories", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "shared_file_id", null: false
+    t.string "uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shared_file_id"], name: "index_download_file_histories_on_shared_file_id"
+    t.index ["user_id"], name: "index_download_file_histories_on_user_id"
   end
 
   create_table "maker_groups", charset: "utf8mb4", force: :cascade do |t|
@@ -342,6 +352,8 @@ ActiveRecord::Schema.define(version: 2021_05_11_132419) do
   add_foreign_key "agents", "maker_groups"
   add_foreign_key "agents", "vendor_groups"
   add_foreign_key "companies", "prefectures"
+  add_foreign_key "download_file_histories", "shared_files"
+  add_foreign_key "download_file_histories", "users"
   add_foreign_key "maker_groups", "companies", column: "maker_id"
   add_foreign_key "maker_informations", "maker_groups"
   add_foreign_key "maker_informations", "users"

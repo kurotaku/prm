@@ -49,6 +49,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   belongs_to :company
   has_one :user_profile
+  has_many :shared_files
 
   after_create :create_user_profile
 

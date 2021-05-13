@@ -5,10 +5,12 @@
     <li><%= link_to '販売グループ管理', vendor_groups_path %></li>
   </ul>
 
-  <div class="main-menu-footer">
-    <ul class="main-menu-list">
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: 'delete' %></li>
-    </ul>
-  </div>
+  <% if @current_company.maker? %>
+    <div class="main-menu-footer">
+      <ul class="main-menu-list">
+        <li><%= link_to 'メーカーページへ', maker_page_dashboards_path %></li>
+      </ul>
+    </div>
+  <% end %>
 
 </nav><!-- .main-menu -->

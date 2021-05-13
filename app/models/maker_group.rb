@@ -26,6 +26,7 @@ class MakerGroup < ApplicationRecord
   belongs_to :maker, class_name: "Company"
   has_many :partners
   has_many :products
+  has_many :shared_files
   has_many :vendor_groups
   has_many :vendor_products
   has_many :agent_products
