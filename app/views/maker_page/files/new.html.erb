@@ -22,17 +22,8 @@
         </div>
 
         <div class="form-group">
-          <p class="mb-1"><%= f.label :file %><sup class="required">*</sup></p>
-
-          <div>
-            <div id="service-logo" class="image-wrap mb-3">
-              <%= image_tag current_user.image.url, alt: 'Image' if current_user.image.present? %>
-              <%= content_tag(:div, '', class: 'image-remove-btn', data: {target: 'service-logo'}) if current_user.image.present? %>  
-            </div>
-          </div>
-          <%= f.file_field :file, id: 'file-field', class: 'file-field', data: {image: 'service-logo'}  %>
-          <%= f.hidden_field :image_cache, data: {image: 'service-logo'} %>
-          <%= hidden_field_tag :remove_image, params['remove_logo'], class: 'remove_field', data: {image: 'service-logo'} %>
+          <p class="mb-1"><%= f.label :file %></p>
+          <%= f.file_field :file, id: 'file-field', class: 'file-field', data: {image: 'upload-file'}  %>
         </div>
 
         <%= f.submit t('common.update'), class: 'btn btn-m default' %>
