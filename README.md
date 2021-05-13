@@ -43,7 +43,7 @@ bundle exec rails s -e production &
 `bundle install`
 
 ### DBmigrate
-`bundle exec rails db:migrate`
+`bundle exec rails db:migrate RAILS_ENV=production`
 
 ### 古いアセット削除
 `bundle exec rake assets:clobber RAILS_ENV=production`
