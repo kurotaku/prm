@@ -45,7 +45,7 @@ module MakerPage
       else
         s3 = Aws::S3::Client.new
         options = {
-          :region Rails.application.credentials.prd[:s3_region],
+          region: Rails.application.credentials.prd[:s3_region],
           bucket: Rails.application.credentials.prd[:s3_bucket_name],
           key:    shared_file.file.current_path,
         }
