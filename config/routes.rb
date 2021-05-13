@@ -53,10 +53,11 @@ Rails.application.routes.draw do
       resources :partners, param: :uid
       resources :offers, param: :uid
       resources :files, param: :uid do
-      member do
-        get 'download', to: 'files#download'
+        member do
+          get 'download', to: 'files#download'
+        end
       end
-    end
+      resources :download_histories, only: %i[index]
     end
 
     namespace :vendor_page do

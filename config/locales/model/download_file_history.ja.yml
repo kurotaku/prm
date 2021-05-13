@@ -1,9 +1,10 @@
 ja:
   activerecord:
     models:
-      shared_file: 共有ファイル
+      download_file_history: 共有ファイル
     attributes:
-      shared_file:
+      download_file_history:
+        user: ダウンロードした人
         title: タイトル
         description: 説明
         file: ファイル
@@ -14,7 +15,7 @@ ja:
         user_full_name: アップロード担当者
         created_at: 作成日
         updated_at: 最終更新日
-  shared_files:
+  download_file_histories:
     create:
       success: ファイルをアップロードしました
     update:

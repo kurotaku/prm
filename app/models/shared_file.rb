@@ -30,6 +30,8 @@ class SharedFile < ApplicationRecord
   
   belongs_to :user
   belongs_to :maker_group
+
+  has_many :download_file_histories
   
   delegate :uid, to: :maker_group, prefix: :maker_group
 end
