@@ -1,24 +1,57 @@
-# README
+## デプロイ関係
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### DBリセット
 
-Things you may want to cover:
+```
+RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:migrate:reset
+```
 
-* Ruby version
+### プリコンパイル
 
-* System dependencies
+```
+rails assets:precompile RAILS_ENV=production
+```
 
-* Configuration
+### 本番停止
 
-* Database creation
+プロセス確認
+```
+ps aux | grep puma
+```
 
-* Database initialization
+プロセス停止
+```
+kill -9 プロセスID
+```
 
-* How to run the test suite
+### 本番起動
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle exec rails s -e production &
+```
+# 本番環境
+### アプリケーションに移動
+`cd /var/www/deploy/partner_success`
 
-* Deployment instructions
+### 最新状態をfetch
+`git fetch`
 
-* ...
+### 最新状態に更新する
+`git reset --hard origin/master`
+
+### bundle install
+`bundle install`
+
+### DBmigrate
+`bundle exec rails db:migrate`
+
+### 古いアセット削除
+`bundle exec rake assets:clobber RAILS_ENV=production`
+
+### アセットプリコンパイル
+`bundle exec rake assets:precompile RAILS_ENV=production`
+
+### サーバー&&Sidekiq再起動
+`sudo systemctl stop puma && sudo systemctl start puma; bundle exec sidekiq -C config/sidekiq.yml&`
+
+※sidekiqをデーモン化するために末尾に `&`を付ける
