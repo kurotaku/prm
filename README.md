@@ -3,6 +3,34 @@
 - config/master.key → 確認してください
 - .env → 各自ローカルのSMTP用のGmailの設定を追加してください
 
+## docker
+
+
+docker ビルド + 起動
+```
+docker-compose up --build
+```
+
+
+起動しているコンテナを確認
+```
+docker-compose ps
+```
+
+コンテナ名を指定してコンテナの中に入る
+```
+docker exec -it prm_app_1 bash
+```
+
+webpack起動
+```
+docker-compose exec app bin/webpack-dev-server
+```
+
+
+
+
+
 ## デプロイ関係
 
 ### DBリセット
