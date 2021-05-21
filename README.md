@@ -12,12 +12,12 @@ docker-compose up --build
 ```
 
 
-起動しているコンテナを確認
+起動しているコンテナの名前を確認
 ```
 docker-compose ps
 ```
 
-コンテナ名を指定してコンテナの中に入る
+コンテナ名を指定してコンテナの中に入る(ex. コンテナ名がprm_app_1だった場合)
 ```
 docker exec -it prm_app_1 bash
 ```
