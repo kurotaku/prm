@@ -100,25 +100,25 @@ ApplicationRecord.transaction do
   p '=== Company ==='
   admin_company = Company.find_or_create_by!(name: 'Admin用企業')
 
-  maker_1 = Company.find_or_create_by!(name: 'サンプルメーカー', postcode: '150-0001', prefecture_id: '13', address: '都内某所', contract_type: 20)
+  maker_company_1 = Company.find_or_create_by!(name: 'サンプルメーカー', postcode: '150-0001', prefecture_id: '13', address: '都内某所', contract_type: 20)
 
-  partner_1 = Company.find_or_create_by!(name: '海山商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_2 = Company.find_or_create_by!(name: '山川商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_3 = Company.find_or_create_by!(name: '双葉商事', postcode: '330-0856', prefecture_id: '11', address: '大宮某所')
+  partner_company_1 = Company.find_or_create_by!(name: '海山商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_2 = Company.find_or_create_by!(name: '山川商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_3 = Company.find_or_create_by!(name: '双葉商事', postcode: '330-0856', prefecture_id: '11', address: '大宮某所')
 
-  partner_1_1 = Company.find_or_create_by!(name: '鎌倉物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_1_2 = Company.find_or_create_by!(name: '大磯物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_1_3 = Company.find_or_create_by!(name: '七里ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_1_4 = Company.find_or_create_by!(name: '由比ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_1_1 = Company.find_or_create_by!(name: '鎌倉物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_1_2 = Company.find_or_create_by!(name: '大磯物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_1_3 = Company.find_or_create_by!(name: '七里ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_1_4 = Company.find_or_create_by!(name: '由比ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
 
-  partner_2_1 = Company.find_or_create_by!(name: '筑波物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_2_2 = Company.find_or_create_by!(name: '秩父物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_2_3 = Company.find_or_create_by!(name: '高尾物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_2_4 = Company.find_or_create_by!(name: '富士物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_2_1 = Company.find_or_create_by!(name: '筑波物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_2_2 = Company.find_or_create_by!(name: '秩父物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_2_3 = Company.find_or_create_by!(name: '高尾物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_2_4 = Company.find_or_create_by!(name: '富士物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
 
-  partner_1_1_1 = Company.find_or_create_by!(name: '鶴岡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_1_1_2 = Company.find_or_create_by!(name: '八幡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_1_1_3 = Company.find_or_create_by!(name: '小町商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_1_1_1 = Company.find_or_create_by!(name: '鶴岡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_1_1_2 = Company.find_or_create_by!(name: '八幡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_company_1_1_3 = Company.find_or_create_by!(name: '小町商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
 
   ##########################
   # ユーザー
@@ -138,74 +138,74 @@ ApplicationRecord.transaction do
   last_name = %w[佐藤 鈴木 木村 渡辺 加藤 斎藤 近藤 高橋 田中 伊藤 山本 中村 小林 山田 佐々木 井上 林]
   first_name = %w[太郎 一郎 花子 よし子 優子 健 太一 二郎 真司 剛 翔太 はるか 綾香 美咲 さくら]
 
-  maker_user_1 = dumy_force_create(maker_1, 'sample@maker1.com', 'メーカー太郎')
+  maker_company_user_1 = dumy_force_create( maker_company_1, 'sample@maker1.com', 'メーカー太郎')
 
-  partner_1_user_1 = dumy_force_create(partner_1, 'sample@partner1.com', 'フグ田 マスオ')
-  partner_1_user_2 = dumy_force_create(partner_1, 'sample1@partner1.com', '穴子 太郎')
-  partner_2_user_1 = dumy_force_create(partner_2, 'sample@partner2.com', '磯野波平')
-  partner_2_user_2 = dumy_force_create(partner_2, 'sample1@partner2.com', '岡島 太郎')
-  partner_3_user_1 = dumy_force_create(partner_3, 'sample@partner3.com', '野原ひろし')
-  partner_3_user_2 = dumy_force_create(partner_3, 'sample1@partner3.com', '川口 太郎')
+  partner_company_1_user_1 = dumy_force_create(partner_company_1, 'sample@partner_company1.com', 'フグ田 マスオ')
+  partner_company_1_user_2 = dumy_force_create(partner_company_1, 'sample1@partner_company1.com', '穴子 太郎')
+  partner_company_2_user_1 = dumy_force_create(partner_company_2, 'sample@partner_company2.com', '磯野波平')
+  partner_company_2_user_2 = dumy_force_create(partner_company_2, 'sample1@partner_company2.com', '岡島 太郎')
+  partner_company_3_user_1 = dumy_force_create(partner_company_3, 'sample@partner_company3.com', '野原ひろし')
+  partner_company_3_user_2 = dumy_force_create(partner_company_3, 'sample1@partner_company3.com', '川口 太郎')
 
-  partner_1_1_user_1 = dumy_force_create(partner_1_1, 'sample@partner1-1.com', '鎌倉二次郎')
-  partner_1_2_user_1 = dumy_force_create(partner_1_2, 'sample@partner1-2.com', '大磯二次郎')
-  partner_1_3_user_1 = dumy_force_create(partner_1_3, 'sample@partner1-3.com', '七里ヶ浜二次郎')
-  partner_1_4_user_1 = dumy_force_create(partner_1_4, 'sample@partner1-4.com', '由比ヶ浜二次郎')
+  partner_company_1_1_user_1 = dumy_force_create(partner_company_1_1, 'sample@partner_company1-1.com', '鎌倉二次郎')
+  partner_company_1_2_user_1 = dumy_force_create(partner_company_1_2, 'sample@partner_company1-2.com', '大磯二次郎')
+  partner_company_1_3_user_1 = dumy_force_create(partner_company_1_3, 'sample@partner_company1-3.com', '七里ヶ浜二次郎')
+  partner_company_1_4_user_1 = dumy_force_create(partner_company_1_4, 'sample@partner_company1-4.com', '由比ヶ浜二次郎')
 
-  partner_2_1_user_1 = dumy_force_create(partner_2_1, 'sample@partner2-1.com', '筑波二次郎')
-  partner_2_2_user_1 = dumy_force_create(partner_2_2, 'sample@partner2-2.com', '秩父二次郎')
-  partner_2_3_user_1 = dumy_force_create(partner_2_3, 'sample@partner2-3.com', '高尾二次郎')
-  partner_2_4_user_1 = dumy_force_create(partner_2_4, 'sample@partner2-4.com', '富士二次郎')
+  partner_company_2_1_user_1 = dumy_force_create(partner_company_2_1, 'sample@partner_company2-1.com', '筑波二次郎')
+  partner_company_2_2_user_1 = dumy_force_create(partner_company_2_2, 'sample@partner_company2-2.com', '秩父二次郎')
+  partner_company_2_3_user_1 = dumy_force_create(partner_company_2_3, 'sample@partner_company2-3.com', '高尾二次郎')
+  partner_company_2_4_user_1 = dumy_force_create(partner_company_2_4, 'sample@partner_company2-4.com', '富士二次郎')
 
-  partner_1_1_1_user_1 = dumy_force_create(partner_1_1_1, 'sample@partner1-1-1.com', '鶴岡三次郎')
-  partner_1_1_2_user_1 = dumy_force_create(partner_1_1_2, 'sample@partner1-1-2.com', '八幡三次郎')
-  partner_1_1_3_user_1 = dumy_force_create(partner_1_1_3, 'sample@partner1-1-3.com', '小町三次郎')
+  partner_company_1_1_1_user_1 = dumy_force_create(partner_company_1_1_1, 'sample@partner_company1-1-1.com', '鶴岡三次郎')
+  partner_company_1_1_2_user_1 = dumy_force_create(partner_company_1_1_2, 'sample@partner_company1-1-2.com', '八幡三次郎')
+  partner_company_1_1_3_user_1 = dumy_force_create(partner_company_1_1_3, 'sample@partner_company1-1-3.com', '小町三次郎')
 
-  (1..50).each do |i|
-    user = Company.where.not(name: 'Admin用企業').sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
-    user.skip_confirmation!
-    user.save!
-  end
+  # (1..5).each do |i|
+  #   user = Company.where.not(name: 'Admin用企業').sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
+  #   user.skip_confirmation!
+  #   user.save!
+  # end
 
-  (1..50).each do |i|
-    Company.all.sample.user_profiles.create(name: last_name.sample + " " + first_name.sample)
-  end
+  # (1..5).each do |i|
+  #   Company.all.sample.user_profiles.create(name: last_name.sample + " " + first_name.sample)
+  # end
   
   ##########################
   # メーカーグループ
   ##########################
   p '=== MakerGroup ==='
-  maker_group_1 = MakerGroup.create!(maker: maker_1)
+  maker_group_1 = MakerGroup.create!(maker: maker_company_1)
 
   ##########################
   # パートナー
   ##########################
   p '=== Partner ==='
-  maker_group_1.partners.create!(company: partner_1, hierarchy: 1, parent: maker_1)
-  maker_group_1.partners.create!(company: partner_2, hierarchy: 1, parent: maker_1)
-  maker_group_1.partners.create!(company: partner_3, hierarchy: 1, parent: maker_1)
+  partner_1 = maker_group_1.partners.create!(company: partner_company_1, name: partner_company_1.name, hierarchy: 1)
+  partner_2 = maker_group_1.partners.create!(company: partner_company_2, name: partner_company_2.name, hierarchy: 1)
+  partner_3 = maker_group_1.partners.create!(company: partner_company_3, name: partner_company_3.name, hierarchy: 1)
 
-  maker_group_1.partners.create!(company: partner_1_1, hierarchy: 2, parent: partner_1)
-  maker_group_1.partners.create!(company: partner_1_2, hierarchy: 2, parent: partner_1)
-  maker_group_1.partners.create!(company: partner_1_3, hierarchy: 2, parent: partner_1)
-  maker_group_1.partners.create!(company: partner_1_4, hierarchy: 2, parent: partner_1)
+  partner_1_1 = maker_group_1.partners.create!(company: partner_company_1_1, name: partner_company_1_1.name, hierarchy: 2, parent: partner_1)
+  partner_1_2 = maker_group_1.partners.create!(company: partner_company_1_2, name: partner_company_1_2.name, hierarchy: 2, parent: partner_1)
+  partner_1_3 = maker_group_1.partners.create!(company: partner_company_1_3, name: partner_company_1_3.name, hierarchy: 2, parent: partner_1)
+  partner_1_4 = maker_group_1.partners.create!(company: partner_company_1_4, name: partner_company_1_4.name, hierarchy: 2, parent: partner_1)
 
-  maker_group_1.partners.create!(company: partner_2_1, hierarchy: 2, parent: partner_2)
-  maker_group_1.partners.create!(company: partner_2_2, hierarchy: 2, parent: partner_2)
-  maker_group_1.partners.create!(company: partner_2_3, hierarchy: 2, parent: partner_2)
-  maker_group_1.partners.create!(company: partner_2_4, hierarchy: 2, parent: partner_2)
+  partner_2_1 = maker_group_1.partners.create!(company: partner_company_2_1, name: partner_company_2_1.name, hierarchy: 2, parent: partner_2)
+  partner_2_2 = maker_group_1.partners.create!(company: partner_company_2_2, name: partner_company_2_2.name, hierarchy: 2, parent: partner_2)
+  partner_2_3 = maker_group_1.partners.create!(company: partner_company_2_3, name: partner_company_2_3.name, hierarchy: 2, parent: partner_2)
+  partner_2_4 = maker_group_1.partners.create!(company: partner_company_2_4, name: partner_company_2_4.name, hierarchy: 2, parent: partner_2)
 
-  maker_group_1.partners.create!(company: partner_1_1_1, hierarchy: 3, parent: partner_1_1)
-  maker_group_1.partners.create!(company: partner_1_1_2, hierarchy: 3, parent: partner_1_1)
-  maker_group_1.partners.create!(company: partner_1_1_3, hierarchy: 3, parent: partner_1_1)
+  partner_1_1_1 = maker_group_1.partners.create!(company: partner_company_1_1_1, name: partner_company_1_1_1.name, hierarchy: 3, parent: partner_1_1)
+  partner_1_1_2 = maker_group_1.partners.create!(company: partner_company_1_1_2, name: partner_company_1_1_2.name, hierarchy: 3, parent: partner_1_1)
+  partner_1_1_3 = maker_group_1.partners.create!(company: partner_company_1_1_3, name: partner_company_1_1_3.name, hierarchy: 3, parent: partner_1_1)
 
   ##########################
   # 商品
   ##########################
   p '=== Product ==='
-  product_1 = maker_group_1.products.create!(name: '会計システム1年契約', price: 200_000, incentive: 10_000)
-  product_2 = maker_group_1.products.create!(name: '家計簿システム1年契約', price: 50_000, incentive: 5000)
-  product_3 = maker_group_1.products.create!(name: '高速光回線', price: 50_000, incentive: 5000)
+  product_1 = maker_group_1.products.create!(name: '会計システム1年契約', code: 'p-0001', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
+  product_2 = maker_group_1.products.create!(name: '家計簿システム1年契約', code: 'p-0002', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
+  product_3 = maker_group_1.products.create!(name: '高速光回線', code: 'p-0003', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
 
   ##########################
   # 商品ラベル
@@ -241,96 +241,174 @@ ApplicationRecord.transaction do
   product_3.product_metas.create!(order: 4, meta_key: 'entry_at', meta_label: 'フレッツエントリー日')
   product_3.product_metas.create!(order: 5, meta_key: 'plan_name', meta_label: 'プラン名')
   product_3.product_metas.create!(order: 6, meta_key: 'construction_at', meta_label: '工事日')
+
   ##########################
   # ベンダーグループ
   ##########################
   p '=== VendorGroup ==='
-  vendor_group_0 = maker_group_1.vendor_groups.create!(vendor: maker_1, layer: 0)
+  vendor_group_1 = maker_group_1.vendor_groups.create!(vendor: partner_1, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.9, incentive: product_3.agency_incentive * 0.9, contracted_at: Time.zone.now)
+  vendor_group_2 = maker_group_1.vendor_groups.create!(vendor: partner_2, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.8, incentive: product_3.agency_incentive * 0.8, contracted_at: Time.zone.now)
+  vendor_group_3 = maker_group_1.vendor_groups.create!(vendor: partner_3, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.7, incentive: product_3.agency_incentive * 0.7, contracted_at: Time.zone.now)
 
-  vendor_group_1 = maker_group_1.vendor_groups.create!(vendor: partner_1, layer: 1)
-  vendor_group_2 = maker_group_1.vendor_groups.create!(vendor: partner_2, layer: 1)
-  vendor_group_3 = maker_group_1.vendor_groups.create!(vendor: partner_3, layer: 1)
+  # vendor_group_1_1 = maker_group_1.vendor_groups.create!(vendor: partner_1_1, layer: 2)
 
-  vendor_group_1_1 = maker_group_1.vendor_groups.create!(vendor: partner_1_1, layer: 2)
-
-  ##########################
-  # エージェント
-  ##########################
-  p '=== Agent ==='
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1, hierarchy: 1)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2, hierarchy: 1)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_3, hierarchy: 1)
-
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1, hierarchy: 2, parent: partner_1)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_2, hierarchy: 2, parent: partner_1)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_3, hierarchy: 2, parent: partner_1)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_4, hierarchy: 2, parent: partner_1)
-
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_1, hierarchy: 2, parent: partner_2)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_2, hierarchy: 2, parent: partner_2)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_3, hierarchy: 2, parent: partner_2)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_4, hierarchy: 2, parent: partner_2)
-
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_1, hierarchy: 3, parent: partner_1_1)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_2, hierarchy: 3, parent: partner_1_1)
-  vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_3, hierarchy: 3, parent: partner_1_1)
-
-  vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_1, hierarchy: 2)
-  vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_2, hierarchy: 2)
-  vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_3, hierarchy: 2)
-  vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_4, hierarchy: 2)
-
-  vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_1, hierarchy: 2)
-  vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_2, hierarchy: 2)
-  vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_3, hierarchy: 2)
-  vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_4, hierarchy: 2)
-
-  vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_1, hierarchy: 3)
-  vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_2, hierarchy: 3)
-  vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_3, hierarchy: 3)
 
   ##########################
-  # ベンダーの商品
+  # 案件カテゴリー
   ##########################
-  p '=== VendorProduct ==='
-  maker_group_1.vendor_groups.each do |vendor_group|
-    maker_group_1.products.each do |product|
-      maker_group_1.vendor_products.create!(vendor_group: vendor_group, product: product, price: product.price * 0.9,
-                                            incentive: product.incentive * 0.9)
-    end
+  p '=== LeadCategory ==='
+  category_1 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: 'フレッツ完了ステータス', slug: 'flets_status')
+
+  category_1.lead_category_items.create!(order: 1, name: '未対応')
+  category_1.lead_category_items.create!(order: 2, name: '折衝中')
+  category_1.lead_category_items.create!(order: 3, name: '設備待ち')
+  category_1.lead_category_items.create!(order: 4, name: '工事待ち')
+  category_1.lead_category_items.create!(order: 5, name: '注文取り消し')
+  category_1.lead_category_items.create!(order: 6, name: '完了')
+
+  category_2 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: 'NTT東西フラグ', slug: 'ntt_flag')
+
+  category_2.lead_category_items.create!(order: 1, name: '西')
+  category_2.lead_category_items.create!(order: 2, name: '東')
+
+  category_3 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '後確コール大区分', slug: 'after_call_status')
+
+  category_3.lead_category_items.create!(order: 1, name: '後確OK（CSV）')
+  category_3.lead_category_items.create!(order: 2, name: '後確OK（代コン）')
+  category_3.lead_category_items.create!(order: 2, name: '後確OK（CSVノーコール）')
+
+  category_4 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '対応コール大区分', slug: 'call_status')
+
+  category_4.lead_category_items.create!(order: 1, name: '工事日確定')
+  category_4.lead_category_items.create!(order: 2, name: '対応完了')
+
+  category_5 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '他社回線種別', slug: 'other_line')
+
+  category_5.lead_category_items.create!(order: 1, name: '新規発番(選択)')
+  category_5.lead_category_items.create!(order: 2, name: 'ソフトバンクテレコム')
+  category_5.lead_category_items.create!(order: 3, name: 'イオ')
+  category_5.lead_category_items.create!(order: 4, name: 'NTT ISDN')
+
+  ##########################
+  # 一覧の項目
+  ##########################
+  p '=== IndexColumn ==='
+
+  product_3.index_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
+  product_3.index_columns.create!(lead_column: 'category_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
+  product_3.index_columns.create!(lead_column: 'category_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
+  product_3.index_columns.create!(lead_column: 'category_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
+  product_3.index_columns.create!(lead_column: 'category_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
+  product_3.index_columns.create!(lead_column: 'category_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
+
+  ##########################
+  # 案件
+  ##########################
+  p '=== Lead ==='
+  20.times do
+    Lead.create!(maker_group_id: maker_group_1.id, partner_id: maker_group_1.partners.sample.id, product_id: product_3.id,
+                 category_1_id: category_1.lead_category_items.sample.id,
+                 category_2_id: category_2.lead_category_items.sample.id,
+                 category_3_id: category_3.lead_category_items.sample.id,
+                 category_4_id: category_4.lead_category_items.sample.id,
+                 category_5_id: category_5.lead_category_items.sample.id,
+                )
   end
+  
+  # maker_group_1.leads.each do |lead|
+  #   hash = {}
+  #   product_3.index_columns.order(order: 'ASC').each do |index_column|
+  #     col = index_column.lead_column
+  #     case index_column.data_type
+  #     when 'partner'
+  #       hash[col] = Partner.find_by(id: lead[col])&.name
+  #     when 'category'
+  #       hash[col] = LeadCategoryItem.find_by(id: lead[col])&.name
+  #     end
+  #     lead.index_cache = hash
+  #     lead.save!
+  #   end
+  # end
 
-  ##########################
-  # エージェントの商品
-  ##########################
-  p '=== AgentProduct ==='
-  maker_group_1.vendor_groups.each do |vendor_group|
-    vendor_group.agents.where(parent: nil).each do |agent|
-      maker_group_1.products.each do |product|
-        maker_group_1.agent_products.create!(vendor_group: vendor_group, agent: agent, product: product,
-                                             price: product.price * 0.8, incentive: product.incentive * 0.8)
-      end
-    end
-  end
 
-  ##########################
-  # 申し込み
-  ##########################
-  p '=== Offer ==='
-  offer_index = 1
-  maker_group_1.vendor_groups.each do |vendor_group|
-    vendor_group.agents.where(parent: nil).each do |agent|
-      maker_group_1.products.each do |product|
-        offer = maker_group_1.offers.create(progress: rand(1..4), unique_key: 'W-' + format('%06d', offer_index),
-                                            vendor_group: vendor_group, agent: agent, product: product, user: agent.company.users.first)
-        product.product_metas.each do |meta|
-          offer.offer_metas.create!(meta_key: meta.meta_key, meta_label: meta.meta_label, meta_value: 'テスト',
-                                    order: meta.order)
-        end
-        offer_index += 1
-      end
-    end
-  end
+  # # ##########################
+  # # エージェント
+  # ##########################
+  # p '=== Agent ==='
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1, hierarchy: 1)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2, hierarchy: 1)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_3, hierarchy: 1)
+
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1, hierarchy: 2, parent: partner_1)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_2, hierarchy: 2, parent: partner_1)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_3, hierarchy: 2, parent: partner_1)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_4, hierarchy: 2, parent: partner_1)
+
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_1, hierarchy: 2, parent: partner_2)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_2, hierarchy: 2, parent: partner_2)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_3, hierarchy: 2, parent: partner_2)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_4, hierarchy: 2, parent: partner_2)
+
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_1, hierarchy: 3, parent: partner_1_1)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_2, hierarchy: 3, parent: partner_1_1)
+  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_3, hierarchy: 3, parent: partner_1_1)
+
+  # vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_1, hierarchy: 2)
+  # vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_2, hierarchy: 2)
+  # vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_3, hierarchy: 2)
+  # vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_4, hierarchy: 2)
+
+  # vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_1, hierarchy: 2)
+  # vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_2, hierarchy: 2)
+  # vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_3, hierarchy: 2)
+  # vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_4, hierarchy: 2)
+
+  # vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_1, hierarchy: 3)
+  # vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_2, hierarchy: 3)
+  # vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_3, hierarchy: 3)
+
+  # ##########################
+  # # ベンダーの商品
+  # ##########################
+  # p '=== VendorProduct ==='
+  # maker_group_1.vendor_groups.each do |vendor_group|
+  #   maker_group_1.products.each do |product|
+  #     maker_group_1.vendor_products.create!(vendor_group: vendor_group, product: product, price: product.price * 0.9,
+  #                                           incentive: product.incentive * 0.9)
+  #   end
+  # end
+
+  # ##########################
+  # # エージェントの商品
+  # ##########################
+  # p '=== AgentProduct ==='
+  # maker_group_1.vendor_groups.each do |vendor_group|
+  #   vendor_group.agents.where(parent: nil).each do |agent|
+  #     maker_group_1.products.each do |product|
+  #       maker_group_1.agent_products.create!(vendor_group: vendor_group, agent: agent, product: product,
+  #                                            price: product.price * 0.8, incentive: product.incentive * 0.8)
+  #     end
+  #   end
+  # end
+
+  # ##########################
+  # # 申し込み
+  # ##########################
+  # p '=== Offer ==='
+  # offer_index = 1
+  # maker_group_1.vendor_groups.each do |vendor_group|
+  #   vendor_group.agents.where(parent: nil).each do |agent|
+  #     maker_group_1.products.each do |product|
+  #       offer = maker_group_1.offers.create(progress: rand(1..4), unique_key: 'W-' + format('%06d', offer_index),
+  #                                           vendor_group: vendor_group, agent: agent, product: product, user: agent.company.users.first)
+  #       product.product_metas.each do |meta|
+  #         offer.offer_metas.create!(meta_key: meta.meta_key, meta_label: meta.meta_label, meta_value: 'テスト',
+  #                                   order: meta.order)
+  #       end
+  #       offer_index += 1
+  #     end
+  #   end
+  # end
 
   ##########################
   # 申し込みメタ
@@ -340,30 +418,30 @@ ApplicationRecord.transaction do
   #   offer.offer_metas.create()
   # end
 
-  ##########################
-  # ベンダー周知事項
-  ##########################
-  p '=== VendorInformation ==='
-  vendor_group_0.vendor_informations.create!(title: '申請方法変更のお知らせ', content: '申請方法が変更になります', user: maker_user_1,
-                                             maker_group: maker_group_1)
-  vendor_group_0.vendor_informations.create!(title: '手数料変更のお知らせ', content: '手数料が変更になります', user: maker_user_1,
-                                             maker_group: maker_group_1)
-  vendor_group_0.vendor_informations.create!(title: '担当者のお知らせ', content: '担当者が変更になります', user: maker_user_1,
-                                             maker_group: maker_group_1)
+  # ##########################
+  # # ベンダー周知事項
+  # ##########################
+  # p '=== VendorInformation ==='
+  # vendor_group_0.vendor_informations.create!(title: '申請方法変更のお知らせ', content: '申請方法が変更になります', user: maker_company_user_1,
+  #                                            maker_group: maker_group_1)
+  # vendor_group_0.vendor_informations.create!(title: '手数料変更のお知らせ', content: '手数料が変更になります', user: maker_company_user_1,
+  #                                            maker_group: maker_group_1)
+  # vendor_group_0.vendor_informations.create!(title: '担当者のお知らせ', content: '担当者が変更になります', user: maker_company_user_1,
+  #                                            maker_group: maker_group_1)
 
-  vendor_group_1.vendor_informations.create!(title: '申請方法変更のお知らせ', content: '申請方法が変更になります', user: partner_1_user_1,
-                                             maker_group: maker_group_1)
-  vendor_group_1.vendor_informations.create!(title: '手数料変更のお知らせ', content: '手数料が変更になります', user: partner_1_user_1,
-                                             maker_group: maker_group_1)
-  vendor_group_1.vendor_informations.create!(title: '担当者のお知らせ', content: '担当者が変更になります', user: partner_1_user_1,
-                                             maker_group: maker_group_1)
+  # vendor_group_1.vendor_informations.create!(title: '申請方法変更のお知らせ', content: '申請方法が変更になります', user: partner_1_user_1,
+  #                                            maker_group: maker_group_1)
+  # vendor_group_1.vendor_informations.create!(title: '手数料変更のお知らせ', content: '手数料が変更になります', user: partner_1_user_1,
+  #                                            maker_group: maker_group_1)
+  # vendor_group_1.vendor_informations.create!(title: '担当者のお知らせ', content: '担当者が変更になります', user: partner_1_user_1,
+  #                                            maker_group: maker_group_1)
 
   ##########################
   # 商品のチャット
   ##########################
   p '=== Message ==='
   board_1 = Board.create!(related_object: 'product', related_object_uid: product_3.uid)
-  board_1.messages.create!(user: maker_user_1, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
-  board_1.messages.create!(user: maker_user_1, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
-  board_1.messages.create!(user: partner_2_user_1, content: '了解しました。')
+  board_1.messages.create!(user: maker_company_user_1, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
+  board_1.messages.create!(user: maker_company_user_1, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
+  board_1.messages.create!(user: partner_company_2_user_1, content: '了解しました。')
 end

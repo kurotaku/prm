@@ -5,14 +5,16 @@
 # Table name: partners
 #
 #  id             :bigint           not null, primary key
+#  address        :string(255)
 #  deleted_at     :datetime
-#  hierarchy      :integer
+#  hierarchy      :integer          default("hierarchy_one")
 #  maker_memo     :text(65535)
+#  name           :string(255)
 #  status         :integer          default(10), not null
 #  uid            :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  company_id     :bigint           not null
+#  company_id     :bigint
 #  maker_group_id :bigint           not null
 #  parent_id      :bigint
 #
@@ -24,9 +26,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (company_id => companies.id)
 #  fk_rails_...  (maker_group_id => maker_groups.id)
-#  fk_rails_...  (parent_id => companies.id)
+#  fk_rails_...  (parent_id => partners.id)
 #
 require "rails_helper"
 

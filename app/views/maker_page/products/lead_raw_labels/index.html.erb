@@ -1,0 +1,40 @@
+<% content_for(:title, 'メーカー - 商品詳細') %>
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0"><%= @product.name %></h1>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+  <ul class="tab-menu-list">
+    <li class="<%= 'current' if controller_path == 'maker_page/products' %>"><%= link_to '商品情報', maker_page_product_path(uid: @product.uid) %></li>
+    <li class="<%= 'current' if controller_path == 'maker_page/products/lead_raw_labels' %>"><%= link_to '項目名', maker_page_products_lead_raw_labels_path(uid: @product.uid) %></li>
+  </ul>
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  <div class="d-flex">
+    <h2>項目名</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td>項目名</td>
+          <td>キー</td>
+          <td>順番</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product.product_metas.each do |product_meta| %>
+          <tr>
+            <td><%= product_meta.meta_label %></td>
+            <td><%= product_meta.meta_key %></td>
+            <td><%= product_meta.order %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+
+</main><!-- .main-contents -->

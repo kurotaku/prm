@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      product: 商品
+    attributes:
+      product:
+        uid: ID
+        code: 商品コード
+        name: 商品名
+        image: 商品画像
+  products:
+    create:
+      success: 商品を作成しました
+      error: 商品を作成できませんでした
+    update:
+      success: 商品を更新しました
+      error: 商品を更新できませんでした
+    destroy:
+      success: 商品を削除しました
+      error: 商品を削除できませんでした

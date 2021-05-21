@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_permission
-    # p controller_path
-    # p action_name
+    p controller_path
+    p action_name
     user_action = UserAction.find_by(ctrl_path: controller_path, act_path: action_name)
     return unless user_action
     permission = user_action.user_action_permissions.find_by(company: @current_company)

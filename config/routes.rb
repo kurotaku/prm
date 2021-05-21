@@ -47,7 +47,15 @@ Rails.application.routes.draw do
 
     namespace :maker_page do
       resource :dashboards, only: %i[show], param: :uid
-      resources :products, param: :uid
+      resources :products, param: :uid do
+        member do
+          namespace :products, path: '' do
+            resources :lead_raw_labels
+            resources :leads
+            resources :index_columns
+          end
+        end
+      end
       resources :customers, param: :uid
       resources :vendor_groups, param: :uid
       resources :partners, param: :uid

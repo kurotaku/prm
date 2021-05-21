@@ -1,0 +1,45 @@
+<% content_for(:title, 'メーカー - 契約一覧') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1 class="mb-0">契約管理</h1>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_maker_page_vendor_group_path, class: 'btn btn-m default before-icon plus' %>
+  </div>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+  
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  
+  <div class="table-wrap sp-none">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t('activerecord.attributes.vendor_group.vendor') %></td>
+          <td><%= t('activerecord.attributes.vendor_group.product') %></td>
+          <td><%= t('activerecord.attributes.vendor_group.contract_type') %></td>
+          <td><%= t('activerecord.attributes.vendor_group.layer') %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @vendor_groups.each do |vendor_group| %>
+          <tr>
+            <td>
+              <%= link_to maker_page_vendor_group_path(uid: vendor_group.uid), class: 'd-flex' do %>
+                <%= vendor_group.vendor.name %>
+              <% end %>
+            </td>
+            <td><%= vendor_group.product.name %></td>
+            <td><%= vendor_group.contract_type_i18n %></td>
+            <td><%= vendor_group.layer_i18n %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

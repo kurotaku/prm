@@ -13,8 +13,8 @@
         <tr>
           <td>商品名</td>
           <td>商品コード</td>
-          <td>単価(メーカー以外は見れないように)</td>
-          <td>報酬単価(メーカー以外は見れないように)</td>
+          <td>単価</td>
+          <td>報酬単価</td>
         </tr>
       </thead>
       <tbody>
@@ -22,8 +22,7 @@
           <tr>
             <td><%= link_to product.name, product_path(uid: product.uid) %></td>
             <td><%= product.code %></td>
-            <td><%= product.price.to_s(:delimited) %></td>
-            <td><%= product.incentive.to_s(:delimited) %></td>
+
           </tr>
         <% end %>
       </tbody>

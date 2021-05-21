@@ -14,8 +14,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
 
-  <body class="<%= yield(:body_class) %>" id="<%= yield(:body_id) %>">
+  <body class="center-layout <%= yield(:body_class) %>" id="<%= yield(:body_id) %>">
     <section class="main-col w-100">
+      <%= render 'layouts/flash_message' %>
       <%= yield %>
     </section>
   </body>

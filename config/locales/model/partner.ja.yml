@@ -1,0 +1,32 @@
+ja:
+  activerecord:
+    models:
+      partner: パートナー
+    attributes:
+      partner:
+        uid: ID
+        name: 企業名
+        image: 企業ロゴ
+        address: 住所
+        parent: 上位店
+        parent_id: 上位店
+        hierarchy: 階層
+        maker_memo: メーカーメモ
+  enums:
+    partner:
+      hierarchy:
+        hierarchy_one: 1次店
+        hierarchy_two: 2次店
+        hierarchy_three: 3次店
+        hierarchy_four: 4次店
+        hierarchy_five: 5次店
+  partners:
+    create:
+      success: パートナーを作成しました
+      error: パートナーを作成できませんでした
+    update:
+      success: パートナーを更新しました
+      error: パートナーを更新できませんでした
+    destroy:
+      success: パートナーを削除しました
+      error: パートナーを削除できませんでした

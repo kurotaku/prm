@@ -264,6 +264,7 @@ html{
 .secondary-header{
   background-color: white;
   border-bottom: 1px solid $shade-grey-02;
+  border-top: 1px solid $shade-grey-02;
 }
 
 /*=============================
@@ -1530,6 +1531,19 @@ nav.pagination{
 }
 
 /*=============================
+    Image
+=============================== */
+.item-thumb{
+  width: 140px;
+}
+
+.icon-image{
+  width: 40px;
+  border-radius: 100%;
+}
+
+
+/*=============================
     User Icon
 =============================== */
 .icon-photo{
@@ -1852,7 +1866,6 @@ header{
 
 }
 
-
 .heade-icon-list{
   li{
     margin-left: 16px;
@@ -1861,6 +1874,33 @@ header{
       cursor: pointer;
     }
   } 
+}
+
+.tab-menu-list{
+  display: flex;
+  li{
+    margin-right: 16px;
+    a{
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $secondary-01;
+      padding: 24px;
+      display: inline-block;
+      position: relative;
+    }
+  }
+  li.current a, a:hover{
+    color: $primary-01;
+  }
+  li.current a:after, a:hover:after{
+    content: ' ';
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    background: $primary-01;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 
