@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    models:
+      lead_index_column: 企業
+    attributes:
+      company:
+        name: 項目名
+        lead_column: 案件カラム
+        data_type: データのタイプ
+  enums:
+    lead_index_column:
+      data_type:
+        category: カテゴリー
+        partner: パートナー名
+        product: 商品名
+        date: 日付と日時
+        string: 文字列
+        integer: 数値(整数)
+        prefecture: 都道府県
+  lead_index_columns:
+    create:
+      success: 案件一覧の項目を作成しました
+      error: 案件一覧の項目を作成できませんでした
+    update:
+      success: 案件一覧の項目を更新しました
+      error: 案件一覧の項目を更新できませんでした
+    destroy:
+      success: 案件一覧の項目を削除しました
+      error: 案件一覧の項目を削除できませんでした
