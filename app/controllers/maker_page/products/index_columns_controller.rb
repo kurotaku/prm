@@ -2,7 +2,7 @@ class MakerPage::Products::IndexColumnsController < MakerPage::MakerPageControll
   before_action :set_product
 
   def index
-    @index_columns = @product.index_columns
+    @index_columns = @product.lead_index_columns
   end
 
   private

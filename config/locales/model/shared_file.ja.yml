@@ -4,7 +4,7 @@ ja:
       shared_file: 共有ファイル
     attributes:
       shared_file:
-        title: タイトル
+        name: 名前
         description: 説明
         file: ファイル
         file_name: ファイル名

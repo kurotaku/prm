@@ -32,7 +32,7 @@ module MakerPage
     private
 
     def file_params
-      params.require(:shared_file).permit(:file, :title, :description)
+      params.require(:shared_file).permit(:file, :name, :description)
     end
 
     def download_file(uid:, download_user:)

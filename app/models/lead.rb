@@ -81,7 +81,7 @@ class Lead < ApplicationRecord
   def store_index_cache
     return if product.blank?
     hash = {}
-    product.index_columns.order(order: 'ASC').each do |index_column|
+    product.lead_index_columns.order(order: 'ASC').each do |index_column|
       col = index_column.lead_column
       case index_column.data_type
       when 'partner'

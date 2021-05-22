@@ -12,23 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2021_05_20_085618) do
 
-  create_table "agent_products", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "maker_group_id", null: false
-    t.bigint "vendor_group_id", null: false
-    t.bigint "agent_id", null: false
-    t.bigint "product_id", null: false
-    t.integer "price"
-    t.integer "incentive"
-    t.integer "status", default: 10, null: false
-    t.string "uid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["agent_id"], name: "index_agent_products_on_agent_id"
-    t.index ["maker_group_id"], name: "index_agent_products_on_maker_group_id"
-    t.index ["product_id"], name: "index_agent_products_on_product_id"
-    t.index ["vendor_group_id"], name: "index_agent_products_on_vendor_group_id"
-  end
-
   create_table "agents", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_group_id", null: false
     t.bigint "vendor_group_id", null: false
@@ -78,13 +61,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.index ["prefecture_id"], name: "index_companies_on_prefecture_id"
   end
 
-  create_table "default_labels", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "order"
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "download_file_histories", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "shared_file_id", null: false
@@ -107,17 +83,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["lead_category_id"], name: "index_index_columns_on_lead_category_id"
     t.index ["product_id"], name: "index_index_columns_on_product_id"
-  end
-
-  create_table "lead_caches", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "lead_id", null: false
-    t.bigint "maker_group_id", null: false
-    t.text "index_cache"
-    t.text "show_cache"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lead_id"], name: "index_lead_caches_on_lead_id"
-    t.index ["maker_group_id"], name: "index_lead_caches_on_maker_group_id"
   end
 
   create_table "lead_categories", charset: "utf8mb4", force: :cascade do |t|
@@ -143,8 +108,17 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
   end
 
   create_table "lead_index_columns", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "lead_column"
+    t.bigint "product_id", null: false
+    t.integer "contract_type", default: 10, null: false
+    t.integer "data_type", default: 10, null: false
+    t.bigint "lead_category_id"
+    t.integer "order", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["lead_category_id"], name: "index_lead_index_columns_on_lead_category_id"
+    t.index ["product_id"], name: "index_lead_index_columns_on_product_id"
   end
 
   create_table "lead_index_labels", charset: "utf8mb4", force: :cascade do |t|
@@ -159,137 +133,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["lead_category_id"], name: "index_lead_index_labels_on_lead_category_id"
     t.index ["product_id"], name: "index_lead_index_labels_on_product_id"
-  end
-
-  create_table "lead_raw_labels", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "maker_group_id", null: false
-    t.bigint "product_id", null: false
-    t.integer "contract_type", default: 10, null: false
-    t.string "col_aa"
-    t.string "col_ab"
-    t.string "col_ac"
-    t.string "col_ad"
-    t.string "col_ae"
-    t.string "col_af"
-    t.string "col_ag"
-    t.string "col_ah"
-    t.string "col_ai"
-    t.string "col_aj"
-    t.string "col_ak"
-    t.string "col_al"
-    t.string "col_am"
-    t.string "col_an"
-    t.string "col_ao"
-    t.string "col_ap"
-    t.string "col_aq"
-    t.string "col_ar"
-    t.string "col_as"
-    t.string "col_at"
-    t.string "col_au"
-    t.string "col_av"
-    t.string "col_aw"
-    t.string "col_ax"
-    t.string "col_ay"
-    t.string "col_az"
-    t.string "col_ba"
-    t.string "col_bb"
-    t.string "col_bc"
-    t.string "col_bd"
-    t.string "col_be"
-    t.string "col_bf"
-    t.string "col_bg"
-    t.string "col_bh"
-    t.string "col_bi"
-    t.string "col_bj"
-    t.string "col_bk"
-    t.string "col_bl"
-    t.string "col_bm"
-    t.string "col_bn"
-    t.string "col_bo"
-    t.string "col_bp"
-    t.string "col_bq"
-    t.string "col_br"
-    t.string "col_bs"
-    t.string "col_bt"
-    t.string "col_bu"
-    t.string "col_bv"
-    t.string "col_bw"
-    t.string "col_bx"
-    t.string "col_by"
-    t.string "col_bz"
-    t.string "col_ca"
-    t.string "col_cb"
-    t.string "col_cc"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["maker_group_id"], name: "index_lead_raw_labels_on_maker_group_id"
-    t.index ["product_id"], name: "index_lead_raw_labels_on_product_id"
-  end
-
-  create_table "lead_raws", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "maker_group_id", null: false
-    t.bigint "product_id", null: false
-    t.bigint "partner_id", null: false
-    t.string "col_aa"
-    t.string "col_ab"
-    t.string "col_ac"
-    t.string "col_ad"
-    t.string "col_ae"
-    t.string "col_af"
-    t.string "col_ag"
-    t.string "col_ah"
-    t.string "col_ai"
-    t.string "col_aj"
-    t.string "col_ak"
-    t.string "col_al"
-    t.string "col_am"
-    t.string "col_an"
-    t.string "col_ao"
-    t.string "col_ap"
-    t.string "col_aq"
-    t.string "col_ar"
-    t.string "col_as"
-    t.string "col_at"
-    t.string "col_au"
-    t.string "col_av"
-    t.string "col_aw"
-    t.string "col_ax"
-    t.string "col_ay"
-    t.string "col_az"
-    t.string "col_ba"
-    t.string "col_bb"
-    t.string "col_bc"
-    t.string "col_bd"
-    t.string "col_be"
-    t.string "col_bf"
-    t.string "col_bg"
-    t.string "col_bh"
-    t.string "col_bi"
-    t.string "col_bj"
-    t.string "col_bk"
-    t.string "col_bl"
-    t.string "col_bm"
-    t.string "col_bn"
-    t.string "col_bo"
-    t.string "col_bp"
-    t.string "col_bq"
-    t.string "col_br"
-    t.string "col_bs"
-    t.string "col_bt"
-    t.string "col_bu"
-    t.string "col_bv"
-    t.string "col_bw"
-    t.string "col_bx"
-    t.string "col_by"
-    t.string "col_bz"
-    t.string "col_ca"
-    t.string "col_cb"
-    t.string "col_cc"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["maker_group_id"], name: "index_lead_raws_on_maker_group_id"
-    t.index ["partner_id"], name: "index_lead_raws_on_partner_id"
-    t.index ["product_id"], name: "index_lead_raws_on_product_id"
   end
 
   create_table "leads", charset: "utf8mb4", force: :cascade do |t|
@@ -350,19 +193,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.index ["maker_id"], name: "index_maker_groups_on_maker_id"
   end
 
-  create_table "maker_informations", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "maker_group_id", null: false
-    t.string "title"
-    t.text "content"
-    t.bigint "user_id", null: false
-    t.integer "status", default: 10, null: false
-    t.string "uid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["maker_group_id"], name: "index_maker_informations_on_maker_group_id"
-    t.index ["user_id"], name: "index_maker_informations_on_user_id"
-  end
-
   create_table "messages", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "board_id", null: false
     t.bigint "user_id", null: false
@@ -373,39 +203,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["board_id"], name: "index_messages_on_board_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "offer_metas", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "offer_id", null: false
-    t.string "meta_key"
-    t.string "meta_label"
-    t.string "meta_value"
-    t.integer "order"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["offer_id"], name: "index_offer_metas_on_offer_id"
-  end
-
-  create_table "offers", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "maker_group_id", null: false
-    t.bigint "vendor_group_id", null: false
-    t.bigint "agent_id", null: false
-    t.bigint "product_id", null: false
-    t.bigint "user_id"
-    t.integer "type"
-    t.datetime "saled_at"
-    t.datetime "confirmed_at"
-    t.integer "progress"
-    t.string "unique_key"
-    t.integer "status", default: 10, null: false
-    t.string "uid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["agent_id"], name: "index_offers_on_agent_id"
-    t.index ["maker_group_id"], name: "index_offers_on_maker_group_id"
-    t.index ["product_id"], name: "index_offers_on_product_id"
-    t.index ["user_id"], name: "index_offers_on_user_id"
-    t.index ["vendor_group_id"], name: "index_offers_on_vendor_group_id"
   end
 
   create_table "partners", charset: "utf8mb4", force: :cascade do |t|
@@ -432,26 +229,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.integer "status", default: 10, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "product_labels", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.integer "order"
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_product_labels_on_product_id"
-  end
-
-  create_table "product_metas", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.string "meta_key"
-    t.string "meta_label"
-    t.string "meta_type"
-    t.integer "order"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_product_metas_on_product_id"
   end
 
   create_table "products", charset: "utf8mb4", force: :cascade do |t|
@@ -482,7 +259,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.string "uid"
     t.string "file"
     t.string "file_name"
-    t.string "title"
+    t.string "name"
     t.string "human_size"
     t.integer "file_size"
     t.datetime "created_at", precision: 6, null: false
@@ -577,40 +354,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.index ["vendor_id"], name: "index_vendor_groups_on_vendor_id"
   end
 
-  create_table "vendor_informations", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "maker_group_id", null: false
-    t.bigint "vendor_group_id", null: false
-    t.string "title"
-    t.text "content"
-    t.bigint "user_id", null: false
-    t.integer "status", default: 10, null: false
-    t.string "uid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["maker_group_id"], name: "index_vendor_informations_on_maker_group_id"
-    t.index ["user_id"], name: "index_vendor_informations_on_user_id"
-    t.index ["vendor_group_id"], name: "index_vendor_informations_on_vendor_group_id"
-  end
-
-  create_table "vendor_products", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "maker_group_id", null: false
-    t.bigint "vendor_group_id", null: false
-    t.bigint "product_id", null: false
-    t.integer "price"
-    t.integer "incentive"
-    t.integer "status", default: 10, null: false
-    t.string "uid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["maker_group_id"], name: "index_vendor_products_on_maker_group_id"
-    t.index ["product_id"], name: "index_vendor_products_on_product_id"
-    t.index ["vendor_group_id"], name: "index_vendor_products_on_vendor_group_id"
-  end
-
-  add_foreign_key "agent_products", "agents"
-  add_foreign_key "agent_products", "maker_groups"
-  add_foreign_key "agent_products", "products"
-  add_foreign_key "agent_products", "vendor_groups"
   add_foreign_key "agents", "companies"
   add_foreign_key "agents", "companies", column: "parent_id"
   add_foreign_key "agents", "maker_groups"
@@ -620,18 +363,13 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
   add_foreign_key "download_file_histories", "users"
   add_foreign_key "index_columns", "lead_categories"
   add_foreign_key "index_columns", "products"
-  add_foreign_key "lead_caches", "leads"
-  add_foreign_key "lead_caches", "maker_groups"
   add_foreign_key "lead_categories", "maker_groups"
   add_foreign_key "lead_categories", "products"
   add_foreign_key "lead_category_items", "lead_categories"
+  add_foreign_key "lead_index_columns", "lead_categories"
+  add_foreign_key "lead_index_columns", "products"
   add_foreign_key "lead_index_labels", "lead_categories"
   add_foreign_key "lead_index_labels", "products"
-  add_foreign_key "lead_raw_labels", "maker_groups"
-  add_foreign_key "lead_raw_labels", "products"
-  add_foreign_key "lead_raws", "maker_groups"
-  add_foreign_key "lead_raws", "partners"
-  add_foreign_key "lead_raws", "products"
   add_foreign_key "leads", "lead_category_items", column: "category_1_id"
   add_foreign_key "leads", "lead_category_items", column: "category_2_id"
   add_foreign_key "leads", "lead_category_items", column: "category_3_id"
@@ -642,20 +380,10 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
   add_foreign_key "leads", "prefectures", column: "prefecture_1_id"
   add_foreign_key "leads", "products"
   add_foreign_key "maker_groups", "companies", column: "maker_id"
-  add_foreign_key "maker_informations", "maker_groups"
-  add_foreign_key "maker_informations", "users"
   add_foreign_key "messages", "boards"
   add_foreign_key "messages", "users"
-  add_foreign_key "offer_metas", "offers"
-  add_foreign_key "offers", "agents"
-  add_foreign_key "offers", "maker_groups"
-  add_foreign_key "offers", "products"
-  add_foreign_key "offers", "users"
-  add_foreign_key "offers", "vendor_groups"
   add_foreign_key "partners", "maker_groups"
   add_foreign_key "partners", "partners", column: "parent_id"
-  add_foreign_key "product_labels", "products"
-  add_foreign_key "product_metas", "products"
   add_foreign_key "products", "maker_groups"
   add_foreign_key "shared_files", "maker_groups"
   add_foreign_key "shared_files", "users"
@@ -667,10 +395,4 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
   add_foreign_key "vendor_groups", "maker_groups"
   add_foreign_key "vendor_groups", "partners", column: "vendor_id"
   add_foreign_key "vendor_groups", "products"
-  add_foreign_key "vendor_informations", "maker_groups"
-  add_foreign_key "vendor_informations", "users"
-  add_foreign_key "vendor_informations", "vendor_groups"
-  add_foreign_key "vendor_products", "maker_groups"
-  add_foreign_key "vendor_products", "products"
-  add_foreign_key "vendor_products", "vendor_groups"
 end

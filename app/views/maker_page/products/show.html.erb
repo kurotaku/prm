@@ -19,55 +19,6 @@
       <dd><%= @product.name %></dd>
     </dl>
 
-
   </div>
-
-
-
-
-
-
-
-  <h2>メーカーが定めた申し込み時の項目</h2>
-  <div class="table-wrap sp-none">
-    <table class="border-table">
-      <thead>
-        <tr>
-          <td>項目名</td>
-          <td>キー</td>
-          <td>順番</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @product.product_metas.each do |product_meta| %>
-          <tr>
-            <td><%= product_meta.meta_label %></td>
-            <td><%= product_meta.meta_key %></td>
-            <td><%= product_meta.order %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div><!-- .table-wrap -->
-
-  <h2>メーカーが定めたステータス</h2>
-  <div class="table-wrap sp-none">
-    <table class="border-table">
-      <thead>
-        <tr>
-          <td>表記</td>
-          <td>順番</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @product.product_labels.each do |product_label| %>
-          <tr>
-            <td><%= product_label.name %></td>
-            <td><%= product_label.order %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div><!-- .table-wrap -->
 
 </main><!-- .main-contents -->

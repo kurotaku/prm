@@ -6,7 +6,7 @@ class CreateSharedFiles < ActiveRecord::Migration[6.1]
       t.string :uid
       t.string :file
       t.string :file_name
-      t.string :title
+      t.string :name
       t.string :human_size
       t.integer :file_size
 

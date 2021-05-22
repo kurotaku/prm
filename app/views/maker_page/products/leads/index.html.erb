@@ -19,7 +19,7 @@
     <table class="border-table">
       <thead>
         <tr>
-          <% @product.index_columns.order(order: 'ASC').each do |index_column| %>
+          <% @product.lead_index_columns.order(order: 'ASC').each do |index_column| %>
             <td><%= index_column.name %></td>
           <% end %>
         </tr>

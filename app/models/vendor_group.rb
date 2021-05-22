@@ -41,10 +41,6 @@ class VendorGroup < ApplicationRecord
   belongs_to :maker_group
   belongs_to :vendor, class_name: "Partner"
   belongs_to :product, optional: true
-  has_many :agents
-  has_many :agent_products
-  has_many :vendor_informations
-  has_many :offers
 
   enum contract_type: {
     agency:   10,
