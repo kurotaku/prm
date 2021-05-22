@@ -4,6 +4,7 @@ class MakerPage::ProductsController < MakerPage::MakerPageController
   end
 
   def new
+    @product = @current_maker_group.products.build
   end
 
   def create
@@ -15,4 +16,16 @@ class MakerPage::ProductsController < MakerPage::MakerPageController
 
   def edit
   end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  private
+
+    def product_params
+      params.require(:product).permit(:maker_group, :code, :name, :image)
+    end   
 end

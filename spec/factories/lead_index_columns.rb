@@ -4,7 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  contract_type    :integer          default(10), not null
-#  data_type        :integer          default(10), not null
+#  data_type        :integer          default("category"), not null
 #  lead_column      :string(255)
 #  name             :string(255)
 #  order            :integer          default(1), not null

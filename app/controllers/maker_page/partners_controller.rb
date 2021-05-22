@@ -22,6 +22,15 @@ class MakerPage::PartnersController < MakerPage::MakerPageController
     @partner = @current_maker_group.partners.find_by(uid: params[:uid]).decorate
   end
 
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
   private
 
     def partner_params
