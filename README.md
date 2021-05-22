@@ -27,7 +27,11 @@ webpack起動
 docker-compose exec app bin/webpack-dev-server
 ```
 
+## er図
 
+```
+bundle exec erd --attributes=foreign_keys,content
+```
 
 
 
