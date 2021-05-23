@@ -8,6 +8,16 @@ ja:
         code: 商品コード
         name: 商品名
         image: 商品画像
+        agency_price: 取次単価
+        agency_incentive: 取次報酬単価
+        agency_description: 取次詳細
+        introduction_price: 紹介単価
+        introduction_incentive: 紹介報酬単価
+        introduction_description: 紹介詳細
+        wholesale_price: 卸売単価
+        wholesale_description: 卸売詳細
+
+
   products:
     create:
       success: 商品を作成しました
