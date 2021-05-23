@@ -71,20 +71,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.index ["user_id"], name: "index_download_file_histories_on_user_id"
   end
 
-  create_table "index_columns", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "lead_column"
-    t.bigint "product_id", null: false
-    t.integer "contract_type", default: 10, null: false
-    t.integer "data_type", default: 10, null: false
-    t.bigint "lead_category_id"
-    t.integer "order", default: 1, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lead_category_id"], name: "index_index_columns_on_lead_category_id"
-    t.index ["product_id"], name: "index_index_columns_on_product_id"
-  end
-
   create_table "lead_categories", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_group_id", null: false
     t.bigint "product_id", null: false
@@ -361,8 +347,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
   add_foreign_key "companies", "prefectures"
   add_foreign_key "download_file_histories", "shared_files"
   add_foreign_key "download_file_histories", "users"
-  add_foreign_key "index_columns", "lead_categories"
-  add_foreign_key "index_columns", "products"
   add_foreign_key "lead_categories", "maker_groups"
   add_foreign_key "lead_categories", "products"
   add_foreign_key "lead_category_items", "lead_categories"
