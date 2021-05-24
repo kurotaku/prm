@@ -4,17 +4,18 @@ class CreateLeads < ActiveRecord::Migration[6.1]
       t.references :maker_group, null: false, foreign_key: true
       t.references :partner, foreign_key: true
       t.references :product, foreign_key: true
+      t.string :unique_key
       t.integer :contract_type, default: 10, null: false
       t.integer :progress
       t.index :progress
       t.text :index_cache
       t.text :show_cache
       
-      t.references :category_1, foreign_key: { to_table: :lead_category_items }
-      t.references :category_2, foreign_key: { to_table: :lead_category_items }
-      t.references :category_3, foreign_key: { to_table: :lead_category_items }
-      t.references :category_4, foreign_key: { to_table: :lead_category_items }
-      t.references :category_5, foreign_key: { to_table: :lead_category_items }
+      t.references :category_item_1, foreign_key: { to_table: :lead_category_items }
+      t.references :category_item_2, foreign_key: { to_table: :lead_category_items }
+      t.references :category_item_3, foreign_key: { to_table: :lead_category_items }
+      t.references :category_item_4, foreign_key: { to_table: :lead_category_items }
+      t.references :category_item_5, foreign_key: { to_table: :lead_category_items }
       t.datetime :datetime_1
       t.datetime :datetime_2
       t.datetime :datetime_3

@@ -51,6 +51,8 @@ Rails.application.routes.draw do
         member do
           namespace :products, path: '' do
             resources :leads
+            resources :lead_categories
+            resources :lead_columns
             resources :index_columns
           end
         end

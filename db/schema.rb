@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_085618) do
+ActiveRecord::Schema.define(version: 2021_05_22_141632) do
 
   create_table "agents", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_group_id", null: false
@@ -93,6 +93,21 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.index ["lead_category_id"], name: "index_lead_category_items_on_lead_category_id"
   end
 
+  create_table "lead_columns", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "key_name"
+    t.string "lead_column"
+    t.bigint "product_id", null: false
+    t.integer "contract_type", default: 10, null: false
+    t.integer "data_type", default: 10, null: false
+    t.bigint "lead_category_id"
+    t.integer "order", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lead_category_id"], name: "index_lead_columns_on_lead_category_id"
+    t.index ["product_id"], name: "index_lead_columns_on_product_id"
+  end
+
   create_table "lead_index_columns", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "lead_column"
@@ -125,15 +140,16 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.bigint "maker_group_id", null: false
     t.bigint "partner_id"
     t.bigint "product_id"
+    t.string "unique_key"
     t.integer "contract_type", default: 10, null: false
     t.integer "progress"
     t.text "index_cache"
     t.text "show_cache"
-    t.bigint "category_1_id"
-    t.bigint "category_2_id"
-    t.bigint "category_3_id"
-    t.bigint "category_4_id"
-    t.bigint "category_5_id"
+    t.bigint "category_item_1_id"
+    t.bigint "category_item_2_id"
+    t.bigint "category_item_3_id"
+    t.bigint "category_item_4_id"
+    t.bigint "category_item_5_id"
     t.datetime "datetime_1"
     t.datetime "datetime_2"
     t.datetime "datetime_3"
@@ -157,11 +173,11 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
     t.bigint "prefecture_1_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_1_id"], name: "index_leads_on_category_1_id"
-    t.index ["category_2_id"], name: "index_leads_on_category_2_id"
-    t.index ["category_3_id"], name: "index_leads_on_category_3_id"
-    t.index ["category_4_id"], name: "index_leads_on_category_4_id"
-    t.index ["category_5_id"], name: "index_leads_on_category_5_id"
+    t.index ["category_item_1_id"], name: "index_leads_on_category_item_1_id"
+    t.index ["category_item_2_id"], name: "index_leads_on_category_item_2_id"
+    t.index ["category_item_3_id"], name: "index_leads_on_category_item_3_id"
+    t.index ["category_item_4_id"], name: "index_leads_on_category_item_4_id"
+    t.index ["category_item_5_id"], name: "index_leads_on_category_item_5_id"
     t.index ["maker_group_id"], name: "index_leads_on_maker_group_id"
     t.index ["partner_id"], name: "index_leads_on_partner_id"
     t.index ["prefecture_1_id"], name: "index_leads_on_prefecture_1_id"
@@ -350,15 +366,17 @@ ActiveRecord::Schema.define(version: 2021_05_20_085618) do
   add_foreign_key "lead_categories", "maker_groups"
   add_foreign_key "lead_categories", "products"
   add_foreign_key "lead_category_items", "lead_categories"
+  add_foreign_key "lead_columns", "lead_categories"
+  add_foreign_key "lead_columns", "products"
   add_foreign_key "lead_index_columns", "lead_categories"
   add_foreign_key "lead_index_columns", "products"
   add_foreign_key "lead_index_labels", "lead_categories"
   add_foreign_key "lead_index_labels", "products"
-  add_foreign_key "leads", "lead_category_items", column: "category_1_id"
-  add_foreign_key "leads", "lead_category_items", column: "category_2_id"
-  add_foreign_key "leads", "lead_category_items", column: "category_3_id"
-  add_foreign_key "leads", "lead_category_items", column: "category_4_id"
-  add_foreign_key "leads", "lead_category_items", column: "category_5_id"
+  add_foreign_key "leads", "lead_category_items", column: "category_item_1_id"
+  add_foreign_key "leads", "lead_category_items", column: "category_item_2_id"
+  add_foreign_key "leads", "lead_category_items", column: "category_item_3_id"
+  add_foreign_key "leads", "lead_category_items", column: "category_item_4_id"
+  add_foreign_key "leads", "lead_category_items", column: "category_item_5_id"
   add_foreign_key "leads", "maker_groups"
   add_foreign_key "leads", "partners"
   add_foreign_key "leads", "prefectures", column: "prefecture_1_id"

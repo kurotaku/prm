@@ -246,16 +246,28 @@ ApplicationRecord.transaction do
   category_5.lead_category_items.create!(order: 4, name: 'NTT ISDN')
 
   ##########################
-  # 一覧の項目
+  # 案件の項目
+  ##########################
+  p '=== LeadColumn ==='
+
+  product_3.lead_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
+  product_3.lead_columns.create!(lead_column: 'category_item_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
+  product_3.lead_columns.create!(lead_column: 'category_item_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
+  product_3.lead_columns.create!(lead_column: 'category_item_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
+  product_3.lead_columns.create!(lead_column: 'category_item_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
+  product_3.lead_columns.create!(lead_column: 'category_item_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
+
+  ##########################
+  # 案件一覧の項目
   ##########################
   p '=== LeadIndexColumn ==='
 
   product_3.lead_index_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
-  product_3.lead_index_columns.create!(lead_column: 'category_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
-  product_3.lead_index_columns.create!(lead_column: 'category_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
-  product_3.lead_index_columns.create!(lead_column: 'category_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
-  product_3.lead_index_columns.create!(lead_column: 'category_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
-  product_3.lead_index_columns.create!(lead_column: 'category_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
 
   ##########################
   # 案件
@@ -263,11 +275,11 @@ ApplicationRecord.transaction do
   p '=== Lead ==='
   20.times do
     Lead.create!(maker_group_id: maker_group_1.id, partner_id: maker_group_1.partners.sample.id, product_id: product_3.id,
-                 category_1_id: category_1.lead_category_items.sample.id,
-                 category_2_id: category_2.lead_category_items.sample.id,
-                 category_3_id: category_3.lead_category_items.sample.id,
-                 category_4_id: category_4.lead_category_items.sample.id,
-                 category_5_id: category_5.lead_category_items.sample.id,
+                 category_item_1_id: category_1.lead_category_items.sample.id,
+                 category_item_2_id: category_2.lead_category_items.sample.id,
+                 category_item_3_id: category_3.lead_category_items.sample.id,
+                 category_item_4_id: category_4.lead_category_items.sample.id,
+                 category_item_5_id: category_5.lead_category_items.sample.id,
                 )
   end
   

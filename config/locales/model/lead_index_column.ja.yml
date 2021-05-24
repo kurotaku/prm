@@ -3,10 +3,11 @@ ja:
     models:
       lead_index_column: 企業
     attributes:
-      company:
+      lead_index_column:
         name: 項目名
         lead_column: 案件カラム
         data_type: データのタイプ
+        order: 表示順
   enums:
     lead_index_column:
       data_type:

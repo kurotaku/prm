@@ -1,5 +1,7 @@
 <ul class="tab-menu-list">
   <li class="<%= 'current' if controller_path == 'maker_page/products' %>"><%= link_to '商品情報', maker_page_product_path(uid: @product.uid) %></li>
-  <li class="<%= 'current' if controller_path == 'maker_page/products/leads' %>"><%= link_to '案件一覧', maker_page_products_leads_path(uid: @product.uid) %></li>
+  <li class="<%= 'current' if controller_path == 'maker_page/products/leads' %>"><%= link_to '案件', maker_page_products_leads_path(uid: @product.uid) %></li>
+  <li class="<%= 'current' if controller_path == 'maker_page/products/leads' %>"><%= link_to '案件の選択肢', maker_page_products_lead_categories_path(uid: @product.uid) %></li>
+  <li class="<%= 'current' if controller_path == 'maker_page/products/lead_columns' %>"><%= link_to '案件項目', maker_page_products_lead_columns_path(uid: @product.uid) %></li>
   <li class="<%= 'current' if controller_path == 'maker_page/products/index_columns' %>"><%= link_to '案件一覧の項目', maker_page_products_index_columns_path(uid: @product.uid) %></li>
 </ul>

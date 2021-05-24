@@ -2,63 +2,64 @@
 #
 # Table name: leads
 #
-#  id              :bigint           not null, primary key
-#  contract_type   :integer          default(10), not null
-#  datetime_1      :datetime
-#  datetime_2      :datetime
-#  datetime_3      :datetime
-#  datetime_4      :datetime
-#  datetime_5      :datetime
-#  index_cache     :text(65535)
-#  integer_1       :integer
-#  integer_2       :integer
-#  integer_3       :integer
-#  integer_4       :integer
-#  integer_5       :integer
-#  progress        :integer
-#  show_cache      :text(65535)
-#  string_1        :string(255)
-#  string_2        :string(255)
-#  string_3        :string(255)
-#  string_4        :string(255)
-#  string_5        :string(255)
-#  text_1          :text(65535)
-#  text_2          :text(65535)
-#  text_3          :text(65535)
-#  text_4          :text(65535)
-#  text_5          :text(65535)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  category_1_id   :bigint
-#  category_2_id   :bigint
-#  category_3_id   :bigint
-#  category_4_id   :bigint
-#  category_5_id   :bigint
-#  maker_group_id  :bigint           not null
-#  partner_id      :bigint
-#  prefecture_1_id :bigint
-#  product_id      :bigint
+#  id                 :bigint           not null, primary key
+#  contract_type      :integer          default(10), not null
+#  datetime_1         :datetime
+#  datetime_2         :datetime
+#  datetime_3         :datetime
+#  datetime_4         :datetime
+#  datetime_5         :datetime
+#  index_cache        :text(65535)
+#  integer_1          :integer
+#  integer_2          :integer
+#  integer_3          :integer
+#  integer_4          :integer
+#  integer_5          :integer
+#  progress           :integer
+#  show_cache         :text(65535)
+#  string_1           :string(255)
+#  string_2           :string(255)
+#  string_3           :string(255)
+#  string_4           :string(255)
+#  string_5           :string(255)
+#  text_1             :text(65535)
+#  text_2             :text(65535)
+#  text_3             :text(65535)
+#  text_4             :text(65535)
+#  text_5             :text(65535)
+#  unique_key         :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  category_item_1_id :bigint
+#  category_item_2_id :bigint
+#  category_item_3_id :bigint
+#  category_item_4_id :bigint
+#  category_item_5_id :bigint
+#  maker_group_id     :bigint           not null
+#  partner_id         :bigint
+#  prefecture_1_id    :bigint
+#  product_id         :bigint
 #
 # Indexes
 #
-#  index_leads_on_category_1_id    (category_1_id)
-#  index_leads_on_category_2_id    (category_2_id)
-#  index_leads_on_category_3_id    (category_3_id)
-#  index_leads_on_category_4_id    (category_4_id)
-#  index_leads_on_category_5_id    (category_5_id)
-#  index_leads_on_maker_group_id   (maker_group_id)
-#  index_leads_on_partner_id       (partner_id)
-#  index_leads_on_prefecture_1_id  (prefecture_1_id)
-#  index_leads_on_product_id       (product_id)
-#  index_leads_on_progress         (progress)
+#  index_leads_on_category_item_1_id  (category_item_1_id)
+#  index_leads_on_category_item_2_id  (category_item_2_id)
+#  index_leads_on_category_item_3_id  (category_item_3_id)
+#  index_leads_on_category_item_4_id  (category_item_4_id)
+#  index_leads_on_category_item_5_id  (category_item_5_id)
+#  index_leads_on_maker_group_id      (maker_group_id)
+#  index_leads_on_partner_id          (partner_id)
+#  index_leads_on_prefecture_1_id     (prefecture_1_id)
+#  index_leads_on_product_id          (product_id)
+#  index_leads_on_progress            (progress)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (category_1_id => lead_category_items.id)
-#  fk_rails_...  (category_2_id => lead_category_items.id)
-#  fk_rails_...  (category_3_id => lead_category_items.id)
-#  fk_rails_...  (category_4_id => lead_category_items.id)
-#  fk_rails_...  (category_5_id => lead_category_items.id)
+#  fk_rails_...  (category_item_1_id => lead_category_items.id)
+#  fk_rails_...  (category_item_2_id => lead_category_items.id)
+#  fk_rails_...  (category_item_3_id => lead_category_items.id)
+#  fk_rails_...  (category_item_4_id => lead_category_items.id)
+#  fk_rails_...  (category_item_5_id => lead_category_items.id)
 #  fk_rails_...  (maker_group_id => maker_groups.id)
 #  fk_rails_...  (partner_id => partners.id)
 #  fk_rails_...  (prefecture_1_id => prefectures.id)

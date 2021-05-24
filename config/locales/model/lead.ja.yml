@@ -1,0 +1,63 @@
+ja:
+  activerecord:
+    models:
+      lead: 案件
+    attributes:
+      lead:
+        name: 項目名
+        key_name: キー名(CSVで使用)
+        lead: 案件カラム
+        data_type: データのタイプ
+        order: 表示順
+  enums:
+    lead:
+      data_type:
+        category: 選択肢タイプ
+        partner: パートナー名
+        product: 商品名
+        date: 日付と日時
+        string: 文字列
+        integer: 数値(整数)
+        prefecture: 都道府県
+  leads:
+    create:
+      success: 案件一覧の項目を作成しました
+      error: 案件一覧の項目を作成できませんでした
+    update:
+      success: 案件一覧の項目を更新しました
+      error: 案件一覧の項目を更新できませんでした
+    destroy:
+      success: 案件一覧の項目を削除しました
+      error: 案件一覧の項目を削除できませんでした
+  lead:
+    columns:
+      partner_id: パートナー名
+      product_id: 商品名
+      unique_key: ユニークキー
+      progress: 進捗ステータス
+      category_item_1: 選択肢1
+      category_item_2: 選択肢2
+      category_item_3: 選択肢3
+      category_item_4: 選択肢4
+      category_item_5: 選択肢5
+      datetime_1: 日時1
+      datetime_2: 日時2
+      datetime_3: 日時3
+      datetime_4: 日時4
+      datetime_5: 日時5
+      prefecture_1: 都道府県1
+      string_1: 文字列1(最大255文字)
+      string_2: 文字列2(最大255文字)
+      string_3: 文字列3(最大255文字)
+      string_4: 文字列4(最大255文字)
+      string_5: 文字列5(最大255文字)
+      text_1: 文章1
+      text_2: 文章2
+      text_3: 文章3
+      text_4: 文章4
+      text_5: 文章5
+      integer_1: 整数1
+      integer_2: 整数2
+      integer_3: 整数3
+      integer_4: 整数4
+      integer_5: 整数5

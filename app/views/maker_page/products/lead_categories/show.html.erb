@@ -1,4 +1,4 @@
-<% content_for(:title, 'メーカー - 案件一覧') %>
+<% content_for(:title, 'メーカー - 案件の選択肢一覧') %>
 
 <header class="primary-header d-flex align-items-center">
   <%= render 'maker_page/products/show_parts/header' %>
@@ -10,25 +10,19 @@
 
 <main class="main-contents">
   
-  <div class="d-flex mb-5">
-    <%= link_to '案件' + t('common.new'), new_maker_page_products_lead_path, class: 'btn btn-m default before-icon plus ml-auto' %>
-  </div>
-
   <div class="table-wrap">
     <table class="border-table">
       <thead>
         <tr>
-          <% @product.lead_index_columns.order(order: 'ASC').each do |index_column| %>
-            <td><%= index_column.name %></td>
-          <% end %>
+          <td>選択肢の分類</td>
+          <td>項目数</td>
         </tr>
       </thead>
       <tbody>
-        <% @leads.each do |lead| %>
+        <% @categories.each do |category| %>
           <tr>
-            <% lead.index_cache.each do |key, value| %>
-              <td><%= value %></td>
-            <% end %>
+            <td><%= link_to category.name, maker_page_products_lead_category_path(uid: @product.uid, id: category.id) %></td>
+            <td><%= category.lead_category_items.count %></td>
           </tr>
         <% end %>
       </tbody>
