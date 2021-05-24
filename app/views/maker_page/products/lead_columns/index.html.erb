@@ -1,0 +1,80 @@
+<% content_for(:title, 'メーカー - 案件項目一覧') %>
+
+<header class="primary-header d-flex align-items-center">
+  <%= render 'maker_page/products/show_parts/header' %>
+</header><!-- .primary-header -->
+
+<div class="secondary-header">
+  <%= render 'maker_page/products/show_parts/page_menu' %>
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t('activerecord.attributes.lead_column.name') %></td>
+          <td><%= t('activerecord.attributes.lead_column.key_name') %></td>
+          <td><%= t('activerecord.attributes.lead_column.data_type') %></td>
+          <td><%= t('activerecord.attributes.lead_column.order') %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lead_columns.each do |lead_column| %>
+          <tr>
+            <td><%= lead_column.name %></td>
+            <td><%= lead_column.key_name %></td>
+            <td><%= lead_column.data_type_i18n %><%= '（' + lead_column.lead_category.name + '）' if lead_column.data_type == 'category' %></td>
+            <td><%= lead_column.order %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+  <h2 class="mb-4">新規項目追加</h2>
+
+  <%= form_with(model: @lead_column, url: maker_page_products_lead_columns_path(uid: @product.uid), html: { method: :post, class: 'form-default' }) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="form-group">
+      <p><%= f.label :name %></p>
+      <%= f.text_field :name, class: 'form-control half' %>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :key_name %></p>
+      <%= f.text_field :key_name, class: 'form-control half' %>
+    </div>
+
+    <div class="form-group">
+      <p class="mb-1"><%= f.label :data_type %></p>
+      <div class="select-wrap half">
+        <%= f.select :data_type, LeadColumn.data_types_i18n.invert.to_a, {}, {class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :lead_column %></p>
+      <div class="select-wrap half">
+        <%= f.collection_select :lead_column, t('lead.columns'), :first, :last, {include_blank: '---'},{class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :lead_category_id %></p>
+      <div class="select-wrap half">
+        <%= f.collection_select :lead_category_id, @product.lead_categories, :id, :name, {include_blank: '---'},{class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :order %></p>
+      <%= f.text_field :order, class: 'form-control half' %>
+    </div>
+
+    <%= f.submit t('common.create'), class: 'btn btn-m default' %>
+  <% end %>
+
+</main><!-- .main-contents -->

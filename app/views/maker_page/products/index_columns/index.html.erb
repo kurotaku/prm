@@ -1,4 +1,4 @@
-<% content_for(:title, 'メーカー - 案件一覧') %>
+<% content_for(:title, 'メーカー - 案件項目一覧') %>
 
 <header class="primary-header d-flex align-items-center">
   <%= render 'maker_page/products/show_parts/header' %>
@@ -10,11 +10,13 @@
 
 <main class="main-contents">
   
-  <div class="table-wrap sp-none">
+  <div class="table-wrap">
     <table class="border-table">
       <thead>
         <tr>
-          <td></td>
+          <td><%= t('activerecord.attributes.lead_index_column.name') %></td>
+          <td><%= t('activerecord.attributes.lead_index_column.data_type') %></td>
+          <td><%= t('activerecord.attributes.lead_index_column.order') %></td>
         </tr>
       </thead>
       <tbody>
