@@ -70,15 +70,6 @@ ApplicationRecord.transaction do
   Prefecture.find_or_create_by(id: 47, code: '47', name: '沖縄県')
 
   ##########################
-  # デフォルトラベル
-  ##########################
-  p '=== DefaultLabel ==='
-  DefaultLabel.create(order: 1, name: '申請中')
-  DefaultLabel.create(order: 2, name: '差し戻し')
-  DefaultLabel.create(order: 3, name: '対応中')
-  DefaultLabel.create(order: 4, name: '完了')
-
-  ##########################
   # ユーザーアクション
   ##########################
   p '=== UserAction ==='
@@ -208,41 +199,6 @@ ApplicationRecord.transaction do
   product_3 = maker_group_1.products.create!(name: '高速光回線', code: 'p-0003', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
 
   ##########################
-  # 商品ラベル
-  ##########################
-  p '=== ProductLabel ==='
-  product_1.product_labels.create!(order: 1, name: '申請中')
-  product_1.product_labels.create!(order: 2, name: '導入先確認中')
-  product_1.product_labels.create!(order: 3, name: '日程調整中')
-  product_1.product_labels.create!(order: 4, name: '差し戻し')
-  product_1.product_labels.create!(order: 5, name: '対応中')
-  product_1.product_labels.create!(order: 6, name: '完了')
-
-  product_2.product_labels.create!(order: 1, name: '申請中')
-  product_2.product_labels.create!(order: 2, name: '差し戻し')
-  product_2.product_labels.create!(order: 3, name: '完了')
-
-  product_3.product_labels.create!(order: 1, name: '未対応')
-  product_3.product_labels.create!(order: 2, name: '折衝中')
-  product_3.product_labels.create!(order: 3, name: '設備待ち')
-  product_3.product_labels.create!(order: 4, name: '工事待ち')
-  product_3.product_labels.create!(order: 5, name: '注文取り消し')
-  product_3.product_labels.create!(order: 6, name: '完了')
-
-  ##########################
-  # 商品メタ
-  ##########################
-  p '=== ProductMeta ==='
-  product_2.product_metas.create!(order: 1, meta_key: 'number_of_family', meta_label: '顧客の世帯人数')
-
-  product_3.product_metas.create!(order: 1, meta_key: 'ntt_flag', meta_label: 'NTT東西フラグ')
-  product_3.product_metas.create!(order: 2, meta_key: 'ntt_area', meta_label: '申し込み地域')
-  product_3.product_metas.create!(order: 3, meta_key: 'pref', meta_label: '申し込み県')
-  product_3.product_metas.create!(order: 4, meta_key: 'entry_at', meta_label: 'フレッツエントリー日')
-  product_3.product_metas.create!(order: 5, meta_key: 'plan_name', meta_label: 'プラン名')
-  product_3.product_metas.create!(order: 6, meta_key: 'construction_at', meta_label: '工事日')
-
-  ##########################
   # ベンダーグループ
   ##########################
   p '=== VendorGroup ==='
@@ -290,16 +246,28 @@ ApplicationRecord.transaction do
   category_5.lead_category_items.create!(order: 4, name: 'NTT ISDN')
 
   ##########################
-  # 一覧の項目
+  # 案件の項目
   ##########################
-  p '=== IndexColumn ==='
+  p '=== LeadColumn ==='
 
-  product_3.index_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
-  product_3.index_columns.create!(lead_column: 'category_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
-  product_3.index_columns.create!(lead_column: 'category_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
-  product_3.index_columns.create!(lead_column: 'category_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
-  product_3.index_columns.create!(lead_column: 'category_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
-  product_3.index_columns.create!(lead_column: 'category_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
+  product_3.lead_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
+  product_3.lead_columns.create!(lead_column: 'category_item_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
+  product_3.lead_columns.create!(lead_column: 'category_item_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
+  product_3.lead_columns.create!(lead_column: 'category_item_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
+  product_3.lead_columns.create!(lead_column: 'category_item_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
+  product_3.lead_columns.create!(lead_column: 'category_item_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
+
+  ##########################
+  # 案件一覧の項目
+  ##########################
+  p '=== LeadIndexColumn ==='
+
+  product_3.lead_index_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
+  product_3.lead_index_columns.create!(lead_column: 'category_item_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
 
   ##########################
   # 案件
@@ -307,135 +275,14 @@ ApplicationRecord.transaction do
   p '=== Lead ==='
   20.times do
     Lead.create!(maker_group_id: maker_group_1.id, partner_id: maker_group_1.partners.sample.id, product_id: product_3.id,
-                 category_1_id: category_1.lead_category_items.sample.id,
-                 category_2_id: category_2.lead_category_items.sample.id,
-                 category_3_id: category_3.lead_category_items.sample.id,
-                 category_4_id: category_4.lead_category_items.sample.id,
-                 category_5_id: category_5.lead_category_items.sample.id,
+                 category_item_1_id: category_1.lead_category_items.sample.id,
+                 category_item_2_id: category_2.lead_category_items.sample.id,
+                 category_item_3_id: category_3.lead_category_items.sample.id,
+                 category_item_4_id: category_4.lead_category_items.sample.id,
+                 category_item_5_id: category_5.lead_category_items.sample.id,
                 )
   end
   
-  # maker_group_1.leads.each do |lead|
-  #   hash = {}
-  #   product_3.index_columns.order(order: 'ASC').each do |index_column|
-  #     col = index_column.lead_column
-  #     case index_column.data_type
-  #     when 'partner'
-  #       hash[col] = Partner.find_by(id: lead[col])&.name
-  #     when 'category'
-  #       hash[col] = LeadCategoryItem.find_by(id: lead[col])&.name
-  #     end
-  #     lead.index_cache = hash
-  #     lead.save!
-  #   end
-  # end
-
-
-  # # ##########################
-  # # エージェント
-  # ##########################
-  # p '=== Agent ==='
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1, hierarchy: 1)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2, hierarchy: 1)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_3, hierarchy: 1)
-
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1, hierarchy: 2, parent: partner_1)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_2, hierarchy: 2, parent: partner_1)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_3, hierarchy: 2, parent: partner_1)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_4, hierarchy: 2, parent: partner_1)
-
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_1, hierarchy: 2, parent: partner_2)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_2, hierarchy: 2, parent: partner_2)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_3, hierarchy: 2, parent: partner_2)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_2_4, hierarchy: 2, parent: partner_2)
-
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_1, hierarchy: 3, parent: partner_1_1)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_2, hierarchy: 3, parent: partner_1_1)
-  # vendor_group_0.agents.create!(maker_group: maker_group_1, company: partner_1_1_3, hierarchy: 3, parent: partner_1_1)
-
-  # vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_1, hierarchy: 2)
-  # vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_2, hierarchy: 2)
-  # vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_3, hierarchy: 2)
-  # vendor_group_1.agents.create!(maker_group: maker_group_1, company: partner_1_4, hierarchy: 2)
-
-  # vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_1, hierarchy: 2)
-  # vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_2, hierarchy: 2)
-  # vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_3, hierarchy: 2)
-  # vendor_group_2.agents.create!(maker_group: maker_group_1, company: partner_2_4, hierarchy: 2)
-
-  # vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_1, hierarchy: 3)
-  # vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_2, hierarchy: 3)
-  # vendor_group_1_1.agents.create!(maker_group: maker_group_1, company: partner_1_1_3, hierarchy: 3)
-
-  # ##########################
-  # # ベンダーの商品
-  # ##########################
-  # p '=== VendorProduct ==='
-  # maker_group_1.vendor_groups.each do |vendor_group|
-  #   maker_group_1.products.each do |product|
-  #     maker_group_1.vendor_products.create!(vendor_group: vendor_group, product: product, price: product.price * 0.9,
-  #                                           incentive: product.incentive * 0.9)
-  #   end
-  # end
-
-  # ##########################
-  # # エージェントの商品
-  # ##########################
-  # p '=== AgentProduct ==='
-  # maker_group_1.vendor_groups.each do |vendor_group|
-  #   vendor_group.agents.where(parent: nil).each do |agent|
-  #     maker_group_1.products.each do |product|
-  #       maker_group_1.agent_products.create!(vendor_group: vendor_group, agent: agent, product: product,
-  #                                            price: product.price * 0.8, incentive: product.incentive * 0.8)
-  #     end
-  #   end
-  # end
-
-  # ##########################
-  # # 申し込み
-  # ##########################
-  # p '=== Offer ==='
-  # offer_index = 1
-  # maker_group_1.vendor_groups.each do |vendor_group|
-  #   vendor_group.agents.where(parent: nil).each do |agent|
-  #     maker_group_1.products.each do |product|
-  #       offer = maker_group_1.offers.create(progress: rand(1..4), unique_key: 'W-' + format('%06d', offer_index),
-  #                                           vendor_group: vendor_group, agent: agent, product: product, user: agent.company.users.first)
-  #       product.product_metas.each do |meta|
-  #         offer.offer_metas.create!(meta_key: meta.meta_key, meta_label: meta.meta_label, meta_value: 'テスト',
-  #                                   order: meta.order)
-  #       end
-  #       offer_index += 1
-  #     end
-  #   end
-  # end
-
-  ##########################
-  # 申し込みメタ
-  ##########################
-  # p '=== OfferMeta ==='
-  # product_3.offers.each do |offer|
-  #   offer.offer_metas.create()
-  # end
-
-  # ##########################
-  # # ベンダー周知事項
-  # ##########################
-  # p '=== VendorInformation ==='
-  # vendor_group_0.vendor_informations.create!(title: '申請方法変更のお知らせ', content: '申請方法が変更になります', user: maker_company_user_1,
-  #                                            maker_group: maker_group_1)
-  # vendor_group_0.vendor_informations.create!(title: '手数料変更のお知らせ', content: '手数料が変更になります', user: maker_company_user_1,
-  #                                            maker_group: maker_group_1)
-  # vendor_group_0.vendor_informations.create!(title: '担当者のお知らせ', content: '担当者が変更になります', user: maker_company_user_1,
-  #                                            maker_group: maker_group_1)
-
-  # vendor_group_1.vendor_informations.create!(title: '申請方法変更のお知らせ', content: '申請方法が変更になります', user: partner_1_user_1,
-  #                                            maker_group: maker_group_1)
-  # vendor_group_1.vendor_informations.create!(title: '手数料変更のお知らせ', content: '手数料が変更になります', user: partner_1_user_1,
-  #                                            maker_group: maker_group_1)
-  # vendor_group_1.vendor_informations.create!(title: '担当者のお知らせ', content: '担当者が変更になります', user: partner_1_user_1,
-  #                                            maker_group: maker_group_1)
-
   ##########################
   # 商品のチャット
   ##########################

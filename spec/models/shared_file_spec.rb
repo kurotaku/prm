@@ -7,7 +7,7 @@
 #  file_name      :string(255)
 #  file_size      :integer
 #  human_size     :string(255)
-#  title          :string(255)
+#  name           :string(255)
 #  uid            :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

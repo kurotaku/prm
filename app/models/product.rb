@@ -37,8 +37,7 @@ class Product < ApplicationRecord
 
   belongs_to :maker_group
   has_many :leads
-  has_many :product_labels
-  has_many :product_metas
-
-  has_many :index_columns
+  has_many :lead_categories
+  has_many :lead_columns
+  has_many :lead_index_columns
 end

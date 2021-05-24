@@ -6,9 +6,14 @@ class MakerPage::Products::LeadsController <  MakerPage::MakerPageController
   end
 
   def show
+
   end
 
   def new
+    @lead = @product.leads.build
+  end
+
+  def create
   end
 
   private

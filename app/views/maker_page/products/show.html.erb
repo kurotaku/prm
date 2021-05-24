@@ -1,7 +1,7 @@
 <% content_for(:title, 'メーカー - 商品詳細') %>
 
 <header class="primary-header d-flex align-items-center">
-  <h1 class="mb-0"><%= @product.name %></h1>
+  <%= render 'maker_page/products/show_parts/header' %>
 </header><!-- .primary-header -->
 <div class="secondary-header">
   <%= render 'maker_page/products/show_parts/page_menu' %>
@@ -19,55 +19,46 @@
       <dd><%= @product.name %></dd>
     </dl>
 
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.product.agency_price' %></dt>
+      <dd><%= @product.agency_price %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.product.agency_incentive' %></dt>
+      <dd><%= @product.agency_incentive %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.product.agency_description' %></dt>
+      <dd><%= @product.agency_description %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.product.introduction_price' %></dt>
+      <dd><%= @product.introduction_price %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.product.introduction_incentive' %></dt>
+      <dd><%= @product.introduction_incentive %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.product.introduction_description' %></dt>
+      <dd><%= @product.introduction_description %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.product.wholesale_price' %></dt>
+      <dd><%= @product.wholesale_price %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.product.wholesale_description' %></dt>
+      <dd><%= @product.wholesale_description %></dd>
+    </dl>
 
   </div>
-
-
-
-
-
-
-
-  <h2>メーカーが定めた申し込み時の項目</h2>
-  <div class="table-wrap sp-none">
-    <table class="border-table">
-      <thead>
-        <tr>
-          <td>項目名</td>
-          <td>キー</td>
-          <td>順番</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @product.product_metas.each do |product_meta| %>
-          <tr>
-            <td><%= product_meta.meta_label %></td>
-            <td><%= product_meta.meta_key %></td>
-            <td><%= product_meta.order %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div><!-- .table-wrap -->
-
-  <h2>メーカーが定めたステータス</h2>
-  <div class="table-wrap sp-none">
-    <table class="border-table">
-      <thead>
-        <tr>
-          <td>表記</td>
-          <td>順番</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @product.product_labels.each do |product_label| %>
-          <tr>
-            <td><%= product_label.name %></td>
-            <td><%= product_label.order %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div><!-- .table-wrap -->
 
 </main><!-- .main-contents -->

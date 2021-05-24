@@ -24,7 +24,7 @@
     <table class="border-table">
       <thead>
         <tr>
-          <td><%= t('activerecord.attributes.shared_file.title') %></td>
+          <td><%= t('activerecord.attributes.shared_file.name') %></td>
           <td><%= t('activerecord.attributes.shared_file.user_full_name') %></td>
           <td><%= t('activerecord.attributes.shared_file.created_at') %></td>
         </tr>
@@ -34,7 +34,7 @@
           <tr>
             <td>
               <%= link_to maker_page_file_path(uid: file.uid) do %>
-                <%= file.title %>
+                <%= file.name %>
               <% end %>
             </td>
             <td>

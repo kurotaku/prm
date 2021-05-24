@@ -50,8 +50,9 @@ Rails.application.routes.draw do
       resources :products, param: :uid do
         member do
           namespace :products, path: '' do
-            resources :lead_raw_labels
             resources :leads
+            resources :lead_categories
+            resources :lead_columns
             resources :index_columns
           end
         end
@@ -59,7 +60,6 @@ Rails.application.routes.draw do
       resources :customers, param: :uid
       resources :vendor_groups, param: :uid
       resources :partners, param: :uid
-      resources :offers, param: :uid
       resources :files, param: :uid do
         member do
           get 'download', to: 'files#download'
@@ -70,7 +70,6 @@ Rails.application.routes.draw do
 
     namespace :vendor_page do
       resources :agents, param: :uid
-      resources :offers, param: :uid
     end
 
     resource :dashboards, only: %i[show], param: :uid
@@ -78,8 +77,6 @@ Rails.application.routes.draw do
     resources :products, param: :uid
     resources :vendor_groups, param: :uid
     resources :agents, param: :uid
-    resources :offers, param: :uid
-    resources :vendor_informations, param: :uid
     resource :profiles, only: %i[edit update], param: :uid
   end
 end

@@ -1,25 +1,22 @@
-<% content_for(:title, 'メーカー - 案件一覧') %>
+<% content_for(:title, 'メーカー - 案件項目一覧') %>
 
 <header class="primary-header d-flex align-items-center">
-  <div>
-    <h1 class="mb-0"><%= @product.name %></h1>
-  </div>
-
-  <div class="d-flex ml-auto">
-    <%= link_to t('common.new'), new_admin_page_user_path, class: 'btn btn-m default before-icon plus' %>
-  </div>
+  <%= render 'maker_page/products/show_parts/header' %>
 </header><!-- .primary-header -->
+
 <div class="secondary-header">
   <%= render 'maker_page/products/show_parts/page_menu' %>
 </div><!-- .secondary-header -->
 
 <main class="main-contents">
   
-  <div class="table-wrap sp-none">
+  <div class="table-wrap">
     <table class="border-table">
       <thead>
         <tr>
-          <td></td>
+          <td><%= t('activerecord.attributes.lead_index_column.name') %></td>
+          <td><%= t('activerecord.attributes.lead_index_column.data_type') %></td>
+          <td><%= t('activerecord.attributes.lead_index_column.order') %></td>
         </tr>
       </thead>
       <tbody>
