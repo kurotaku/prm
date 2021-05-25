@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class UserDecorator < ApplicationDecorator
-  include ActionView::Helpers::AssetUrlHelper
   delegate_all
 
   def thumbnail

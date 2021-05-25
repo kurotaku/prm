@@ -209,65 +209,82 @@ ApplicationRecord.transaction do
   # vendor_group_1_1 = maker_group_1.vendor_groups.create!(vendor: partner_1_1, layer: 2)
 
 
-  ##########################
-  # 案件カテゴリー
-  ##########################
-  p '=== LeadCategory ==='
-  category_1 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: 'フレッツ完了ステータス', slug: 'flets_status')
+  # ##########################
+  # # 案件カテゴリー
+  # ##########################
+  # p '=== LeadCategory ==='
+  # category_1 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: 'フレッツ完了ステータス', slug: 'flets_status')
 
-  category_1.lead_category_items.create!(order: 1, name: '未対応')
-  category_1.lead_category_items.create!(order: 2, name: '折衝中')
-  category_1.lead_category_items.create!(order: 3, name: '設備待ち')
-  category_1.lead_category_items.create!(order: 4, name: '工事待ち')
-  category_1.lead_category_items.create!(order: 5, name: '注文取り消し')
-  category_1.lead_category_items.create!(order: 6, name: '完了')
+  # category_1.lead_select_items.create!(order: 1, name: '未対応')
+  # category_1.lead_select_items.create!(order: 2, name: '折衝中')
+  # category_1.lead_select_items.create!(order: 3, name: '設備待ち')
+  # category_1.lead_select_items.create!(order: 4, name: '工事待ち')
+  # category_1.lead_select_items.create!(order: 5, name: '注文取り消し')
+  # category_1.lead_select_items.create!(order: 6, name: '完了')
 
-  category_2 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: 'NTT東西フラグ', slug: 'ntt_flag')
+  # category_2 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: 'NTT東西フラグ', slug: 'ntt_flag')
 
-  category_2.lead_category_items.create!(order: 1, name: '西')
-  category_2.lead_category_items.create!(order: 2, name: '東')
+  # category_2.lead_select_items.create!(order: 1, name: '西')
+  # category_2.lead_select_items.create!(order: 2, name: '東')
 
-  category_3 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '後確コール大区分', slug: 'after_call_status')
+  # category_3 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '後確コール大区分', slug: 'after_call_status')
 
-  category_3.lead_category_items.create!(order: 1, name: '後確OK（CSV）')
-  category_3.lead_category_items.create!(order: 2, name: '後確OK（代コン）')
-  category_3.lead_category_items.create!(order: 2, name: '後確OK（CSVノーコール）')
+  # category_3.lead_select_items.create!(order: 1, name: '後確OK（CSV）')
+  # category_3.lead_select_items.create!(order: 2, name: '後確OK（代コン）')
+  # category_3.lead_select_items.create!(order: 2, name: '後確OK（CSVノーコール）')
 
-  category_4 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '対応コール大区分', slug: 'call_status')
+  # category_4 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '対応コール大区分', slug: 'call_status')
 
-  category_4.lead_category_items.create!(order: 1, name: '工事日確定')
-  category_4.lead_category_items.create!(order: 2, name: '対応完了')
+  # category_4.lead_select_items.create!(order: 1, name: '工事日確定')
+  # category_4.lead_select_items.create!(order: 2, name: '対応完了')
 
-  category_5 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '他社回線種別', slug: 'other_line')
+  # category_5 = LeadCategory.create!(maker_group_id: maker_group_1.id, product_id: product_3.id, name: '他社回線種別', slug: 'other_line')
 
-  category_5.lead_category_items.create!(order: 1, name: '新規発番(選択)')
-  category_5.lead_category_items.create!(order: 2, name: 'ソフトバンクテレコム')
-  category_5.lead_category_items.create!(order: 3, name: 'イオ')
-  category_5.lead_category_items.create!(order: 4, name: 'NTT ISDN')
+  # category_5.lead_select_items.create!(order: 1, name: '新規発番(選択)')
+  # category_5.lead_select_items.create!(order: 2, name: 'ソフトバンクテレコム')
+  # category_5.lead_select_items.create!(order: 3, name: 'イオ')
+  # category_5.lead_select_items.create!(order: 4, name: 'NTT ISDN')
 
   ##########################
   # 案件の項目
   ##########################
   p '=== LeadColumn ==='
 
-  product_3.lead_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
-  product_3.lead_columns.create!(lead_column: 'category_item_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
-  product_3.lead_columns.create!(lead_column: 'category_item_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
-  product_3.lead_columns.create!(lead_column: 'category_item_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
-  product_3.lead_columns.create!(lead_column: 'category_item_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
-  product_3.lead_columns.create!(lead_column: 'category_item_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
+  product_3.lead_columns.create!(lead_attribute: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner, index_page_order: 1)
+  select_column_1 = product_3.lead_columns.create!(lead_attribute: 'select_item_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :select_item)
+  %w[未対応 折衝中 設備待ち 工事待ち 注文取り消し 完了].each_with_index do |n, i|
+    select_column_1.lead_column_select_items.create!(name: n, order: i + 1, )
+  end
+  select_column_2 = product_3.lead_columns.create!(lead_attribute: 'select_item_2_id', name: 'NTT東西フラグ', order: 3, data_type: :select_item, index_page_order: 3)
+  %w[西 東].each_with_index do |n, i|
+    select_column_2.lead_column_select_items.create!(name: n, order: i + 1)
+  end
+  select_column_3 = product_3.lead_columns.create!(lead_attribute: 'select_item_3_id', name: '後確コール大区分', order: 4, data_type: :select_item, index_page_order: 2)
+  %w[後確OK（CSV） 後確OK（代コン） 後確OK（CSVノーコール）].each_with_index do |n, i|
+    select_column_3.lead_column_select_items.create!(name: n, order: i + 1)
+  end
 
-  ##########################
-  # 案件一覧の項目
-  ##########################
-  p '=== LeadIndexColumn ==='
+  select_column_4 = product_3.lead_columns.create!(lead_attribute: 'select_item_4_id', name: '対応コール大区分', order: 5, data_type: :select_item)
+  %w[工事日確定 対応完了].each_with_index do |n, i|
+    select_column_4.lead_column_select_items.create!(name: n, order: i + 1)
+  end
 
-  product_3.lead_index_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
-  product_3.lead_index_columns.create!(lead_column: 'category_item_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
-  product_3.lead_index_columns.create!(lead_column: 'category_item_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
-  product_3.lead_index_columns.create!(lead_column: 'category_item_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
-  product_3.lead_index_columns.create!(lead_column: 'category_item_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
-  product_3.lead_index_columns.create!(lead_column: 'category_item_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
+  select_column_5 = product_3.lead_columns.create!(lead_attribute: 'select_item_5_id', name: '他社回線種別', order: 6, data_type: :select_item)
+  %w[新規発番 ソフトバンクテレコム イオ NTT].each_with_index do |n, i|
+    select_column_5.lead_column_select_items.create!(name: n, order: i + 1)
+  end
+
+  # ##########################
+  # # 案件一覧の項目
+  # ##########################
+  # p '=== LeadIndexColumn ==='
+
+  # product_3.lead_index_columns.create!(lead_column: 'partner_id', name: 'パートナー名', order: 1, data_type: :partner)
+  # product_3.lead_index_columns.create!(lead_column: 'select_item_1_id', name: 'フレッツ完了ステータス', order: 2, data_type: :category, lead_category_id: category_1.id)
+  # product_3.lead_index_columns.create!(lead_column: 'select_item_2_id', name: 'NTT東西フラグ', order: 3, data_type: :category, lead_category_id: category_2.id)
+  # product_3.lead_index_columns.create!(lead_column: 'select_item_3_id', name: '後確コール大区分', order: 4, data_type: :category, lead_category_id: category_3.id)
+  # product_3.lead_index_columns.create!(lead_column: 'select_item_4_id', name: '対応コール大区分', order: 5, data_type: :category, lead_category_id: category_4.id)
+  # product_3.lead_index_columns.create!(lead_column: 'select_item_5_id', name: '他社回線種別', order: 6, data_type: :category, lead_category_id: category_5.id)
 
   ##########################
   # 案件
@@ -275,11 +292,11 @@ ApplicationRecord.transaction do
   p '=== Lead ==='
   20.times do
     Lead.create!(maker_group_id: maker_group_1.id, partner_id: maker_group_1.partners.sample.id, product_id: product_3.id,
-                 category_item_1_id: category_1.lead_category_items.sample.id,
-                 category_item_2_id: category_2.lead_category_items.sample.id,
-                 category_item_3_id: category_3.lead_category_items.sample.id,
-                 category_item_4_id: category_4.lead_category_items.sample.id,
-                 category_item_5_id: category_5.lead_category_items.sample.id,
+                 select_item_1_id: select_column_1.lead_column_select_items.sample.id,
+                 select_item_2_id: select_column_2.lead_column_select_items.sample.id,
+                 select_item_3_id: select_column_3.lead_column_select_items.sample.id,
+                 select_item_4_id: select_column_4.lead_column_select_items.sample.id,
+                 select_item_5_id: select_column_5.lead_column_select_items.sample.id,
                 )
   end
   

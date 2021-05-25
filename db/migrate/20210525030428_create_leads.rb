@@ -11,11 +11,11 @@ class CreateLeads < ActiveRecord::Migration[6.1]
       t.text :index_cache
       t.text :show_cache
       
-      t.references :category_item_1, foreign_key: { to_table: :lead_category_items }
-      t.references :category_item_2, foreign_key: { to_table: :lead_category_items }
-      t.references :category_item_3, foreign_key: { to_table: :lead_category_items }
-      t.references :category_item_4, foreign_key: { to_table: :lead_category_items }
-      t.references :category_item_5, foreign_key: { to_table: :lead_category_items }
+      t.references :select_item_1, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_2, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_3, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_4, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_5, foreign_key: { to_table: :lead_column_select_items }
       t.datetime :datetime_1
       t.datetime :datetime_2
       t.datetime :datetime_3

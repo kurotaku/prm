@@ -18,7 +18,7 @@
     <table class="border-table">
       <thead>
         <tr>
-          <% @product.lead_index_columns.order(order: 'ASC').each do |index_column| %>
+          <% @product.lead_columns.where.not(index_page_order: nil).order(index_page_order: 'ASC').each do |index_column| %>
             <td><%= index_column.name %></td>
           <% end %>
         </tr>
