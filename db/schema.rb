@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_22_141632) do
+ActiveRecord::Schema.define(version: 2021_05_25_030428) do
 
   create_table "agents", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_group_id", null: false
@@ -71,69 +71,27 @@ ActiveRecord::Schema.define(version: 2021_05_22_141632) do
     t.index ["user_id"], name: "index_download_file_histories_on_user_id"
   end
 
-  create_table "lead_categories", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "maker_group_id", null: false
-    t.bigint "product_id", null: false
+  create_table "lead_column_select_items", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "lead_column_id", null: false
     t.string "name"
-    t.string "slug"
     t.integer "order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["maker_group_id"], name: "index_lead_categories_on_maker_group_id"
-    t.index ["product_id"], name: "index_lead_categories_on_product_id"
-  end
-
-  create_table "lead_category_items", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "lead_category_id", null: false
-    t.string "name"
-    t.string "slug"
-    t.integer "order"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lead_category_id"], name: "index_lead_category_items_on_lead_category_id"
+    t.index ["lead_column_id"], name: "index_lead_column_select_items_on_lead_column_id"
   end
 
   create_table "lead_columns", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "key_name"
-    t.string "lead_column"
+    t.string "lead_attribute"
     t.bigint "product_id", null: false
     t.integer "contract_type", default: 10, null: false
     t.integer "data_type", default: 10, null: false
-    t.bigint "lead_category_id"
     t.integer "order", null: false
+    t.integer "index_page_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["lead_category_id"], name: "index_lead_columns_on_lead_category_id"
     t.index ["product_id"], name: "index_lead_columns_on_product_id"
-  end
-
-  create_table "lead_index_columns", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "lead_column"
-    t.bigint "product_id", null: false
-    t.integer "contract_type", default: 10, null: false
-    t.integer "data_type", default: 10, null: false
-    t.bigint "lead_category_id"
-    t.integer "order", default: 1, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lead_category_id"], name: "index_lead_index_columns_on_lead_category_id"
-    t.index ["product_id"], name: "index_lead_index_columns_on_product_id"
-  end
-
-  create_table "lead_index_labels", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "lead_column"
-    t.bigint "product_id", null: false
-    t.integer "contract_type", default: 10, null: false
-    t.integer "data_type", default: 10, null: false
-    t.bigint "lead_category_id"
-    t.integer "order", default: 1, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lead_category_id"], name: "index_lead_index_labels_on_lead_category_id"
-    t.index ["product_id"], name: "index_lead_index_labels_on_product_id"
   end
 
   create_table "leads", charset: "utf8mb4", force: :cascade do |t|
@@ -145,11 +103,11 @@ ActiveRecord::Schema.define(version: 2021_05_22_141632) do
     t.integer "progress"
     t.text "index_cache"
     t.text "show_cache"
-    t.bigint "category_item_1_id"
-    t.bigint "category_item_2_id"
-    t.bigint "category_item_3_id"
-    t.bigint "category_item_4_id"
-    t.bigint "category_item_5_id"
+    t.bigint "select_item_1_id"
+    t.bigint "select_item_2_id"
+    t.bigint "select_item_3_id"
+    t.bigint "select_item_4_id"
+    t.bigint "select_item_5_id"
     t.datetime "datetime_1"
     t.datetime "datetime_2"
     t.datetime "datetime_3"
@@ -173,16 +131,16 @@ ActiveRecord::Schema.define(version: 2021_05_22_141632) do
     t.bigint "prefecture_1_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_item_1_id"], name: "index_leads_on_category_item_1_id"
-    t.index ["category_item_2_id"], name: "index_leads_on_category_item_2_id"
-    t.index ["category_item_3_id"], name: "index_leads_on_category_item_3_id"
-    t.index ["category_item_4_id"], name: "index_leads_on_category_item_4_id"
-    t.index ["category_item_5_id"], name: "index_leads_on_category_item_5_id"
     t.index ["maker_group_id"], name: "index_leads_on_maker_group_id"
     t.index ["partner_id"], name: "index_leads_on_partner_id"
     t.index ["prefecture_1_id"], name: "index_leads_on_prefecture_1_id"
     t.index ["product_id"], name: "index_leads_on_product_id"
     t.index ["progress"], name: "index_leads_on_progress"
+    t.index ["select_item_1_id"], name: "index_leads_on_select_item_1_id"
+    t.index ["select_item_2_id"], name: "index_leads_on_select_item_2_id"
+    t.index ["select_item_3_id"], name: "index_leads_on_select_item_3_id"
+    t.index ["select_item_4_id"], name: "index_leads_on_select_item_4_id"
+    t.index ["select_item_5_id"], name: "index_leads_on_select_item_5_id"
   end
 
   create_table "maker_groups", charset: "utf8mb4", force: :cascade do |t|
@@ -363,20 +321,13 @@ ActiveRecord::Schema.define(version: 2021_05_22_141632) do
   add_foreign_key "companies", "prefectures"
   add_foreign_key "download_file_histories", "shared_files"
   add_foreign_key "download_file_histories", "users"
-  add_foreign_key "lead_categories", "maker_groups"
-  add_foreign_key "lead_categories", "products"
-  add_foreign_key "lead_category_items", "lead_categories"
-  add_foreign_key "lead_columns", "lead_categories"
+  add_foreign_key "lead_column_select_items", "lead_columns"
   add_foreign_key "lead_columns", "products"
-  add_foreign_key "lead_index_columns", "lead_categories"
-  add_foreign_key "lead_index_columns", "products"
-  add_foreign_key "lead_index_labels", "lead_categories"
-  add_foreign_key "lead_index_labels", "products"
-  add_foreign_key "leads", "lead_category_items", column: "category_item_1_id"
-  add_foreign_key "leads", "lead_category_items", column: "category_item_2_id"
-  add_foreign_key "leads", "lead_category_items", column: "category_item_3_id"
-  add_foreign_key "leads", "lead_category_items", column: "category_item_4_id"
-  add_foreign_key "leads", "lead_category_items", column: "category_item_5_id"
+  add_foreign_key "leads", "lead_column_select_items", column: "select_item_1_id"
+  add_foreign_key "leads", "lead_column_select_items", column: "select_item_2_id"
+  add_foreign_key "leads", "lead_column_select_items", column: "select_item_3_id"
+  add_foreign_key "leads", "lead_column_select_items", column: "select_item_4_id"
+  add_foreign_key "leads", "lead_column_select_items", column: "select_item_5_id"
   add_foreign_key "leads", "maker_groups"
   add_foreign_key "leads", "partners"
   add_foreign_key "leads", "prefectures", column: "prefecture_1_id"

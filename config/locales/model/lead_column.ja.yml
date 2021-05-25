@@ -6,15 +6,17 @@ ja:
       lead_column:
         name: 項目名
         key_name: キー名(CSVで使用)
-        lead_column: 案件カラム
+        lead_attribute: 案件カラム
         data_type: データのタイプ
         lead_category: 選択肢
         lead_category_id: 選択肢
         order: 表示順
+        index_page_order: 一覧ページ表示順
+        lead_column_select_items: 選択肢の項目
   enums:
     lead_column:
       data_type:
-        category: 選択肢タイプ
+        select_item: 選択肢タイプ
         partner: パートナー名
         product: 商品名
         date: 日付と日時
