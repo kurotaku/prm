@@ -74,7 +74,7 @@ bundle exec rails s -e production&
 `git fetch`
 
 ### 最新状態に更新する
-`git reset --hard origin/master`
+`git reset --hard origin/main`
 
 ### bundle install
 `bundle install`
