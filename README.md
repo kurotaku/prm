@@ -1,3 +1,40 @@
+## オンボーディング
+
+- config/master.key → 確認してください
+- .env → 各自ローカルのSMTP用のGmailの設定を追加してください
+
+## docker
+
+
+docker ビルド + 起動
+```
+docker-compose up --build
+```
+
+
+起動しているコンテナの名前を確認
+```
+docker-compose ps
+```
+
+コンテナ名を指定してコンテナの中に入る(ex. コンテナ名がprm_app_1だった場合)
+```
+docker exec -it prm_app_1 bash
+```
+
+webpack起動
+```
+docker-compose exec app bin/webpack-dev-server
+```
+
+## er図
+
+```
+bundle exec erd --attributes=foreign_keys,content
+```
+
+
+
 ## デプロイ関係
 
 ### DBリセット
@@ -37,7 +74,7 @@ bundle exec rails s -e production&
 `git fetch`
 
 ### 最新状態に更新する
-`git reset --hard origin/master`
+`git reset --hard origin/main`
 
 ### bundle install
 `bundle install`
