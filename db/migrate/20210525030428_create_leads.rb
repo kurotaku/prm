@@ -11,11 +11,16 @@ class CreateLeads < ActiveRecord::Migration[6.1]
       t.text :index_cache
       t.text :show_cache
       
-      t.references :category_item_1, foreign_key: { to_table: :lead_category_items }
-      t.references :category_item_2, foreign_key: { to_table: :lead_category_items }
-      t.references :category_item_3, foreign_key: { to_table: :lead_category_items }
-      t.references :category_item_4, foreign_key: { to_table: :lead_category_items }
-      t.references :category_item_5, foreign_key: { to_table: :lead_category_items }
+      t.references :select_item_1, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_2, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_3, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_4, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_5, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_6, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_7, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_8, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_9, foreign_key: { to_table: :lead_column_select_items }
+      t.references :select_item_10, foreign_key: { to_table: :lead_column_select_items }
       t.datetime :datetime_1
       t.datetime :datetime_2
       t.datetime :datetime_3
@@ -37,6 +42,8 @@ class CreateLeads < ActiveRecord::Migration[6.1]
       t.integer :integer_4
       t.integer :integer_5
       t.references :prefecture_1, foreign_key: { to_table: :prefectures }
+      t.references :prefecture_2, foreign_key: { to_table: :prefectures }
+      t.references :prefecture_3, foreign_key: { to_table: :prefectures }
 
       t.timestamps
     end

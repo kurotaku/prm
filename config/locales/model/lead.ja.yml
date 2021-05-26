@@ -9,37 +9,33 @@ ja:
         lead: 案件カラム
         data_type: データのタイプ
         order: 表示順
-  enums:
-    lead:
-      data_type:
-        category: 選択肢タイプ
-        partner: パートナー名
-        product: 商品名
-        date: 日付と日時
-        string: 文字列
-        integer: 数値(整数)
-        prefecture: 都道府県
+        maker_memo: メーカー側メモ
   leads:
     create:
-      success: 案件一覧の項目を作成しました
-      error: 案件一覧の項目を作成できませんでした
+      success: 案件を作成しました
+      error: 案件を作成できませんでした
     update:
-      success: 案件一覧の項目を更新しました
-      error: 案件一覧の項目を更新できませんでした
+      success: 案件を更新しました
+      error: 案件を更新できませんでした
     destroy:
-      success: 案件一覧の項目を削除しました
-      error: 案件一覧の項目を削除できませんでした
+      success: 案件を削除しました
+      error: 案件を削除できませんでした
   lead:
     columns:
       partner_id: パートナー名
       product_id: 商品名
       unique_key: ユニークキー
       progress: 進捗ステータス
-      category_item_1: 選択肢1
-      category_item_2: 選択肢2
-      category_item_3: 選択肢3
-      category_item_4: 選択肢4
-      category_item_5: 選択肢5
+      select_item_1_id: 選択肢1
+      select_item_2_id: 選択肢2
+      select_item_3_id: 選択肢3
+      select_item_4_id: 選択肢4
+      select_item_5_id: 選択肢5
+      select_item_6_id: 選択肢6
+      select_item_7_id: 選択肢7
+      select_item_8_id: 選択肢8
+      select_item_9_id: 選択肢9
+      select_item_10_id: 選択肢10
       datetime_1: 日時1
       datetime_2: 日時2
       datetime_3: 日時3
