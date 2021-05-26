@@ -9,16 +9,17 @@ ja:
         lead: 案件カラム
         data_type: データのタイプ
         order: 表示順
+        maker_memo: メーカー側メモ
   leads:
     create:
-      success: 案件一覧の項目を作成しました
-      error: 案件一覧の項目を作成できませんでした
+      success: 案件を作成しました
+      error: 案件を作成できませんでした
     update:
-      success: 案件一覧の項目を更新しました
-      error: 案件一覧の項目を更新できませんでした
+      success: 案件を更新しました
+      error: 案件を更新できませんでした
     destroy:
-      success: 案件一覧の項目を削除しました
-      error: 案件一覧の項目を削除できませんでした
+      success: 案件を削除しました
+      error: 案件を削除できませんでした
   lead:
     columns:
       partner_id: パートナー名
@@ -30,6 +31,11 @@ ja:
       select_item_3_id: 選択肢3
       select_item_4_id: 選択肢4
       select_item_5_id: 選択肢5
+      select_item_6_id: 選択肢6
+      select_item_7_id: 選択肢7
+      select_item_8_id: 選択肢8
+      select_item_9_id: 選択肢9
+      select_item_10_id: 選択肢10
       datetime_1: 日時1
       datetime_2: 日時2
       datetime_3: 日時3

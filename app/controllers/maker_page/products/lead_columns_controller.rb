@@ -20,7 +20,7 @@ module MakerPage
         redirect_back(fallback_location: maker_page_products_lead_columns_path(uid: @product.uid))
       else
         flash.now[:danger] = t('lead_columns.create.error')
-        @lead_columns = @product.lead_columns.where.not(id: nil)
+        @lead_columns = @product.lead_columns.order(order: 'ASC').where.not(id: nil).decorate
         render :index
       end
     end
@@ -35,7 +35,7 @@ module MakerPage
       end
 
       def lead_column_params
-        params.require(:lead_column).permit(:name, :key_name, :data_type, :lead_column, :order)
+        params.require(:lead_column).permit(:name, :key_name, :data_type, :lead_attribute, :order)
       end
   end
 end
