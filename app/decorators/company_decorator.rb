@@ -5,6 +5,6 @@ class CompanyDecorator < ApplicationDecorator
   delegate_all
 
   def thumbnail
-    image? ? image.thumb.url :  helpers.asset_path("company_default.png")
+    image? ? image.thumb.url : helpers.asset_path("company_default.png")
   end
 end

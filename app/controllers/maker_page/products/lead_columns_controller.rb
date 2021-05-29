@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module MakerPage
   class Products::LeadColumnsController < MakerPageController
     before_action :set_product
 
     def index
-      @lead_columns = @product.lead_columns.order(order: 'ASC').decorate
+      @lead_columns = @product.lead_columns.order(order: "ASC").decorate
       @lead_column = LeadColumn.new
     end
 
@@ -13,14 +15,14 @@ module MakerPage
         ApplicationRecord.transaction do
           @lead_column.save!
           params[:lead_column_select_items].split(/\r\n|\r|\n/).each_with_index do |n, i|
-            @lead_column.lead_column_select_items.create!(name: n, order: i +1)
+            @lead_column.lead_column_select_items.create!(name: n, order: i + 1)
           end
         end
-        flash[:success] = t('lead_columns.create.success')
+        flash[:success] = t("lead_columns.create.success")
         redirect_back(fallback_location: maker_page_products_lead_columns_path(uid: @product.uid))
       else
-        flash.now[:danger] = t('lead_columns.create.error')
-        @lead_columns = @product.lead_columns.order(order: 'ASC').where.not(id: nil).decorate
+        flash.now[:danger] = t("lead_columns.create.error")
+        @lead_columns = @product.lead_columns.order(order: "ASC").where.not(id: nil).decorate
         render :index
       end
     end
@@ -29,7 +31,6 @@ module MakerPage
     end
 
     private
-
       def set_product
         @product = @current_maker_group.products.find_by(uid: params[:uid])
       end

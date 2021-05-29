@@ -23,6 +23,11 @@ ja:
   lead:
     columns:
       partner_id: パートナー名
+      user_info_partner_1_id: パートナー担当者1
+      user_info_partner_2_id: パートナー担当者2
+      user_info_partner_3_id: パートナー担当者3
+      user_info_partner_4_id: パートナー担当者4
+      user_info_partner_5_id: パートナー担当者5
       product_id: 商品名
       unique_key: ユニークキー
       progress: 進捗ステータス
@@ -57,3 +62,8 @@ ja:
       integer_3: 整数3
       integer_4: 整数4
       integer_5: 整数5
+      price_1: 金額1
+      price_2: 金額2
+      price_3: 金額3
+      price_4: 金額4
+      price_5: 金額5

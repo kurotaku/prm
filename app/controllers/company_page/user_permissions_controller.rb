@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompanyPage::UserPermissionsController < ApplicationController
   def index
     @parmissions = @current_company.user_action_permissions

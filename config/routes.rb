@@ -23,23 +23,23 @@ Rails.application.routes.draw do
     resources :user_actions
     resources :files, param: :uid do
       member do
-        get 'download', to: 'files#download'
+        get "download", to: "files#download"
       end
     end
   end
 
   scope "/:base_path" do
     namespace :mypage do
-      resource :user_profile, only: %i[show edit update], controller: 'user_profile', as: 'profile', path: 'profile'
-      resource :user, only: %i[show edit update], controller: 'user', as: 'user_setting', path: 'user_setting'
+      resource :user_profile, only: %i[show edit update], controller: "user_profile", as: "profile", path: "profile"
+      resource :user, only: %i[show edit update], controller: "user", as: "user_setting", path: "user_setting"
       resource :nortification_filters
     end
 
     namespace :company_page do
-      resource :company, only: %i[show edit update], controller: 'company', as: 'profile', path: 'profile'
+      resource :company, only: %i[show edit update], controller: "company", as: "profile", path: "profile"
       resources :user_profiles, param: :uid
       resources :users, param: :uid
-      namespace :users, path: 'user' do
+      namespace :users, path: "user" do
         resources :roles, only: %i[index update], param: :uid
       end
       resources :user_permissions, only: %i[index create update destroy]
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       resource :dashboards, only: %i[show], param: :uid
       resources :products, param: :uid do
         member do
-          namespace :products, path: '' do
+          namespace :products, path: "" do
             resources :leads
             resources :lead_categories
             resources :lead_columns
@@ -62,7 +62,7 @@ Rails.application.routes.draw do
       resources :partners, param: :uid
       resources :files, param: :uid do
         member do
-          get 'download', to: 'files#download'
+          get "download", to: "files#download"
         end
       end
       resources :download_histories, only: %i[index]

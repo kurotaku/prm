@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: lead_column_select_items
@@ -17,7 +19,7 @@
 #
 #  fk_rails_...  (lead_column_id => lead_columns.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe LeadColumnSelectItem, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"

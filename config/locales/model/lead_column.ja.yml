@@ -18,10 +18,13 @@ ja:
       data_type:
         select_item: 選択肢タイプ
         partner: パートナー名
+        user_info_partner: パートナー担当者名
         product: 商品名
-        date: 日付と日時
+        datetime: 日付と日時
         string: 文字列
+        text: 文章
         integer: 数値(整数)
+        price: 金額
         prefecture: 都道府県
   lead_columns:
     create:

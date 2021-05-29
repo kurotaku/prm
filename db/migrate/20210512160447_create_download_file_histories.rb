@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDownloadFileHistories < ActiveRecord::Migration[6.1]
   def change
     create_table :download_file_histories do |t|

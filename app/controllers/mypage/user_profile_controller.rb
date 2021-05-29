@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class Mypage::UserProfileController < ApplicationController
   def show
   end
-  
+
   def edit; end
 
   def update
     if current_user.user_profile.update(user_profile_params)
-      flash['success'] = t('user_profile.update.success')
+      flash["success"] = t("user_profile.update.success")
       redirect_to mypage_profile_path
     else
-      flash.now['danger'] = t('user_profile.update.error')
-      render 'edit'
+      flash.now["danger"] = t("user_profile.update.error")
+      render "edit"
     end
   end
 

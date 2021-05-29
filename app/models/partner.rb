@@ -36,11 +36,13 @@ class Partner < ApplicationRecord
   belongs_to :company, optional: true
   belongs_to :parent, class_name: "Partner", optional: true
 
+  has_many :maker_group_user_infos
+
   enum hierarchy: {
-    hierarchy_one: 1,
-    hierarchy_two: 2,
+    hierarchy_one:   1,
+    hierarchy_two:   2,
     hierarchy_three: 3,
-    hierarchy_four: 4,
-    hierarchy_five: 5,
+    hierarchy_four:  4,
+    hierarchy_five:  5,
   }
 end

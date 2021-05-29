@@ -43,16 +43,16 @@ class VendorGroup < ApplicationRecord
   belongs_to :product, optional: true
 
   enum contract_type: {
-    agency:   10,
-    introduction:   20,
-    wholesale: 30,
+    agency:       10,
+    introduction: 20,
+    wholesale:    30,
   }
 
   enum layer: {
     layer_one:   1,
     layer_two:   2,
-    layer_three:   3,
-    layer_four:   4,
-    layer_five:   5,
+    layer_three: 3,
+    layer_four:  4,
+    layer_five:  5,
   }
 end

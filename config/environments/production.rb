@@ -70,7 +70,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { host: Rails.application.credentials.prd[:domain], protocol: 'https' }
+  config.action_mailer.default_url_options = { host: Rails.application.credentials.prd[:domain], protocol: "https" }
   config.action_mailer.delivery_method = :ses
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -126,5 +126,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  ActiveSupport::Logger.new('log/production.log', 'daily')
+  ActiveSupport::Logger.new("log/production.log", "daily")
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: download_file_histories
@@ -19,7 +21,7 @@
 #  fk_rails_...  (shared_file_id => shared_files.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe DownloadFileHistory, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"

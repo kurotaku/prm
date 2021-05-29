@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: shared_files
@@ -27,11 +29,11 @@
 class SharedFile < ApplicationRecord
   include Uniqueable
   mount_uploader :file, FileUploader
-  
+
   belongs_to :user
   belongs_to :maker_group
 
   has_many :download_file_histories
-  
+
   delegate :uid, to: :maker_group, prefix: :maker_group
 end

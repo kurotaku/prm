@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # creds = Aws::Credentials.new(
 #   ENV['ses_access_key_id'],
 #   ENV['SES_SECRET_ACCESS_KEY']

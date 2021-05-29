@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MakerPage::VendorGroupsController < MakerPage::MakerPageController
   def index
     @vendor_groups = @current_maker_group.vendor_groups
@@ -10,10 +12,10 @@ class MakerPage::VendorGroupsController < MakerPage::MakerPageController
   def create
     @vendor_group = @current_maker_group.vendor_groups.build(vendor_group_params)
     if @vendor_group.save
-      flash[:success] = t('vendor_groups.create.success')
+      flash[:success] = t("vendor_groups.create.success")
       redirect_to maker_page_vendor_groups_path
     else
-      flash.now[:danger] = t('vendor_groups.create.error')
+      flash.now[:danger] = t("vendor_groups.create.error")
       render :new
     end
   end
@@ -26,7 +28,6 @@ class MakerPage::VendorGroupsController < MakerPage::MakerPageController
   end
 
   private
-
     def vendor_group_params
       params.require(:vendor_group).permit(:vendor_id, :product_id, :price, :incentive, :layer, :contract_type, :maker_memo)
     end

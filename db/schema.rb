@@ -103,6 +103,9 @@ ActiveRecord::Schema.define(version: 2021_05_25_030428) do
     t.integer "progress"
     t.text "index_cache"
     t.text "show_cache"
+    t.bigint "user_info_partner_1_id"
+    t.bigint "user_info_partner_2_id"
+    t.bigint "user_info_partner_3_id"
     t.bigint "select_item_1_id"
     t.bigint "select_item_2_id"
     t.bigint "select_item_3_id"
@@ -133,6 +136,11 @@ ActiveRecord::Schema.define(version: 2021_05_25_030428) do
     t.integer "integer_3"
     t.integer "integer_4"
     t.integer "integer_5"
+    t.integer "price_1"
+    t.integer "price_2"
+    t.integer "price_3"
+    t.integer "price_4"
+    t.integer "price_5"
     t.bigint "prefecture_1_id"
     t.bigint "prefecture_2_id"
     t.bigint "prefecture_3_id"
@@ -155,6 +163,29 @@ ActiveRecord::Schema.define(version: 2021_05_25_030428) do
     t.index ["select_item_7_id"], name: "index_leads_on_select_item_7_id"
     t.index ["select_item_8_id"], name: "index_leads_on_select_item_8_id"
     t.index ["select_item_9_id"], name: "index_leads_on_select_item_9_id"
+    t.index ["user_info_partner_1_id"], name: "index_leads_on_user_info_partner_1_id"
+    t.index ["user_info_partner_2_id"], name: "index_leads_on_user_info_partner_2_id"
+    t.index ["user_info_partner_3_id"], name: "index_leads_on_user_info_partner_3_id"
+  end
+
+  create_table "maker_group_user_infos", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "maker_group_id", null: false
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.bigint "partner_id"
+    t.string "uid"
+    t.string "unique_key"
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.integer "status", default: 10, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_maker_group_user_infos_on_company_id"
+    t.index ["maker_group_id"], name: "index_maker_group_user_infos_on_maker_group_id"
+    t.index ["partner_id"], name: "index_maker_group_user_infos_on_partner_id"
+    t.index ["user_id"], name: "index_maker_group_user_infos_on_user_id"
   end
 
   create_table "maker_groups", charset: "utf8mb4", force: :cascade do |t|
@@ -347,12 +378,19 @@ ActiveRecord::Schema.define(version: 2021_05_25_030428) do
   add_foreign_key "leads", "lead_column_select_items", column: "select_item_7_id"
   add_foreign_key "leads", "lead_column_select_items", column: "select_item_8_id"
   add_foreign_key "leads", "lead_column_select_items", column: "select_item_9_id"
+  add_foreign_key "leads", "maker_group_user_infos", column: "user_info_partner_1_id"
+  add_foreign_key "leads", "maker_group_user_infos", column: "user_info_partner_2_id"
+  add_foreign_key "leads", "maker_group_user_infos", column: "user_info_partner_3_id"
   add_foreign_key "leads", "maker_groups"
   add_foreign_key "leads", "partners"
   add_foreign_key "leads", "prefectures", column: "prefecture_1_id"
   add_foreign_key "leads", "prefectures", column: "prefecture_2_id"
   add_foreign_key "leads", "prefectures", column: "prefecture_3_id"
   add_foreign_key "leads", "products"
+  add_foreign_key "maker_group_user_infos", "companies"
+  add_foreign_key "maker_group_user_infos", "maker_groups"
+  add_foreign_key "maker_group_user_infos", "partners"
+  add_foreign_key "maker_group_user_infos", "users"
   add_foreign_key "maker_groups", "companies", column: "maker_id"
   add_foreign_key "messages", "boards"
   add_foreign_key "messages", "users"

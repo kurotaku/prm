@@ -51,7 +51,7 @@ gem "mini_magick"
 
 gem "annotate"
 gem "aws-sdk-rails"
-gem 'aws-sdk-s3'
+gem "aws-sdk-s3"
 gem "chart-js-rails"
 gem "dotenv-rails"
 gem "draper"

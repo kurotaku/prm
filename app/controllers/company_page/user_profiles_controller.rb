@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompanyPage::UserProfilesController < ApplicationController
   def index
     @profiles = @current_company.user_profiles.decorate

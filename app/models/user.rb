@@ -50,8 +50,9 @@ class User < ApplicationRecord
   belongs_to :company
   has_one :user_profile
   has_many :shared_files
+  has_many :maker_group_user_infos
 
-  after_create :create_user_profile
+  # after_create :create_user_profile
 
   enum role: {
     level_one:   10,
@@ -62,17 +63,16 @@ class User < ApplicationRecord
   }
 
   enum account_type: {
-    normal:   10,
+    normal: 10,
     demo:   20,
-    admin: 30,
+    admin:  30,
   }
 
   mount_uploader :image, ImageUploader
 
-  def create_user_profile
-    return if user_profile.present?
-    profile = build_user_profile(company_id: company_id, name: name)
-    profile.save!
-  end
-
+  # def create_user_profile
+  #   return if @current_maker_group.blank?
+  #   return if maker_group_user_infos.where(maker_group_id: @current_maker_group.id).any?
+  #   user_info = @current_maker_group.user_infos.create!(company_id: company_id, name: name)
+  # end
 end

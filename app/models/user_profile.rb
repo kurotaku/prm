@@ -39,10 +39,9 @@ class UserProfile < ApplicationRecord
   end
 
   private
-
-  def update_user_name
-    return if user_id.nil?
-    self.user.name = self.name if self.user.name != self.name
-    self.user.save!
-  end
+    def update_user_name
+      return if user_id.nil?
+      self.user.name = self.name if self.user.name != self.name
+      self.user.save!
+    end
 end

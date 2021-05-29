@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLeadColumns < ActiveRecord::Migration[6.1]
   def change
     create_table :lead_columns do |t|

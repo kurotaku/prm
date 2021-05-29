@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLeads < ActiveRecord::Migration[6.1]
   def change
     create_table :leads do |t|
@@ -10,7 +12,11 @@ class CreateLeads < ActiveRecord::Migration[6.1]
       t.index :progress
       t.text :index_cache
       t.text :show_cache
-      
+
+      t.references :user_info_partner_1, foreign_key: { to_table: :maker_group_user_infos }
+      t.references :user_info_partner_2, foreign_key: { to_table: :maker_group_user_infos }
+      t.references :user_info_partner_3, foreign_key: { to_table: :maker_group_user_infos }
+
       t.references :select_item_1, foreign_key: { to_table: :lead_column_select_items }
       t.references :select_item_2, foreign_key: { to_table: :lead_column_select_items }
       t.references :select_item_3, foreign_key: { to_table: :lead_column_select_items }
@@ -41,6 +47,11 @@ class CreateLeads < ActiveRecord::Migration[6.1]
       t.integer :integer_3
       t.integer :integer_4
       t.integer :integer_5
+      t.integer :price_1
+      t.integer :price_2
+      t.integer :price_3
+      t.integer :price_4
+      t.integer :price_5
       t.references :prefecture_1, foreign_key: { to_table: :prefectures }
       t.references :prefecture_2, foreign_key: { to_table: :prefectures }
       t.references :prefecture_3, foreign_key: { to_table: :prefectures }

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module AdminPage
   class UsersController < AdminPageController
     def index
-      @users = User.all.order(created_at: 'DESC').page(params[:page]).per(10).decorate
+      @users = User.all.order(created_at: "DESC").page(params[:page]).per(10).decorate
       if params[:company_id].present?
         @users = @users.where(company_id: params[:company_id])
-        params[:page] = ''
+        params[:page] = ""
       end
     end
 
@@ -16,10 +18,10 @@ module AdminPage
       @user = User.new(user_params)
       @user.skip_confirmation!
       if @user.save
-        flash['success'] = t('users.create.success')
+        flash["success"] = t("users.create.success")
         redirect_to admin_page_users_path
       else
-        flash.now['danger'] = t('users.create.error')
+        flash.now["danger"] = t("users.create.error")
         render :new
       end
     end

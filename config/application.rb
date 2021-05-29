@@ -24,7 +24,7 @@ module App
 
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
-    config.assets.paths << config.root.join('vendor/assets/stylesheets')
-    config.assets.paths << config.root.join('vendor/assets/fonts')
+    config.assets.paths << config.root.join("vendor/assets/stylesheets")
+    config.assets.paths << config.root.join("vendor/assets/fonts")
   end
 end
