@@ -1,41 +1,31 @@
-FROM ruby:2.7.0
+#Node.js & Yarn
+FROM node:12.0-alpine as node
 
-ENV TZ Asia/Tokyo
-RUN mkdir /app
+RUN apk add --no-cache bash curl && \
+    curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.21.1
 
+#Ruby & Bundler & mysql-client
+FROM ruby:2.7.0-alpine
+
+ARG RAILS_MASTER_KEY
+
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+COPY --from=node /opt/yarn-* /opt/yarn
+RUN ln -fs /opt/yarn/bin/yarn /usr/local/bin/yarn
+RUN apk add --no-cache git build-base libxml2-dev libxslt-dev mysql-dev mysql-client tzdata bash less && \
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+ENV RAILS_MASTER_KEY="${RAILS_MASTER_KEY}"
 ENV APP_ROOT /app
+RUN mkdir $APP_ROOT
 WORKDIR $APP_ROOT
 
-RUN apt-get update
-RUN apt-get install -y nodejs npm && npm install n -g && n 12.0.0
-RUN apt-get install -y yarn graphviz vim --no-install-recommends
-
-RUN rm -rf /var/lib/apt/lists/*
-
-RUN apt-get install -y curl apt-transport-https wget && \
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-apt-get update && apt-get install -y yarn 
-
-ENV YARN_VERSION 1.21.1
-
-ADD Gemfile $APP_ROOT
-ADD Gemfile.lock $APP_ROOT
-
-# bundle install
-ENV BUNDLE_PATH=/bundle \
-    BUNDLE_BIN=/bundle/bin \
-    GEM_HOME=/bundle
-
-ENV PATH="${BUNDLE_BIN}:${PATH}"
-
-RUN gem install bundler -v '2.2.1'
-RUN bundle config --global build.nokogiri --use-system-libraries
-RUN bundle config --global jobs 4
-RUN bundle install
-
-ADD . $APP_ROOT
-
-EXPOSE  3000
-
+RUN export
+ENV LANG=ja_JP.UTF-8 \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3 \
+    BUNDLE_PATH=vendor/bundle \
+    BUNDLE_APP_CONFIG=$APP_ROOT/.bundle
+RUN gem update --system && \
+    gem install --no-document bundler:2.1.4
 
