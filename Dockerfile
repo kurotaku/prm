@@ -12,7 +12,7 @@ ARG RAILS_MASTER_KEY
 COPY --from=node /usr/local/bin/node /usr/local/bin/node
 COPY --from=node /opt/yarn-* /opt/yarn
 RUN ln -fs /opt/yarn/bin/yarn /usr/local/bin/yarn
-RUN apk add --no-cache git build-base libxml2-dev libxslt-dev mysql-dev mysql-client tzdata bash less && \
+RUN apk add --no-cache git build-base libxml2-dev libxslt-dev mysql-dev mysql-client tzdata bash less graphviz && \
     cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 ENV RAILS_MASTER_KEY="${RAILS_MASTER_KEY}"
