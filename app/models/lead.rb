@@ -11,17 +11,22 @@
 #  datetime_3             :datetime
 #  datetime_4             :datetime
 #  datetime_5             :datetime
+#  float_1                :float(24)
+#  float_2                :float(24)
+#  float_3                :float(24)
+#  float_4                :float(24)
+#  float_5                :float(24)
 #  index_cache            :text(65535)
 #  integer_1              :integer
 #  integer_2              :integer
 #  integer_3              :integer
 #  integer_4              :integer
 #  integer_5              :integer
-#  price_1                :integer
-#  price_2                :integer
-#  price_3                :integer
-#  price_4                :integer
-#  price_5                :integer
+#  price_1                :float(24)
+#  price_2                :float(24)
+#  price_3                :float(24)
+#  price_4                :float(24)
+#  price_5                :float(24)
 #  progress               :integer
 #  show_cache             :text(65535)
 #  string_1               :string(255)
@@ -103,6 +108,8 @@
 #  fk_rails_...  (user_info_partner_3_id => maker_group_user_infos.id)
 #
 class Lead < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
+
   belongs_to :maker_group
   belongs_to :product
   belongs_to :partner
@@ -125,13 +132,20 @@ class Lead < ApplicationRecord
     hash = {}
     product.lead_columns.where.not(index_page_order: nil).order(index_page_order: "ASC").each do |lead_column|
       col = lead_column.lead_attribute
+      # p I18n.t('lead.columns.' + col)
       case lead_column.data_type
       when "partner"
         hash[col] = partner.name
-      when "partner_user_profile"
-        hash[col] = user_info_partner.find_by(id: self[col])&.name
+      when "user_info_partner"
+        hash[col] = MakerGroupUserInfo.find_by(id: self[col])&.name
       when "select_item"
         hash[col] = LeadColumnSelectItem.find_by(id: self[col])&.name
+      when "unique_key", "string", "text", "integer", "float"
+        hash[col] = self[col]
+      when "price"
+        hash[col] = number_to_currency(self[col])
+      when "datetime"
+        hash[col] = self[col]&.strftime('%Y/%m/%d')
       end
       self.index_cache = hash
     end

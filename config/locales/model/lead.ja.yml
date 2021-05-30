@@ -62,6 +62,11 @@ ja:
       integer_3: 整数3
       integer_4: 整数4
       integer_5: 整数5
+      float_1: 小数1
+      float_2: 小数2
+      float_3: 小数3
+      float_4: 小数4
+      float_5: 小数5
       price_1: 金額1
       price_2: 金額2
       price_3: 金額3

@@ -6,7 +6,7 @@
 #
 #  id               :bigint           not null, primary key
 #  contract_type    :integer          default(10), not null
-#  data_type        :integer          default("select_item"), not null
+#  data_type        :integer          default("unique_key"), not null
 #  index_page_order :integer
 #  key_name         :string(255)
 #  lead_attribute   :string(255)
@@ -38,16 +38,18 @@ class LeadColumn < ApplicationRecord
   validates :index_page_order, allow_nil: true, uniqueness: { scope: :product_id, message: "が既に使われています" }
 
   enum data_type: {
-    select_item:       10,
-    partner:           20,
-    user_info_partner: 30,
-    product:           40,
-    datetime:          50,
-    string:            60,
-    text:              70,
-    integer:           80,
-    price:             90,
-    prefecture:        100,
+    unique_key:        10,
+    select_item:       20,
+    partner:           30,
+    user_info_partner: 40,
+    product:           50,
+    prefecture:        60,
+    datetime:          70,
+    string:            80,
+    text:              90,
+    integer:           100,
+    float:             110,
+    price:             120,
   }
 
   def matching_column
@@ -55,7 +57,7 @@ class LeadColumn < ApplicationRecord
     use_data_type = product.lead_columns.where(data_type: data_type).count
     errors.add(:data_type, "#{data_type_i18n}は上限に達しています（上限：#{lead_attr_count}）") if use_data_type >= lead_attr_count
     self.lead_attribute = data_type
-    self.lead_attribute += "_" + (use_data_type + 1).to_s unless %w[partner product].include?(data_type)
+    self.lead_attribute += "_" + (use_data_type + 1).to_s unless %w[unique_key partner product].include?(data_type)
     self.lead_attribute += "_id" if %w[select_item partner user_info_partner product prefecture].include?(data_type)
   end
 
@@ -64,8 +66,7 @@ class LeadColumn < ApplicationRecord
       attrs = Lead.column_names.select do |x|
         x.start_with?(str)
       end
-      raise ArgumentError,
-"\u30C7\u30FC\u30BF\u30BF\u30A4\u30D7\u306E\u9078\u629E\u306B\u4E0D\u5177\u5408\u304C\u3042\u308A\u307E\u3059\u3002" if attrs.count == 0
+      raise ArgumentError, "データタイプの指定に問題があります。" if attrs.count == 0
       attrs.count
     end
 end

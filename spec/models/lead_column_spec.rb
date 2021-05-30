@@ -6,7 +6,7 @@
 #
 #  id               :bigint           not null, primary key
 #  contract_type    :integer          default(10), not null
-#  data_type        :integer          default("select_item"), not null
+#  data_type        :integer          default("unique_key"), not null
 #  index_page_order :integer
 #  key_name         :string(255)
 #  lead_attribute   :string(255)
