@@ -19,6 +19,8 @@ RUN apk --no-cache add msttcorefonts-installer fontconfig font-bitstream-type1 g
     update-ms-fonts && \
     fc-cache -f
 
+RUN apk --update add imagemagick
+
 ENV RAILS_MASTER_KEY="${RAILS_MASTER_KEY}"
 ENV APP_ROOT /app
 RUN mkdir $APP_ROOT
