@@ -16,3 +16,6 @@ logs:
 
 login:
 	docker-compose exec app /bin/bash
+erd:
+	docker-compose exec app bundle exec erd
+

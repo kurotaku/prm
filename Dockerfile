@@ -15,6 +15,10 @@ RUN ln -fs /opt/yarn/bin/yarn /usr/local/bin/yarn
 RUN apk add --no-cache git build-base libxml2-dev libxslt-dev mysql-dev mysql-client tzdata bash less graphviz && \
     cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
+RUN apk --no-cache add msttcorefonts-installer fontconfig font-bitstream-type1 ghostscript-fonts ttf-freefont && \
+    update-ms-fonts && \
+    fc-cache -f
+
 ENV RAILS_MASTER_KEY="${RAILS_MASTER_KEY}"
 ENV APP_ROOT /app
 RUN mkdir $APP_ROOT
