@@ -64,26 +64,27 @@
 #
 # Indexes
 #
-#  index_leads_on_maker_group_id          (maker_group_id)
-#  index_leads_on_partner_id              (partner_id)
-#  index_leads_on_prefecture_1_id         (prefecture_1_id)
-#  index_leads_on_prefecture_2_id         (prefecture_2_id)
-#  index_leads_on_prefecture_3_id         (prefecture_3_id)
-#  index_leads_on_product_id              (product_id)
-#  index_leads_on_progress                (progress)
-#  index_leads_on_select_item_10_id       (select_item_10_id)
-#  index_leads_on_select_item_1_id        (select_item_1_id)
-#  index_leads_on_select_item_2_id        (select_item_2_id)
-#  index_leads_on_select_item_3_id        (select_item_3_id)
-#  index_leads_on_select_item_4_id        (select_item_4_id)
-#  index_leads_on_select_item_5_id        (select_item_5_id)
-#  index_leads_on_select_item_6_id        (select_item_6_id)
-#  index_leads_on_select_item_7_id        (select_item_7_id)
-#  index_leads_on_select_item_8_id        (select_item_8_id)
-#  index_leads_on_select_item_9_id        (select_item_9_id)
-#  index_leads_on_user_info_partner_1_id  (user_info_partner_1_id)
-#  index_leads_on_user_info_partner_2_id  (user_info_partner_2_id)
-#  index_leads_on_user_info_partner_3_id  (user_info_partner_3_id)
+#  index_leads_on_maker_group_id             (maker_group_id)
+#  index_leads_on_partner_id                 (partner_id)
+#  index_leads_on_prefecture_1_id            (prefecture_1_id)
+#  index_leads_on_prefecture_2_id            (prefecture_2_id)
+#  index_leads_on_prefecture_3_id            (prefecture_3_id)
+#  index_leads_on_product_id                 (product_id)
+#  index_leads_on_progress                   (progress)
+#  index_leads_on_select_item_10_id          (select_item_10_id)
+#  index_leads_on_select_item_1_id           (select_item_1_id)
+#  index_leads_on_select_item_2_id           (select_item_2_id)
+#  index_leads_on_select_item_3_id           (select_item_3_id)
+#  index_leads_on_select_item_4_id           (select_item_4_id)
+#  index_leads_on_select_item_5_id           (select_item_5_id)
+#  index_leads_on_select_item_6_id           (select_item_6_id)
+#  index_leads_on_select_item_7_id           (select_item_7_id)
+#  index_leads_on_select_item_8_id           (select_item_8_id)
+#  index_leads_on_select_item_9_id           (select_item_9_id)
+#  index_leads_on_unique_key_and_product_id  (unique_key,product_id) UNIQUE
+#  index_leads_on_user_info_partner_1_id     (user_info_partner_1_id)
+#  index_leads_on_user_info_partner_2_id     (user_info_partner_2_id)
+#  index_leads_on_user_info_partner_3_id     (user_info_partner_3_id)
 #
 # Foreign Keys
 #
@@ -128,6 +129,8 @@ class Lead < ApplicationRecord
 
   before_save :store_index_cache
 
+  validates :unique_key, allow_nil: true, uniqueness: { scope: :product_id, message: "が既に使われています" }
+
   def store_index_cache
     hash = {}
     product.lead_columns.where.not(index_page_order: nil).order(index_page_order: "ASC").each do |lead_column|
@@ -145,7 +148,7 @@ class Lead < ApplicationRecord
       when "price"
         hash[col] = number_to_currency(self[col])
       when "datetime"
-        hash[col] = self[col]&.strftime('%Y/%m/%d')
+        hash[col] = self[col]&.strftime("%Y/%m/%d")
       end
       self.index_cache = hash
     end

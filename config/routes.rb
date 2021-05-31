@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   namespace :admin_page do
     resources :companies
     resources :users
+    resources :leads
+    namespace :leads, path: "lead" do
+      resources :csvs, controller: "csvs"
+    end
     resources :user_actions
     resources :files, param: :uid do
       member do

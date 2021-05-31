@@ -1,0 +1,4 @@
+<ul class="tab-menu-list">
+  <li class="<%= 'current' if controller_path == 'admin_page/leads' %>"><%= link_to '案件', admin_page_leads_path %></li>
+  <li class="<%= 'current' if controller_path == 'admin_page/leads/csvs' %>"><%= link_to 'CSV', admin_page_leads_csvs_path %></li>
+</ul>

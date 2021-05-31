@@ -4,11 +4,8 @@ ja:
       lead: 案件
     attributes:
       lead:
-        name: 項目名
-        key_name: キー名(CSVで使用)
-        lead: 案件カラム
-        data_type: データのタイプ
-        order: 表示順
+        id: ID
+        maker_group_id: メーカー
         maker_memo: メーカー側メモ
   leads:
     create:

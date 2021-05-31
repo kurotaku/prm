@@ -1,0 +1,60 @@
+<div class="secondary-header">
+  <%= render 'admin_page/leads/menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>案件CSV履歴一覧</h1>
+    <p class="mb-0">案件CSVのインポート履歴です</p>
+  </div>
+
+  <%= form_with(url: new_admin_page_leads_csv_path, html: { method: :get, class: 'form-default d-flex align-items-start ml-auto' }) do |f| %>
+    <div class="form-group mr-3">
+      <div class="select-wrap">
+        <%= f.collection_select :maker_group_id, MakerGroup.all.decorate, :id, :maker_name, {include_blank: '---'},{class: 'form-control'} %>
+      </div>
+    </div>
+    <%= submit_tag t('common.new'), class: 'btn btn-m default' %>
+  <% end %>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+
+  <div class="d-flex sp-none mb-3">
+    <div class="text-sl">表示件数:<%= @csvs.total_count %>件</div>
+    <%= paginate @csvs %>
+  </div>
+
+  <%= form_tag '#', method: :get, class: 'form-default d-flex mw-100' do %>
+    <div class="form-group ml-auto">
+      <div class="select-wrap">
+        <%= collection_select '', :company_id, Company.all, :id, :name, {include_blank: '企業名', selected: params[:company_id]},{class: 'form-control mb-0 autoSubmit'} %>
+      </div>
+    </div>
+    <%#= link_to '検索条件をクリア', request.path, class: 'btn btn-m border-gray mb-0 mb-md-4' %>
+    <%= submit_tag 'この条件で絞り込む', class: 'btn btn-m border-primary autoSubmitButton hide' %>
+  <% end %>
+
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t('activerecord.attributes.csv_import_history.id') %></td>
+          <td><%= t('activerecord.attributes.csv_import_history.maker_group') %></td>
+          <td><%= t('activerecord.attributes.csv_import_history.created_at') %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @csvs.each do |csv| %>
+          <tr>
+            <td><%= csv.id %></td>
+            <td><%= csv.maker_group.maker.name %></td>
+            <td><%= csv.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_030428) do
+ActiveRecord::Schema.define(version: 2021_05_30_084814) do
 
   create_table "agents", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "maker_group_id", null: false
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2021_05_25_030428) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["prefecture_id"], name: "index_companies_on_prefecture_id"
+  end
+
+  create_table "csv_import_histories", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "maker_group_id", null: false
+    t.integer "related_object", default: 10, null: false
+    t.string "file_name"
+    t.text "cache"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["maker_group_id"], name: "index_csv_import_histories_on_maker_group_id"
   end
 
   create_table "download_file_histories", charset: "utf8mb4", force: :cascade do |t|
@@ -168,6 +178,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_030428) do
     t.index ["select_item_7_id"], name: "index_leads_on_select_item_7_id"
     t.index ["select_item_8_id"], name: "index_leads_on_select_item_8_id"
     t.index ["select_item_9_id"], name: "index_leads_on_select_item_9_id"
+    t.index ["unique_key", "product_id"], name: "index_leads_on_unique_key_and_product_id", unique: true
     t.index ["user_info_partner_1_id"], name: "index_leads_on_user_info_partner_1_id"
     t.index ["user_info_partner_2_id"], name: "index_leads_on_user_info_partner_2_id"
     t.index ["user_info_partner_3_id"], name: "index_leads_on_user_info_partner_3_id"
@@ -369,6 +380,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_030428) do
   add_foreign_key "agents", "maker_groups"
   add_foreign_key "agents", "vendor_groups"
   add_foreign_key "companies", "prefectures"
+  add_foreign_key "csv_import_histories", "maker_groups"
   add_foreign_key "download_file_histories", "shared_files"
   add_foreign_key "download_file_histories", "users"
   add_foreign_key "lead_column_select_items", "lead_columns"

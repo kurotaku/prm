@@ -7,6 +7,7 @@ class CreateLeads < ActiveRecord::Migration[6.1]
       t.references :partner, foreign_key: true
       t.references :product, foreign_key: true
       t.string :unique_key
+      t.index [:unique_key, :product_id], unique: true
       t.integer :contract_type, default: 10, null: false
       t.integer :progress
       t.index :progress

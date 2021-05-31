@@ -49,6 +49,9 @@ gem "carrierwave-base64"
 gem "fog-aws"
 gem "mini_magick"
 
+gem "roo"
+gem "activerecord-import"
+
 gem "annotate"
 gem "aws-sdk-rails"
 gem "aws-sdk-s3"
