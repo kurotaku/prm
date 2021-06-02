@@ -133,7 +133,7 @@ class Lead < ApplicationRecord
 
   def store_index_cache
     hash = {}
-    product.lead_columns.where.not(index_page_order: nil).order(index_page_order: "ASC").each do |lead_column|
+    maker_group.lead_columns.where.not(index_page_order: nil).order(index_page_order: "ASC").each do |lead_column|
       col = lead_column.lead_attribute
       # p I18n.t('lead.columns.' + col)
       case lead_column.data_type

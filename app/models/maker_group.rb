@@ -27,6 +27,7 @@ class MakerGroup < ApplicationRecord
   has_many :partners
   has_many :maker_group_user_infos
   has_many :products
+  has_many :lead_columns
   has_many :leads
   has_many :shared_files
   has_many :vendor_groups

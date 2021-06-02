@@ -223,38 +223,38 @@ ApplicationRecord.transaction do
   ##########################
   p '=== LeadColumn ==='
 
-  product_3.lead_columns.create!(name: 'ユニークキー', order: 0, data_type: :unique_key, index_page_order: 0)
-  product_3.lead_columns.create!(name: 'パートナー名', order: 1, data_type: :partner, index_page_order: 1)
-  product_3.lead_columns.create!(name: '販売担当者名', order: 2, data_type: :user_info_partner, index_page_order: 2)
-  product_3.lead_columns.create!(name: 'サポート担当者名', order: 3, data_type: :user_info_partner, index_page_order: 3)
+  maker_group_1.lead_columns.create!(name: 'ユニークキー', order: 0, data_type: :unique_key, index_page_order: 0)
+  maker_group_1.lead_columns.create!(name: 'パートナー名', order: 1, data_type: :partner, index_page_order: 1)
+  maker_group_1.lead_columns.create!(name: '販売担当者名', order: 2, data_type: :user_info_partner, index_page_order: 2)
+  maker_group_1.lead_columns.create!(name: 'サポート担当者名', order: 3, data_type: :user_info_partner, index_page_order: 3)
 
-  select_column_1 = product_3.lead_columns.create!(name: 'フレッツ完了ステータス', order: 4, data_type: :select_item)
+  select_column_1 = maker_group_1.lead_columns.create!(name: 'フレッツ完了ステータス', order: 4, data_type: :select_item)
   %w[未対応 折衝中 設備待ち 工事待ち 注文取り消し 完了].each_with_index do |n, i|
     select_column_1.lead_column_select_items.create!(name: n, order: i + 1, )
   end
-  select_column_2 = product_3.lead_columns.create!(name: 'NTT東西フラグ', order: 5, data_type: :select_item, index_page_order: 4)
+  select_column_2 = maker_group_1.lead_columns.create!(name: 'NTT東西フラグ', order: 5, data_type: :select_item, index_page_order: 4)
   %w[西 東].each_with_index do |n, i|
     select_column_2.lead_column_select_items.create!(name: n, order: i + 1)
   end
-  select_column_3 = product_3.lead_columns.create!(name: '後確コール大区分', order: 7, data_type: :select_item, index_page_order: 5)
+  select_column_3 = maker_group_1.lead_columns.create!(name: '後確コール大区分', order: 7, data_type: :select_item, index_page_order: 5)
   %w[後確OK（CSV） 後確OK（代コン） 後確OK（CSVノーコール）].each_with_index do |n, i|
     select_column_3.lead_column_select_items.create!(name: n, order: i + 1)
   end
 
-  select_column_4 = product_3.lead_columns.create!(name: '対応コール大区分', order: 6, data_type: :select_item)
+  select_column_4 = maker_group_1.lead_columns.create!(name: '対応コール大区分', order: 6, data_type: :select_item)
   %w[工事日確定 対応完了].each_with_index do |n, i|
     select_column_4.lead_column_select_items.create!(name: n, order: i + 1)
   end
 
-  select_column_5 = product_3.lead_columns.create!(name: '他社回線種別', order: 8, data_type: :select_item)
+  select_column_5 = maker_group_1.lead_columns.create!(name: '他社回線種別', order: 8, data_type: :select_item)
   %w[新規発番 ソフトバンクテレコム イオ NTT].each_with_index do |n, i|
     select_column_5.lead_column_select_items.create!(name: n, order: i + 1)
   end
 
-  product_3.lead_columns.create!(name: '獲得リスト', order: 9, data_type: :string, index_page_order: 6)
-  product_3.lead_columns.create!(name: '単価', order: 10, data_type: :price, index_page_order: 7)
-  product_3.lead_columns.create!(name: '個数', order: 11, data_type: :integer, index_page_order: 8)
-  product_3.lead_columns.create!(name: '契約日', order: 12, data_type: :datetime, index_page_order: 9)
+  maker_group_1.lead_columns.create!(name: '獲得リスト', order: 9, data_type: :string, index_page_order: 6)
+  maker_group_1.lead_columns.create!(name: '単価', order: 10, data_type: :price, index_page_order: 7)
+  maker_group_1.lead_columns.create!(name: '個数', order: 11, data_type: :integer, index_page_order: 8)
+  maker_group_1.lead_columns.create!(name: '契約日', order: 12, data_type: :datetime, index_page_order: 9)
 
   ##########################
   # 案件

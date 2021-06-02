@@ -94,14 +94,14 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
     t.string "name"
     t.string "key_name"
     t.string "lead_attribute"
-    t.bigint "product_id", null: false
+    t.bigint "maker_group_id", null: false
     t.integer "contract_type", default: 10, null: false
     t.integer "data_type", default: 10, null: false
     t.integer "order", null: false
     t.integer "index_page_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_lead_columns_on_product_id"
+    t.index ["maker_group_id"], name: "index_lead_columns_on_maker_group_id"
   end
 
   create_table "leads", charset: "utf8mb4", force: :cascade do |t|
@@ -384,7 +384,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
   add_foreign_key "download_file_histories", "shared_files"
   add_foreign_key "download_file_histories", "users"
   add_foreign_key "lead_column_select_items", "lead_columns"
-  add_foreign_key "lead_columns", "products"
+  add_foreign_key "lead_columns", "maker_groups"
   add_foreign_key "leads", "lead_column_select_items", column: "select_item_10_id"
   add_foreign_key "leads", "lead_column_select_items", column: "select_item_1_id"
   add_foreign_key "leads", "lead_column_select_items", column: "select_item_2_id"
