@@ -21,10 +21,10 @@ class PartnersController < ApplicationController
   def create
     @partner = Partner.new(partner_params)
     if @partner.save
-      flash[:success] = t('partners.create.success')
+      flash[:success] = t("partners.create.success")
       redirect_to partners_path
     else
-      flash.now[:danger] = t('partners.create.error')
+      flash.now[:danger] = t("partners.create.error")
       render :new
     end
   end
