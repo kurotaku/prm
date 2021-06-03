@@ -6,7 +6,8 @@ ja:
       lead:
         id: ID
         vendor_group_id: ベンダー
-        maker_memo: ベンダー側メモ
+        vendor_group: ベンダー
+        vendor_memo: ベンダー側メモ
   leads:
     create:
       success: 商談を作成しました

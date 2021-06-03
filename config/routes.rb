@@ -72,8 +72,15 @@ Rails.application.routes.draw do
     resource :dashboards, only: %i[show], param: :uid
     resources :products, param: :uid
     resources :leads, param: :uid
-
     resources :partners, param: :uid
+    resources :files, param: :uid do
+      member do
+        get "download", to: "files#download"
+        namespace :files, path: "" do
+          resources :download_histories, only: %i[index]
+        end
+      end
+    end
 
     resource :profiles, only: %i[edit update], param: :uid
 
