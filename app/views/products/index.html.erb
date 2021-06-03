@@ -1,5 +1,13 @@
+<% content_for(:title, '商品一覧') %>
+
 <header class="primary-header d-flex align-items-center">
-  <h1 class="mb-0">メーカーの持っている商品のマスタ</h1>
+  <div>
+    <h1 class="mb-0">商品管理</h1>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_product_path, class: 'btn btn-m default before-icon plus' %>
+  </div>
 </header><!-- .primary-header -->
 <div class="secondary-header">
   
@@ -11,18 +19,42 @@
     <table class="border-table">
       <thead>
         <tr>
-          <td>商品名</td>
-          <td>商品コード</td>
-          <td>単価</td>
-          <td>報酬単価</td>
+          <td><%= t('activerecord.models.product') %></td>
+          <td>取次</td>
+          <td>紹介</td>
+          <td>卸売</td>
         </tr>
       </thead>
       <tbody>
         <% @products.each do |product| %>
           <tr>
-            <td><%= link_to product.name, product_path(uid: product.uid) %></td>
-            <td><%= product.code %></td>
-
+            <td>
+              <%= link_to product_path(uid: product.uid), class: 'd-flex' do %>
+                <%= image_tag product.thumbnail, class: 'item-thumb mr-3' %>
+                <div class="w-100">
+                  <p class=><%= product.code %></p>
+                  <h2><%= product.name %></h2>
+                </div>
+              <% end %>
+            </td>
+            <td>
+              <p class="text-right">
+                単価：<%= product.agency_price.to_s(:delimited) %>円<br />
+                報酬単価：<%= product.agency_incentive.to_s(:delimited) %>円
+              </p>
+            </td>
+            <td>
+              <p class="text-right">
+                単価：<%= product.agency_price.to_s(:delimited) %>円<br />
+                報酬単価：<%= product.agency_incentive.to_s(:delimited) %>円
+              </p>
+            </td>
+            <td>
+              <p class="text-right">
+                単価：<%= product.agency_price.to_s(:delimited) %>円<br />
+                報酬単価：<%= product.agency_incentive.to_s(:delimited) %>円
+              </p>
+            </td>
           </tr>
         <% end %>
       </tbody>

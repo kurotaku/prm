@@ -1,0 +1,24 @@
+<% content_for(:title, 'ベンダー設定') %>
+
+<div class="secondary-header">
+  <%= render 'vendor_setting/page_menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0">ベンダー基本情報編集</h1>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+  
+  <%= form_with(model: @vendor_group, url: vendor_setting_base_setting_path, html: { method: :post, class: 'form-default' }) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <%= f.submit t('common.update'), class: 'btn btn-m default' %>
+  <% end %>
+
+</main><!-- .main-contents -->

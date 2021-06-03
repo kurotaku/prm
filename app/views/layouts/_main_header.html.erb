@@ -1,16 +1,15 @@
 <header class="main-header d-flex">
-  <div class="maker-info">
-    <%= image_tag @current_maker_group.maker.decorate.thumbnail, class: 'header-icon mr-3' %>
-    <span class="maker-name"><%= @current_maker_group.maker.name %></span>
+  <div class="vendor-info">
+    <%= image_tag @current_vendor_group.vendor.decorate.thumbnail, class: 'header-icon mr-3' %>
+    <span class="vendor-name"><%= @current_vendor_group.vendor.name %></span>
   </div>
 
-  <nav id="makerMenu" class="header-menu">
+  <nav id="vendorMenu" class="header-menu">
     <ul>
-      <li><%= link_to '商品マスタ', products_path %></li>
-      <li><%= link_to 'NG顧客リスト', root_path %></li>
+      <li><%= link_to 'ベンダー設定', edit_vendor_setting_base_setting_path %></li>
     </ul>
   </nav>
-  <div id="makerMenuBg" class="header-menu-bg"></div>
+  <div id="vendorMenuBg" class="header-menu-bg"></div>
 
   <div class="ml-auto d-flex">
     <ul class="main-header-icon-list">

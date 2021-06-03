@@ -3,7 +3,7 @@
 class CreatePartners < ActiveRecord::Migration[6.1]
   def change
     create_table :partners do |t|
-      t.references :maker_group, null: false, foreign_key: true
+      t.references :vendor_group, null: false, foreign_key: true
       t.references :company
       t.string :name
       t.string :address

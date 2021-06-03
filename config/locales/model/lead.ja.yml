@@ -1,22 +1,22 @@
 ja:
   activerecord:
     models:
-      lead: 案件
+      lead: 商談
     attributes:
       lead:
         id: ID
-        maker_group_id: メーカー
-        maker_memo: メーカー側メモ
+        vendor_group_id: ベンダー
+        maker_memo: ベンダー側メモ
   leads:
     create:
-      success: 案件を作成しました
-      error: 案件を作成できませんでした
+      success: 商談を作成しました
+      error: 商談を作成できませんでした
     update:
-      success: 案件を更新しました
-      error: 案件を更新できませんでした
+      success: 商談を更新しました
+      error: 商談を更新できませんでした
     destroy:
-      success: 案件を削除しました
-      error: 案件を削除できませんでした
+      success: 商談を削除しました
+      error: 商談を削除できませんでした
   lead:
     columns:
       partner_id: パートナー名

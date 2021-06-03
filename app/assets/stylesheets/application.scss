@@ -1786,9 +1786,9 @@ header{
   #userIcon{
     cursor: pointer;
   }
-  .maker-info{
+  .vendor-info{
     cursor: pointer;
-    .maker-name{
+    .vendor-name{
       color: white;
       font-size: 1.4rem;
       font-weight: 600;
@@ -1833,7 +1833,7 @@ header{
         }
       }
     }
-    &#makerMenu{
+    &#vendorMenu{
       left: 24px;
     }
     &#userMenu{
@@ -1922,7 +1922,7 @@ header{
     display: block;
     margin: 0 auto 20px;
   }
-  .maker-selecter{
+  .vendor-selecter{
     .form-default select{
       background: transparent;
       border: 0;

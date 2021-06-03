@@ -38,8 +38,8 @@ class Company < ApplicationRecord
   belongs_to :prefecture, optional: true
   has_many :users
   has_many :user_profiles
-  has_many :maker_groups, foreign_key: "maker_id", inverse_of: :maker
-  has_many :partners, through: :maker_groups
+  has_many :vendor_groups, foreign_key: "maker_id", inverse_of: :maker
+  has_many :partners, through: :vendor_groups
   has_many :vendor_groups, foreign_key: "vendor_id", inverse_of: :vendor
   has_many :user_action_permissions
 
@@ -50,7 +50,7 @@ class Company < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  def maker_group_uid(params)
+  def vendor_group_uid(params)
     return unless vendor_groups.present?
 
     params[:base_path].present? ? params[:base_path] : vendor_groups.first.maker.uid

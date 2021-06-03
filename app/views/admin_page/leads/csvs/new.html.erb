@@ -3,7 +3,7 @@
 </div><!-- .secondary-header -->
 
 <header class="primary-header d-flex align-items-center">
-  <h1 class="mb-0">案件CSVインポート</h1>
+  <h1 class="mb-0">商談CSVインポート</h1>
 </header>
 
 <main class="main-contents">
@@ -11,9 +11,9 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="form-group">
-      <p><%= f.label :maker_group_id, 'メーカー' %></p>
+      <p><%= f.label :vendor_group_id, 'ベンダー' %></p>
       <div class="select-wrap">
-        <%= f.collection_select :maker_group_id, @maker_group, :id, :maker_name, {},{class: 'form-control disabled'} %>
+        <%= f.collection_select :vendor_group_id, @vendor_group, :id, :maker_name, {},{class: 'form-control disabled'} %>
       </div>
     </div>
 

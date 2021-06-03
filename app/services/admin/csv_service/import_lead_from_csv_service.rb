@@ -5,9 +5,9 @@ module Admin
       include BaseService
       require "nkf"
 
-      def initialize(csv_file:, maker_group:, product:, row_limit: 5000)
+      def initialize(csv_file:, vendor_group:, product:, row_limit: 5000)
         @csv = csv_file
-        @maker_group_id = maker_group.id
+        @vendor_group_id = vendor_group.id
         @product_id = product.id
         @new_objects = []
         @updatable_columns = Lead.column_names.map(&:to_sym)
@@ -24,7 +24,7 @@ module Admin
           # 空の行をスキップ
           next if row.fields.uniq.size == 1 && row.fields.uniq[0].blank?
 
-          object = Lead.new(maker_group_id: @maker_group_id, product_id: @product_id)
+          object = Lead.new(vendor_group_id: @vendor_group_id, product_id: @product_id)
           object.assign_attributes(row)
           @new_objects << object
         end
