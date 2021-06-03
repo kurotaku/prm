@@ -14,28 +14,26 @@
 #  order            :integer          not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  product_id       :bigint           not null
+#  vendor_group_id  :bigint           not null
 #
 # Indexes
 #
-#  index_lead_columns_on_product_id  (product_id)
+#  index_lead_columns_on_vendor_group_id  (vendor_group_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (product_id => products.id)
+#  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 class LeadColumn < ApplicationRecord
   before_validation :matching_column
-  belongs_to :product
-  belongs_to :lead_category, optional: true
-  accepts_nested_attributes_for :lead_category
+  belongs_to :vendor_group
 
   has_many :lead_column_select_items
 
   validates :lead_attribute, presence: true
   validates :order, presence: true
-  validates :order, uniqueness: { scope: :product_id, message: "が既に使われています" }
-  validates :index_page_order, allow_nil: true, uniqueness: { scope: :product_id, message: "が既に使われています" }
+  validates :order, uniqueness: { scope: :vendor_group_id, message: "が既に使われています" }
+  validates :index_page_order, allow_nil: true, uniqueness: { scope: :vendor_group_id, message: "が既に使われています" }
 
   enum data_type: {
     unique_key:        10,
@@ -54,7 +52,7 @@ class LeadColumn < ApplicationRecord
 
   def matching_column
     lead_attr_count = count_lead_attr(data_type)
-    use_data_type = product.lead_columns.where(data_type: data_type).count
+    use_data_type = vendor_group.lead_columns.where(data_type: data_type).count
     errors.add(:data_type, "#{data_type_i18n}は上限に達しています（上限：#{lead_attr_count}）") if use_data_type >= lead_attr_count
     self.lead_attribute = data_type
     self.lead_attribute += "_" + (use_data_type + 1).to_s unless %w[unique_key partner product].include?(data_type)

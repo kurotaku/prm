@@ -22,7 +22,7 @@ ja:
     company:
       contract_type:
         partner: パートナー
-        maker: メーカー
+        maker: ベンダー
   companies:
     create:
       success: 企業情報を作成しました

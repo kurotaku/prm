@@ -4,8 +4,8 @@
 
 <header class="primary-header d-flex align-items-center">
   <div>
-    <h1>案件一覧</h1>
-    <p class="mb-0">案件一覧です</p>
+    <h1>商談一覧</h1>
+    <p class="mb-0">商談一覧です</p>
   </div>
 
   <div class="d-flex ml-auto">
@@ -35,7 +35,7 @@
       <thead>
         <tr>
           <td><%= t('activerecord.attributes.lead.id') %></td>
-          <td><%= t('activerecord.attributes.lead.maker_group_id') %></td>
+          <td><%= t('activerecord.attributes.lead.vendor_group_id') %></td>
           <td><%= t('lead.columns.unique_key') %></td>
           <td><%= t('lead.columns.partner_id') %></td>
           <td><%= t('lead.columns.product_id') %></td>
@@ -49,7 +49,7 @@
         <% @leads.each do |lead| %>
           <tr>
             <td><%= lead.id %></td>
-            <td><%= lead.maker_group.maker.name %></td>
+            <td><%= lead.vendor_group.maker.name %></td>
             <td><%= lead.unique_key %></td>
             <td><%= lead.partner.name %></td>
             <td><%= lead.product.name %></td>

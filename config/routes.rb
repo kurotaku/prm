@@ -49,20 +49,17 @@ Rails.application.routes.draw do
       resources :user_permissions, only: %i[index create update destroy]
     end
 
-    namespace :maker_page do
+    namespace :vendor_page do
       resource :dashboards, only: %i[show], param: :uid
       resources :products, param: :uid do
         member do
           namespace :products, path: "" do
             resources :leads
-            resources :lead_categories
             resources :lead_columns
-            resources :index_columns
           end
         end
       end
       resources :customers, param: :uid
-      resources :vendor_groups, param: :uid
       resources :partners, param: :uid
       resources :files, param: :uid do
         member do
@@ -72,15 +69,17 @@ Rails.application.routes.draw do
       resources :download_histories, only: %i[index]
     end
 
-    namespace :vendor_page do
-      resources :agents, param: :uid
-    end
-
     resource :dashboards, only: %i[show], param: :uid
-    resources :partners, param: :uid
     resources :products, param: :uid
-    resources :vendor_groups, param: :uid
-    resources :agents, param: :uid
+    resources :leads, param: :uid
+
+    resources :partners, param: :uid
+
     resource :profiles, only: %i[edit update], param: :uid
+
+    namespace :vendor_setting do
+      resource :base_setting, only: %i[edit update], controller: "base_setting"
+      resources :lead_columns
+    end
   end
 end

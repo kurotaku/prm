@@ -13,7 +13,7 @@ ja:
         vendor_id: パートナー
         layer: 階層
         contract_type: 契約形態
-        maker_memo: メーカーメモ
+        maker_memo: ベンダーメモ
   enums:
     vendor_group:
       contract_type:

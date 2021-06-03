@@ -1,0 +1,38 @@
+<% content_for(:title, 'ベンダー - 商談一覧') %>
+
+<header class="primary-header d-flex align-items-center">
+  <%= render 'vendor_page/products/show_parts/header' %>
+</header><!-- .primary-header -->
+
+<div class="secondary-header">
+  <%= render 'vendor_page/products/show_parts/page_menu' %>
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  
+  <div class="d-flex mb-5">
+    <%= link_to '商談' + t('common.new'), new_vendor_page_products_lead_path, class: 'btn btn-m default before-icon plus ml-auto' %>
+  </div>
+
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <% @current_vendor_group.lead_columns.where.not(index_page_order: nil).order(index_page_order: 'ASC').each do |index_column| %>
+            <td><%= index_column.name %></td>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @leads.each do |lead| %>
+          <tr>
+            <% lead.index_cache.each do |key, value| %>
+              <td><%= value %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

@@ -91,7 +91,7 @@ ApplicationRecord.transaction do
   p '=== Company ==='
   admin_company = Company.find_or_create_by!(name: 'Admin用企業')
 
-  maker_company_1 = Company.find_or_create_by!(name: 'サンプルメーカー', postcode: '150-0001', prefecture_id: '13', address: '都内某所', contract_type: 20)
+  maker_company_1 = Company.find_or_create_by!(name: 'サンプルベンダー', postcode: '150-0001', prefecture_id: '13', address: '都内某所', contract_type: 20)
 
   partner_company_1 = Company.find_or_create_by!(name: '海山商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
   partner_company_2 = Company.find_or_create_by!(name: '山川商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
@@ -129,7 +129,7 @@ ApplicationRecord.transaction do
   last_name = %w[佐藤 鈴木 木村 渡辺 加藤 斎藤 近藤 高橋 田中 伊藤 山本 中村 小林 山田 佐々木 井上 林]
   first_name = %w[太郎 一郎 花子 よし子 優子 健 太一 二郎 真司 剛 翔太 はるか 綾香 美咲 さくら]
 
-  maker_company_user_1 = dumy_force_create( maker_company_1, 'sample@maker1.com', 'メーカー太郎')
+  maker_company_user_1 = dumy_force_create( maker_company_1, 'sample@vendor1.com', 'ベンダー太郎')
 
   partner_company_1_user_1 = dumy_force_create(partner_company_1, 'sample@partner_company1.com', 'フグ田 マスオ')
   partner_company_1_user_2 = dumy_force_create(partner_company_1, 'sample1@partner_company1.com', '穴子 太郎')
@@ -163,40 +163,40 @@ ApplicationRecord.transaction do
   # end
   
   ##########################
-  # メーカーグループ
+  # ベンダーグループ
   ##########################
-  p '=== MakerGroup ==='
-  maker_group_1 = MakerGroup.create!(maker: maker_company_1)
+  p '=== VendorGroup ==='
+  vendor_group_1 = VendorGroup.create!(vendor: maker_company_1)
 
   ##########################
   # パートナー
   ##########################
   p '=== Partner ==='
-  partner_1 = maker_group_1.partners.create!(company: partner_company_1, name: partner_company_1.name, hierarchy: 1)
-  partner_2 = maker_group_1.partners.create!(company: partner_company_2, name: partner_company_2.name, hierarchy: 1)
-  partner_3 = maker_group_1.partners.create!(company: partner_company_3, name: partner_company_3.name, hierarchy: 1)
+  partner_1 = vendor_group_1.partners.create!(company: partner_company_1, name: partner_company_1.name, hierarchy: 1)
+  partner_2 = vendor_group_1.partners.create!(company: partner_company_2, name: partner_company_2.name, hierarchy: 1)
+  partner_3 = vendor_group_1.partners.create!(company: partner_company_3, name: partner_company_3.name, hierarchy: 1)
 
-  partner_1_1 = maker_group_1.partners.create!(company: partner_company_1_1, name: partner_company_1_1.name, hierarchy: 2, parent: partner_1)
-  partner_1_2 = maker_group_1.partners.create!(company: partner_company_1_2, name: partner_company_1_2.name, hierarchy: 2, parent: partner_1)
-  partner_1_3 = maker_group_1.partners.create!(company: partner_company_1_3, name: partner_company_1_3.name, hierarchy: 2, parent: partner_1)
-  partner_1_4 = maker_group_1.partners.create!(company: partner_company_1_4, name: partner_company_1_4.name, hierarchy: 2, parent: partner_1)
+  partner_1_1 = vendor_group_1.partners.create!(company: partner_company_1_1, name: partner_company_1_1.name, hierarchy: 2, parent: partner_1)
+  partner_1_2 = vendor_group_1.partners.create!(company: partner_company_1_2, name: partner_company_1_2.name, hierarchy: 2, parent: partner_1)
+  partner_1_3 = vendor_group_1.partners.create!(company: partner_company_1_3, name: partner_company_1_3.name, hierarchy: 2, parent: partner_1)
+  partner_1_4 = vendor_group_1.partners.create!(company: partner_company_1_4, name: partner_company_1_4.name, hierarchy: 2, parent: partner_1)
 
-  partner_2_1 = maker_group_1.partners.create!(company: partner_company_2_1, name: partner_company_2_1.name, hierarchy: 2, parent: partner_2)
-  partner_2_2 = maker_group_1.partners.create!(company: partner_company_2_2, name: partner_company_2_2.name, hierarchy: 2, parent: partner_2)
-  partner_2_3 = maker_group_1.partners.create!(company: partner_company_2_3, name: partner_company_2_3.name, hierarchy: 2, parent: partner_2)
-  partner_2_4 = maker_group_1.partners.create!(company: partner_company_2_4, name: partner_company_2_4.name, hierarchy: 2, parent: partner_2)
+  partner_2_1 = vendor_group_1.partners.create!(company: partner_company_2_1, name: partner_company_2_1.name, hierarchy: 2, parent: partner_2)
+  partner_2_2 = vendor_group_1.partners.create!(company: partner_company_2_2, name: partner_company_2_2.name, hierarchy: 2, parent: partner_2)
+  partner_2_3 = vendor_group_1.partners.create!(company: partner_company_2_3, name: partner_company_2_3.name, hierarchy: 2, parent: partner_2)
+  partner_2_4 = vendor_group_1.partners.create!(company: partner_company_2_4, name: partner_company_2_4.name, hierarchy: 2, parent: partner_2)
 
-  partner_1_1_1 = maker_group_1.partners.create!(company: partner_company_1_1_1, name: partner_company_1_1_1.name, hierarchy: 3, parent: partner_1_1)
-  partner_1_1_2 = maker_group_1.partners.create!(company: partner_company_1_1_2, name: partner_company_1_1_2.name, hierarchy: 3, parent: partner_1_1)
-  partner_1_1_3 = maker_group_1.partners.create!(company: partner_company_1_1_3, name: partner_company_1_1_3.name, hierarchy: 3, parent: partner_1_1)
+  partner_1_1_1 = vendor_group_1.partners.create!(company: partner_company_1_1_1, name: partner_company_1_1_1.name, hierarchy: 3, parent: partner_1_1)
+  partner_1_1_2 = vendor_group_1.partners.create!(company: partner_company_1_1_2, name: partner_company_1_1_2.name, hierarchy: 3, parent: partner_1_1)
+  partner_1_1_3 = vendor_group_1.partners.create!(company: partner_company_1_1_3, name: partner_company_1_1_3.name, hierarchy: 3, parent: partner_1_1)
 
    ##########################
-  # メーカーグループ上のユーザー情報
+  # ベンダーグループ上のユーザー情報
   ##########################
-  p '=== MakerGroupUserInfo ==='
-  maker_group_1.partners.each do |partner|
+  p '=== VendorGroupUserInfo ==='
+  vendor_group_1.partners.each do |partner|
     partner.company.users.each do|user|
-      maker_group_1.maker_group_user_infos.create!(partner: partner, user: user, name: user.name, company: user.company)
+      vendor_group_1.vendor_group_user_infos.create!(partner: partner, user: user, name: user.name, company: user.company)
     end
   end
 
@@ -204,68 +204,70 @@ ApplicationRecord.transaction do
   # 商品
   ##########################
   p '=== Product ==='
-  product_1 = maker_group_1.products.create!(name: '会計システム1年契約', code: 'p-0001', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
-  product_2 = maker_group_1.products.create!(name: '家計簿システム1年契約', code: 'p-0002', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
-  product_3 = maker_group_1.products.create!(name: '高速光回線', code: 'p-0003', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
+  product_1 = vendor_group_1.products.create!(name: '会計システム1年契約', code: 'p-0001', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
+  product_2 = vendor_group_1.products.create!(name: '家計簿システム1年契約', code: 'p-0002', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
+  product_3 = vendor_group_1.products.create!(name: '高速光回線', code: 'p-0003', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
+
+  # ##########################
+  # # ベンダーグループ
+  # ##########################
+  # p '=== VendorGroup ==='
+  # vendor_group_1 = vendor_group_1.vendor_groups.create!(vendor: partner_1, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.9, incentive: product_3.agency_incentive * 0.9, contracted_at: Time.zone.now)
+  # vendor_group_2 = vendor_group_1.vendor_groups.create!(vendor: partner_2, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.8, incentive: product_3.agency_incentive * 0.8, contracted_at: Time.zone.now)
+  # vendor_group_3 = vendor_group_1.vendor_groups.create!(vendor: partner_3, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.7, incentive: product_3.agency_incentive * 0.7, contracted_at: Time.zone.now)
+
+  # vendor_group_1_1 = vendor_group_1.vendor_groups.create!(vendor: partner_1_1, layer: 2)
 
   ##########################
-  # ベンダーグループ
-  ##########################
-  p '=== VendorGroup ==='
-  vendor_group_1 = maker_group_1.vendor_groups.create!(vendor: partner_1, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.9, incentive: product_3.agency_incentive * 0.9, contracted_at: Time.zone.now)
-  vendor_group_2 = maker_group_1.vendor_groups.create!(vendor: partner_2, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.8, incentive: product_3.agency_incentive * 0.8, contracted_at: Time.zone.now)
-  vendor_group_3 = maker_group_1.vendor_groups.create!(vendor: partner_3, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.7, incentive: product_3.agency_incentive * 0.7, contracted_at: Time.zone.now)
-
-  # vendor_group_1_1 = maker_group_1.vendor_groups.create!(vendor: partner_1_1, layer: 2)
-
-  ##########################
-  # 案件の項目
+  # 商談の項目
   ##########################
   p '=== LeadColumn ==='
 
-  product_3.lead_columns.create!(name: 'ユニークキー', order: 0, data_type: :unique_key, index_page_order: 0)
-  product_3.lead_columns.create!(name: 'パートナー名', order: 1, data_type: :partner, index_page_order: 1)
-  product_3.lead_columns.create!(name: '販売担当者名', order: 2, data_type: :user_info_partner, index_page_order: 2)
-  product_3.lead_columns.create!(name: 'サポート担当者名', order: 3, data_type: :user_info_partner, index_page_order: 3)
+  vendor_group_1.lead_columns.create!(name: 'ユニークキー', key_name: 'unique_key', order: 0, data_type: :unique_key, index_page_order: 0)
+  vendor_group_1.lead_columns.create!(name: 'パートナー名', key_name: 'partner_name', order: 1, data_type: :partner, index_page_order: 1)
+  vendor_group_1.lead_columns.create!(name: '商品名', key_name: 'product_name', order: 2, data_type: :product, index_page_order: 2)
+  vendor_group_1.lead_columns.create!(name: '販売担当者名', key_name: 'staff', order: 3, data_type: :user_info_partner, index_page_order: 3)
+  vendor_group_1.lead_columns.create!(name: 'サポート担当者名', key_name: 'support_staff', order: 4, data_type: :user_info_partner, index_page_order: 10)
 
-  select_column_1 = product_3.lead_columns.create!(name: 'フレッツ完了ステータス', order: 4, data_type: :select_item)
+  select_column_1 = vendor_group_1.lead_columns.create!(name: 'フレッツ完了ステータス', key_name: 'flets_status', order: 5, data_type: :select_item)
   %w[未対応 折衝中 設備待ち 工事待ち 注文取り消し 完了].each_with_index do |n, i|
     select_column_1.lead_column_select_items.create!(name: n, order: i + 1, )
   end
-  select_column_2 = product_3.lead_columns.create!(name: 'NTT東西フラグ', order: 5, data_type: :select_item, index_page_order: 4)
+  select_column_2 = vendor_group_1.lead_columns.create!(name: 'NTT東西フラグ', key_name: 'ntt_flag', order: 6, data_type: :select_item, index_page_order: 4)
   %w[西 東].each_with_index do |n, i|
     select_column_2.lead_column_select_items.create!(name: n, order: i + 1)
   end
-  select_column_3 = product_3.lead_columns.create!(name: '後確コール大区分', order: 7, data_type: :select_item, index_page_order: 5)
+  select_column_3 = vendor_group_1.lead_columns.create!(name: '後確コール大区分', key_name: 'after_call_category', order: 8, data_type: :select_item, index_page_order: 5)
   %w[後確OK（CSV） 後確OK（代コン） 後確OK（CSVノーコール）].each_with_index do |n, i|
     select_column_3.lead_column_select_items.create!(name: n, order: i + 1)
   end
 
-  select_column_4 = product_3.lead_columns.create!(name: '対応コール大区分', order: 6, data_type: :select_item)
+  select_column_4 = vendor_group_1.lead_columns.create!(name: '対応コール大区分', key_name: 'call_category', order: 7, data_type: :select_item)
   %w[工事日確定 対応完了].each_with_index do |n, i|
     select_column_4.lead_column_select_items.create!(name: n, order: i + 1)
   end
 
-  select_column_5 = product_3.lead_columns.create!(name: '他社回線種別', order: 8, data_type: :select_item)
+  select_column_5 = vendor_group_1.lead_columns.create!(name: '他社回線種別', key_name: 'other_line', order: 9, data_type: :select_item)
   %w[新規発番 ソフトバンクテレコム イオ NTT].each_with_index do |n, i|
     select_column_5.lead_column_select_items.create!(name: n, order: i + 1)
   end
 
-  product_3.lead_columns.create!(name: '獲得リスト', order: 9, data_type: :string, index_page_order: 6)
-  product_3.lead_columns.create!(name: '単価', order: 10, data_type: :price, index_page_order: 7)
-  product_3.lead_columns.create!(name: '個数', order: 11, data_type: :integer, index_page_order: 8)
-  product_3.lead_columns.create!(name: '契約日', order: 12, data_type: :datetime, index_page_order: 9)
+  vendor_group_1.lead_columns.create!(name: '獲得リスト', key_name: 'get_list', order: 10, data_type: :string, index_page_order: 6)
+  vendor_group_1.lead_columns.create!(name: '単価', key_name: 'contract_date', order: 11, data_type: :price, index_page_order: 7)
+  vendor_group_1.lead_columns.create!(name: '個数', key_name: 'quantity', order: 12, data_type: :integer, index_page_order: 8)
+  vendor_group_1.lead_columns.create!(name: '契約日', key_name: '', order: 13, data_type: :datetime, index_page_order: 9)
 
   ##########################
-  # 案件
+  # 商談
   ##########################
   p '=== Lead ==='
   string_1_array = %w[コンサルティングサポート パーフェクション ベルテクノス Umake]
   20.times do
     Lead.create!( unique_key: 'T-' + rand(1000000..2000000).to_s,
-                  maker_group_id: maker_group_1.id, partner_id: maker_group_1.partners.sample.id, product_id: product_3.id,
-                  user_info_partner_1_id: maker_group_1.maker_group_user_infos.sample.id,
-                  user_info_partner_2_id: maker_group_1.maker_group_user_infos.sample.id,
+                  vendor_group_id: vendor_group_1.id, partner_id: vendor_group_1.partners.sample.id, product_id: product_3.id,
+                  product_id: product_3.id,
+                  user_info_partner_1_id: vendor_group_1.vendor_group_user_infos.sample.id,
+                  user_info_partner_2_id: vendor_group_1.vendor_group_user_infos.sample.id,
                   select_item_1_id: select_column_1.lead_column_select_items.sample.id,
                   select_item_2_id: select_column_2.lead_column_select_items.sample.id,
                   select_item_3_id: select_column_3.lead_column_select_items.sample.id,

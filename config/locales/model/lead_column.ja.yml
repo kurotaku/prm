@@ -1,12 +1,12 @@
 ja:
   activerecord:
     models:
-      lead_column: 案件項目
+      lead_column: 商談項目
     attributes:
       lead_column:
         name: 項目名
         key_name: キー名(CSVで使用)
-        lead_attribute: 案件カラム
+        lead_attribute: 商談カラム
         data_type: データのタイプ
         lead_category: 選択肢
         lead_category_id: 選択肢
@@ -30,11 +30,11 @@ ja:
         price: 金額
   lead_columns:
     create:
-      success: 案件項目を作成しました
-      error: 案件項目を作成できませんでした
+      success: 商談項目を作成しました
+      error: 商談項目を作成できませんでした
     update:
-      success: 案件項目を更新しました
-      error: 案件項目を更新できませんでした
+      success: 商談項目を更新しました
+      error: 商談項目を更新できませんでした
     destroy:
-      success: 案件項目を削除しました
-      error: 案件項目を削除できませんでした
+      success: 商談項目を削除しました
+      error: 商談項目を削除できませんでした

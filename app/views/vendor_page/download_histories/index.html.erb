@@ -1,0 +1,48 @@
+<% content_for(:title, 'ベンダー - ファイルダウンロード履歴') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>ファイルダウンロード履歴</h1>
+    <p class="mb-0">パートナーがファイルをダウンロードした履歴が確認できます。</p>
+  </div>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+
+  <div class="d-flex sp-none mb-3">
+    <div class="text-sl">表示件数:<%= @histories.total_count %>件</div>
+    <%= paginate @histories %>
+  </div>
+
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t('activerecord.attributes.download_file_history.file') %></td>
+          <td><%= t('activerecord.attributes.download_file_history.user') %></td>
+          <td><%= t('activerecord.attributes.download_file_history.company') %></td>
+          <td><%= t('activerecord.attributes.download_file_history.created_at') %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @histories.each do |history| %>
+          <tr>
+            <td><%= history.shared_file.title %></td>
+            <td>
+              <%= image_tag history.user.decorate.thumbnail, class: 'thumb' %>
+              <%= history.user.name %>
+            </td>
+            <td>
+              <%= image_tag history.user.company.decorate.thumbnail, class: 'thumb' %>
+              <%= history.user.company.name %>
+            </td>
+            <td><%= history.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

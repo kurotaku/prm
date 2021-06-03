@@ -40,9 +40,9 @@
 #  text_4                 :text(65535)
 #  text_5                 :text(65535)
 #  unique_key             :string(255)
+#  vendor_memo            :text(65535)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  maker_group_id         :bigint           not null
 #  partner_id             :bigint
 #  prefecture_1_id        :bigint
 #  prefecture_2_id        :bigint
@@ -61,10 +61,10 @@
 #  user_info_partner_1_id :bigint
 #  user_info_partner_2_id :bigint
 #  user_info_partner_3_id :bigint
+#  vendor_group_id        :bigint           not null
 #
 # Indexes
 #
-#  index_leads_on_maker_group_id             (maker_group_id)
 #  index_leads_on_partner_id                 (partner_id)
 #  index_leads_on_prefecture_1_id            (prefecture_1_id)
 #  index_leads_on_prefecture_2_id            (prefecture_2_id)
@@ -85,10 +85,10 @@
 #  index_leads_on_user_info_partner_1_id     (user_info_partner_1_id)
 #  index_leads_on_user_info_partner_2_id     (user_info_partner_2_id)
 #  index_leads_on_user_info_partner_3_id     (user_info_partner_3_id)
+#  index_leads_on_vendor_group_id            (vendor_group_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (maker_group_id => maker_groups.id)
 #  fk_rails_...  (partner_id => partners.id)
 #  fk_rails_...  (prefecture_1_id => prefectures.id)
 #  fk_rails_...  (prefecture_2_id => prefectures.id)
@@ -104,9 +104,10 @@
 #  fk_rails_...  (select_item_7_id => lead_column_select_items.id)
 #  fk_rails_...  (select_item_8_id => lead_column_select_items.id)
 #  fk_rails_...  (select_item_9_id => lead_column_select_items.id)
-#  fk_rails_...  (user_info_partner_1_id => maker_group_user_infos.id)
-#  fk_rails_...  (user_info_partner_2_id => maker_group_user_infos.id)
-#  fk_rails_...  (user_info_partner_3_id => maker_group_user_infos.id)
+#  fk_rails_...  (user_info_partner_1_id => vendor_group_user_infos.id)
+#  fk_rails_...  (user_info_partner_2_id => vendor_group_user_infos.id)
+#  fk_rails_...  (user_info_partner_3_id => vendor_group_user_infos.id)
+#  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 require "rails_helper"
 

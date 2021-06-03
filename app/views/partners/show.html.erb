@@ -1,15 +1,35 @@
+<% content_for(:title, 'ベンダー - パートナー詳細') %>
+
 <header class="primary-header d-flex align-items-center">
-  <h1 class="mb-0">[<%= @partner.display_hierarchy %>]<%= @partner.company.name %></h1>
+  <h1 class="mb-0"><%= @partner.name %></h1>
 </header><!-- .primary-header -->
 <div class="secondary-header">
-  
 </div><!-- .secondary-header -->
 
 <main class="main-contents">
-  
-  <% if @partners.present? %>
-    <h2>傘下の代理店</h2>
-    <%= render 'table', partners: @partners %>
-  <% end %>
+  <h2 class="mb-4">企業情報</h2>
+
+  <div class="contents-box">
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.partner.name' %></dt>
+      <dd><%= @partner.name %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.partner.address' %></dt>
+      <dd><%= @partner.address %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.partner.hierarchy' %></dt>
+      <dd><%= @partner.hierarchy_i18n %></dd>
+    </dl>
+
+    <dl class="definition-list">
+      <dt><%= t 'activerecord.attributes.partner.maker_memo' %></dt>
+      <dd><%= @partner.vendor_memo %></dd>
+    </dl>
+
+  </div>
 
 </main><!-- .main-contents -->
