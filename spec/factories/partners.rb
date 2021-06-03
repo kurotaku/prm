@@ -8,10 +8,10 @@
 #  address         :string(255)
 #  deleted_at      :datetime
 #  hierarchy       :integer          default("hierarchy_one")
-#  maker_memo      :text(65535)
 #  name            :string(255)
 #  status          :integer          default(10), not null
 #  uid             :string(255)
+#  vendor_memo     :text(65535)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  company_id      :bigint

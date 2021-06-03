@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
     t.string "address"
     t.integer "hierarchy", default: 1
     t.bigint "parent_id"
-    t.text "maker_memo"
+    t.text "vendor_memo"
     t.integer "status", default: 10, null: false
     t.string "uid"
     t.datetime "deleted_at"

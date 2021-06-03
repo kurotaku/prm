@@ -9,7 +9,7 @@ class CreatePartners < ActiveRecord::Migration[6.1]
       t.string :address
       t.integer :hierarchy, default: 1
       t.references :parent, foreign_key: { to_table: :partners }
-      t.text :maker_memo
+      t.text :vendor_memo
       t.integer :status, default: 10, null: false
       t.string :uid
       t.datetime :deleted_at
