@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     @product = @current_vendor_group.products.build(product_params)
     if @product.save
       flash[:success] = t("products.create.success")
-      redirect_to vendor_page_products_path
+      redirect_to products_path
     else
       flash.now[:error] = t("products.create.error")
       render :new
@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
   def update
     if @product.update(product_params)
       flash[:success] = t("products.update.success")
-      redirect_to vendor_page_product_path(uid: @product.uid)
+      redirect_to product_path(uid: @product.uid)
     else
       flash.now[:danger] = t("products.update.error")
       render :edit

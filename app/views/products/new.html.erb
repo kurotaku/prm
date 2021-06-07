@@ -8,7 +8,7 @@
 </div><!-- .secondary-header -->
 
 <main class="main-contents">
-  <%= form_with(model: @product, url: vendor_page_products_path, html: { method: :post, class: 'form-default' }) do |f| %>
+  <%= form_with(model: @product, url: products_path, html: { method: :post, class: 'form-default' }) do |f| %>
   	<%= render 'form', f: f %>
 
     <%= f.submit t('common.create'), class: 'btn btn-m default' %>

@@ -12,7 +12,7 @@
     <div class="contents-box">
       <h2 class="contents-box-title mb-5">商品情報</h2>
 
-      <%= form_with(model: @product, url: vendor_page_product_path(uid: @product.uid), html: { method: :patch, class: 'form-default' }) do |f| %>
+      <%= form_with(model: @product, url: product_path(uid: @product.uid), html: { method: :patch, class: 'form-default' }) do |f| %>
 
         <%= render 'form', f: f %>
 
