@@ -21,7 +21,7 @@
   <%= form_tag '#', method: :get, class: 'form-default d-flex mw-100' do %>
     <div class="form-group ml-auto">
       <div class="select-wrap">
-        <%= collection_select '', :company_id, Company.all, :id, :name, {include_blank: '企業名', selected: params[:company_id]},{class: 'form-control mb-0 autoSubmit'} %>
+        <%= collection_select '', :organization_id, organization.all, :id, :name, {include_blank: '企業名', selected: params[:organization_id]},{class: 'form-control mb-0 autoSubmit'} %>
       </div>
     </div>
     <%#= link_to '検索条件をクリア', request.path, class: 'btn btn-m border-gray mb-0 mb-md-4' %>
@@ -33,7 +33,7 @@
       <thead>
         <tr>
           <td><%= t('activerecord.attributes.user.name') %></td>
-          <td><%= t('activerecord.attributes.user.company_id') %></td>
+          <td><%= t('activerecord.attributes.user.organization_id') %></td>
           <td><%= t('activerecord.attributes.user.email') %></td>
           <td>開設日</td>
           <td>最終ログイン</td>
@@ -48,7 +48,7 @@
                 <%= user.name %>
               <% end %>
             </td>
-            <td><%= user.company.name %></td>
+            <td><%= user.organization.name %></td>
             <td><%= user.email %></td>
             <td><%= user.created_at.strftime('%Y/%m/%d %H:%M') %></td>
             <td></td>

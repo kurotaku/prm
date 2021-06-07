@@ -20,12 +20,12 @@ ja:
       error: 商談を削除できませんでした
   lead:
     columns:
-      partner_id: パートナー名
-      user_info_partner_1_id: パートナー担当者1
-      user_info_partner_2_id: パートナー担当者2
-      user_info_partner_3_id: パートナー担当者3
-      user_info_partner_4_id: パートナー担当者4
-      user_info_partner_5_id: パートナー担当者5
+      company_id: 企業名
+      staff_1_id: 担当者1
+      staff_2_id: 担当者2
+      staff_3_id: 担当者3
+      staff_4_id: 担当者4
+      staff_5_id: 担当者5
       product_id: 商品名
       unique_key: ユニークキー
       progress: 進捗ステータス

@@ -1,0 +1,40 @@
+<% content_for(:title, '自社 担当者一覧') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>自社 担当者一覧</h1>
+    <p class="mb-0">自社の担当者を管理できます。</p>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_my_company_staff_path, class: 'btn btn-m default before-icon plus' %>
+  </div>
+</header><!-- .primary-header -->
+<div class="secondary-header">
+  
+</div><!-- .secondary-header -->
+
+<main class="main-contents">
+  
+  <div class="table-wrap sp-none">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t('activerecord.attributes.staff.name') %></td>
+          <td>アカウント開設</td>
+          <td><%= t('activerecord.attributes.staff.phone') %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @staffs.each do |staff| %>
+          <tr>
+            <td><%= link_to staff.name, my_company_staff_path(uid: staff.uid) %></td>
+            <td><%= staff.has_account %></td>
+            <td><%= staff.phone %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

@@ -4,7 +4,7 @@ class CreateLeads < ActiveRecord::Migration[6.1]
   def change
     create_table :leads do |t|
       t.references :vendor_group, null: false, foreign_key: true
-      t.references :partner, foreign_key: true
+      t.references :company, foreign_key: true
       t.references :product, foreign_key: true
       t.string :unique_key
       t.index [:unique_key, :product_id], unique: true
@@ -14,9 +14,9 @@ class CreateLeads < ActiveRecord::Migration[6.1]
       t.text :index_cache
       t.text :show_cache
 
-      t.references :user_info_partner_1, foreign_key: { to_table: :vendor_group_user_infos }
-      t.references :user_info_partner_2, foreign_key: { to_table: :vendor_group_user_infos }
-      t.references :user_info_partner_3, foreign_key: { to_table: :vendor_group_user_infos }
+      t.references :staff_1, foreign_key: { to_table: :staffs }
+      t.references :staff_2, foreign_key: { to_table: :staffs }
+      t.references :staff_3, foreign_key: { to_table: :staffs }
 
       t.references :select_item_1, foreign_key: { to_table: :lead_column_select_items }
       t.references :select_item_2, foreign_key: { to_table: :lead_column_select_items }

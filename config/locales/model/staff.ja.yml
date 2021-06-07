@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      staff: ユーザー
+    attributes:
+      staff:
+        uid: ID
+        code: 社員コード
+        name: 氏名
+        phone: 電話番号
+  staff:
+    update:
+      success: 担当者情報を更新しました
+      error: 担当者情報の更新に失敗しました
+  profile:
+    update:
+      success: プロフィールを更新しました
+      error: プロフィールの更新に失敗しました

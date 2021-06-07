@@ -6,5 +6,5 @@ ja:
       download_file_history:
         user: ダウンロードした人
         file: 共有ファイル
-        company: 所属企業
+        Organization: 所属企業
         created_at: ダウンロード日時

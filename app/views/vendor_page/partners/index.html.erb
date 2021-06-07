@@ -31,9 +31,9 @@
           <tr>
             <td><%= link_to partner.name, vendor_page_partner_path(uid: partner.uid) %></td>
             <td>
-              <% if partner.company.present? %>
-                <%= image_tag partner.company.decorate.thumbnail, class: 'icon-image mr-3' %>
-                <%= partner.company.name %>
+              <% if partner.organization.present? %>
+                <%= image_tag partner.organization.decorate.thumbnail, class: 'icon-image mr-3' %>
+                <%= partner.organization.name %>
               <% else %>
                 <span>未連携</span>
               <% end %>

@@ -31,7 +31,7 @@ class MessageSerializer < ActiveModel::Serializer
   end
 
   def user_name
-    object.user.user_profile.name
+    # object.user.user_profile.name
   end
 
   def user_thumbnail

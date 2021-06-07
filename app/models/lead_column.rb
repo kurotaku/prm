@@ -38,8 +38,8 @@ class LeadColumn < ApplicationRecord
   enum data_type: {
     unique_key:        10,
     select_item:       20,
-    partner:           30,
-    user_info_partner: 40,
+    company:           30,
+    staff: 40,
     product:           50,
     prefecture:        60,
     datetime:          70,
@@ -55,8 +55,8 @@ class LeadColumn < ApplicationRecord
     use_data_type = vendor_group.lead_columns.where(data_type: data_type).count
     errors.add(:data_type, "#{data_type_i18n}は上限に達しています（上限：#{lead_attr_count}）") if use_data_type >= lead_attr_count
     self.lead_attribute = data_type
-    self.lead_attribute += "_" + (use_data_type + 1).to_s unless %w[unique_key partner product].include?(data_type)
-    self.lead_attribute += "_id" if %w[select_item partner user_info_partner product prefecture].include?(data_type)
+    self.lead_attribute += "_" + (use_data_type + 1).to_s unless %w[unique_key company product].include?(data_type)
+    self.lead_attribute += "_id" if %w[select_item company staff product prefecture].include?(data_type)
   end
 
   private

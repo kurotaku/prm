@@ -6,13 +6,4 @@
     <li><%= link_to '商談管理', leads_path %></li>
     <li><%= link_to 'ファイル管理', files_path %></li>
   </ul>
-
-  <% if @current_company.maker? %>
-    <div class="main-menu-footer">
-      <ul class="main-menu-list">
-        <li><%= link_to 'ベンダーページへ', vendor_page_dashboards_path %></li>
-      </ul>
-    </div>
-  <% end %>
-
 </nav><!-- .main-menu -->

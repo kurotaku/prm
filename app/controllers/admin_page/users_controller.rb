@@ -4,8 +4,8 @@ module AdminPage
   class UsersController < AdminPageController
     def index
       @users = User.all.order(created_at: "DESC").page(params[:page]).per(10).decorate
-      if params[:company_id].present?
-        @users = @users.where(company_id: params[:company_id])
+      if params[:organization_id].present?
+        @users = @users.where(organization_id: params[:organization_id])
         params[:page] = ""
       end
     end
@@ -39,7 +39,7 @@ module AdminPage
     end
 
     def user_params
-      params.require(:user).permit(:company_id, :email, :role, :name, :password, :password_confirmation)
+      params.require(:user).permit(:organization_id, :email, :role, :name, :password, :password_confirmation)
     end
   end
 end

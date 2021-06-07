@@ -1,7 +1,7 @@
 <header class="main-header d-flex">
   <div class="vendor-info">
-    <%= image_tag @current_vendor_group.vendor.decorate.thumbnail, class: 'header-icon mr-3' %>
-    <span class="vendor-name"><%= @current_vendor_group.vendor.name %></span>
+    <%= image_tag @current_vendor_group.vendor_organization.decorate.thumbnail, class: 'header-icon mr-3' %>
+    <span class="vendor-name"><%= @current_vendor_group.vendor_organization.name %></span>
   </div>
 
   <nav id="vendorMenu" class="header-menu">
@@ -19,21 +19,28 @@
     <%= image_tag current_user.decorate.thumbnail, class: 'header-icon', id: 'userIcon' %>
 
     <nav id="userMenu" class="header-menu">
-      <h2 class="header-menu-title"><i class="icon-company"></i><%= @current_company.name %></h2>
+      <h2 class="header-menu-title"><i class="icon-organization"></i><%= @current_organization.name %></h2>
       <ul class="mb-3">
-        <li><%= link_to '会社情報', company_page_profile_path %></li>
-        <li><%= link_to '社員名簿', company_page_user_profiles_path %></li>
-        <li><%= link_to '社員アカウント', company_page_users_path %></li>
-        <li><%= link_to '社員権限管理', company_page_users_roles_path %></li>
-        <li><%= link_to '操作権限設定', company_page_user_permissions_path %></li>
+        <li><%= link_to '企業プロフィール', edit_my_company_profile_path %></li>
+        <li><%= link_to '担当者管理', my_company_staffs_path %></li>
+        <li><%#= link_to '会社情報', organization_page_profile_path %></li>
+        <li><%#= link_to '社員名簿', organization_page_user_profiles_path %></li>
+        <li><%#= link_to '社員アカウント', organization_page_users_path %></li>
+        <li><%#= link_to '社員権限管理', organization_page_users_roles_path %></li>
+        <li><%#= link_to '操作権限設定', organization_page_user_permissions_path %></li>
       </ul>
 
       <hr />
-
+      
       <h2 class="header-menu-title"><i class="icon-person"></i><%= current_user.name %></h2>
       <ul>
-        <li><%= link_to 'プロフィール', mypage_profile_path %></li>
+        <li><%= link_to 'プロフィール', account_setting_my_account_path %></li>
         <li><%= link_to 'ユーザー設定変更', edit_mypage_user_setting_path %></li>
+      </ul>
+
+      <hr />
+      <ul>
+        <li><%= link_to 'アカウント設定', edit_account_setting_my_account_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: 'delete' %></li>
       </ul>
     </nav>

@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    models:
+      organization: 組織
+    attributes:
+      organization:
+        uid: ID
+        name: 会社名
+        name_kana: 会社名(かな)
+        postcode: 郵便番号
+        prefecture: 都道府県
+        prefecture_id: 住所（都道府県）
+        address: 住所（市区町村、番地）
+        address2: 住所（建物名など）
+        phone: 電話番号
+        fax: FAX番号
+        email: メールアドレス
+        settlement_month: 決算月
+        contract_type: 契約タイプ
+        image: ロゴ
+  enums:
+    organization:
+      contract_type:
+        partner: パートナー
+        maker: ベンダー
+  organizations:
+    create:
+      success: 組織情報を作成しました
+      error: 組織情報を作成できませんでした
+    update:
+      success: 組織情報を更新しました
+      error: 組織情報を更新できませんでした
+    destroy:
+      success: 組織を削除しました
+      error: 組織を削除できませんでした

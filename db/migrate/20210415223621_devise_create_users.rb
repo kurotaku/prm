@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
       t.string :name
-      t.references :company, null: false, foreign_key: true
+      t.references :organization, null: false, foreign_key: true
       t.integer :role, default: 10, null: false
       t.integer :account_type, default: 10, null: false
 

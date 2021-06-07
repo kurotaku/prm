@@ -73,130 +73,132 @@ ApplicationRecord.transaction do
   # ユーザーアクション
   ##########################
   p '=== UserAction ==='
-  UserAction.find_or_create_by!(name: '自社プロフィール閲覧', ctrl_path: 'company_page/company', act_path:'show')
-  UserAction.find_or_create_by!(name: '自社プロフィール編集', ctrl_path: 'company_page/company', act_path:'update')
-  UserAction.find_or_create_by!(name: '社員名簿一覧', ctrl_path: 'company_page/user_profiles', act_path:'index')
-  UserAction.find_or_create_by!(name: '社員名簿作成', ctrl_path: 'company_page/user_profiles', act_path:'create')
-  UserAction.find_or_create_by!(name: '社員アカウント一覧', ctrl_path: 'company_page/users', act_path:'index')
-  UserAction.find_or_create_by!(name: '社員アカウント発行', ctrl_path: 'company_page/users', act_path:'create')
-  UserAction.find_or_create_by!(name: '社員権限管理', ctrl_path: 'company_page/users/roles', act_path:'index')
-  UserAction.find_or_create_by!(name: '社員権限変更', ctrl_path: 'company_page/users/roles', act_path:'update')
-  UserAction.find_or_create_by!(name: '操作制限設定閲覧', ctrl_path: 'company_page/user_permissions', act_path:'index')
-  UserAction.find_or_create_by!(name: '操作制限設定追加', ctrl_path: 'company_page/user_permissions', act_path:'create')
+  UserAction.find_or_create_by!(name: '自社プロフィール閲覧', ctrl_path: 'organization_page/organization', act_path:'show')
+  UserAction.find_or_create_by!(name: '自社プロフィール編集', ctrl_path: 'organization_page/organization', act_path:'update')
+  UserAction.find_or_create_by!(name: '社員名簿一覧', ctrl_path: 'organization_page/user_profiles', act_path:'index')
+  UserAction.find_or_create_by!(name: '社員名簿作成', ctrl_path: 'organization_page/user_profiles', act_path:'create')
+  UserAction.find_or_create_by!(name: '社員アカウント一覧', ctrl_path: 'organization_page/users', act_path:'index')
+  UserAction.find_or_create_by!(name: '社員アカウント発行', ctrl_path: 'organization_page/users', act_path:'create')
+  UserAction.find_or_create_by!(name: '社員権限管理', ctrl_path: 'organization_page/users/roles', act_path:'index')
+  UserAction.find_or_create_by!(name: '社員権限変更', ctrl_path: 'organization_page/users/roles', act_path:'update')
+  UserAction.find_or_create_by!(name: '操作制限設定閲覧', ctrl_path: 'organization_page/user_permissions', act_path:'index')
+  UserAction.find_or_create_by!(name: '操作制限設定追加', ctrl_path: 'organization_page/user_permissions', act_path:'create')
 
 
   ##########################
-  # 会社
+  # 組織
   ##########################
-  p '=== Company ==='
-  admin_company = Company.find_or_create_by!(name: 'Admin用企業')
+  p '=== Organization ==='
+  admin_organization = Organization.find_or_create_by!(name: 'Admin用企業')
 
-  maker_company_1 = Company.find_or_create_by!(name: 'サンプルベンダー', postcode: '150-0001', prefecture_id: '13', address: '都内某所', contract_type: 20)
+  vendor_organization_1 = Organization.find_or_create_by!(name: 'サンプルベンダー', postcode: '150-0001', prefecture_id: '13', address: '都内某所', contract_type: 20)
 
-  partner_company_1 = Company.find_or_create_by!(name: '海山商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_2 = Company.find_or_create_by!(name: '山川商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_3 = Company.find_or_create_by!(name: '双葉商事', postcode: '330-0856', prefecture_id: '11', address: '大宮某所')
+  partner_organization_1 = Organization.find_or_create_by!(name: '海山商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_2 = Organization.find_or_create_by!(name: '山川商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_3 = Organization.find_or_create_by!(name: '双葉商事', postcode: '330-0856', prefecture_id: '11', address: '大宮某所')
 
-  partner_company_1_1 = Company.find_or_create_by!(name: '鎌倉物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_1_2 = Company.find_or_create_by!(name: '大磯物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_1_3 = Company.find_or_create_by!(name: '七里ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_1_4 = Company.find_or_create_by!(name: '由比ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_1_1 = Organization.find_or_create_by!(name: '鎌倉物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_1_2 = Organization.find_or_create_by!(name: '大磯物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_1_3 = Organization.find_or_create_by!(name: '七里ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_1_4 = Organization.find_or_create_by!(name: '由比ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
 
-  partner_company_2_1 = Company.find_or_create_by!(name: '筑波物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_2_2 = Company.find_or_create_by!(name: '秩父物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_2_3 = Company.find_or_create_by!(name: '高尾物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_2_4 = Company.find_or_create_by!(name: '富士物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_2_1 = Organization.find_or_create_by!(name: '筑波物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_2_2 = Organization.find_or_create_by!(name: '秩父物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_2_3 = Organization.find_or_create_by!(name: '高尾物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_2_4 = Organization.find_or_create_by!(name: '富士物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
 
-  partner_company_1_1_1 = Company.find_or_create_by!(name: '鶴岡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_1_1_2 = Company.find_or_create_by!(name: '八幡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_company_1_1_3 = Company.find_or_create_by!(name: '小町商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_1_1_1 = Organization.find_or_create_by!(name: '鶴岡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_1_1_2 = Organization.find_or_create_by!(name: '八幡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  partner_organization_1_1_3 = Organization.find_or_create_by!(name: '小町商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
 
   ##########################
   # ユーザー
   ##########################
-  def dumy_force_create(company, email, name)
-    user = company.users.new(name: name, email: email, password: 'password', role: 20)
+  def dumy_force_create(organization, email, name)
+    user = organization.users.new(name: name, email: email, password: 'password', role: 20)
     user.skip_confirmation!
     user.save!
     user
   end
 
   p '=== User ==='
-  admin_user = admin_company.users.create(name: '運営Admin', email: 'admin@admin.com', password: 'password', role: 50, account_type: 30)
+  admin_user = admin_organization.users.create(name: '運営Admin', email: 'admin@admin.com', password: 'password', role: 50, account_type: 30)
   admin_user.skip_confirmation!
   admin_user.save!
 
   last_name = %w[佐藤 鈴木 木村 渡辺 加藤 斎藤 近藤 高橋 田中 伊藤 山本 中村 小林 山田 佐々木 井上 林]
   first_name = %w[太郎 一郎 花子 よし子 優子 健 太一 二郎 真司 剛 翔太 はるか 綾香 美咲 さくら]
 
-  maker_company_user_1 = dumy_force_create( maker_company_1, 'sample@vendor1.com', 'ベンダー太郎')
+  vendor_organization_user_1 = dumy_force_create( vendor_organization_1, 'sample@vendor1.com', 'ベンダー太郎')
 
-  partner_company_1_user_1 = dumy_force_create(partner_company_1, 'sample@partner_company1.com', 'フグ田 マスオ')
-  partner_company_1_user_2 = dumy_force_create(partner_company_1, 'sample1@partner_company1.com', '穴子 太郎')
-  partner_company_2_user_1 = dumy_force_create(partner_company_2, 'sample@partner_company2.com', '磯野波平')
-  partner_company_2_user_2 = dumy_force_create(partner_company_2, 'sample1@partner_company2.com', '岡島 太郎')
-  partner_company_3_user_1 = dumy_force_create(partner_company_3, 'sample@partner_company3.com', '野原ひろし')
-  partner_company_3_user_2 = dumy_force_create(partner_company_3, 'sample1@partner_company3.com', '川口 太郎')
+  partner_organization_1_user_1 = dumy_force_create(partner_organization_1, 'sample@partner_organization1.com', 'フグ田 マスオ')
+  partner_organization_1_user_2 = dumy_force_create(partner_organization_1, 'sample1@partner_organization1.com', '穴子 太郎')
+  partner_organization_2_user_1 = dumy_force_create(partner_organization_2, 'sample@partner_organization2.com', '磯野波平')
+  partner_organization_2_user_2 = dumy_force_create(partner_organization_2, 'sample1@partner_organization2.com', '岡島 太郎')
+  partner_organization_3_user_1 = dumy_force_create(partner_organization_3, 'sample@partner_organization3.com', '野原ひろし')
+  partner_organization_3_user_2 = dumy_force_create(partner_organization_3, 'sample1@partner_organization3.com', '川口 太郎')
 
-  partner_company_1_1_user_1 = dumy_force_create(partner_company_1_1, 'sample@partner_company1-1.com', '鎌倉二次郎')
-  partner_company_1_2_user_1 = dumy_force_create(partner_company_1_2, 'sample@partner_company1-2.com', '大磯二次郎')
-  partner_company_1_3_user_1 = dumy_force_create(partner_company_1_3, 'sample@partner_company1-3.com', '七里ヶ浜二次郎')
-  partner_company_1_4_user_1 = dumy_force_create(partner_company_1_4, 'sample@partner_company1-4.com', '由比ヶ浜二次郎')
+  partner_organization_1_1_user_1 = dumy_force_create(partner_organization_1_1, 'sample@partner_organization1-1.com', '鎌倉二次郎')
+  partner_organization_1_2_user_1 = dumy_force_create(partner_organization_1_2, 'sample@partner_organization1-2.com', '大磯二次郎')
+  partner_organization_1_3_user_1 = dumy_force_create(partner_organization_1_3, 'sample@partner_organization1-3.com', '七里ヶ浜二次郎')
+  partner_organization_1_4_user_1 = dumy_force_create(partner_organization_1_4, 'sample@partner_organization1-4.com', '由比ヶ浜二次郎')
 
-  partner_company_2_1_user_1 = dumy_force_create(partner_company_2_1, 'sample@partner_company2-1.com', '筑波二次郎')
-  partner_company_2_2_user_1 = dumy_force_create(partner_company_2_2, 'sample@partner_company2-2.com', '秩父二次郎')
-  partner_company_2_3_user_1 = dumy_force_create(partner_company_2_3, 'sample@partner_company2-3.com', '高尾二次郎')
-  partner_company_2_4_user_1 = dumy_force_create(partner_company_2_4, 'sample@partner_company2-4.com', '富士二次郎')
+  partner_organization_2_1_user_1 = dumy_force_create(partner_organization_2_1, 'sample@partner_organization2-1.com', '筑波二次郎')
+  partner_organization_2_2_user_1 = dumy_force_create(partner_organization_2_2, 'sample@partner_organization2-2.com', '秩父二次郎')
+  partner_organization_2_3_user_1 = dumy_force_create(partner_organization_2_3, 'sample@partner_organization2-3.com', '高尾二次郎')
+  partner_organization_2_4_user_1 = dumy_force_create(partner_organization_2_4, 'sample@partner_organization2-4.com', '富士二次郎')
 
-  partner_company_1_1_1_user_1 = dumy_force_create(partner_company_1_1_1, 'sample@partner_company1-1-1.com', '鶴岡三次郎')
-  partner_company_1_1_2_user_1 = dumy_force_create(partner_company_1_1_2, 'sample@partner_company1-1-2.com', '八幡三次郎')
-  partner_company_1_1_3_user_1 = dumy_force_create(partner_company_1_1_3, 'sample@partner_company1-1-3.com', '小町三次郎')
+  partner_organization_1_1_1_user_1 = dumy_force_create(partner_organization_1_1_1, 'sample@partner_organization1-1-1.com', '鶴岡三次郎')
+  partner_organization_1_1_2_user_1 = dumy_force_create(partner_organization_1_1_2, 'sample@partner_organization1-1-2.com', '八幡三次郎')
+  partner_organization_1_1_3_user_1 = dumy_force_create(partner_organization_1_1_3, 'sample@partner_organization1-1-3.com', '小町三次郎')
 
   # (1..5).each do |i|
-  #   user = Company.where.not(name: 'Admin用企業').sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
+  #   user = organization.where.not(name: 'Admin用企業').sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
   #   user.skip_confirmation!
   #   user.save!
   # end
 
   # (1..5).each do |i|
-  #   Company.all.sample.user_profiles.create(name: last_name.sample + " " + first_name.sample)
+  #   organization.all.sample.user_profiles.create(name: last_name.sample + " " + first_name.sample)
   # end
   
   ##########################
   # ベンダーグループ
   ##########################
   p '=== VendorGroup ==='
-  vendor_group_1 = VendorGroup.create!(vendor: maker_company_1)
+  vendor_group_1 = VendorGroup.create!(vendor_organization: vendor_organization_1)
 
   ##########################
-  # パートナー
+  # 企業
   ##########################
-  p '=== Partner ==='
-  partner_1 = vendor_group_1.partners.create!(company: partner_company_1, name: partner_company_1.name, hierarchy: 1)
-  partner_2 = vendor_group_1.partners.create!(company: partner_company_2, name: partner_company_2.name, hierarchy: 1)
-  partner_3 = vendor_group_1.partners.create!(company: partner_company_3, name: partner_company_3.name, hierarchy: 1)
+  p '=== Company ==='
+  vendor_1 = vendor_group_1.companies.create!(organization: vendor_organization_1, name: vendor_organization_1.name, hierarchy: 1, contract_type: 'vendor')
 
-  partner_1_1 = vendor_group_1.partners.create!(company: partner_company_1_1, name: partner_company_1_1.name, hierarchy: 2, parent: partner_1)
-  partner_1_2 = vendor_group_1.partners.create!(company: partner_company_1_2, name: partner_company_1_2.name, hierarchy: 2, parent: partner_1)
-  partner_1_3 = vendor_group_1.partners.create!(company: partner_company_1_3, name: partner_company_1_3.name, hierarchy: 2, parent: partner_1)
-  partner_1_4 = vendor_group_1.partners.create!(company: partner_company_1_4, name: partner_company_1_4.name, hierarchy: 2, parent: partner_1)
+  partner_1 = vendor_group_1.companies.create!(organization: partner_organization_1, name: partner_organization_1.name, hierarchy: 1)
+  partner_2 = vendor_group_1.companies.create!(organization: partner_organization_2, name: partner_organization_2.name, hierarchy: 1)
+  partner_3 = vendor_group_1.companies.create!(organization: partner_organization_3, name: partner_organization_3.name, hierarchy: 1)
 
-  partner_2_1 = vendor_group_1.partners.create!(company: partner_company_2_1, name: partner_company_2_1.name, hierarchy: 2, parent: partner_2)
-  partner_2_2 = vendor_group_1.partners.create!(company: partner_company_2_2, name: partner_company_2_2.name, hierarchy: 2, parent: partner_2)
-  partner_2_3 = vendor_group_1.partners.create!(company: partner_company_2_3, name: partner_company_2_3.name, hierarchy: 2, parent: partner_2)
-  partner_2_4 = vendor_group_1.partners.create!(company: partner_company_2_4, name: partner_company_2_4.name, hierarchy: 2, parent: partner_2)
+  partner_1_1 = vendor_group_1.companies.create!(organization: partner_organization_1_1, name: partner_organization_1_1.name, hierarchy: 2, parent: partner_1)
+  partner_1_2 = vendor_group_1.companies.create!(organization: partner_organization_1_2, name: partner_organization_1_2.name, hierarchy: 2, parent: partner_1)
+  partner_1_3 = vendor_group_1.companies.create!(organization: partner_organization_1_3, name: partner_organization_1_3.name, hierarchy: 2, parent: partner_1)
+  partner_1_4 = vendor_group_1.companies.create!(organization: partner_organization_1_4, name: partner_organization_1_4.name, hierarchy: 2, parent: partner_1)
 
-  partner_1_1_1 = vendor_group_1.partners.create!(company: partner_company_1_1_1, name: partner_company_1_1_1.name, hierarchy: 3, parent: partner_1_1)
-  partner_1_1_2 = vendor_group_1.partners.create!(company: partner_company_1_1_2, name: partner_company_1_1_2.name, hierarchy: 3, parent: partner_1_1)
-  partner_1_1_3 = vendor_group_1.partners.create!(company: partner_company_1_1_3, name: partner_company_1_1_3.name, hierarchy: 3, parent: partner_1_1)
+  partner_2_1 = vendor_group_1.companies.create!(organization: partner_organization_2_1, name: partner_organization_2_1.name, hierarchy: 2, parent: partner_2)
+  partner_2_2 = vendor_group_1.companies.create!(organization: partner_organization_2_2, name: partner_organization_2_2.name, hierarchy: 2, parent: partner_2)
+  partner_2_3 = vendor_group_1.companies.create!(organization: partner_organization_2_3, name: partner_organization_2_3.name, hierarchy: 2, parent: partner_2)
+  partner_2_4 = vendor_group_1.companies.create!(organization: partner_organization_2_4, name: partner_organization_2_4.name, hierarchy: 2, parent: partner_2)
+
+  partner_1_1_1 = vendor_group_1.companies.create!(organization: partner_organization_1_1_1, name: partner_organization_1_1_1.name, hierarchy: 3, parent: partner_1_1)
+  partner_1_1_2 = vendor_group_1.companies.create!(organization: partner_organization_1_1_2, name: partner_organization_1_1_2.name, hierarchy: 3, parent: partner_1_1)
+  partner_1_1_3 = vendor_group_1.companies.create!(organization: partner_organization_1_1_3, name: partner_organization_1_1_3.name, hierarchy: 3, parent: partner_1_1)
 
    ##########################
-  # ベンダーグループ上のユーザー情報
+  # スタッフ
   ##########################
-  p '=== VendorGroupUserInfo ==='
-  vendor_group_1.partners.each do |partner|
-    partner.company.users.each do|user|
-      vendor_group_1.vendor_group_user_infos.create!(partner: partner, user: user, name: user.name, company: user.company)
+  p '=== Staff ==='
+  vendor_group_1.companies.each do |company|
+    company.organization.users.each do|user|
+      vendor_group_1.staffs.create!(company: company, user: user, name: user.name)
     end
   end
 
@@ -224,10 +226,10 @@ ApplicationRecord.transaction do
   p '=== LeadColumn ==='
 
   vendor_group_1.lead_columns.create!(name: 'ユニークキー', key_name: 'unique_key', order: 0, data_type: :unique_key, index_page_order: 0)
-  vendor_group_1.lead_columns.create!(name: 'パートナー名', key_name: 'partner_name', order: 1, data_type: :partner, index_page_order: 1)
+  vendor_group_1.lead_columns.create!(name: 'パートナー名', key_name: 'partner_name', order: 1, data_type: :company, index_page_order: 1)
   vendor_group_1.lead_columns.create!(name: '商品名', key_name: 'product_name', order: 2, data_type: :product, index_page_order: 2)
-  vendor_group_1.lead_columns.create!(name: '販売担当者名', key_name: 'staff', order: 3, data_type: :user_info_partner, index_page_order: 3)
-  vendor_group_1.lead_columns.create!(name: 'サポート担当者名', key_name: 'support_staff', order: 4, data_type: :user_info_partner, index_page_order: 10)
+  vendor_group_1.lead_columns.create!(name: '販売担当者名', key_name: 'staff', order: 3, data_type: :staff, index_page_order: 3)
+  vendor_group_1.lead_columns.create!(name: 'サポート担当者名', key_name: 'support_staff', order: 4, data_type: :staff, index_page_order: 10)
 
   select_column_1 = vendor_group_1.lead_columns.create!(name: 'フレッツ完了ステータス', key_name: 'flets_status', order: 5, data_type: :select_item)
   %w[未対応 折衝中 設備待ち 工事待ち 注文取り消し 完了].each_with_index do |n, i|
@@ -264,10 +266,9 @@ ApplicationRecord.transaction do
   string_1_array = %w[コンサルティングサポート パーフェクション ベルテクノス Umake]
   20.times do
     Lead.create!( unique_key: 'T-' + rand(1000000..2000000).to_s,
-                  vendor_group_id: vendor_group_1.id, partner_id: vendor_group_1.partners.sample.id, product_id: product_3.id,
-                  product_id: product_3.id,
-                  user_info_partner_1_id: vendor_group_1.vendor_group_user_infos.sample.id,
-                  user_info_partner_2_id: vendor_group_1.vendor_group_user_infos.sample.id,
+                  vendor_group_id: vendor_group_1.id, company_id: vendor_group_1.partners.sample.id, product_id: product_3.id,
+                  staff_1_id: vendor_group_1.staffs.sample.id,
+                  staff_2_id: vendor_group_1.staffs.sample.id,
                   select_item_1_id: select_column_1.lead_column_select_items.sample.id,
                   select_item_2_id: select_column_2.lead_column_select_items.sample.id,
                   select_item_3_id: select_column_3.lead_column_select_items.sample.id,
@@ -285,7 +286,7 @@ ApplicationRecord.transaction do
   ##########################
   p '=== Message ==='
   board_1 = Board.create!(related_object: 'product', related_object_uid: product_3.uid)
-  board_1.messages.create!(user: maker_company_user_1, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
-  board_1.messages.create!(user: maker_company_user_1, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
-  board_1.messages.create!(user: partner_company_2_user_1, content: '了解しました。')
+  board_1.messages.create!(user: vendor_organization_user_1, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
+  board_1.messages.create!(user: vendor_organization_user_1, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
+  board_1.messages.create!(user: partner_organization_2_user_1, content: '了解しました。')
 end

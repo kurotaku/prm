@@ -6,7 +6,7 @@
 </div><!-- .secondary-header -->
 
 <main class="main-contents">
-  <%= form_with(model: @company, url: admin_page_companies_path, html: { method: :post, class: 'form-default' }) do |f| %>
+  <%= form_with(model: @organization, url: admin_page_organizations_path, html: { method: :post, class: 'form-default' }) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="form-group">

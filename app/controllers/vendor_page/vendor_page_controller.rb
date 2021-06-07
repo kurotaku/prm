@@ -8,8 +8,8 @@ module VendorPage
 
     private
       def check_maker
-        return unless @current_company
-        if @current_company.contract_type != "maker"
+        return unless @current_Organization
+        if @current_Organization.contract_type != "maker"
           # デバッグ用 普段はコメントアウト
           flash[:danger] = I18n.t("errors.messages.check_maker")
           redirect_to root_path

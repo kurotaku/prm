@@ -4,7 +4,9 @@
   <%= render 'products/show_parts/header' %>
 </header><!-- .primary-header -->
 <div class="secondary-header">
-  <%#= render 'products/show_parts/page_menu' %>
+  <ul class="heade-icon-list d-flex p-4 pr-5">
+    <li class="ml-auto"><i id="commentOpen" class="icon-comment"></i></li>
+  </ul>
 </div><!-- .secondary-header -->
 
 <main class="main-contents">
@@ -62,3 +64,9 @@
   </div>
 
 </main><!-- .main-contents -->
+
+
+<div id="rightCol" class="right-col">
+  <h2 class="d-flex align-items-center">コメント<i id="rightColClose" class="icon-cancel ml-auto"></i></h2>
+  <%= react_component 'messages/MessagesIndex', related_object: 'product', related_object_uid: @product.uid %>
+</div>

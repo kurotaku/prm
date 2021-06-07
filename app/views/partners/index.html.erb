@@ -19,11 +19,11 @@
     <table class="border-table">
       <thead>
         <tr>
-          <td>会社名</td>
+          <td><%= t 'activerecord.attributes.company.name' %></td>
           <td>サービス連携</td>
-          <td>階層</td>
-          <td>上位店</td>
-          <td>ベンダー</td>
+          <td><%= t 'activerecord.attributes.company.hierarchy' %></td>
+          <td><%= t 'activerecord.attributes.company.parent' %></td>
+          <td><%= t 'activerecord.attributes.company.vendor' %></td>
         </tr>
       </thead>
       <tbody>
@@ -31,16 +31,16 @@
           <tr>
             <td><%= link_to partner.name, partner_path(uid: partner.uid) %></td>
             <td>
-              <% if partner.company.present? %>
-                <%= image_tag partner.company.decorate.thumbnail, class: 'icon-image mr-3' %>
-                <%= partner.company.name %>
+              <% if partner.organization.present? %>
+                <%= image_tag partner.organization.decorate.thumbnail, class: 'icon-image mr-3' %>
+                <%= partner.organization.name %>
               <% else %>
                 <span>未連携</span>
               <% end %>
             </td>
             <td><%= partner.hierarchy_i18n %></td>
             <td><%= partner&.parent&.name %></td>
-            <td><%= partner.vendor_group.vendor.name %></td>
+            <td><%= partner.vendor_group.decorate.display_name %></td>
           </tr>
         <% end %>
     </tbody>

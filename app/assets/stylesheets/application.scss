@@ -264,7 +264,6 @@ html{
 .secondary-header{
   background-color: white;
   border-bottom: 1px solid $shade-grey-02;
-  border-top: 1px solid $shade-grey-02;
 }
 
 /*=============================
@@ -274,6 +273,7 @@ html{
   padding: 24px;
   position: relative;
   background-color: white;
+  border-bottom: 1px solid $shade-grey-02;
   h1{
     font-size: 2.0rem;
     font-weight: bold;
@@ -1630,9 +1630,9 @@ div.upload-button-group {
 }
 
 /*=============================
-    company logo
+    organization logo
 =============================== */
-.company-logo{
+.organization-logo{
   width: 28px;
   height: 28px;
   border-radius: 100%;
@@ -1646,7 +1646,7 @@ div.upload-button-group {
   border: solid 1px #dcdcde;
 }
 .image-block{
-  &>.company-logo{
+  &>.organization-logo{
     width: 150px;
     height: 150px;
     font-size: 100px;
@@ -1655,7 +1655,7 @@ div.upload-button-group {
   }
 }
 header{
-  &>.company-logo{
+  &>.organization-logo{
     width: 40px;
     height: 40px;
     font-size: 30px;

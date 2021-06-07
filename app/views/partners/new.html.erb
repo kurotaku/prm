@@ -26,7 +26,7 @@
     <div class="form-group">
       <p class="mb-1"><%= f.label :hierarchy %></p>
       <div class="select-wrap half">
-        <%= f.select :hierarchy, Partner.hierarchies_i18n.invert.to_a, {}, {class: 'form-control'} %>
+        <%= f.select :hierarchy, Company.hierarchies_i18n.invert.to_a, {}, {class: 'form-control'} %>
       </div>
     </div>
 
@@ -36,8 +36,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :maker_memo %>
-      <%= f.text_area :maker_memo, class: 'form-control', placeholder: "ベンダーのみが閲覧できるメモです".html_safe, rows: 6 %>
+      <%= f.label :vendor_memo %>
+      <%= f.text_area :vendor_memo, class: 'form-control', placeholder: "ベンダーのみが閲覧できるメモです".html_safe, rows: 6 %>
     </div>
 
     <%= f.submit t('common.create'), class: 'btn btn-m default' %>

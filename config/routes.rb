@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   namespace :admin_page do
-    resources :companies
+    resources :organizations
     resources :users
     resources :leads
     namespace :leads, path: "lead" do
@@ -32,42 +32,52 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :account_setting do
+    resource :my_account, controller: "my_account"
+    resources :organizations
+    resources :users
+  end
+
   scope "/:base_path" do
     namespace :mypage do
-      resource :user_profile, only: %i[show edit update], controller: "user_profile", as: "profile", path: "profile"
+      resource :profile, only: %i[edit update], controller: "profile"
       resource :user, only: %i[show edit update], controller: "user", as: "user_setting", path: "user_setting"
-      resource :nortification_filters
     end
 
-    namespace :company_page do
-      resource :company, only: %i[show edit update], controller: "company", as: "profile", path: "profile"
-      resources :user_profiles, param: :uid
-      resources :users, param: :uid
-      namespace :users, path: "user" do
-        resources :roles, only: %i[index update], param: :uid
-      end
-      resources :user_permissions, only: %i[index create update destroy]
+    namespace :my_company do
+      resource :profile, only: %i[edit update], controller: "profile"
+      resources :staffs, param: :uid
     end
 
-    namespace :vendor_page do
-      resource :dashboards, only: %i[show], param: :uid
-      resources :products, param: :uid do
-        member do
-          namespace :products, path: "" do
-            resources :leads
-            resources :lead_columns
-          end
-        end
-      end
-      resources :customers, param: :uid
-      resources :partners, param: :uid
-      resources :files, param: :uid do
-        member do
-          get "download", to: "files#download"
-        end
-      end
-      resources :download_histories, only: %i[index]
-    end
+    # namespace :organization_page do
+    #   resource :organization, only: %i[show edit update], controller: "organization", as: "profile", path: "profile"
+    #   resources :user_profiles, param: :uid
+    #   resources :users, param: :uid
+    #   namespace :users, path: "user" do
+    #     resources :roles, only: %i[index update], param: :uid
+    #   end
+    #   resources :user_permissions, only: %i[index create update destroy]
+    # end
+
+    # namespace :vendor_page do
+    #   resource :dashboards, only: %i[show], param: :uid
+    #   resources :products, param: :uid do
+    #     member do
+    #       namespace :products, path: "" do
+    #         resources :leads
+    #         resources :lead_columns
+    #       end
+    #     end
+    #   end
+    #   resources :customers, param: :uid
+    #   resources :partners, param: :uid
+    #   resources :files, param: :uid do
+    #     member do
+    #       get "download", to: "files#download"
+    #     end
+    #   end
+    #   resources :download_histories, only: %i[index]
+    # end
 
     resource :dashboards, only: %i[show], param: :uid
     resources :products, param: :uid

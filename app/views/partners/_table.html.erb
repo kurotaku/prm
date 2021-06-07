@@ -11,7 +11,7 @@
     <tbody>
       <% partners.each do |partner| %>
         <tr>
-          <td><%= link_to partner.company.name, partner_path(uid: partner.uid) %></td>
+          <td><%= link_to partner.organization.name, partner_path(uid: partner.uid) %></td>
           <td><%= partner.display_hierarchy %></td>
           <td><%= partner&.parent&.name %></td>
           <td><%= partner.vendor_group.maker.name %></td>

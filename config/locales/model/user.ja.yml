@@ -9,8 +9,8 @@ ja:
         image: プロフィール画像
         email: メールアドレス
         password: パスワード
-        company: 所属企業
-        company_id: 所属企業
+        Organization: 所属企業
+        Organization_id: 所属企業
         role: 権限レベル
         account_type: アカウント区分
   enums:

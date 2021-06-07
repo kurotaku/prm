@@ -4,7 +4,12 @@ module AdminPage
   class AdminPageController < ApplicationController
     layout "application_admin"
 
+    skip_before_action :set_current_vendor_group
+    skip_before_action :set_current_staff
+    skip_before_action :set_current_company
+
     before_action :check_admin
+  
 
     private
       def check_admin

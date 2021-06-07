@@ -37,7 +37,6 @@ class MessagesIndex extends React.Component {
   }
 
   handleChange(e, key){
-    console.log('create');
     let target = e.target;
     let value = target.value;
     let form = this.state.form;
@@ -49,7 +48,6 @@ class MessagesIndex extends React.Component {
   }
 
   handleCreate(){
-    console.log('create');
     let body = JSON.stringify({
       message: {
         content: this.state.form.content

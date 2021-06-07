@@ -18,8 +18,8 @@ ja:
       data_type:
         unique_key: ユニークキー
         select_item: 選択肢タイプ
-        partner: パートナー名
-        user_info_partner: パートナー担当者名
+        company: 企業名
+        staff: 担当者名
         product: 商品名
         prefecture: 都道府県
         datetime: 日付と日時
