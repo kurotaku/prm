@@ -1,13 +1,19 @@
-class AccountSetting::UsersController < ApplicationController
-  def index
-  end
+module AccountSetting
+  class UsersController < AccountSettingController
+    def index
+      @users = @current_organization.users.decorate.order(created_at: 'ASC')
+    end
 
-  def show
-  end
+    def show
+    end
 
-  def new
-  end
+    def new
+    end
 
-  def edit
+    def edit
+    end
+
+    private
+
   end
 end

@@ -33,9 +33,9 @@ Rails.application.routes.draw do
   end
 
   namespace :account_setting do
-    resource :my_account, controller: "my_account"
-    resources :organizations
-    resources :users
+    resource :my_account, controller: "my_account", only: %i[edit update]
+    resource :organization, controller: "organization", only: %i[edit update]
+    resources :users, param: :uid
   end
 
   scope "/:base_path" do
