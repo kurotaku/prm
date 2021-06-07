@@ -4,7 +4,7 @@ class FilesController < ApplicationController
   end
 
   def new
-    @file = current_user.shared_files.build
+    @file = @current_staff.shared_files.build
   end
 
   def show
@@ -13,7 +13,7 @@ class FilesController < ApplicationController
 
   def create
     vendor_group = VendorGroup.find_by(uid: params[:base_path])
-    @file = current_user.shared_files.build(file_params.merge(vendor_group_id: vendor_group.id))
+    @file = @current_staff.shared_files.build(file_params.merge(vendor_group_id: vendor_group.id))
     if @file.save
       flash["success"] = t("shared_files.create.success")
       redirect_to files_path
@@ -24,7 +24,7 @@ class FilesController < ApplicationController
   end
 
   def download
-    download_file(uid: params[:uid], download_user: current_user)
+    download_file(uid: params[:uid], download_staff: @current_staff)
   end
 
   private
@@ -32,10 +32,10 @@ class FilesController < ApplicationController
       params.require(:shared_file).permit(:file, :name, :description)
     end
 
-    def download_file(uid:, download_user:)
+    def download_file(uid:, download_staff:)
       shared_file = SharedFile.find_by!(uid: uid)
 
-      # raise ArgumentError, 'This user does not have permission to download the file.' unless shared_file.downloadable?(current_user)
+      # raise ArgumentError, 'This user does not have permission to download the file.' unless shared_file.downloadable?(@current_staff)
 
       if %w[development test].include? Rails.env
         send_data shared_file.file.read, filename: shared_file.file_name
@@ -54,6 +54,6 @@ class FilesController < ApplicationController
         send_data file.body.read, filename: shared_file.file_name, type: file.content_type
       end
 
-      DownloadFileHistory.create!(shared_file: shared_file, user: download_user)
+      DownloadFileHistory.create!(shared_file: shared_file, staff: download_staff)
     end
 end

@@ -13,12 +13,14 @@
 ActiveRecord::Schema.define(version: 2021_05_30_084814) do
 
   create_table "boards", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "vendor_group_id", null: false
     t.string "related_object"
     t.string "related_object_uid"
     t.integer "status", default: 10, null: false
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["vendor_group_id"], name: "index_boards_on_vendor_group_id"
   end
 
   create_table "companies", charset: "utf8mb4", force: :cascade do |t|
@@ -43,23 +45,25 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
   end
 
   create_table "csv_import_histories", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "staff_id", null: false
     t.bigint "vendor_group_id", null: false
     t.integer "related_object", default: 10, null: false
     t.string "file_name"
     t.text "cache"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["staff_id"], name: "index_csv_import_histories_on_staff_id"
     t.index ["vendor_group_id"], name: "index_csv_import_histories_on_vendor_group_id"
   end
 
   create_table "download_file_histories", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "staff_id", null: false
     t.bigint "shared_file_id", null: false
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["shared_file_id"], name: "index_download_file_histories_on_shared_file_id"
-    t.index ["user_id"], name: "index_download_file_histories_on_user_id"
+    t.index ["staff_id"], name: "index_download_file_histories_on_staff_id"
   end
 
   create_table "lead_column_select_items", charset: "utf8mb4", force: :cascade do |t|
@@ -168,14 +172,14 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
 
   create_table "messages", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "board_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "staff_id", null: false
     t.text "content"
     t.integer "status", default: 10, null: false
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["board_id"], name: "index_messages_on_board_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["staff_id"], name: "index_messages_on_staff_id"
   end
 
   create_table "organizations", charset: "utf8mb4", force: :cascade do |t|
@@ -232,7 +236,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
 
   create_table "shared_files", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "staff_id", null: false
     t.string "uid"
     t.string "file"
     t.string "file_name"
@@ -241,7 +245,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
     t.integer "file_size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_shared_files_on_user_id"
+    t.index ["staff_id"], name: "index_shared_files_on_staff_id"
     t.index ["vendor_group_id"], name: "index_shared_files_on_vendor_group_id"
   end
 
@@ -322,11 +326,13 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
     t.index ["vendor_organization_id"], name: "index_vendor_groups_on_vendor_organization_id"
   end
 
+  add_foreign_key "boards", "vendor_groups"
   add_foreign_key "companies", "companies", column: "parent_id"
   add_foreign_key "companies", "vendor_groups"
+  add_foreign_key "csv_import_histories", "staffs"
   add_foreign_key "csv_import_histories", "vendor_groups"
   add_foreign_key "download_file_histories", "shared_files"
-  add_foreign_key "download_file_histories", "users"
+  add_foreign_key "download_file_histories", "staffs"
   add_foreign_key "lead_column_select_items", "lead_columns"
   add_foreign_key "lead_columns", "vendor_groups"
   add_foreign_key "leads", "companies"
@@ -349,10 +355,10 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
   add_foreign_key "leads", "staffs", column: "staff_3_id"
   add_foreign_key "leads", "vendor_groups"
   add_foreign_key "messages", "boards"
-  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "staffs"
   add_foreign_key "organizations", "prefectures"
   add_foreign_key "products", "vendor_groups"
-  add_foreign_key "shared_files", "users"
+  add_foreign_key "shared_files", "staffs"
   add_foreign_key "shared_files", "vendor_groups"
   add_foreign_key "staffs", "companies"
   add_foreign_key "staffs", "users"

@@ -119,7 +119,7 @@ function BoardMessageList(props){
             <li
               key={message.uid}
             >
-              <div className="user-info"><img src={message.user_thumbnail} className="thumb" /><h3>{message.user_name}</h3></div>
+              <div className="user-info"><img src={message.staff_thumbnail} className="thumb" /><h3>{message.staff_name}</h3></div>
               <p className="date">{message.create_datetime}</p>
               <p className="content">{message.content}</p>
             </li>

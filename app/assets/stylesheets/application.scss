@@ -257,6 +257,7 @@ html{
   background-color: $shade-grey-04;
   min-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 .main-col-white .main-col{
   background-color: white;

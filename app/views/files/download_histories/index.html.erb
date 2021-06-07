@@ -22,7 +22,7 @@
       <thead>
         <tr>
           <td><%= t('activerecord.attributes.download_file_history.file') %></td>
-          <td><%= t('activerecord.attributes.download_file_history.user') %></td>
+          <td><%= t('activerecord.attributes.download_file_history.staff') %></td>
           <td><%= t('activerecord.attributes.download_file_history.organization') %></td>
           <td><%= t('activerecord.attributes.download_file_history.created_at') %></td>
         </tr>
@@ -32,12 +32,12 @@
           <tr>
             <td><%= history.shared_file.name %></td>
             <td>
-              <%= image_tag history.user.decorate.thumbnail, class: 'thumb' %>
-              <%= history.user.name %>
+              <%= image_tag history.staff.decorate.thumbnail, class: 'thumb' %>
+              <%= history.staff.name %>
             </td>
             <td>
-              <%= image_tag history.user.organization.decorate.thumbnail, class: 'thumb' %>
-              <%= history.user.organization.name %>
+              <%= image_tag history.staff.company.decorate.thumbnail, class: 'thumb' %>
+              <%= history.staff.company.name %>
             </td>
             <td><%= history.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           </tr>

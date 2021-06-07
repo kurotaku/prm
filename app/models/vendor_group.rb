@@ -31,6 +31,7 @@ class VendorGroup < ApplicationRecord
   has_many :lead_columns
   has_many :leads
   has_many :shared_files
+  has_many :boards
 
   def partners
     companies.where(contract_type: 'partner')

@@ -285,8 +285,8 @@ ApplicationRecord.transaction do
   # 商品のチャット
   ##########################
   p '=== Message ==='
-  board_1 = Board.create!(related_object: 'product', related_object_uid: product_3.uid)
-  board_1.messages.create!(user: vendor_organization_user_1, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
-  board_1.messages.create!(user: vendor_organization_user_1, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
-  board_1.messages.create!(user: partner_organization_2_user_1, content: '了解しました。')
+  board_1 = Board.create!(vendor_group_id: vendor_group_1.id, related_object: 'product', related_object_uid: product_3.uid)
+  board_1.messages.create!(staff: vendor_organization_user_1.staffs.last, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
+  board_1.messages.create!(staff: vendor_organization_user_1.staffs.last, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
+  board_1.messages.create!(staff: partner_organization_2_user_1.staffs.last, content: '了解しました。')
 end

@@ -35,6 +35,9 @@ class Staff < ApplicationRecord
   belongs_to :company
   belongs_to :user, optional: true
 
+  has_many :shared_files
+  has_many :messages
+
   before_update :update_user_name
 
   def account?

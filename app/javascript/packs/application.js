@@ -17,10 +17,6 @@ var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 
-$(function(){
-  console.log('fire');
-});
-
 $(document).on('click', '.vendor-info', function(){
   $('#vendorMenu').toggle();
   $('#vendorMenuBg').toggle();

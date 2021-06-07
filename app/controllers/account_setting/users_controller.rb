@@ -1,7 +1,7 @@
 module AccountSetting
   class UsersController < AccountSettingController
     def index
-      @users = @current_organization.users.decorate.order(created_at: 'ASC')
+      @users = @current_organization.users.decorate.order(created_at: "ASC")
     end
 
     def show
@@ -14,6 +14,5 @@ module AccountSetting
     end
 
     private
-
   end
 end

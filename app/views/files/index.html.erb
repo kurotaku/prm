@@ -38,11 +38,11 @@
               <% end %>
             </td>
             <td>
-              <%= image_tag file.user.decorate.thumbnail, class: 'thumb' %>
-              <%= file.user.name %>
+              <%= image_tag file.staff.decorate.thumbnail, class: 'thumb' %>
+              <%= file.staff.name %>
             </td>
             <td><%= file.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-            <td><%= link_to t('common.download'), download_vendor_page_file_path(uid: file.uid) %></td>
+            <td><%= link_to t('common.download'), download_file_path(uid: file.uid) %></td>
           </tr>
         <% end %>
       </tbody>

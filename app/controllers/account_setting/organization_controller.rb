@@ -16,13 +16,12 @@ module AccountSetting
     end
 
     private
+      def set_organization
+        @organization = @current_organization.decorate
+      end
 
-    def set_organization
-      @organization = @current_organization.decorate
-    end
-
-    def organization_params
-      params.require(:organization).permit(:name, :image, :phone, :address)
-    end
+      def organization_params
+        params.require(:organization).permit(:name, :image, :phone, :address)
+      end
   end
 end

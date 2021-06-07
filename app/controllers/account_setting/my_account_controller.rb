@@ -19,13 +19,12 @@ module AccountSetting
     end
 
     private
+      def set_user
+        @user = current_user.decorate
+      end
 
-    def set_user
-      @user = current_user.decorate
-    end
-
-    def user_params
-      params.require(:user).permit(:image)
-    end
+      def user_params
+        params.require(:user).permit(:image)
+      end
   end
 end
