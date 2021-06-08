@@ -1,0 +1,78 @@
+<div class="secondary-header">
+  <%= render 'menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>商談一覧</h1>
+    <p class="mb-0">商談一覧です</p>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_admin_page_lead_path, class: 'btn btn-m default before-icon plus' %>
+  </div>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+
+  <div class="d-flex sp-none mb-3">
+    <div class="text-sl">表示件数:<%= @leads.total_count %>件</div>
+    <%= paginate @leads %>
+  </div>
+
+  <%= form_tag '#', method: :get, class: 'form-default d-flex mw-100' do %>
+    <div class="form-group ml-auto">
+      <div class="select-wrap">
+        <%= collection_select '', :organization_id, Organization.all, :id, :name, {include_blank: '企業名', selected: params[:organization_id]},{class: 'form-control mb-0 autoSubmit'} %>
+      </div>
+    </div>
+    <%#= link_to '検索条件をクリア', request.path, class: 'btn btn-m border-gray mb-0 mb-md-4' %>
+    <%= submit_tag 'この条件で絞り込む', class: 'btn btn-m border-primary autoSubmitButton hide' %>
+  <% end %>
+
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t('activerecord.attributes.lead.id') %></td>
+          <td><%= t('activerecord.attributes.lead.vendor_group_id') %></td>
+          <td><%= t('lead.columns.unique_key') %></td>
+          <td><%= t('lead.columns.company_id') %></td>
+          <td><%= t('lead.columns.product_id') %></td>
+          <td><%= t('lead.columns.staff_1_id') %></td>
+          <td><%= t('lead.columns.select_item_1_id') %></td>
+          <td><%= t('lead.columns.select_item_2_id') %></td>
+          <td><%= t('lead.columns.select_item_3_id') %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @leads.each do |lead| %>
+          <tr>
+            <td><%= lead.id %></td>
+            <td><%= lead.vendor_group.vendor_organization.name %></td>
+            <td><%= lead.unique_key %></td>
+            <td><%= lead.company.name %></td>
+            <td><%= lead.product.name %></td>
+            <td>
+              <%= lead.vendor_group.lead_columns.where(lead_attribute: 'staff_1_id')&.last&.name %><br />
+              <%= lead.staff_1&.name %>
+            </td>
+            <td>
+              <%= lead.vendor_group.lead_columns.where(lead_attribute: 'select_item_1_id')&.last&.name %><br />
+              <%= lead.select_item_1&.name %>
+            </td>
+            <td>
+              <%= lead.vendor_group.lead_columns.where(lead_attribute: 'select_item_2_id')&.last&.name %><br />
+              <%= lead.select_item_2&.name %>
+            </td>
+            <td>
+              <%= lead.vendor_group.lead_columns.where(lead_attribute: 'select_item_3_id')&.last&.name %><br />
+              <%= lead.select_item_3&.name %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

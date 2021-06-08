@@ -1,58 +1,54 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: companies
 #
-#  id               :bigint           not null, primary key
-#  address          :string(255)
-#  address2         :string(255)
-#  contract_type    :integer          default("partner"), not null
-#  coprate_number   :string(255)
-#  deleted_at       :datetime
-#  email            :string(255)
-#  fax              :string(255)
-#  image            :string(255)
-#  name             :string(255)
-#  name_kana        :string(255)
-#  phone            :string(255)
-#  postcode         :string(255)
-#  settlement_month :integer
-#  status           :integer          default(10), not null
-#  uid              :string(255)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  prefecture_id    :bigint
+#  id              :bigint           not null, primary key
+#  address         :string(255)
+#  address2        :string(255)
+#  contract_type   :integer          default("partner"), not null
+#  deleted_at      :datetime
+#  hierarchy       :integer          default("hierarchy_one")
+#  name            :string(255)
+#  phone           :string(255)
+#  status          :integer          default(10), not null
+#  uid             :string(255)
+#  vendor_memo     :text(65535)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  organization_id :bigint
+#  parent_id       :bigint
+#  vendor_group_id :bigint           not null
 #
 # Indexes
 #
-#  index_companies_on_prefecture_id  (prefecture_id)
+#  index_companies_on_organization_id  (organization_id)
+#  index_companies_on_parent_id        (parent_id)
+#  index_companies_on_vendor_group_id  (vendor_group_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (prefecture_id => prefectures.id)
+#  fk_rails_...  (parent_id => companies.id)
+#  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 class Company < ApplicationRecord
   include Uniqueable
+  
+  belongs_to :vendor_group
+  belongs_to :organization, optional: true
+  belongs_to :parent, class_name: "Company", optional: true
 
-  belongs_to :prefecture, optional: true
-  has_many :users
-  has_many :user_profiles
-  has_many :maker_groups, foreign_key: "maker_id", inverse_of: :maker
-  has_many :partners, through: :maker_groups
-  has_many :vendor_groups, foreign_key: "vendor_id", inverse_of: :vendor
-  has_many :user_action_permissions
+  has_many :staffs
 
   enum contract_type: {
     partner: 10,
-    maker:   20,
+    vendor: 20,
   }
 
-  mount_uploader :image, ImageUploader
-
-  def maker_group_uid(params)
-    return unless vendor_groups.present?
-
-    params[:base_path].present? ? params[:base_path] : vendor_groups.first.maker.uid
-  end
+  enum hierarchy: {
+    hierarchy_one:   1,
+    hierarchy_two:   2,
+    hierarchy_three: 3,
+    hierarchy_four:  4,
+    hierarchy_five:  5,
+  }
 end

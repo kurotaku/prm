@@ -37,7 +37,6 @@ class MessagesIndex extends React.Component {
   }
 
   handleChange(e, key){
-    console.log('create');
     let target = e.target;
     let value = target.value;
     let form = this.state.form;
@@ -49,7 +48,6 @@ class MessagesIndex extends React.Component {
   }
 
   handleCreate(){
-    console.log('create');
     let body = JSON.stringify({
       message: {
         content: this.state.form.content
@@ -121,7 +119,7 @@ function BoardMessageList(props){
             <li
               key={message.uid}
             >
-              <div className="user-info"><img src={message.user_thumbnail} className="thumb" /><h3>{message.user_name}</h3></div>
+              <div className="user-info"><img src={message.staff_thumbnail} className="thumb" /><h3>{message.staff_name}</h3></div>
               <p className="date">{message.create_datetime}</p>
               <p className="content">{message.content}</p>
             </li>

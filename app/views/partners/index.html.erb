@@ -1,5 +1,13 @@
+<% content_for(:title, 'パートナー一覧') %>
+
 <header class="primary-header d-flex align-items-center">
-  <h1 class="mb-0">直接傘下のパートナー</h1>
+  <div>
+    <h1 class="mb-0">パートナー一覧</h1>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_partner_path, class: 'btn btn-m default before-icon plus' %>
+  </div>
 </header><!-- .primary-header -->
 <div class="secondary-header">
   
@@ -7,6 +15,36 @@
 
 <main class="main-contents">
   
-  <%= render 'table', partners: @partners %>
+  <div class="table-wrap sp-none">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t 'activerecord.attributes.company.name' %></td>
+          <td>サービス連携</td>
+          <td><%= t 'activerecord.attributes.company.hierarchy' %></td>
+          <td><%= t 'activerecord.attributes.company.parent' %></td>
+          <td><%= t 'activerecord.attributes.company.vendor' %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @partners.each do |partner| %>
+          <tr>
+            <td><%= link_to partner.name, partner_path(uid: partner.uid) %></td>
+            <td>
+              <% if partner.organization.present? %>
+                <%= image_tag partner.organization.decorate.thumbnail, class: 'icon-image mr-3' %>
+                <%= partner.organization.name %>
+              <% else %>
+                <span>未連携</span>
+              <% end %>
+            </td>
+            <td><%= partner.hierarchy_i18n %></td>
+            <td><%= partner&.parent&.name %></td>
+            <td><%= partner.vendor_group.decorate.display_name %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div><!-- .table-wrap -->
 
 </main><!-- .main-contents -->

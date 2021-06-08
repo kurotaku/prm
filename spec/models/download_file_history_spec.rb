@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: download_file_histories
@@ -7,19 +9,19 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  shared_file_id :bigint           not null
-#  user_id        :bigint           not null
+#  staff_id       :bigint           not null
 #
 # Indexes
 #
 #  index_download_file_histories_on_shared_file_id  (shared_file_id)
-#  index_download_file_histories_on_user_id         (user_id)
+#  index_download_file_histories_on_staff_id        (staff_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (shared_file_id => shared_files.id)
-#  fk_rails_...  (user_id => users.id)
+#  fk_rails_...  (staff_id => staffs.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe DownloadFileHistory, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"

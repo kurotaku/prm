@@ -1,0 +1,40 @@
+<% content_for(:title, '企業プロフィール設定') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>企業プロフィール設定</h1>
+    <p class="mb-0">企業プロフィールの設定ができます</p>
+  </div>
+</header>
+
+<main class="main-contents">
+  <div class="main-center-col w-100">
+    <div class="contents-box">
+      <h2 class="contents-box-title mb-5">プロフィール情報</h2>
+
+      <%= form_for(@company, url: my_company_profile_path, html: { method: :patch, class: 'form-default auto-submit-form' }, local: true) do |f| %>
+
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="form-group">
+          <p><%= f.label :name %></p>
+          <%= f.text_field :name, class: 'form-control half' %>
+        </div>
+
+        <div class="form-group">
+          <p><%= f.label :address %></p>
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <p><%= f.label :phone %></p>
+          <%= f.text_field :phone, class: 'form-control' %>
+        </div>
+
+        <%= f.submit t('common.update'), class: 'btn btn-m default' %>
+      <% end %>
+
+    </div>
+  </div><!-- .main-center-col -->
+
+</main><!-- .main-contents -->

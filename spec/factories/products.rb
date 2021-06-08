@@ -22,18 +22,18 @@
 #  wholesale_price          :integer
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
-#  maker_group_id           :bigint           not null
+#  vendor_group_id          :bigint           not null
 #
 # Indexes
 #
-#  index_products_on_maker_group_id  (maker_group_id)
+#  index_products_on_vendor_group_id  (vendor_group_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (maker_group_id => maker_groups.id)
+#  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 FactoryBot.define do
   factory :product do
-    maker_group { nil }
+    vendor_group { nil }
   end
 end

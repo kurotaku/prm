@@ -1,0 +1,60 @@
+<% content_for(:title, '組織情報編集') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>組織情報編集</h1>
+    <p class="mb-0">組織情報の設定ができます</p>
+  </div>
+</header>
+
+<main class="main-contents">
+  <div class="main-center-col w-100">
+    <div class="contents-box">
+      <h2 class="contents-box-title mb-5">組織情報</h2>
+
+      <%= form_for(@organization, url: account_setting_organization_path, html: { method: :patch, class: 'form-default auto-submit-form' }, local: true) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="form-group">
+          <p><%= f.label :postcode %></p>
+          <%= f.text_field :postcode, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <p><%= f.label :prefecture_id %></p>
+          <div class="select-wrap">
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, {class: 'form-control'} %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p><%= f.label :address %></p>
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <p><%= f.label :address2 %></p>
+          <%= f.text_field :address2, class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-5">
+          <p class="mb-1"><%= f.label :image %></p>
+
+          <div>
+            <div id="company-thumb" class="image-wrap mb-3">
+              <%= image_tag @organization.image.url if @organization.image.present? %>
+              <%= content_tag(:div, '', class: 'image-remove-btn', data: {target: 'company-thumb'}) if current_user.image.present? %>  
+            </div>
+          </div>
+          <%= f.file_field :image, id: 'file-field', class: 'file-field', data: {image: 'company-thumb'}  %>
+          <%= f.hidden_field :image_cache, data: {image: 'company-thumb'} %>
+          <%= hidden_field_tag :remove_image, params['remove_logo'], class: 'remove_field', data: {image: 'company-thumb'} %>
+        </div>
+
+        <%= f.submit t('common.update'), class: 'btn btn-m default' %>
+      <% end %>
+
+    </div>
+  </div><!-- .main-center-col -->
+
+</main><!-- .main-contents -->

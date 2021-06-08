@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLeadColumnSelectItems < ActiveRecord::Migration[6.1]
   def change
     create_table :lead_column_select_items do |t|

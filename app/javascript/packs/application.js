@@ -17,18 +17,14 @@ var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 
-$(function(){
-  console.log('fire');
+$(document).on('click', '.vendor-info', function(){
+  $('#vendorMenu').toggle();
+  $('#vendorMenuBg').toggle();
 });
 
-$(document).on('click', '.maker-info', function(){
-  $('#makerMenu').toggle();
-  $('#makerMenuBg').toggle();
-});
-
-$(document).on('click', '#makerMenuBg', function(){
-  $('#makerMenu').toggle();
-  $('#makerMenuBg').toggle();
+$(document).on('click', '#vendorMenuBg', function(){
+  $('#vendorMenu').toggle();
+  $('#vendorMenuBg').toggle();
 });
 
 $(document).on('click', '#userIcon', function(){

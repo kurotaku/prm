@@ -37,5 +37,3 @@ RUN bundle install
 ADD . $APP_ROOT
 
 EXPOSE  3000
-
-

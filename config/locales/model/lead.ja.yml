@@ -1,28 +1,31 @@
 ja:
   activerecord:
     models:
-      lead: 案件
+      lead: 商談
     attributes:
       lead:
-        name: 項目名
-        key_name: キー名(CSVで使用)
-        lead: 案件カラム
-        data_type: データのタイプ
-        order: 表示順
-        maker_memo: メーカー側メモ
+        id: ID
+        vendor_group_id: ベンダー
+        vendor_group: ベンダー
+        vendor_memo: ベンダー側メモ
   leads:
     create:
-      success: 案件を作成しました
-      error: 案件を作成できませんでした
+      success: 商談を作成しました
+      error: 商談を作成できませんでした
     update:
-      success: 案件を更新しました
-      error: 案件を更新できませんでした
+      success: 商談を更新しました
+      error: 商談を更新できませんでした
     destroy:
-      success: 案件を削除しました
-      error: 案件を削除できませんでした
+      success: 商談を削除しました
+      error: 商談を削除できませんでした
   lead:
     columns:
-      partner_id: パートナー名
+      company_id: 企業名
+      staff_1_id: 担当者1
+      staff_2_id: 担当者2
+      staff_3_id: 担当者3
+      staff_4_id: 担当者4
+      staff_5_id: 担当者5
       product_id: 商品名
       unique_key: ユニークキー
       progress: 進捗ステータス
@@ -57,3 +60,13 @@ ja:
       integer_3: 整数3
       integer_4: 整数4
       integer_5: 整数5
+      float_1: 小数1
+      float_2: 小数2
+      float_3: 小数3
+      float_4: 小数4
+      float_5: 小数5
+      price_1: 金額1
+      price_2: 金額2
+      price_3: 金額3
+      price_4: 金額4
+      price_5: 金額5

@@ -257,6 +257,7 @@ html{
   background-color: $shade-grey-04;
   min-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 .main-col-white .main-col{
   background-color: white;
@@ -264,7 +265,6 @@ html{
 .secondary-header{
   background-color: white;
   border-bottom: 1px solid $shade-grey-02;
-  border-top: 1px solid $shade-grey-02;
 }
 
 /*=============================
@@ -274,6 +274,7 @@ html{
   padding: 24px;
   position: relative;
   background-color: white;
+  border-bottom: 1px solid $shade-grey-02;
   h1{
     font-size: 2.0rem;
     font-weight: bold;
@@ -1630,9 +1631,9 @@ div.upload-button-group {
 }
 
 /*=============================
-    company logo
+    organization logo
 =============================== */
-.company-logo{
+.organization-logo{
   width: 28px;
   height: 28px;
   border-radius: 100%;
@@ -1646,7 +1647,7 @@ div.upload-button-group {
   border: solid 1px #dcdcde;
 }
 .image-block{
-  &>.company-logo{
+  &>.organization-logo{
     width: 150px;
     height: 150px;
     font-size: 100px;
@@ -1655,7 +1656,7 @@ div.upload-button-group {
   }
 }
 header{
-  &>.company-logo{
+  &>.organization-logo{
     width: 40px;
     height: 40px;
     font-size: 30px;
@@ -1786,9 +1787,9 @@ header{
   #userIcon{
     cursor: pointer;
   }
-  .maker-info{
+  .vendor-info{
     cursor: pointer;
-    .maker-name{
+    .vendor-name{
       color: white;
       font-size: 1.4rem;
       font-weight: 600;
@@ -1833,7 +1834,7 @@ header{
         }
       }
     }
-    &#makerMenu{
+    &#vendorMenu{
       left: 24px;
     }
     &#userMenu{
@@ -1922,7 +1923,7 @@ header{
     display: block;
     margin: 0 auto 20px;
   }
-  .maker-selecter{
+  .vendor-selecter{
     .form-default select{
       background: transparent;
       border: 0;

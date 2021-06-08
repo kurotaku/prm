@@ -1,10 +1,10 @@
 ja:
   activerecord:
     models:
-      download_file_history: 共有ファイル
+      download_file_history: 共有ファイルダウンロード履歴
     attributes:
       download_file_history:
         user: ダウンロードした人
         file: 共有ファイル
-        company: 所属企業
+        Organization: 所属企業
         created_at: ダウンロード日時

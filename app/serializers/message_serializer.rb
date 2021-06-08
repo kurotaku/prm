@@ -11,30 +11,30 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  board_id   :bigint           not null
-#  user_id    :bigint           not null
+#  staff_id   :bigint           not null
 #
 # Indexes
 #
 #  index_messages_on_board_id  (board_id)
-#  index_messages_on_user_id   (user_id)
+#  index_messages_on_staff_id  (staff_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (board_id => boards.id)
-#  fk_rails_...  (user_id => users.id)
+#  fk_rails_...  (staff_id => staffs.id)
 #
 class MessageSerializer < ActiveModel::Serializer
-  attributes :uid, :content, :create_datetime, :user_name, :user_thumbnail
+  attributes :uid, :content, :create_datetime, :staff_name, :staff_thumbnail
 
   def create_datetime
     object.created_at.strftime("%Y/%m/%d/ %H:%M")
   end
 
-  def user_name
-    object.user.user_profile.name
+  def staff_name
+    object.staff.name
   end
 
-  def user_thumbnail
-    object.user.decorate.thumbnail
+  def staff_thumbnail
+    object.staff.decorate.thumbnail
   end
 end

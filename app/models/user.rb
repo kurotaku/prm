@@ -28,17 +28,17 @@
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  company_id             :bigint           not null
+#  organization_id        :bigint           not null
 #
 # Indexes
 #
-#  index_users_on_company_id            (company_id)
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_organization_id       (organization_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 # Foreign Keys
 #
-#  fk_rails_...  (company_id => companies.id)
+#  fk_rails_...  (organization_id => organizations.id)
 #
 class User < ApplicationRecord
   include Uniqueable
@@ -47,11 +47,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-  belongs_to :company
-  has_one :user_profile
-  has_many :shared_files
+  belongs_to :organization
+  has_many :staffs
 
-  after_create :create_user_profile
+  # after_create :create_user_profile
 
   enum role: {
     level_one:   10,
@@ -62,17 +61,16 @@ class User < ApplicationRecord
   }
 
   enum account_type: {
-    normal:   10,
+    normal: 10,
     demo:   20,
-    admin: 30,
+    admin:  30,
   }
 
   mount_uploader :image, ImageUploader
 
-  def create_user_profile
-    return if user_profile.present?
-    profile = build_user_profile(company_id: company_id, name: name)
-    profile.save!
-  end
-
+  # def create_user_profile
+  #   return if @current_vendor_group.blank?
+  #   return if vendor_group_user_infos.where(vendor_group_id: @current_vendor_group.id).any?
+  #   user_info = @current_vendor_group.user_infos.create!(Organization_id: Organization_id, name: name)
+  # end
 end

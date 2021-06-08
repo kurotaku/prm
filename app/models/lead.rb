@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: leads
@@ -9,12 +11,22 @@
 #  datetime_3        :datetime
 #  datetime_4        :datetime
 #  datetime_5        :datetime
+#  float_1           :float(24)
+#  float_2           :float(24)
+#  float_3           :float(24)
+#  float_4           :float(24)
+#  float_5           :float(24)
 #  index_cache       :text(65535)
 #  integer_1         :integer
 #  integer_2         :integer
 #  integer_3         :integer
 #  integer_4         :integer
 #  integer_5         :integer
+#  price_1           :float(24)
+#  price_2           :float(24)
+#  price_3           :float(24)
+#  price_4           :float(24)
+#  price_5           :float(24)
 #  progress          :integer
 #  show_cache        :text(65535)
 #  string_1          :string(255)
@@ -28,10 +40,10 @@
 #  text_4            :text(65535)
 #  text_5            :text(65535)
 #  unique_key        :string(255)
+#  vendor_memo       :text(65535)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  maker_group_id    :bigint           not null
-#  partner_id        :bigint
+#  company_id        :bigint
 #  prefecture_1_id   :bigint
 #  prefecture_2_id   :bigint
 #  prefecture_3_id   :bigint
@@ -46,31 +58,38 @@
 #  select_item_7_id  :bigint
 #  select_item_8_id  :bigint
 #  select_item_9_id  :bigint
+#  staff_1_id        :bigint
+#  staff_2_id        :bigint
+#  staff_3_id        :bigint
+#  vendor_group_id   :bigint           not null
 #
 # Indexes
 #
-#  index_leads_on_maker_group_id     (maker_group_id)
-#  index_leads_on_partner_id         (partner_id)
-#  index_leads_on_prefecture_1_id    (prefecture_1_id)
-#  index_leads_on_prefecture_2_id    (prefecture_2_id)
-#  index_leads_on_prefecture_3_id    (prefecture_3_id)
-#  index_leads_on_product_id         (product_id)
-#  index_leads_on_progress           (progress)
-#  index_leads_on_select_item_10_id  (select_item_10_id)
-#  index_leads_on_select_item_1_id   (select_item_1_id)
-#  index_leads_on_select_item_2_id   (select_item_2_id)
-#  index_leads_on_select_item_3_id   (select_item_3_id)
-#  index_leads_on_select_item_4_id   (select_item_4_id)
-#  index_leads_on_select_item_5_id   (select_item_5_id)
-#  index_leads_on_select_item_6_id   (select_item_6_id)
-#  index_leads_on_select_item_7_id   (select_item_7_id)
-#  index_leads_on_select_item_8_id   (select_item_8_id)
-#  index_leads_on_select_item_9_id   (select_item_9_id)
+#  index_leads_on_company_id                 (company_id)
+#  index_leads_on_prefecture_1_id            (prefecture_1_id)
+#  index_leads_on_prefecture_2_id            (prefecture_2_id)
+#  index_leads_on_prefecture_3_id            (prefecture_3_id)
+#  index_leads_on_product_id                 (product_id)
+#  index_leads_on_progress                   (progress)
+#  index_leads_on_select_item_10_id          (select_item_10_id)
+#  index_leads_on_select_item_1_id           (select_item_1_id)
+#  index_leads_on_select_item_2_id           (select_item_2_id)
+#  index_leads_on_select_item_3_id           (select_item_3_id)
+#  index_leads_on_select_item_4_id           (select_item_4_id)
+#  index_leads_on_select_item_5_id           (select_item_5_id)
+#  index_leads_on_select_item_6_id           (select_item_6_id)
+#  index_leads_on_select_item_7_id           (select_item_7_id)
+#  index_leads_on_select_item_8_id           (select_item_8_id)
+#  index_leads_on_select_item_9_id           (select_item_9_id)
+#  index_leads_on_staff_1_id                 (staff_1_id)
+#  index_leads_on_staff_2_id                 (staff_2_id)
+#  index_leads_on_staff_3_id                 (staff_3_id)
+#  index_leads_on_unique_key_and_product_id  (unique_key,product_id) UNIQUE
+#  index_leads_on_vendor_group_id            (vendor_group_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (maker_group_id => maker_groups.id)
-#  fk_rails_...  (partner_id => partners.id)
+#  fk_rails_...  (company_id => companies.id)
 #  fk_rails_...  (prefecture_1_id => prefectures.id)
 #  fk_rails_...  (prefecture_2_id => prefectures.id)
 #  fk_rails_...  (prefecture_3_id => prefectures.id)
@@ -85,10 +104,17 @@
 #  fk_rails_...  (select_item_7_id => lead_column_select_items.id)
 #  fk_rails_...  (select_item_8_id => lead_column_select_items.id)
 #  fk_rails_...  (select_item_9_id => lead_column_select_items.id)
+#  fk_rails_...  (staff_1_id => staffs.id)
+#  fk_rails_...  (staff_2_id => staffs.id)
+#  fk_rails_...  (staff_3_id => staffs.id)
+#  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 class Lead < ApplicationRecord
-  belongs_to :maker_group
+  include ActionView::Helpers::NumberHelper
+
+  belongs_to :vendor_group
   belongs_to :product
+  belongs_to :company
 
   belongs_to :select_item_1, class_name: "LeadColumnSelectItem", optional: true
   belongs_to :select_item_2, class_name: "LeadColumnSelectItem", optional: true
@@ -96,23 +122,38 @@ class Lead < ApplicationRecord
   belongs_to :select_item_4, class_name: "LeadColumnSelectItem", optional: true
   belongs_to :select_item_5, class_name: "LeadColumnSelectItem", optional: true
 
+  belongs_to :staff_1, class_name: "Staff", optional: true
+  belongs_to :staff_2, class_name: "Staff", optional: true
+  belongs_to :staff_3, class_name: "Staff", optional: true
+
   serialize :index_cache, Hash
 
   before_save :store_index_cache
 
+  validates :unique_key, allow_nil: true, uniqueness: { scope: :product_id, message: "が既に使われています" }
+
   def store_index_cache
-    return if product.blank?
     hash = {}
-    product.lead_columns.where.not(index_page_order: nil).order(index_page_order: 'ASC').each do |lead_column|
+    vendor_group.lead_columns.where.not(index_page_order: nil).order(index_page_order: "ASC").each do |lead_column|
       col = lead_column.lead_attribute
+      # p I18n.t('lead.columns.' + col)
       case lead_column.data_type
-      when 'partner'
-        hash[col] = Partner.find_by(id: self[col])&.name
-      when 'select_item'
+      when "company"
+        hash[col] = Company.find_by(id: self[col])&.name
+      when "product"
+        hash[col] = Product.find_by(id: self[col])&.name
+      when "staff"
+        hash[col] = Staff.find_by(id: self[col])&.name
+      when "select_item"
         hash[col] = LeadColumnSelectItem.find_by(id: self[col])&.name
+      when "unique_key", "string", "text", "integer", "float"
+        hash[col] = self[col]
+      when "price"
+        hash[col] = number_to_currency(self[col])
+      when "datetime"
+        hash[col] = self[col]&.strftime("%Y/%m/%d")
       end
       self.index_cache = hash
     end
   end
-
 end

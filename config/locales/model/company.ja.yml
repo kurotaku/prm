@@ -5,31 +5,39 @@ ja:
     attributes:
       company:
         uid: ID
-        name: 会社名
-        name_kana: 会社名(かな)
-        postcode: 郵便番号
-        prefecture: 都道府県
-        prefecture_id: 住所（都道府県）
-        address: 住所（市区町村、番地）
-        address2: 住所（建物名など）
-        phone: 電話番号
-        fax: FAX番号
-        email: メールアドレス
-        settlement_month: 決算月
-        contract_type: 契約タイプ
-        image: ロゴ
+        name: 企業名
+        image: 企業ロゴ
+        address: 住所
+        parent: 上位店
+        parent_id: 上位店
+        hierarchy: 階層
+        vendor_memo: ベンダーメモ
+        vendor: ベンダー
   enums:
     company:
-      contract_type:
-        partner: パートナー
-        maker: メーカー
+      hierarchy:
+        hierarchy_one: 1次店
+        hierarchy_two: 2次店
+        hierarchy_three: 3次店
+        hierarchy_four: 4次店
+        hierarchy_five: 5次店
   companies:
     create:
-      success: 企業情報を作成しました
-      error: 企業情報を作成できませんでした
+      success: 企業を作成しました
+      error: 企業を作成できませんでした
     update:
-      success: 企業情報を更新しました
-      error: 企業情報を更新できませんでした
+      success: 企業を更新しました
+      error: 企業を更新できませんでした
     destroy:
       success: 企業を削除しました
       error: 企業を削除できませんでした
+  partners:
+    create:
+      success: パートナー企業を作成しました
+      error: パートナー企業を作成できませんでした
+    update:
+      success: パートナー企業を更新しました
+      error: パートナー企業を更新できませんでした
+    destroy:
+      success: パートナー企業を削除しました
+      error: パートナー企業を削除できませんでした

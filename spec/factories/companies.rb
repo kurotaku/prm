@@ -1,39 +1,37 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: companies
 #
-#  id               :bigint           not null, primary key
-#  address          :string(255)
-#  address2         :string(255)
-#  contract_type    :integer          default("partner"), not null
-#  coprate_number   :string(255)
-#  deleted_at       :datetime
-#  email            :string(255)
-#  fax              :string(255)
-#  image            :string(255)
-#  name             :string(255)
-#  name_kana        :string(255)
-#  phone            :string(255)
-#  postcode         :string(255)
-#  settlement_month :integer
-#  status           :integer          default(10), not null
-#  uid              :string(255)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  prefecture_id    :bigint
+#  id              :bigint           not null, primary key
+#  address         :string(255)
+#  address2        :string(255)
+#  contract_type   :integer          default("partner"), not null
+#  deleted_at      :datetime
+#  hierarchy       :integer          default("hierarchy_one")
+#  name            :string(255)
+#  phone           :string(255)
+#  status          :integer          default(10), not null
+#  uid             :string(255)
+#  vendor_memo     :text(65535)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  organization_id :bigint
+#  parent_id       :bigint
+#  vendor_group_id :bigint           not null
 #
 # Indexes
 #
-#  index_companies_on_prefecture_id  (prefecture_id)
+#  index_companies_on_organization_id  (organization_id)
+#  index_companies_on_parent_id        (parent_id)
+#  index_companies_on_vendor_group_id  (vendor_group_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (prefecture_id => prefectures.id)
+#  fk_rails_...  (parent_id => companies.id)
+#  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 FactoryBot.define do
   factory :company do
-    prefecture { nil }
+    vendor_group { nil }
   end
 end

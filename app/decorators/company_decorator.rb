@@ -1,10 +1,11 @@
-# frozen_string_literal: true
-
 class CompanyDecorator < ApplicationDecorator
-  include ActionView::Helpers::AssetUrlHelper
   delegate_all
 
+  def display_hierarchy
+    object.hierarchy.to_s + "次店"
+  end
+
   def thumbnail
-    image? ? image.thumb.url :  helpers.asset_path("company_default.png")
+    object.organization.present? ? organization.decorate.thumbnail : helpers.asset_path("company_default.png")
   end
 end

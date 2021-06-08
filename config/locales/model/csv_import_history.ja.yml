@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      csv_import_history: CSVインポート履歴
+    attributes:
+      csv_import_history:
+        id: ID
+        vendor_group_id: ベンダー
+        vendor_group: ベンダー
+        related_object: 関連モデル
+        created_at: インポート日時
+  enums:
+    csv_import_history:
+      related_object:
+        partner: パートナー
+        vendor_group_user_info: ユーザー情報
+        product: 商品
+        lead: 商談
+  csv_import_histories:
+    create:
+      success: "CSVのインポートが完了しました"
+      error: "CSVのインポートに失敗しました"

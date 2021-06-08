@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CreateSharedFiles < ActiveRecord::Migration[6.1]
   def change
     create_table :shared_files do |t|
-      t.references :maker_group, null: false, foreign_key: true
-      t.references :user, null: false, foreign_key: true
+      t.references :vendor_group, null: false, foreign_key: true
+      t.references :staff, null: false, foreign_key: true
       t.string :uid
       t.string :file
       t.string :file_name

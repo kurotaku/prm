@@ -1,0 +1,4 @@
+<ul class="tab-menu-list">
+  <li class="<%= 'current' if controller_path == 'files' %>"><%= link_to 'ファイル情報', file_path(uid: @file.uid) %></li>
+  <li class="<%= 'current' if controller_path == 'files/download_histories' %>"><%= link_to 'ダウンロード履歴', files_download_histories_path(uid: @file.uid) %></li>
+</ul>
