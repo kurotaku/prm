@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_30_084814) do
+ActiveRecord::Schema.define(version: 2021_06_08_040657) do
 
   create_table "boards", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
   end
 
   create_table "csv_import_histories", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "staff_id", null: false
+    t.bigint "staff_id"
     t.bigint "vendor_group_id", null: false
     t.integer "related_object", default: 10, null: false
     t.string "file_name"
@@ -267,6 +267,16 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
     t.index ["vendor_group_id"], name: "index_staffs_on_vendor_group_id"
   end
 
+  create_table "triggers", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "vendor_group_id", null: false
+    t.integer "trigger_type"
+    t.string "trigger_attribute_name"
+    t.string "trigger_attribute_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["vendor_group_id"], name: "index_triggers_on_vendor_group_id"
+  end
+
   create_table "user_action_permissions", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.bigint "user_action_id", null: false
@@ -363,6 +373,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_084814) do
   add_foreign_key "staffs", "companies"
   add_foreign_key "staffs", "users"
   add_foreign_key "staffs", "vendor_groups"
+  add_foreign_key "triggers", "vendor_groups"
   add_foreign_key "user_action_permissions", "organizations"
   add_foreign_key "user_action_permissions", "user_actions"
   add_foreign_key "users", "organizations"

@@ -2,7 +2,7 @@
 
 class AdminPage::OrganizationsController < AdminPage::AdminPageController
   def index
-    @organizations = organization.all.order(created_at: "DESC").page(params[:page]).per(10).decorate
+    @organizations = Organization.all.order(created_at: "DESC").page(params[:page]).per(10).decorate
   end
 
   def new

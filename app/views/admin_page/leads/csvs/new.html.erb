@@ -13,7 +13,7 @@
     <div class="form-group">
       <p><%= f.label :vendor_group_id, 'ベンダー' %></p>
       <div class="select-wrap">
-        <%= f.collection_select :vendor_group_id, @vendor_group, :id, :maker_name, {},{class: 'form-control disabled'} %>
+        <%= f.collection_select :vendor_group_id, @vendor_group, :id, :display_name, {},{class: 'form-control disabled'} %>
       </div>
     </div>
 

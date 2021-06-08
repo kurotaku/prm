@@ -8,7 +8,7 @@
 #  related_object  :integer          default("partner"), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  staff_id        :bigint           not null
+#  staff_id        :bigint
 #  vendor_group_id :bigint           not null
 #
 # Indexes

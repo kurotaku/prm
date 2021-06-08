@@ -11,7 +11,7 @@
   <%= form_with(url: new_admin_page_leads_csv_path, html: { method: :get, class: 'form-default d-flex align-items-start ml-auto' }) do |f| %>
     <div class="form-group mr-3">
       <div class="select-wrap">
-        <%= f.collection_select :vendor_group_id, VendorGroup.all.decorate, :id, :maker_name, {include_blank: '---'},{class: 'form-control'} %>
+        <%= f.collection_select :vendor_group_id, VendorGroup.all.decorate, :id, :display_name, {include_blank: '---'},{class: 'form-control'} %>
       </div>
     </div>
     <%= submit_tag t('common.new'), class: 'btn btn-m default' %>
@@ -28,7 +28,7 @@
   <%= form_tag '#', method: :get, class: 'form-default d-flex mw-100' do %>
     <div class="form-group ml-auto">
       <div class="select-wrap">
-        <%= collection_select '', :organization_id, organization.all, :id, :name, {include_blank: '企業名', selected: params[:organization_id]},{class: 'form-control mb-0 autoSubmit'} %>
+        <%= collection_select '', :organization_id, Organization.all, :id, :name, {include_blank: '企業名', selected: params[:organization_id]},{class: 'form-control mb-0 autoSubmit'} %>
       </div>
     </div>
     <%#= link_to '検索条件をクリア', request.path, class: 'btn btn-m border-gray mb-0 mb-md-4' %>
@@ -48,7 +48,7 @@
         <% @csvs.each do |csv| %>
           <tr>
             <td><%= csv.id %></td>
-            <td><%= csv.vendor_group.maker.name %></td>
+            <td><%= csv.vendor_group.decorate.display_name %></td>
             <td><%= csv.created_at.strftime('%Y/%m/%d %H:%M') %></td>
             </td>
           </tr>
