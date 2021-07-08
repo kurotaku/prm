@@ -1,35 +1,3 @@
-# 環境構築
-
-### git clone
-
-```
-git clone このリポジトリ
-```
-
-### Docker ビルド、立ち上げ
-
-```
-docker-compose up --build
-```
-
-### Database 作成
-
-```
-docker-compose exec app rails db:create
-```
-
-### Migrate
-
-```
-docker-compose exec app rails db:migrate
-```
-
-### Seed
-
-```
-docker-compose exec app rails db:seed
-```
-
 # 概要
 ### 代理店営業管理クラウド
 
@@ -96,4 +64,34 @@ RDS
 # ER図
 ![erd](https://user-images.githubusercontent.com/15335845/124859398-d42d1e00-dfea-11eb-9fbd-36d72f816564.png)
 
+# 環境構築
 
+### git clone
+
+```
+git clone このリポジトリ
+```
+
+### Docker ビルド、立ち上げ
+
+```
+docker-compose up --build
+```
+
+### Database 作成
+
+```
+docker-compose exec app rails db:create
+```
+
+### Migrate
+
+```
+docker-compose exec app rails db:migrate
+```
+
+### Seed
+
+```
+docker-compose exec app rails db:seed
+```
