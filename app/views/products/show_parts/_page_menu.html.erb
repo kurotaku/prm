@@ -1,5 +1,4 @@
 <ul class="tab-menu-list">
-  <li class="<%= 'current' if controller_path == 'vendor_page/products' %>"><%= link_to '商品情報', vendor_page_product_path(uid: @product.uid) %></li>
-  <li class="<%= 'current' if controller_path == 'vendor_page/products/leads' %>"><%= link_to '商談', vendor_page_products_leads_path(uid: @product.uid) %></li>
-  <li class="<%= 'current' if controller_path == 'vendor_page/products/lead_columns' %>"><%= link_to '商談項目', vendor_page_products_lead_columns_path(uid: @product.uid) %></li>
+  <li class="<%= 'current' if controller_path == 'products' %>"><%= link_to '商品情報', product_path(uid: @product.uid) %></li>
+  <li class="<%= 'current' if controller_path == 'products/lead_phases' %>"><%= link_to '商談フェーズ', products_lead_phases_path(uid: @product.uid) %></li>
 </ul>

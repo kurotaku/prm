@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       company: 企業
+      partner: パートナー
     attributes:
       company:
         uid: ID
@@ -11,6 +12,8 @@ ja:
         parent: 上位店
         parent_id: 上位店
         hierarchy: 階層
+        sales_amount: 総売上数
+        sales_price_amount: 総売上高
         vendor_memo: ベンダーメモ
         vendor: ベンダー
   enums:

@@ -1,9 +1,12 @@
 <nav class="main-menu">
   <ul class="main-menu-list">
-    <li><%= link_to 'ホーム', dashboards_path %></li>
-    <li><%= link_to '商品管理', products_path %></li>
-    <li><%= link_to 'パートナー管理', partners_path %></li>
-    <li><%= link_to '商談管理', leads_path %></li>
-    <li><%= link_to 'ファイル管理', files_path %></li>
+    <li class="<%= 'current' if controller_path == 'dashboards' %>"><%= link_to 'ダッシュボード', dashboards_path %></li>
+    <li class="<%= 'current' if controller_path == 'products' %>"><%= link_to '商品', products_path %></li>
+    <li class="<%= 'current' if controller_path == 'partners' %>"><%= link_to 'パートナー', partners_path %></li>
+    <li class="<%= 'current' if controller_path == 'staffs' %>"><%= link_to '担当者', staffs_path %></li>
+    <li class="<%= 'current' if controller_path == 'leads' %>"><%= link_to '商談', leads_path %></li>
+    <li class="<%= 'current' if controller_path == 'files' %>"><%= link_to 'ファイル管理', files_path %></li>
+    <li class="<%= 'current' if controller_path == 'contracts' %>"><%= link_to '契約', contracts_path %></li>
+    <li class="<%= 'current' if controller_path == 'reports' %>"><%= link_to 'レポート', reports_partners_path %></li>
   </ul>
 </nav><!-- .main-menu -->

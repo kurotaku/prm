@@ -23,7 +23,6 @@
 #  reset_password_token   :string(255)
 #  role                   :integer          default("level_one"), not null
 #  sign_in_count          :integer          default(0), not null
-#  status                 :integer          default(10), not null
 #  uid                    :string(255)
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
@@ -42,5 +41,9 @@
 #
 FactoryBot.define do
   factory :user do
+    name { "MyString" }
+    sequence(:email) { |n| "sample#{n}@sample.com" }
+    password              { 'password' }
+    confirmed_at { Time.zone.now }
   end
 end

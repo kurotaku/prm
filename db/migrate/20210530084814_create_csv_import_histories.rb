@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCsvImportHistories < ActiveRecord::Migration[6.1]
   def change
     create_table :csv_import_histories do |t|

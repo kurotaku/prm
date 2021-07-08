@@ -2,10 +2,8 @@
 
 class ApplicationDecorator < Draper::Decorator
   include ActionView::Helpers::AssetUrlHelper
-  # Define methods for all decorated objects.
-  # Helpers are accessed through `helpers` (aka `h`). For example:
-  #
-  #   def percent_amount
-  #     h.number_to_percentage object.amount, precision: 2
-  #   end
+
+  def display_name
+    object.name.present? ? object.name : "(\u540D\u79F0\u672A\u8A2D\u5B9A)"
+  end
 end

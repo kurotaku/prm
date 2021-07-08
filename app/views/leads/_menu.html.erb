@@ -1,0 +1,4 @@
+<ul class="tab-menu-list">
+  <li class="<%= 'current' if controller_path == 'leads' %>"><%= link_to '商談', leads_path %></li>
+  <li class="<%= 'current' if controller_path == 'leads/csvs' %>"><%= link_to 'CSV', leads_csvs_path %></li>
+</ul>

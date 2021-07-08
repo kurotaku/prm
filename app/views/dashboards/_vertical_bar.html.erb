@@ -1,0 +1,58 @@
+<canvas id="chart<%= gadget.uid %>"></canvas>
+<style>
+  #chart<%= gadget.uid %>{
+    width: 100% !important;
+  }
+</style>
+<script>
+var ctx = document.getElementById('chart<%= gadget.uid %>').getContext('2d');
+
+var windowWidth = $(window).width();
+if(windowWidth > 678){
+  ctx.canvas.height = 320;
+}else{
+  ctx.canvas.height = 240;
+}
+
+var paths = <%= raw @current_vendor_group.partners.pluck(:stacked_1).to_json %>;
+var data = {
+  labels: <%= raw chart_data[:label] %>,
+  datasets: [
+    {
+      label: '<%= gadget.name %>',
+      data: <%= raw chart_data[:data] %>,
+      backgroundColor: '#E06674',
+    }
+  ]
+};
+
+var config = {
+  type: 'bar',
+  data: data,
+  options: {
+    indexAxis: 'x',
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'end',
+      },
+      title: {
+        display: true,
+        text: '<%= gadget.name %>'
+      }
+    },
+    onClick: function(evt){
+      var activePoints = hoge.getElementsAtEventForMode(evt, 'point', hoge.options);
+      if(activePoints.length > 0){
+        window.location.href = paths[activePoints[0].index]
+      }
+    }
+  },
+};
+
+var hoge = new Chart(
+  ctx,
+  config
+)
+</script>

@@ -1,0 +1,76 @@
+<canvas id="chart<%= gadget.uid %>"></canvas>
+<style>
+  #chart<%= gadget.uid %>{
+    width: 100% !important;
+  }
+</style>
+<script>
+var ctx = document.getElementById('chart<%= gadget.uid %>').getContext('2d');
+
+var windowWidth = $(window).width();
+if(windowWidth > 678){
+  ctx.canvas.height = 320;
+}else{
+  ctx.canvas.height = 240;
+}
+
+var colors = ['#E06674', '#F39EA7', '#42628E', '#80B5DD', '#ECA35E', '#F6C27C', '#589F94', '#93C1BA']
+
+var paths = [];
+var datasets = [];
+
+var products_sales_price_amount = <%= raw chart_data[:data].to_json %>;
+var index = 0;
+for (var key in products_sales_price_amount) {
+  if (products_sales_price_amount.hasOwnProperty(key)) {
+    datasets.push({
+      label: key,
+      data: products_sales_price_amount[key],
+      backgroundColor: colors[index],
+    });
+    index ++;
+  }
+}
+
+var data = {
+  datasets: datasets,
+};
+
+var config = {
+  type: 'bar',
+  data: data,
+  options: {
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'end',
+      },
+      title: {
+        display: true,
+        text: '<%= gadget.name %>'
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true
+      }
+    },
+    onClick: function(evt){
+      var activePoints = moge.getElementsAtEventForMode(evt, 'point', moge.options);
+      if(activePoints.length > 0){
+        window.location.href = paths[activePoints[0].index]
+      }
+    }
+  }
+};
+
+var moge = new Chart(
+  ctx,
+  config
+)
+
+</script>

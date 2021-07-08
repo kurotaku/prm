@@ -21,14 +21,11 @@ ja:
   lead:
     columns:
       company_id: 企業名
-      staff_1_id: 担当者1
-      staff_2_id: 担当者2
-      staff_3_id: 担当者3
-      staff_4_id: 担当者4
-      staff_5_id: 担当者5
+      salesperson_id: 営業担当
+      staff_id: 担当者1
       product_id: 商品名
       unique_key: ユニークキー
-      progress: 進捗ステータス
+      lead_phase_id: 商談フェーズ
       select_item_1_id: 選択肢1
       select_item_2_id: 選択肢2
       select_item_3_id: 選択肢3

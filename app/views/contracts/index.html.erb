@@ -1,0 +1,68 @@
+<% content_for(:title, t('activerecord.models.contract') + '一覧') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div class="d-flex align-items-center">
+    <h1 class="mb-0 mr-3"><%= t('activerecord.models.contract') %></h1>
+    <div class="text-sl">全件数:<%= @contracts.total_count %>件</div>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_contract_path, class: 'btn btn-s default mr-2' %>
+    <%#= content_tag(:button, t('common.new'), class: 'btn btn-s default', id: 'modalOpen') %>
+  </div>
+  <script>
+    $('#modalOpen').modaal({
+      type: 'inline',
+      content_source: '#modal-content',
+    });
+  </script>
+
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+  
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <% @index_columns.each do |index_column| %>
+            <td><%= index_column.name %></td>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @contracts.each do |contract| %>
+          <tr class="clickable-tr" data-menu-item-path="<%= contract_path(uid: contract.uid) %>">
+            <% @index_columns.each do |index_column| %>
+              <%= render 'table_columns/table_data', table_column: index_column, object: contract %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+  <div class="d-flex">
+    <%= paginate @contracts %>
+  </div>
+
+</main><!-- .main-contents -->
+
+<div id="modal-content" class="approval-content bg-white p-3" style="display: none;">
+  <%= form_with(url: new_contract_path, html: { method: :get, class: 'form-default' }) do |f| %>
+    <div class="form-group">
+      <p><%= f.label :company_uid, "パートナー" %></p>
+      <div class="select-wrap">
+        <%= f.collection_select :company_uid, @partners, :uid, :name, {include_blank: '---'},{class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :product_uid, "商品" %></p>
+      <div class="select-wrap">
+        <%= f.collection_select :product_uid, @products, :uid, :name, {include_blank: '---'},{class: 'form-control'} %>
+      </div>
+    </div>
+    <%= submit_tag t('common.new'), class: 'btn btn-m default' %>
+  <% end %>       
+</div>

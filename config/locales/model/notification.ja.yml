@@ -1,0 +1,38 @@
+ja:
+  activerecord:
+    models:
+      notification: お知らせ
+    attributes:
+      notification:
+        login_mode: 閲覧できるログインモード
+        title: 件名
+        message: 本文
+        description: 概要
+        company_id: 送信先企業
+        notification_type: お知らせ種別
+        viewable_permission: 閲覧権限
+        link_type: リンクタイプ
+        published_at: 受信日時
+        company: 送信先企業
+        created_at: データ作成日時
+        updated_at: 更新日時
+        uid: UID
+        related_object_uid: 関連データUID
+        id: ID
+        related_user_id: 関連メンバーID
+        related_user: 関連メンバー
+        related_object: 関連オブジェクト
+        reads_count: 閲覧数
+  enums:
+    notification:
+      login_mode:
+        partner: 代理店モード
+        vendor: ベンダーモード
+        all_company: 全ログインモード対象
+      notification_type:
+        activity: アクティビティ
+        management_notice: 運営からのお知らせ
+  notifications:
+    notifications_for_vendor:
+      notify_title: "%{name} さんが %{lead_unique_key} の案件を新規登録しました。"
+      notify_description: "案件：%{lead_unique_key}"

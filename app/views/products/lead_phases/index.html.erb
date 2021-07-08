@@ -1,0 +1,32 @@
+<% content_for(:title, '商品詳細') %>
+
+<div class="secondary-header">
+  <%= render 'products/show_parts/page_menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0"><%= @product.name %></h1>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td></td>
+          <td><%= t 'activerecord.attributes.lead_phase.name' %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lead_phases.each do |lead_phase| %>
+          <tr>
+            <td>
+              <%= react_component 'using_lead_phase/UsingLeadPhase', using: @product.using_lead_phase?(lead_phase), product_id: @product.id, lead_phase_id: lead_phase.id %>
+            </td>
+            <td><%= lead_phase.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+</main><!-- .main-contents -->

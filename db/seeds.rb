@@ -18,275 +18,294 @@
 
 ApplicationRecord.transaction do
   ##########################
-  # 都道府県マスタ
-  ##########################
-  p '=== Prefucture ==='
-  Prefecture.find_or_create_by(id: 1, code: '01', name: '北海道')
-  Prefecture.find_or_create_by(id: 2, code: '02', name: '青森県')
-  Prefecture.find_or_create_by(id: 3, code: '03', name: '岩手県')
-  Prefecture.find_or_create_by(id: 4, code: '04', name: '宮城県')
-  Prefecture.find_or_create_by(id: 5, code: '05', name: '秋田県')
-  Prefecture.find_or_create_by(id: 6, code: '06', name: '山形県')
-  Prefecture.find_or_create_by(id: 7, code: '07', name: '福島県')
-  Prefecture.find_or_create_by(id: 8, code: '08', name: '茨城県')
-  Prefecture.find_or_create_by(id: 9, code: '09', name: '栃木県')
-  Prefecture.find_or_create_by(id: 10, code: '10', name: '群馬県')
-  Prefecture.find_or_create_by(id: 11, code: '11', name: '埼玉県')
-  Prefecture.find_or_create_by(id: 12, code: '12', name: '千葉県')
-  Prefecture.find_or_create_by(id: 13, code: '13', name: '東京都')
-  Prefecture.find_or_create_by(id: 14, code: '14', name: '神奈川県')
-  Prefecture.find_or_create_by(id: 15, code: '15', name: '新潟県')
-  Prefecture.find_or_create_by(id: 16, code: '16', name: '富山県')
-  Prefecture.find_or_create_by(id: 17, code: '17', name: '石川県')
-  Prefecture.find_or_create_by(id: 18, code: '18', name: '福井県')
-  Prefecture.find_or_create_by(id: 19, code: '19', name: '山梨県')
-  Prefecture.find_or_create_by(id: 20, code: '20', name: '長野県')
-  Prefecture.find_or_create_by(id: 21, code: '21', name: '岐阜県')
-  Prefecture.find_or_create_by(id: 22, code: '22', name: '静岡県')
-  Prefecture.find_or_create_by(id: 23, code: '23', name: '愛知県')
-  Prefecture.find_or_create_by(id: 24, code: '24', name: '三重県')
-  Prefecture.find_or_create_by(id: 25, code: '25', name: '滋賀県')
-  Prefecture.find_or_create_by(id: 26, code: '26', name: '京都府')
-  Prefecture.find_or_create_by(id: 27, code: '27', name: '大阪府')
-  Prefecture.find_or_create_by(id: 28, code: '28', name: '兵庫県')
-  Prefecture.find_or_create_by(id: 29, code: '29', name: '奈良県')
-  Prefecture.find_or_create_by(id: 30, code: '30', name: '和歌山県')
-  Prefecture.find_or_create_by(id: 31, code: '31', name: '鳥取県')
-  Prefecture.find_or_create_by(id: 32, code: '32', name: '島根県')
-  Prefecture.find_or_create_by(id: 33, code: '33', name: '岡山県')
-  Prefecture.find_or_create_by(id: 34, code: '34', name: '広島県')
-  Prefecture.find_or_create_by(id: 35, code: '35', name: '山口県')
-  Prefecture.find_or_create_by(id: 36, code: '36', name: '徳島県')
-  Prefecture.find_or_create_by(id: 37, code: '37', name: '香川県')
-  Prefecture.find_or_create_by(id: 38, code: '38', name: '愛媛県')
-  Prefecture.find_or_create_by(id: 39, code: '39', name: '高知県')
-  Prefecture.find_or_create_by(id: 40, code: '40', name: '福岡県')
-  Prefecture.find_or_create_by(id: 41, code: '41', name: '佐賀県')
-  Prefecture.find_or_create_by(id: 42, code: '42', name: '長崎県')
-  Prefecture.find_or_create_by(id: 43, code: '43', name: '熊本県')
-  Prefecture.find_or_create_by(id: 44, code: '44', name: '大分県')
-  Prefecture.find_or_create_by(id: 45, code: '45', name: '宮崎県')
-  Prefecture.find_or_create_by(id: 46, code: '46', name: '鹿児島県')
-  Prefecture.find_or_create_by(id: 47, code: '47', name: '沖縄県')
-
-  ##########################
-  # ユーザーアクション
-  ##########################
-  p '=== UserAction ==='
-  UserAction.find_or_create_by!(name: '自社プロフィール閲覧', ctrl_path: 'organization_page/organization', act_path:'show')
-  UserAction.find_or_create_by!(name: '自社プロフィール編集', ctrl_path: 'organization_page/organization', act_path:'update')
-  UserAction.find_or_create_by!(name: '社員名簿一覧', ctrl_path: 'organization_page/user_profiles', act_path:'index')
-  UserAction.find_or_create_by!(name: '社員名簿作成', ctrl_path: 'organization_page/user_profiles', act_path:'create')
-  UserAction.find_or_create_by!(name: '社員アカウント一覧', ctrl_path: 'organization_page/users', act_path:'index')
-  UserAction.find_or_create_by!(name: '社員アカウント発行', ctrl_path: 'organization_page/users', act_path:'create')
-  UserAction.find_or_create_by!(name: '社員権限管理', ctrl_path: 'organization_page/users/roles', act_path:'index')
-  UserAction.find_or_create_by!(name: '社員権限変更', ctrl_path: 'organization_page/users/roles', act_path:'update')
-  UserAction.find_or_create_by!(name: '操作制限設定閲覧', ctrl_path: 'organization_page/user_permissions', act_path:'index')
-  UserAction.find_or_create_by!(name: '操作制限設定追加', ctrl_path: 'organization_page/user_permissions', act_path:'create')
-
-
-  ##########################
   # 組織
   ##########################
-  p '=== Organization ==='
-  admin_organization = Organization.find_or_create_by!(name: 'Admin用企業')
+  p "=== Organization ==="
+  maker_1_organization = Organization.find_or_create_by!(name: "サンプルメーカー株式会社", postcode: "150-0001", address: "都内某所", partnership_type: 20)
 
-  vendor_organization_1 = Organization.find_or_create_by!(name: 'サンプルベンダー', postcode: '150-0001', prefecture_id: '13', address: '都内某所', contract_type: 20)
-
-  partner_organization_1 = Organization.find_or_create_by!(name: '海山商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_2 = Organization.find_or_create_by!(name: '山川商事', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_3 = Organization.find_or_create_by!(name: '双葉商事', postcode: '330-0856', prefecture_id: '11', address: '大宮某所')
-
-  partner_organization_1_1 = Organization.find_or_create_by!(name: '鎌倉物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_1_2 = Organization.find_or_create_by!(name: '大磯物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_1_3 = Organization.find_or_create_by!(name: '七里ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_1_4 = Organization.find_or_create_by!(name: '由比ヶ浜物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-
-  partner_organization_2_1 = Organization.find_or_create_by!(name: '筑波物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_2_2 = Organization.find_or_create_by!(name: '秩父物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_2_3 = Organization.find_or_create_by!(name: '高尾物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_2_4 = Organization.find_or_create_by!(name: '富士物産', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-
-  partner_organization_1_1_1 = Organization.find_or_create_by!(name: '鶴岡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_1_1_2 = Organization.find_or_create_by!(name: '八幡商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
-  partner_organization_1_1_3 = Organization.find_or_create_by!(name: '小町商店', postcode: '150-0001', prefecture_id: '13', address: '都内某所')
+  maker_1_partner_orgs = []
+  maker_1_partner_orgs << Organization.find_or_create_by!(name: "パートナーA", postcode: "150-0001", address: "都内某所")
+  maker_1_partner_orgs << Organization.find_or_create_by!(name: "パートナーB", postcode: "150-0001", address: "都内某所")
+  maker_1_partner_orgs << Organization.find_or_create_by!(name: "パートナーC", postcode: "330-0856", address: "埼玉県さいたま市某所")
+  maker_1_partner_orgs << Organization.find_or_create_by!(name: "パートナーD", postcode: "150-0001", address: "都内某所")
+  maker_1_partner_orgs << Organization.find_or_create_by!(name: "パートナーE", postcode: "150-0001", address: "都内某所")
+  maker_1_partner_orgs << Organization.find_or_create_by!(name: "パートナーF", postcode: "150-0001", address: "都内某所")
+  maker_1_partner_orgs << Organization.find_or_create_by!(name: "パートナーG", postcode: "150-0001", address: "都内某所")
 
   ##########################
   # ユーザー
   ##########################
   def dumy_force_create(organization, email, name)
-    user = organization.users.new(name: name, email: email, password: 'password', role: 20)
+    user = organization.users.new(name: name, email: email, password: "password", role: 20)
     user.skip_confirmation!
     user.save!
     user
   end
 
-  p '=== User ==='
-  admin_user = admin_organization.users.create(name: '運営Admin', email: 'admin@admin.com', password: 'password', role: 50, account_type: 30)
-  admin_user.skip_confirmation!
-  admin_user.save!
+  p "=== User ==="
+  vendor_organization_user_1 = dumy_force_create(maker_1_organization, "sample@maker.com", "メーカー太郎")
 
-  last_name = %w[佐藤 鈴木 木村 渡辺 加藤 斎藤 近藤 高橋 田中 伊藤 山本 中村 小林 山田 佐々木 井上 林]
-  first_name = %w[太郎 一郎 花子 よし子 優子 健 太一 二郎 真司 剛 翔太 はるか 綾香 美咲 さくら]
+  dumy_force_create(maker_1_partner_orgs[0], "sample@partner.com", "パートナー太郎")
+  dumy_force_create(maker_1_partner_orgs[0], "sample1@partner.com", "パートナー二郎")
+  dumy_force_create(maker_1_partner_orgs[0], "sample2@partner.com", "パートナー三郎")
 
-  vendor_organization_user_1 = dumy_force_create( vendor_organization_1, 'sample@vendor1.com', 'ベンダー太郎')
-
-  partner_organization_1_user_1 = dumy_force_create(partner_organization_1, 'sample@partner_organization1.com', 'フグ田 マスオ')
-  partner_organization_1_user_2 = dumy_force_create(partner_organization_1, 'sample1@partner_organization1.com', '穴子 太郎')
-  partner_organization_2_user_1 = dumy_force_create(partner_organization_2, 'sample@partner_organization2.com', '磯野波平')
-  partner_organization_2_user_2 = dumy_force_create(partner_organization_2, 'sample1@partner_organization2.com', '岡島 太郎')
-  partner_organization_3_user_1 = dumy_force_create(partner_organization_3, 'sample@partner_organization3.com', '野原ひろし')
-  partner_organization_3_user_2 = dumy_force_create(partner_organization_3, 'sample1@partner_organization3.com', '川口 太郎')
-
-  partner_organization_1_1_user_1 = dumy_force_create(partner_organization_1_1, 'sample@partner_organization1-1.com', '鎌倉二次郎')
-  partner_organization_1_2_user_1 = dumy_force_create(partner_organization_1_2, 'sample@partner_organization1-2.com', '大磯二次郎')
-  partner_organization_1_3_user_1 = dumy_force_create(partner_organization_1_3, 'sample@partner_organization1-3.com', '七里ヶ浜二次郎')
-  partner_organization_1_4_user_1 = dumy_force_create(partner_organization_1_4, 'sample@partner_organization1-4.com', '由比ヶ浜二次郎')
-
-  partner_organization_2_1_user_1 = dumy_force_create(partner_organization_2_1, 'sample@partner_organization2-1.com', '筑波二次郎')
-  partner_organization_2_2_user_1 = dumy_force_create(partner_organization_2_2, 'sample@partner_organization2-2.com', '秩父二次郎')
-  partner_organization_2_3_user_1 = dumy_force_create(partner_organization_2_3, 'sample@partner_organization2-3.com', '高尾二次郎')
-  partner_organization_2_4_user_1 = dumy_force_create(partner_organization_2_4, 'sample@partner_organization2-4.com', '富士二次郎')
-
-  partner_organization_1_1_1_user_1 = dumy_force_create(partner_organization_1_1_1, 'sample@partner_organization1-1-1.com', '鶴岡三次郎')
-  partner_organization_1_1_2_user_1 = dumy_force_create(partner_organization_1_1_2, 'sample@partner_organization1-1-2.com', '八幡三次郎')
-  partner_organization_1_1_3_user_1 = dumy_force_create(partner_organization_1_1_3, 'sample@partner_organization1-1-3.com', '小町三次郎')
-
-  # (1..5).each do |i|
-  #   user = organization.where.not(name: 'Admin用企業').sample.users.new(email: "dummy+" + i.to_s + "@test.com", password: "password", name: last_name.sample + " " + first_name.sample)
-  #   user.skip_confirmation!
-  #   user.save!
-  # end
-
-  # (1..5).each do |i|
-  #   organization.all.sample.user_profiles.create(name: last_name.sample + " " + first_name.sample)
-  # end
-  
   ##########################
   # ベンダーグループ
   ##########################
-  p '=== VendorGroup ==='
-  vendor_group_1 = VendorGroup.create!(vendor_organization: vendor_organization_1)
+  p "=== VendorGroup ==="
+  maker_1_group = VendorGroup.create!(vendor_organization: maker_1_organization)
 
   ##########################
   # 企業
   ##########################
-  p '=== Company ==='
-  vendor_1 = vendor_group_1.companies.create!(organization: vendor_organization_1, name: vendor_organization_1.name, hierarchy: 1, contract_type: 'vendor')
+  p "=== Company ==="
+  mf = maker_1_group.companies.create!(organization: maker_1_organization, name: maker_1_organization.name, hierarchy: 1, partnership_type: "vendor")
 
-  partner_1 = vendor_group_1.companies.create!(organization: partner_organization_1, name: partner_organization_1.name, hierarchy: 1)
-  partner_2 = vendor_group_1.companies.create!(organization: partner_organization_2, name: partner_organization_2.name, hierarchy: 1)
-  partner_3 = vendor_group_1.companies.create!(organization: partner_organization_3, name: partner_organization_3.name, hierarchy: 1)
+  maker_1_partner_orgs.each do |org|
+    maker_1_group.companies.create!(organization: org, name: org.name, hierarchy: 1)
+  end
 
-  partner_1_1 = vendor_group_1.companies.create!(organization: partner_organization_1_1, name: partner_organization_1_1.name, hierarchy: 2, parent: partner_1)
-  partner_1_2 = vendor_group_1.companies.create!(organization: partner_organization_1_2, name: partner_organization_1_2.name, hierarchy: 2, parent: partner_1)
-  partner_1_3 = vendor_group_1.companies.create!(organization: partner_organization_1_3, name: partner_organization_1_3.name, hierarchy: 2, parent: partner_1)
-  partner_1_4 = vendor_group_1.companies.create!(organization: partner_organization_1_4, name: partner_organization_1_4.name, hierarchy: 2, parent: partner_1)
-
-  partner_2_1 = vendor_group_1.companies.create!(organization: partner_organization_2_1, name: partner_organization_2_1.name, hierarchy: 2, parent: partner_2)
-  partner_2_2 = vendor_group_1.companies.create!(organization: partner_organization_2_2, name: partner_organization_2_2.name, hierarchy: 2, parent: partner_2)
-  partner_2_3 = vendor_group_1.companies.create!(organization: partner_organization_2_3, name: partner_organization_2_3.name, hierarchy: 2, parent: partner_2)
-  partner_2_4 = vendor_group_1.companies.create!(organization: partner_organization_2_4, name: partner_organization_2_4.name, hierarchy: 2, parent: partner_2)
-
-  partner_1_1_1 = vendor_group_1.companies.create!(organization: partner_organization_1_1_1, name: partner_organization_1_1_1.name, hierarchy: 3, parent: partner_1_1)
-  partner_1_1_2 = vendor_group_1.companies.create!(organization: partner_organization_1_1_2, name: partner_organization_1_1_2.name, hierarchy: 3, parent: partner_1_1)
-  partner_1_1_3 = vendor_group_1.companies.create!(organization: partner_organization_1_1_3, name: partner_organization_1_1_3.name, hierarchy: 3, parent: partner_1_1)
-
-   ##########################
+  ##########################
   # スタッフ
   ##########################
-  p '=== Staff ==='
-  vendor_group_1.companies.each do |company|
-    company.organization.users.each do|user|
-      vendor_group_1.staffs.create!(company: company, user: user, name: user.name)
+  p "=== Staff ==="
+
+  last_name = %w[佐藤 鈴木 木村 渡辺 加藤 斎藤 近藤 高橋 田中 伊藤 山本 中村 小林 山田 佐々木 井上 林]
+  first_name = %w[太郎 一郎 花子 よし子 優子 健 太一 二郎 真司 剛 翔太 はるか 綾香 美咲 さくら]
+
+  maker_1_group.companies.each do |company|
+    company.organization.users.each do |user|
+      maker_1_group.staffs.create!(company: company, user: user, name: user.name)
+    end
+    5.times do
+      maker_1_group.staffs.create(name: last_name.sample + " " + first_name.sample, company: company)
     end
   end
 
   ##########################
   # 商品
   ##########################
-  p '=== Product ==='
-  product_1 = vendor_group_1.products.create!(name: '会計システム1年契約', code: 'p-0001', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
-  product_2 = vendor_group_1.products.create!(name: '家計簿システム1年契約', code: 'p-0002', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
-  product_3 = vendor_group_1.products.create!(name: '高速光回線', code: 'p-0003', agency_price: 200_000, agency_incentive: 10_000, introduction_price: 200_000, introduction_incentive: 10_000, wholesale_price: 200_000, wholesale_incentive: 10_000)
-
-  # ##########################
-  # # ベンダーグループ
-  # ##########################
-  # p '=== VendorGroup ==='
-  # vendor_group_1 = vendor_group_1.vendor_groups.create!(vendor: partner_1, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.9, incentive: product_3.agency_incentive * 0.9, contracted_at: Time.zone.now)
-  # vendor_group_2 = vendor_group_1.vendor_groups.create!(vendor: partner_2, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.8, incentive: product_3.agency_incentive * 0.8, contracted_at: Time.zone.now)
-  # vendor_group_3 = vendor_group_1.vendor_groups.create!(vendor: partner_3, layer: 1, product_id: product_3.id, price: product_3.agency_price * 0.7, incentive: product_3.agency_incentive * 0.7, contracted_at: Time.zone.now)
-
-  # vendor_group_1_1 = vendor_group_1.vendor_groups.create!(vendor: partner_1_1, layer: 2)
+  p "=== Product ==="
+  product_1 = maker_1_group.products.create!(name: "\u52E4\u6020", unique_key: "m-0001", price: 8_000)
+  product_2 = maker_1_group.products.create!(name: "\u7D4C\u8CBB", unique_key: "m-0002", price: 200_000)
+  product_3 = maker_1_group.products.create!(name: "\u7D66\u4E0E", unique_key: "m-0003", price: 110_000)
+  product_4 = maker_1_group.products.create!(name: "\u4F1A\u8A08Plus", unique_key: "m-0003", price: 10_000)
 
   ##########################
-  # 商談の項目
+  # 商談のフェイズ
   ##########################
-  p '=== LeadColumn ==='
+  p "=== LeadPhase ==="
 
-  vendor_group_1.lead_columns.create!(name: 'ユニークキー', key_name: 'unique_key', order: 0, data_type: :unique_key, index_page_order: 0)
-  vendor_group_1.lead_columns.create!(name: 'パートナー名', key_name: 'partner_name', order: 1, data_type: :company, index_page_order: 1)
-  vendor_group_1.lead_columns.create!(name: '商品名', key_name: 'product_name', order: 2, data_type: :product, index_page_order: 2)
-  vendor_group_1.lead_columns.create!(name: '販売担当者名', key_name: 'staff', order: 3, data_type: :staff, index_page_order: 3)
-  vendor_group_1.lead_columns.create!(name: 'サポート担当者名', key_name: 'support_staff', order: 4, data_type: :staff, index_page_order: 10)
+  phase_array = [
+    "01.\u6A5F\u4F1A\u3092\u660E\u3089\u304B\u306B\u3059\u308B",
+    "\u30EA\u30B5\u30A4\u30AF\u30EBB",
+    "\u30EA\u30B5\u30A4\u30AF\u30EBA",
+    "02.\u554F\u984C\u30FB\u52B9\u679C\u30FB\u7406\u60F3\u306E\u767A\u898B",
+    "03.\u30E1\u30EA\u30C3\u30C8\u3068\u4FA1\u5024\u306E\u691C\u8A3C",
+    "04.\u610F\u601D\u6C7A\u5B9A\u8005\u306B\u4FA1\u5024\u3092\u660E\u793A",
+    "05.\u4EA4\u6E09\u3059\u308B",
+    "06.\u5951\u7D04\u7DE0\u7D50\u306B\u5411\u3051\u305F\u6700\u7D42\u8ABF\u6574",
+    "06.\u5C0E\u5165\u6642\u671F or \u91D1\u984D\u306E\u8ABF\u6574\u4E2D",
+    "NG \u30AF\u30E9\u30A6\u30C9\u4E0D\u53EF/\u50B5\u52D9\u30CB\u30FC\u30BA\u306A\u3057AU5\u540D\u4EE5\u4E0B/\u30E1\u30A2\u30C9\u7121\u3057",
+    "21.\u5951\u7D04\u66F4\u65B0\u78BA\u8A8D",
+    "22.\u89E3\u7D04\u898B\u8FBC\u307F",
+    "23.\u30C0\u30A6\u30F3\u30B0\u30EC\u30FC\u30C9\u898B\u8FBC\u307F",
+    "49.\u88DC\u52A9\u91D1\u5C02\u7528",
+    "50.\u96FB\u5B50\u5951\u7D04\u9001\u4ED8",
+    "51.\u671F\u4E2D\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9\u899A\u66F8\u9001\u4ED8",
+    "52.\u7533\u8FBC\u66F8\u56DE\u53CE\u5F85\u3061",
+    "53.\u7D0D\u54C1\u4F9D\u983C\u4E2D",
+    "54.\u7533\u8FBC\u53D7\u9818\u5B8C\u4E86",
+    "58.\u30AF\u30EC\u30AB\u5B9F\u7E3E",
+    "59.\u5B8C\u4E86\uFF08\u7D0D\u54C1\u306A\u3057\uFF09",
+    "60.\u4ED6\u793ESaaS\u7D0D\u54C1\u524D\u30C1\u30A7\u30C3\u30AF",
+    "81.\u4E88\u7B97",
+    "82.\u30DE\u30FC\u30B1\u30D5\u30A9\u30ED\u30FC",
+    "83.SG\u671F\u9593\u7121\u6599\u5EF6\u9577",
+    "91.\u4E0D\u6210\u7ACB",
+    "99.\u305D\u306E\u4ED6",
+    "Dead-Lost"
+  ]
 
-  select_column_1 = vendor_group_1.lead_columns.create!(name: 'フレッツ完了ステータス', key_name: 'flets_status', order: 5, data_type: :select_item)
-  %w[未対応 折衝中 設備待ち 工事待ち 注文取り消し 完了].each_with_index do |n, i|
-    select_column_1.lead_column_select_items.create!(name: n, order: i + 1, )
-  end
-  select_column_2 = vendor_group_1.lead_columns.create!(name: 'NTT東西フラグ', key_name: 'ntt_flag', order: 6, data_type: :select_item, index_page_order: 4)
-  %w[西 東].each_with_index do |n, i|
-    select_column_2.lead_column_select_items.create!(name: n, order: i + 1)
-  end
-  select_column_3 = vendor_group_1.lead_columns.create!(name: '後確コール大区分', key_name: 'after_call_category', order: 8, data_type: :select_item, index_page_order: 5)
-  %w[後確OK（CSV） 後確OK（代コン） 後確OK（CSVノーコール）].each_with_index do |n, i|
-    select_column_3.lead_column_select_items.create!(name: n, order: i + 1)
+  phase_array.each do |phase|
+    maker_1_group.lead_phases.create!(name: phase)
   end
 
-  select_column_4 = vendor_group_1.lead_columns.create!(name: '対応コール大区分', key_name: 'call_category', order: 7, data_type: :select_item)
-  %w[工事日確定 対応完了].each_with_index do |n, i|
-    select_column_4.lead_column_select_items.create!(name: n, order: i + 1)
+  phase = LeadPhase.find_by(name: "59.\u5B8C\u4E86\uFF08\u7D0D\u54C1\u306A\u3057\uFF09")
+  phase.phase_role = "saled"
+  phase.save!
+
+  ##########################
+  # 商談のフェイズと商品の割り当て
+  ##########################
+  p "=== LeadPhaseProduct ==="
+
+  maker_1_group.lead_phases.each do |lead_phase|
+    maker_1_group.products.each do |product|
+      LeadPhaseProduct.create(lead_phase: lead_phase, product: product)
+    end
   end
 
-  select_column_5 = vendor_group_1.lead_columns.create!(name: '他社回線種別', key_name: 'other_line', order: 9, data_type: :select_item)
-  %w[新規発番 ソフトバンクテレコム イオ NTT].each_with_index do |n, i|
-    select_column_5.lead_column_select_items.create!(name: n, order: i + 1)
+  ##########################
+  # オブジェクトの項目
+  ##########################
+  p "=== TableColumn ==="
+  p "LeadColumn"
+
+  maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 9, name: "\u7533\u8ACB\u65E5\uFF08\u30E1\u30FC\u30EB\u53D7\u4FE1\u65E5\uFF09", key_name: "apply_date", data_type: :datetime)
+  maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 10, name: "\u67B6\u96FB\u5C65\u6B74()", key_name: "tel_history", data_type: :text)
+  maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 11, name: "\u6B21\u56DE\u30A2\u30AF\u30B7\u30E7\u30F3\u65E5", key_name: "next_action_date", data_type: :datetime)
+  maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 12, name: "\u5BFE\u5FDC\u505C\u6B62\u7406\u7531\u8A73\u7D30\uFF08パートナー\u7528\uFF09", key_name: "cansele_reason", data_type: :string)
+  maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 13, name: "\u30A2\u30DD\u7372\u5F97\u65E5", key_name: "apo_date", data_type: :datetime)
+  maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 14, name: "\u5546\u8AC7\u4E88\u5B9A\u65E5\u6642", key_name: "customer_meeting_date", data_type: :datetime)
+  maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 15, name: "\u5F93\u696D\u54E1", key_name: "number_of_employees", data_type: :integer)
+
+  price = maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 16, name: "\u58F2\u308A\u4E0A\u3052", key_name: "salse_price", data_type: :integer)
+
+  column_1 = maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 16, name: "\uFF08\u7D4C\u8CBB\uFF09\u30A2\u30DD\u53D6\u5F97\u72B6\u6CC1", key_name: "keihi_apo", data_type: :select_item)
+  [
+    "3_\u6848\u4EF6\u5316",
+    "2_\u672A\u63A5\u7D9A",
+    "2_\u8A55\u4FA1D_IS\u30D5\u30A9\u30ED\u30FC\u7D42\u4E86(MK\u30D5\u30A9\u30ED\u30FC)",
+    "2_\u8A55\u4FA1C",
+    "2_\u8A55\u4FA1B",
+    "2_\u8A55\u4FA1A",
+    "2_\u4ED6\u90E8\u7F72\u9023\u643A\u5F85\u3061",
+    "1_1_\u65B0\u898F_\u512A\u5148",
+    "1_2_\u65B0\u898F_\u5E73\u5E38",
+    "XX_\u914D\u4FE1\u5BFE\u8C61\u5916(\u5F37\u3044\u62D2\u5426\u3001\u7AF6\u5408\u7B49)",
+    "XX.\u91CD\u8907_\u53D6\u5F15\u5148",
+    "XX.\u91CD\u8907_\u30EA\u30FC\u30C9",
+    "XX.\u91CD\u8907_\u5229\u7528\u4E2D",
+    "XX_\u53D6\u6B21_PB \u90E8\u78BA\u8A8D\u4F9D\u983C\u4E2D",
+    "4_MQL(MK\u304B\u3089\u306E\u30D1\u30B9)"
+  ].each_with_index do |n, i|
+    column_1.table_column_select_items.create!(name: n, position: i + 1)
   end
 
-  vendor_group_1.lead_columns.create!(name: '獲得リスト', key_name: 'get_list', order: 10, data_type: :string, index_page_order: 6)
-  vendor_group_1.lead_columns.create!(name: '単価', key_name: 'contract_date', order: 11, data_type: :price, index_page_order: 7)
-  vendor_group_1.lead_columns.create!(name: '個数', key_name: 'quantity', order: 12, data_type: :integer, index_page_order: 8)
-  vendor_group_1.lead_columns.create!(name: '契約日', key_name: '', order: 13, data_type: :datetime, index_page_order: 9)
+  column_2 = maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 17, name: "\uFF08\u7D66\u4E0E\u52E4\u6020\uFF09\u30A2\u30DD\u53D6\u5F97\u72B6\u6CC1", key_name: "kintai_apo", data_type: :select_item)
+  [
+    "00.\u30CA\u30FC\u30C1\u30E3\u30EA\u30F3\u30B0",
+    "01.\u65B0\u898F",
+    "01.\u30EA\u30B5\u30A4\u30AF\u30EB",
+    "02.\u672A\u63A5\u89E6",
+    "03.\u5BFE\u5FDC\u4E2D",
+    "03.\u65E5\u7A0B\u8ABF\u6574\u4E2D",
+    "03.\u4ED6\u90E8\u7F72\u9023\u643A\u5F85\u3061",
+    "04.\u6848\u4EF6\u5316",
+    "XX.\u91CD\u8907_\u30EA\u30FC\u30C9",
+    "XX.\u91CD\u8907_\u53D6\u5F15\u5148",
+    "XX.\u91CD\u8907_\u5229\u7528\u4E2D",
+    "XX.\u67B6\u96FB\u5BFE\u8C61\u5916",
+    "XX.\u67B6\u96FB\u5BFE\u8C61\u5916_\u96FB\u8A71\u756A\u53F7\u9593\u9055\u3044",
+    "\u4EEE dead"
+  ].each_with_index do |n, i|
+    column_2.table_column_select_items.create!(name: n, position: i + 1)
+  end
+
+  column_3 = maker_1_group.table_columns.create!(table_type: "lead", index_page_position: 18, name: "\uFF08\u4F1A\u8A08Plus\uFF09\u30A2\u30DD\u53D6\u5F97\u72B6\u6CC1", key_name: "kaikei_apo", data_type: :select_item)
+  [
+    "00.\u518D\u30A2\u30D7\u30ED\u30FC\u30C1",
+    "01.\u65B0\u898F",
+    "02.\u67B6\u96FB\u5BFE\u8C61\u5916\uFF08\u30B3\u30F3\u30BF\u30AF\u30C8\u4E0D\u53EF\uFF09",
+    "02.\u5BFE\u5FDC\u4E2D",
+    "03.\u30CA\u30FC\u30C1\u30E3\u30EA\u30F3\u30B0_\u9AD8",
+    "03.\u30CA\u30FC\u30C1\u30E3\u30EA\u30F3\u30B0_\u4F4E",
+    "03.\u30CA\u30FC\u30C1\u30E3\u30EA\u30F3\u30B0_\u9577\u671F",
+    "03.\u4ED6\u90E8\u7F72\u9023\u643A\u5F85\u3061",
+    "05.Dead(\u6642\u671F\u65E9\u3005)",
+    "05.Dead(\u30CB\u30FC\u30BA\u7121\u3057)",
+    "05.Dead(\u4ED6\u793E\u6C7A\u5B9A\u6E08\u307F)",
+    "05.Dead(\u305D\u306E\u4ED6)",
+    "06.\u53D6\u5F15\u958B\u59CB\u6E08\u307F",
+    "00.\u793E\u5916IS",
+    "xx.\u91CD\u8907_\u30EA\u30FC\u30C9",
+    "xx.\u91CD\u8907_\u53D6\u5F15\u5148",
+    "xx.\u91CD\u8907_\u5229\u7528\u4E2D",
+    "xx.\u58EB\u696D/\u30B3\u30F3\u30B5\u30EB/\u91D1\u878D\u6A5F\u95A2/\u4EE3\u7406\u5E97",
+    "xx.SMB\u5BFE\u8C61\uFF0830\u540D\u672A\u6E80\uFF09",
+    "xx.error data\uFF08\u500B\u4EBA/\u30C6\u30B9\u30C8\uFF09",
+    "xx.\u30BF\u30FC\u30B2\u30C3\u30C8\u5916"
+  ].each_with_index do |n, i|
+    column_3.table_column_select_items.create!(name: n, position: i + 1)
+  end
+
+  p "ProductColumn"
+
+  p "CompanyColumn"
+  maker_1_group.table_columns.create!(table_type: "company", position: 2, index_page_position: 4, name: "\u90FD\u9053\u5E9C\u770C", key_name: "pref", data_type: :string)
+  maker_1_group.table_columns.create!(table_type: "company", position: 3, index_page_position: 5, name: "\u5E02\u533A\u753A\u6751", key_name: "city", data_type: :string)
+  maker_1_group.table_columns.create!(table_type: "company", position: 4, index_page_position: 6, name: "\u756A\u5730", key_name: "address", data_type: :string)
+  maker_1_group.table_columns.create!(table_type: "company", position: 5, index_page_position: 7, name: "\u30D3\u30EB\u540D", key_name: "building", data_type: :string)
+  maker_1_group.table_columns.create!(table_type: "company", position: 6, index_page_position: 8, name: "WEB\u30B5\u30A4\u30C8", key_name: "web_site", data_type: :string)
+  maker_1_group.table_columns.create!(table_type: "company", position: 7, index_page_position: 9, name: "\u96FB\u8A71\u756A\u53F7", key_name: "phone", data_type: :string)
+
+  partner_lead_count = maker_1_group.table_columns.create!(table_type: "company", position: 8, index_page_position: 10, name: "\u5546\u8AC7\u6570", key_name: "lead_amount", data_type: :stacked, stack_type: "count", target_table: "lead")
+  maker_1_group.table_columns.create!(table_type: "company", position: 9, index_page_position: 11, name: "\u5546\u8AC7\u58F2\u308A\u4E0A\u3052\u7DCF\u984D", key_name: "lead_salse_amount", data_type: :stacked, stack_type: "sum", target_table: "lead", target_column_id: price.id)
+  maker_1_group.table_columns.create!(table_type: "company", position: 10, index_page_position: 12, name: "\u5546\u8AC7\u58F2\u308A\u4E0A\u3052\u6700\u5927\u984D", key_name: "lead_salse_minimum", data_type: :stacked, stack_type: "min", target_table: "lead", target_column_id: price.id)
+  maker_1_group.table_columns.create!(table_type: "company", position: 11, index_page_position: 13, name: "\u5546\u8AC7\u58F2\u308A\u4E0A\u3052\u6700\u5C0F\u984D", key_name: "lead_salse_max", data_type: :stacked, stack_type: "max", target_table: "lead", target_column_id: price.id)
+
+  p "Contract"
+  contract_lead_count = maker_1_group.table_columns.create!(table_type: "contract", position: 8, index_page_position: 10, name: "\u5546\u8AC7\u6570", key_name: "lead_amount", data_type: :stacked, stack_type: "count", target_table: "lead")
+  contract_lead_amount = maker_1_group.table_columns.create!(table_type: "contract", position: 9, index_page_position: 11, name: "\u5546\u8AC7\u58F2\u308A\u4E0A\u3052\u7DCF\u984D", key_name: "lead_salse_amount", data_type: :stacked, stack_type: "sum", target_table: "lead", target_column_id: price.id)
+  maker_1_group.table_columns.create!(table_type: "contract", position: 10, index_page_position: 12, name: "\u5546\u8AC7\u58F2\u308A\u4E0A\u3052\u6700\u5927\u984D", key_name: "lead_salse_minimu", data_type: :stacked, stack_type: "min", target_table: "lead", target_column_id: price.id)
+  maker_1_group.table_columns.create!(table_type: "contract", position: 11, index_page_position: 13, name: "\u5546\u8AC7\u58F2\u308A\u4E0A\u3052\u6700\u5C0F\u984D", key_name: "lead_salse_max", data_type: :stacked, stack_type: "max", target_table: "lead", target_column_id: price.id)
+
+  ##########################
+  # 契約
+  ##########################
+  p "=== Contract ==="
+  maker_1_group.partners.each do |partner|
+    maker_1_group.products.each do |product|
+      day = Time.zone.now - rand(90).day
+      if partner.contracts.where(product: product).blank?
+        maker_1_group.contracts.create!(company: partner, name: partner.name + "x" + product.name, product: product, hierarchy: partner.hierarchy, datetime_1: day, datetime_2: day + 1.year, price: product.price)
+      end
+    end
+  end
 
   ##########################
   # 商談
   ##########################
-  p '=== Lead ==='
-  string_1_array = %w[コンサルティングサポート パーフェクション ベルテクノス Umake]
-  20.times do
-    Lead.create!( unique_key: 'T-' + rand(1000000..2000000).to_s,
-                  vendor_group_id: vendor_group_1.id, company_id: vendor_group_1.partners.sample.id, product_id: product_3.id,
-                  staff_1_id: vendor_group_1.staffs.sample.id,
-                  staff_2_id: vendor_group_1.staffs.sample.id,
-                  select_item_1_id: select_column_1.lead_column_select_items.sample.id,
-                  select_item_2_id: select_column_2.lead_column_select_items.sample.id,
-                  select_item_3_id: select_column_3.lead_column_select_items.sample.id,
-                  select_item_4_id: select_column_4.lead_column_select_items.sample.id,
-                  select_item_5_id: select_column_5.lead_column_select_items.sample.id,
-                  string_1: string_1_array.sample,
-                  price_1: rand(1000000..2000000),
-                  integer_1: rand(1..10),
-                  datetime_1: Time.zone.now - rand(90).day,
-                )
+  p "=== Lead ==="
+
+  (1..100).each do |i|
+    sample_contract = maker_1_group.contracts.sample
+    maker_1_group.leads.create!(unique_key:       "M-" + i.to_s,
+                           lead_phase_id:    sample_contract.product&.lead_phases&.sample&.id,
+                           company_id:       sample_contract.company.id,
+                           product_id:       sample_contract.product.id,
+                           staff_id:         maker_1_group.staffs.sample.id,
+                           select_item_1_id: column_1.table_column_select_items.sample.id,
+                           select_item_2_id: column_2.table_column_select_items.sample.id,
+                           select_item_3_id: column_3.table_column_select_items.sample.id,
+                           datetime_1:       Time.zone.now - rand(90).day,
+                           datetime_2:       Time.zone.now - rand(90).day,
+                           datetime_3:       Time.zone.now - rand(90).day,
+                           datetime_4:       Time.zone.now - rand(90).day,
+                           integer_2:        rand(1_000_000..2_000_000))
   end
-  
+
   ##########################
+  # ダッシュボード
+  ##########################
+  p "=== Dashboard ==="
+  dashboard = maker_1_group.dashboards.create!(name: "\u30E1\u30A4\u30F3\u30C0\u30C3\u30B7\u30E5\u30DC\u30FC\u30C9")
+
+  ##########################
+  # ガジェット
+  ##########################
+  p "=== Gadgets ==="
+  dashboard.gadgets.create!(name: "パートナー\u5225\u5546\u8AC7\u4EF6\u6570", chart_type: "vertical_bar", target_table: "company", target_column_id: partner_lead_count.id)
+  dashboard.gadgets.create!(name: "パートナー\u306E\u5546\u54C1\u5225\u58F2\u308A\u4E0A\u3052\u984D", chart_type: "stacked_bar", target_table: "contract", row_group: "company", col_group: "product", target_column_id: contract_lead_amount.id)
+  dashboard.gadgets.create!(name: "パートナー\u306E\u5546\u54C1\u5225\u58F2\u308A\u4E0A\u3052\u984D", chart_type: "stacked_bar", target_table: "lead", row_group: "product", col_group: "company", target_column_id: price.id)
+
+   ##########################
   # 商品のチャット
   ##########################
   p '=== Message ==='
-  board_1 = Board.create!(vendor_group_id: vendor_group_1.id, related_object: 'product', related_object_uid: product_3.uid)
-  board_1.messages.create!(staff: vendor_organization_user_1.staffs.last, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
-  board_1.messages.create!(staff: vendor_organization_user_1.staffs.last, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
-  board_1.messages.create!(staff: partner_organization_2_user_1.staffs.last, content: '了解しました。')
+  board_1 = Board.create!(vendor_group_id: maker_1_group.id, related_object: 'product', related_object_uid: maker_1_group.products.last.uid)
+  board_1.messages.create!(staff: maker_1_group.staffs.sample, content: 'この商品の販促用資料をアップロードしています。まだの方はご確認ください。')
+  board_1.messages.create!(staff: maker_1_group.staffs.sample, content: 'この商品は年末リニューアル予定です。スケジュールは追ってご報告します。')
+  board_1.messages.create!(staff: maker_1_group.staffs.sample, content: '了解しました。')
 end

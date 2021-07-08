@@ -7,7 +7,6 @@
 #  id                     :bigint           not null, primary key
 #  deleted_at             :datetime
 #  name                   :string(255)
-#  status                 :integer          default(10), not null
 #  uid                    :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -23,6 +22,6 @@
 #
 FactoryBot.define do
   factory :vendor_group do
-    maker { nil }
+    vendor_organization { nil }
   end
 end

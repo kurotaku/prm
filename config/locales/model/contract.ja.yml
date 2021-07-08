@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    models:
+      contract: 契約
+    attributes:
+      contract:
+        uid: ID
+        name: 契約名
+        product: 商品
+        product_id: 商品
+        company: パートナー名
+        company_id: パートナー
+        price: 売価
+        incentive: 報酬価格
+        vendor_group: 販売グループ
+        parent: 上位店
+        parent_id: 上位店
+        hierarchy: 階層
+        vendor_memo: ベンダーメモ
+  enums:
+    contract:
+      hierarchy:
+        hierarchy_one: 1次店契約
+        hierarchy_two: 2次店契約
+        hierarchy_three: 3次店契約
+        hierarchy_four: 4次店契約
+        hierarchy_five: 5次店契約
+  contracts:
+    create:
+      success: 契約を作成しました
+      error: 契約を作成できませんでした
+    update:
+      success: 契約を更新しました
+      error: 契約を更新できませんでした
+    destroy:
+      success: 契約を削除しました
+      error: 契約を削除できませんでした

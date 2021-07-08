@@ -1,0 +1,6 @@
+<ul class="tab-menu-list">
+  <li class="<%= 'current' if controller_path == 'column_setting/lead_columns' %>"><%= link_to '商談項目', column_setting_lead_columns_path %></li>
+  <li class="<%= 'current' if controller_path == 'column_setting/product_columns' %>"><%= link_to '商品項目', column_setting_product_columns_path %></li>
+  <li class="<%= 'current' if controller_path == 'column_setting/company_columns' %>"><%= link_to 'パートナー項目', column_setting_company_columns_path %></li>
+  <li class="<%= 'current' if controller_path == 'column_setting/contract_columns' %>"><%= link_to '契約項目', column_setting_contract_columns_path %></li>
+</ul>

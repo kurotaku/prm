@@ -1,38 +1,17 @@
 ja:
   activerecord:
     models:
-      vendor_group: 契約
+      vendor_group: 販売グループ
     attributes:
       vendor_group:
-        uid: ID
-        product: 商品
-        product_id: 商品
-        price: 売価
-        incentive: 報酬価格
-        vendor: パートナー
-        vendor_id: パートナー
-        layer: 階層
-        contract_type: 契約形態
-        maker_memo: ベンダーメモ
-  enums:
-    vendor_group:
-      contract_type:
-        agency: 取次
-        introduction: 紹介
-        wholesale: 卸売
-      layer:
-        layer_one: 1次店
-        layer_two: 2次店
-        layer_three: 3次店
-        layer_four: 4次店
-        layer_five: 5次店
+        name: 販売グループ名
   vendor_groups:
     create:
-      success: 契約を作成しました
-      error: 契約を作成できませんでした
+      success: 販売グループを作成しました
+      error: 販売グループを作成できませんでした
     update:
-      success: 契約を更新しました
-      error: 契約を更新できませんでした
+      success: 販売グループを更新しました
+      error: 販売グループを更新できませんでした
     destroy:
-      success: 契約を削除しました
-      error: 契約を削除できませんでした
+      success: 販売グループを削除しました
+      error: 販売グループを削除できませんでした

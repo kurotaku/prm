@@ -1,8 +1,13 @@
 <% content_for(:title, '商品詳細') %>
 
+<div class="secondary-header">
+  <%= render 'products/show_parts/page_menu' %>
+</div><!-- .secondary-header -->
+
 <header class="primary-header d-flex align-items-center">
   <%= render 'products/show_parts/header' %>
 </header><!-- .primary-header -->
+
 <div class="secondary-header">
   <ul class="heade-icon-list d-flex p-4 pr-5">
     <li class="ml-auto"><i id="commentOpen" class="icon-comment"></i></li>
@@ -11,60 +16,14 @@
 
 <main class="main-contents">
   <div class="contents-box">
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.code' %></dt>
-      <dd><%= @product.code %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.name' %></dt>
-      <dd><%= @product.name %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.agency_price' %></dt>
-      <dd><%= @product.agency_price %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.agency_incentive' %></dt>
-      <dd><%= @product.agency_incentive %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.agency_description' %></dt>
-      <dd><%= @product.agency_description %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.introduction_price' %></dt>
-      <dd><%= @product.introduction_price %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.introduction_incentive' %></dt>
-      <dd><%= @product.introduction_incentive %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.introduction_description' %></dt>
-      <dd><%= @product.introduction_description %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.wholesale_price' %></dt>
-      <dd><%= @product.wholesale_price %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.product.wholesale_description' %></dt>
-      <dd><%= @product.wholesale_description %></dd>
-    </dl>
-
+    <% @current_vendor_group.table_columns.where(table_type: 'product').order(position: 'ASC').each do |table_column| %>
+      <dl class="definition-list">
+        <dt><%= table_column.name %></dt>
+        <%= render 'table_columns/list', table_column: table_column, object: @product %>
+      </dl>
+    <% end %>
   </div>
-
 </main><!-- .main-contents -->
-
 
 <div id="rightCol" class="right-col">
   <h2 class="d-flex align-items-center">コメント<i id="rightColClose" class="icon-cancel ml-auto"></i></h2>

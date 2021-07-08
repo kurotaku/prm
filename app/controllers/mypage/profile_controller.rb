@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 class Mypage::ProfileController < ApplicationController
   before_action :set_staff
 
-  def edit
-
-  end
+  def edit; end
 
   def update
     if @staff.update(staff_params)
@@ -16,13 +16,11 @@ class Mypage::ProfileController < ApplicationController
   end
 
   private
+    def set_staff
+      @staff = @current_staff.decorate
+    end
 
-  def set_staff
-    @staff = @current_staff.decorate
-  end
-
-  def staff_params
-    params.require(:staff).permit(:name, :phone)
-  end
-
+    def staff_params
+      params.require(:staff).permit(Staff.column_names.map { |c| c.to_sym }).merge(vendor_group_id: @current_vendor_group.id)
+    end
 end

@@ -1,0 +1,24 @@
+<% content_for(:title,  t('activerecord.models.contract') + '詳細') %>
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0"><%= link_to t('activerecord.models.contract'), contracts_path %><i class="icon-arrow-right"></i><%= @contract.display_name %></h1>
+
+  <div class="ml-auto">
+    <%= link_to '削除する', contract_path(uid: @contract.uid), method: :delete, class:'btn btn-m border-gray before-icon delete mr-2', data: {confirm: '商談を削除します。よろしいですか？'} %>
+    <%= link_to '編集する', edit_contract_path(uid: @contract.uid), class: 'btn btn-m border-gray before-icon edit' %>
+  </div>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+  <h2 class="mb-4">基本情報</h2>
+
+  <div class="contents-box mb-5">
+    <% @current_vendor_group.table_columns.where(table_type: 'contract').order(position: 'ASC').each do |table_column| %>
+      <dl class="definition-list">
+        <dt><%= table_column.name %></dt>
+        <%= render 'table_columns/list', table_column: table_column, object: @contract %>
+      </dl>
+    <% end %>
+  </div>
+</main><!-- .main-contents -->
+

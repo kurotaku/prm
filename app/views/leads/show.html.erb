@@ -1,2 +1,24 @@
-<h1>Leads#show</h1>
-<p>Find me in app/views/leads/show.html.erb</p>
+<% content_for(:title, t('activerecord.models.lead') + '詳細') %>
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0"><%= link_to t('activerecord.models.lead'), leads_path %><i class="icon-arrow-right"></i><%= @lead.display_name %></h1>
+
+  <div class="ml-auto">
+    <%= link_to '削除する', lead_path(uid: @lead.uid), method: :delete, class:'btn btn-m border-gray before-icon delete mr-2', data: {confirm: '商談を削除します。よろしいですか？'} %>
+    <%= link_to '編集する', edit_lead_path(uid: @lead.uid), class: 'btn btn-m border-gray before-icon edit' %>
+  </div>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+  <h2 class="mb-4">商談情報</h2>
+
+  <div class="contents-box mb-5">
+    <% @current_vendor_group.table_columns.where(table_type: 'lead').order(position: 'ASC').each do |table_column| %>
+      <dl class="definition-list">
+        <dt><%= table_column.name %></dt>
+        <%= render 'table_columns/list', table_column: table_column, object: @lead %>
+      </dl>
+    <% end %>
+  </div>
+</main><!-- .main-contents -->
+

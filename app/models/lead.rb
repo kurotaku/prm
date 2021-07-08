@@ -5,12 +5,17 @@
 # Table name: leads
 #
 #  id                :bigint           not null, primary key
-#  contract_type     :integer          default(10), not null
+#  calc_1            :string(255)
+#  calc_2            :string(255)
+#  calc_3            :string(255)
+#  calc_4            :string(255)
+#  calc_5            :string(255)
 #  datetime_1        :datetime
 #  datetime_2        :datetime
 #  datetime_3        :datetime
 #  datetime_4        :datetime
 #  datetime_5        :datetime
+#  deleted_at        :datetime
 #  float_1           :float(24)
 #  float_2           :float(24)
 #  float_3           :float(24)
@@ -22,31 +27,42 @@
 #  integer_3         :integer
 #  integer_4         :integer
 #  integer_5         :integer
-#  price_1           :float(24)
-#  price_2           :float(24)
-#  price_3           :float(24)
-#  price_4           :float(24)
-#  price_5           :float(24)
-#  progress          :integer
+#  lookup_1          :string(255)
+#  lookup_2          :string(255)
+#  lookup_3          :string(255)
+#  lookup_4          :string(255)
+#  lookup_5          :string(255)
+#  name              :string(255)
+#  saled_at          :datetime
 #  show_cache        :text(65535)
+#  stacked_1         :string(255)
+#  stacked_2         :string(255)
+#  stacked_3         :string(255)
+#  stacked_4         :string(255)
+#  stacked_5         :string(255)
 #  string_1          :string(255)
 #  string_2          :string(255)
 #  string_3          :string(255)
 #  string_4          :string(255)
 #  string_5          :string(255)
+#  string_6          :string(255)
+#  string_7          :string(255)
+#  string_8          :string(255)
+#  string_9          :string(255)
 #  text_1            :text(65535)
 #  text_2            :text(65535)
 #  text_3            :text(65535)
 #  text_4            :text(65535)
 #  text_5            :text(65535)
+#  uid               :string(255)
 #  unique_key        :string(255)
 #  vendor_memo       :text(65535)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  company_id        :bigint
-#  prefecture_1_id   :bigint
-#  prefecture_2_id   :bigint
-#  prefecture_3_id   :bigint
+#  contract_id       :bigint
+#  customer_id       :bigint
+#  lead_phase_id     :bigint
 #  product_id        :bigint
 #  select_item_10_id :bigint
 #  select_item_1_id  :bigint
@@ -58,19 +74,16 @@
 #  select_item_7_id  :bigint
 #  select_item_8_id  :bigint
 #  select_item_9_id  :bigint
-#  staff_1_id        :bigint
-#  staff_2_id        :bigint
-#  staff_3_id        :bigint
+#  staff_id          :bigint
 #  vendor_group_id   :bigint           not null
 #
 # Indexes
 #
 #  index_leads_on_company_id                 (company_id)
-#  index_leads_on_prefecture_1_id            (prefecture_1_id)
-#  index_leads_on_prefecture_2_id            (prefecture_2_id)
-#  index_leads_on_prefecture_3_id            (prefecture_3_id)
+#  index_leads_on_contract_id                (contract_id)
+#  index_leads_on_customer_id                (customer_id)
+#  index_leads_on_lead_phase_id              (lead_phase_id)
 #  index_leads_on_product_id                 (product_id)
-#  index_leads_on_progress                   (progress)
 #  index_leads_on_select_item_10_id          (select_item_10_id)
 #  index_leads_on_select_item_1_id           (select_item_1_id)
 #  index_leads_on_select_item_2_id           (select_item_2_id)
@@ -81,40 +94,39 @@
 #  index_leads_on_select_item_7_id           (select_item_7_id)
 #  index_leads_on_select_item_8_id           (select_item_8_id)
 #  index_leads_on_select_item_9_id           (select_item_9_id)
-#  index_leads_on_staff_1_id                 (staff_1_id)
-#  index_leads_on_staff_2_id                 (staff_2_id)
-#  index_leads_on_staff_3_id                 (staff_3_id)
+#  index_leads_on_staff_id                   (staff_id)
 #  index_leads_on_unique_key_and_product_id  (unique_key,product_id) UNIQUE
 #  index_leads_on_vendor_group_id            (vendor_group_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (company_id => companies.id)
-#  fk_rails_...  (prefecture_1_id => prefectures.id)
-#  fk_rails_...  (prefecture_2_id => prefectures.id)
-#  fk_rails_...  (prefecture_3_id => prefectures.id)
+#  fk_rails_...  (contract_id => contracts.id)
+#  fk_rails_...  (customer_id => customers.id)
+#  fk_rails_...  (lead_phase_id => lead_phases.id)
 #  fk_rails_...  (product_id => products.id)
-#  fk_rails_...  (select_item_10_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_1_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_2_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_3_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_4_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_5_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_6_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_7_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_8_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_9_id => lead_column_select_items.id)
-#  fk_rails_...  (staff_1_id => staffs.id)
-#  fk_rails_...  (staff_2_id => staffs.id)
-#  fk_rails_...  (staff_3_id => staffs.id)
+#  fk_rails_...  (select_item_10_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_1_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_2_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_3_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_4_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_5_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_6_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_7_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_8_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_9_id => table_column_select_items.id)
+#  fk_rails_...  (staff_id => staffs.id)
 #  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 class Lead < ApplicationRecord
   include ActionView::Helpers::NumberHelper
+  include Uniqueable
 
   belongs_to :vendor_group
-  belongs_to :product
-  belongs_to :company
+  belongs_to :product, optional: true
+  belongs_to :company, optional: true
+  belongs_to :contract, optional: true
+  belongs_to :lead_phase, optional: true
 
   belongs_to :select_item_1, class_name: "LeadColumnSelectItem", optional: true
   belongs_to :select_item_2, class_name: "LeadColumnSelectItem", optional: true
@@ -122,38 +134,68 @@ class Lead < ApplicationRecord
   belongs_to :select_item_4, class_name: "LeadColumnSelectItem", optional: true
   belongs_to :select_item_5, class_name: "LeadColumnSelectItem", optional: true
 
-  belongs_to :staff_1, class_name: "Staff", optional: true
-  belongs_to :staff_2, class_name: "Staff", optional: true
-  belongs_to :staff_3, class_name: "Staff", optional: true
+  belongs_to :staff, optional: true
 
   serialize :index_cache, Hash
 
-  before_save :store_index_cache
+  before_validation :check_contracted
+  after_save :update_stacked
+
+  # before_validation :store_index_cache
+  # before_validation :check_saled
 
   validates :unique_key, allow_nil: true, uniqueness: { scope: :product_id, message: "が既に使われています" }
+  validates :name, length: { maximum: 255 }
 
-  def store_index_cache
-    hash = {}
-    vendor_group.lead_columns.where.not(index_page_order: nil).order(index_page_order: "ASC").each do |lead_column|
-      col = lead_column.lead_attribute
-      # p I18n.t('lead.columns.' + col)
-      case lead_column.data_type
-      when "company"
-        hash[col] = Company.find_by(id: self[col])&.name
-      when "product"
-        hash[col] = Product.find_by(id: self[col])&.name
-      when "staff"
-        hash[col] = Staff.find_by(id: self[col])&.name
-      when "select_item"
-        hash[col] = LeadColumnSelectItem.find_by(id: self[col])&.name
-      when "unique_key", "string", "text", "integer", "float"
-        hash[col] = self[col]
-      when "price"
-        hash[col] = number_to_currency(self[col])
-      when "datetime"
-        hash[col] = self[col]&.strftime("%Y/%m/%d")
-      end
-      self.index_cache = hash
-    end
+  def check_contracted
+    # errors.add(:contract_id, "が結ばれていない商品です") unless (contracts = Contract.where(product: product, company: company))
+    contract = Contract.find_by(product: product, company: company)
+    self.contract_id = contract&.id
   end
+
+  def update_stacked
+    StrackService.perform(vendor_group: vendor_group, ids: [self&.company_id], table: "company", target_table: "lead")
+    StrackService.perform(vendor_group: vendor_group, ids: [self&.contract_id], table: "contract", target_table: "lead")
+  end
+
+  # 積み上げ集計で置き換え
+  # def check_saled
+  #   if self&.lead_phase&.phase_role == "saled"
+  #     company.sales_amount += 1
+  #     company.sales_price_amount += contract.price
+  #     company.save!
+  #     contract.sales_amount += 1
+  #     contract.sales_price_amount += contract.price
+  #     contract.save!
+  #   end
+  # end
+
+  # キャッシュ一旦停止。内容古いので注意
+  # def store_index_cache
+  #   hash = {}
+  #   vendor_group.table_columns.where(table_type: "lead").where.not(index_page_position: nil).order(index_page_position: "ASC").each do |table_column|
+  #     col = table_column.table_attribute
+  #     case table_column.data_type
+  #     when "company"
+  #       hash[col] = Company.find_by(id: self[col])&.name
+  #     when "product"
+  #       hash[col] = Product.find_by(id: self[col])&.name
+  #     when "customer"
+  #       hash[col] = Customer.find_by(id: self[col])&.name
+  #     when "staff"
+  #       hash[col] = Staff.find_by(id: self[col])&.name
+  #     when "lead_phase"
+  #       hash[col] = LeadPhase.find_by(id: self[col])&.name
+  #     when "select_item"
+  #       hash[col] = TableColumnSelectItem.find_by(id: self[col])&.name
+  #     when "unique_key", "string", "text", "integer"
+  #       hash[col] = self[col]
+  #     when "price"
+  #       hash[col] = number_to_currency(self[col])
+  #     when "datetime"
+  #       hash[col] = self[col]&.strftime("%Y/%m/%d")
+  #     end
+  #     self.index_cache = hash
+  #   end
+  # end
 end

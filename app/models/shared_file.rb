@@ -30,7 +30,7 @@ class SharedFile < ApplicationRecord
   include Uniqueable
   mount_uploader :file, FileUploader
 
-  belongs_to :staff
+  belongs_to :staff, optional: true
   belongs_to :vendor_group
 
   has_many :download_file_histories

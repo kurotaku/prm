@@ -5,12 +5,17 @@
 # Table name: leads
 #
 #  id                :bigint           not null, primary key
-#  contract_type     :integer          default(10), not null
+#  calc_1            :string(255)
+#  calc_2            :string(255)
+#  calc_3            :string(255)
+#  calc_4            :string(255)
+#  calc_5            :string(255)
 #  datetime_1        :datetime
 #  datetime_2        :datetime
 #  datetime_3        :datetime
 #  datetime_4        :datetime
 #  datetime_5        :datetime
+#  deleted_at        :datetime
 #  float_1           :float(24)
 #  float_2           :float(24)
 #  float_3           :float(24)
@@ -22,31 +27,42 @@
 #  integer_3         :integer
 #  integer_4         :integer
 #  integer_5         :integer
-#  price_1           :float(24)
-#  price_2           :float(24)
-#  price_3           :float(24)
-#  price_4           :float(24)
-#  price_5           :float(24)
-#  progress          :integer
+#  lookup_1          :string(255)
+#  lookup_2          :string(255)
+#  lookup_3          :string(255)
+#  lookup_4          :string(255)
+#  lookup_5          :string(255)
+#  name              :string(255)
+#  saled_at          :datetime
 #  show_cache        :text(65535)
+#  stacked_1         :string(255)
+#  stacked_2         :string(255)
+#  stacked_3         :string(255)
+#  stacked_4         :string(255)
+#  stacked_5         :string(255)
 #  string_1          :string(255)
 #  string_2          :string(255)
 #  string_3          :string(255)
 #  string_4          :string(255)
 #  string_5          :string(255)
+#  string_6          :string(255)
+#  string_7          :string(255)
+#  string_8          :string(255)
+#  string_9          :string(255)
 #  text_1            :text(65535)
 #  text_2            :text(65535)
 #  text_3            :text(65535)
 #  text_4            :text(65535)
 #  text_5            :text(65535)
+#  uid               :string(255)
 #  unique_key        :string(255)
 #  vendor_memo       :text(65535)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  company_id        :bigint
-#  prefecture_1_id   :bigint
-#  prefecture_2_id   :bigint
-#  prefecture_3_id   :bigint
+#  contract_id       :bigint
+#  customer_id       :bigint
+#  lead_phase_id     :bigint
 #  product_id        :bigint
 #  select_item_10_id :bigint
 #  select_item_1_id  :bigint
@@ -58,19 +74,16 @@
 #  select_item_7_id  :bigint
 #  select_item_8_id  :bigint
 #  select_item_9_id  :bigint
-#  staff_1_id        :bigint
-#  staff_2_id        :bigint
-#  staff_3_id        :bigint
+#  staff_id          :bigint
 #  vendor_group_id   :bigint           not null
 #
 # Indexes
 #
 #  index_leads_on_company_id                 (company_id)
-#  index_leads_on_prefecture_1_id            (prefecture_1_id)
-#  index_leads_on_prefecture_2_id            (prefecture_2_id)
-#  index_leads_on_prefecture_3_id            (prefecture_3_id)
+#  index_leads_on_contract_id                (contract_id)
+#  index_leads_on_customer_id                (customer_id)
+#  index_leads_on_lead_phase_id              (lead_phase_id)
 #  index_leads_on_product_id                 (product_id)
-#  index_leads_on_progress                   (progress)
 #  index_leads_on_select_item_10_id          (select_item_10_id)
 #  index_leads_on_select_item_1_id           (select_item_1_id)
 #  index_leads_on_select_item_2_id           (select_item_2_id)
@@ -81,36 +94,65 @@
 #  index_leads_on_select_item_7_id           (select_item_7_id)
 #  index_leads_on_select_item_8_id           (select_item_8_id)
 #  index_leads_on_select_item_9_id           (select_item_9_id)
-#  index_leads_on_staff_1_id                 (staff_1_id)
-#  index_leads_on_staff_2_id                 (staff_2_id)
-#  index_leads_on_staff_3_id                 (staff_3_id)
+#  index_leads_on_staff_id                   (staff_id)
 #  index_leads_on_unique_key_and_product_id  (unique_key,product_id) UNIQUE
 #  index_leads_on_vendor_group_id            (vendor_group_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (company_id => companies.id)
-#  fk_rails_...  (prefecture_1_id => prefectures.id)
-#  fk_rails_...  (prefecture_2_id => prefectures.id)
-#  fk_rails_...  (prefecture_3_id => prefectures.id)
+#  fk_rails_...  (contract_id => contracts.id)
+#  fk_rails_...  (customer_id => customers.id)
+#  fk_rails_...  (lead_phase_id => lead_phases.id)
 #  fk_rails_...  (product_id => products.id)
-#  fk_rails_...  (select_item_10_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_1_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_2_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_3_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_4_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_5_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_6_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_7_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_8_id => lead_column_select_items.id)
-#  fk_rails_...  (select_item_9_id => lead_column_select_items.id)
-#  fk_rails_...  (staff_1_id => staffs.id)
-#  fk_rails_...  (staff_2_id => staffs.id)
-#  fk_rails_...  (staff_3_id => staffs.id)
+#  fk_rails_...  (select_item_10_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_1_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_2_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_3_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_4_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_5_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_6_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_7_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_8_id => table_column_select_items.id)
+#  fk_rails_...  (select_item_9_id => table_column_select_items.id)
+#  fk_rails_...  (staff_id => staffs.id)
 #  fk_rails_...  (vendor_group_id => vendor_groups.id)
 #
 require "rails_helper"
 
 RSpec.describe Lead, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '読み込みモジュールについて' do
+    subject { described_class }
+    it { is_expected.to include Uniqueable }
+  end
+
+  describe '関連モデルについて' do
+    it { expect(described_class.reflect_on_association(:vendor_group).macro).to eq(:belongs_to) }
+    it { expect(described_class.reflect_on_association(:product).macro).to eq(:belongs_to) }
+    it { expect(described_class.reflect_on_association(:company).macro).to eq(:belongs_to) }
+    it { expect(described_class.reflect_on_association(:contract).macro).to eq(:belongs_to) }
+    it { expect(described_class.reflect_on_association(:lead_phase).macro).to eq(:belongs_to) }
+    it { expect(described_class.reflect_on_association(:staff).macro).to eq(:belongs_to) }
+  end
+
+  describe 'バリデーション' do
+    describe :vendor_group_id do
+      let!(:record) { build(:lead, vendor_group_id: nil) }
+      it 'presence: trueをチェックすること' do
+        expect(record.valid?).to be false
+        expect(record.errors.messages[:vendor_group]).to include('を入力してください')
+        expect(record.errors.details[:vendor_group]).to include(error: :blank)
+      end
+    end
+
+    describe :name do
+      let!(:record) { build(:lead) }
+      it 'lengthをチェックすること' do
+        record.name = 'a' * 256
+        expect(record.valid?).to be false
+        expect(record.errors.messages[:name]).to include('は255文字以内で入力してください')
+        expect(record.errors.details[:name].first).to include(error: :too_long)
+      end
+    end
+  end
 end

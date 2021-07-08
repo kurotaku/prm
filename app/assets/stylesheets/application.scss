@@ -263,7 +263,6 @@ html{
   background-color: white;
 }
 .secondary-header{
-  background-color: white;
   border-bottom: 1px solid $shade-grey-02;
 }
 
@@ -271,16 +270,19 @@ html{
     Header
 =============================== */
 .primary-header{
-  padding: 24px;
+  padding: 24px 24px 0;
   position: relative;
-  background-color: white;
-  border-bottom: 1px solid $shade-grey-02;
   h1{
     font-size: 2.0rem;
     font-weight: bold;
     letter-spacing: 0.12em;
     color: $text-01;
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    a{
+      color: $link;
+    }
   }
   .tricolon-icon{
     font-size: 28px;
@@ -451,13 +453,22 @@ html{
     cursor: inherit;
     opacity: 1;
   }
-  &.default{
-    background-color: $primary-01;
-    border-color: $primary-01;
-    color: white;
+  &.text-btn{
+    color: $link;
     &:hover{
-      background-color: $primary-02;
-      border-color: $primary-02;
+      opacity: .7;
+    }
+  }
+  &.default{
+    // background-color: $primary-01;
+    // border-color: $primary-01;
+    // color: white;
+    background-color: white;
+    border-color: #E0E0E0;
+    color: #333;
+    &:hover{
+      // background-color: $primary-02;
+      // border-color: $primary-02;
     }
   }/* .default */
 
@@ -528,7 +539,7 @@ html{
 }/* .btn */
 
 .only-icon{
-  font-size: 24px;
+  font-size: 16px;
   padding: 4px;
 }
 
@@ -573,9 +584,9 @@ html{
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .4);
     right: 4px;
-    top: 4px;
+    top: 32px;
     li>a{
-      font-size: 14px;
+      color: $text-01;
       padding: 12px;
       display: block;
       width: 100%;
@@ -622,6 +633,31 @@ html{
       }
     }
   }
+}
+
+.sortable-icon {
+  width: 24px;
+  height: 2px;
+  color: #777;
+  background: currentColor;
+  position: relative;
+  display: block;
+}
+.sortable-icon:before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  width:  100%;
+  height: 100%;
+  background: currentColor;
+}
+.sortable-icon:after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  width:  100%;
+  height: 100%;
+  background: currentColor;
 }
 
 /*=============================
@@ -708,8 +744,25 @@ html{
 /*=============================
     Table
 =============================== */
+.table-header{
+  border-radius: 6.4px 6.4px 0 0;
+  padding: 8px 8px;
+  border: 1px solid $shade-grey-02;
+  border-bottom: 0;
+  .form-group{
+    margin-right: 8px;
+    margin-bottom: 0;
+  }
+  .form-default input[type=text], .form-default input[type=password], .form-default input[type=email], .form-default input[type=number], .form-default input[type=url], .form-default input[type=tel], .form-default input[type=date], .form-default input[type=time], .form-default textarea, .form-default select{
+    padding: 8px;
+  }
+  .form-default .form-group .select-wrap select {
+      padding-right: 32px;
+  }
+}
 .table-wrap{
-  margin-bottom: 40px;
+  margin-bottom: 16px;
+  overflow-x: auto;
 }
 .border-table{
   border-collapse: separate;
@@ -722,12 +775,17 @@ html{
         letter-spacing: .12em;
         color: $text-01;
         font-weight: bold;
+        border-top: 1px solid $shade-grey-02;
+        border-bottom: 1px solid $shade-grey-02;
+        white-space: nowrap;
+        &:first-child{
+          border-left: 1px solid $shade-grey-02;
+        }
+        &:last-child{
+          border-right: 1px solid $shade-grey-02;
+        }
       }
     }
-  }
-  .tbody-wrap{
-    overflow: hidden;
-    border-radius: 20px;
   }
   tbody{
     tr{
@@ -739,11 +797,12 @@ html{
         cursor: pointer;
       }
       td{
-        padding: 16px;
+        padding: 10px 16px;
         font-size: 1.1rem;
         letter-spacing: .1em;
         color: $text-01;
         border-bottom: 1px solid $shade-grey-02;
+        white-space: nowrap;
         &:first-child{
           border-left: 1px solid $shade-grey-02;
         }
@@ -784,27 +843,27 @@ html{
           margin-right: 4px;
         }
       }
-      &:first-child{
-        td{
-          border-top: 1px solid $shade-grey-02;
-          &:first-child{
-            border-radius: 6.4px 0 0 0;
-          }
-          &:last-child{
-            border-radius: 0 6.4px 0 0;
-          }
-        }
-      }
-      &:last-child{
-        td{
-          &:first-child{
-            border-radius: 0 0 0 6.4px;
-          }
-          &:last-child{
-            border-radius: 0 0 6.4px 0;
-          }
-        }
-      }
+      // &:first-child{
+      //   td{
+      //     border-top: 1px solid $shade-grey-02;
+      //     &:first-child{
+      //       border-radius: 6.4px 0 0 0;
+      //     }
+      //     &:last-child{
+      //       border-radius: 0 6.4px 0 0;
+      //     }
+      //   }
+      // }
+      // &:last-child{
+      //   td{
+      //     &:first-child{
+      //       border-radius: 0 0 0 6.4px;
+      //     }
+      //     &:last-child{
+      //       border-radius: 0 0 6.4px 0;
+      //     }
+      //   }
+      // }
       &.already_read{
         td{
           color: $text-03;
@@ -819,6 +878,33 @@ html{
     }
   }
 }/* .border-table */
+
+.table-default{
+  thead{
+    tr{
+      background-color: $secondary-02;
+      th{
+        color: white;
+        padding: 16px;
+        font-size: 1.1rem;
+        letter-spacing: .1em;
+        border: 1px solid $shade-grey-02;
+      }
+    }
+  }
+  tbody{
+    tr{
+      background: #fff;
+      td{
+        padding: 16px;
+        font-size: 1.1rem;
+        letter-spacing: .1em;
+        color: $text-01;
+        border: 1px solid $shade-grey-02;
+      }
+    }
+  }
+}
 
 .under-line-table{
   thead{
@@ -883,7 +969,7 @@ html{
     Box
 =============================== */
 .contents-box{
-  padding: 40px;
+  padding: 20px 16px;
   background-color: white;
   border-radius: 6.4px;
   border: solid 1px $shade-grey-02;
@@ -1111,6 +1197,10 @@ html{
       &.quarter{
         max-width: 114px;
       }
+      select{
+        padding-right: 40px;
+      }
+      
     }
     .selectable-text-wrap{
       position: relative;
@@ -1777,7 +1867,7 @@ header{
 ####### PRM #######
 --------------------------------------------------------------*/
 .main-header{
-  background-color: $secondary-01;
+  background-color: #333;
   padding: 10px 24px;
   position: relative;
   .header-icon{
@@ -1796,8 +1886,10 @@ header{
     }
   }
   .main-header-icon-list{
-    li{
-      background-color: #152134;
+    display: flex;
+    align-items: center;
+    &>li{
+      background-color: #333;
       width: 40px;
       height: 40px;
       border-radius: 100%;
@@ -1909,15 +2001,10 @@ header{
     Side Menu
 =============================== */
 .main-menu{
-   width: 180px;
-   min-height: 100vh;
-   height: 100%;
-   padding: 32px 0;
    background-color: white;
    // border-right: 1px solid $shade-grey-02;
    box-shadow: 2px -1px 3px rgba(0, 0, 0, .1);
    position: relative;
-   z-index: 10;
   .logo{
     width: 208px;
     display: block;
@@ -1939,6 +2026,9 @@ header{
   }
 
   .main-menu-list{
+    display: flex;
+    background-color: #525252;
+    padding: 0 16px;
     li{
       white-space: nowrap;
       a{
@@ -1946,8 +2036,8 @@ header{
         display: flex;
         align-items: center;
         width: 100%;
-        padding: 12px 16px;
-        color: $text-03;
+        padding: 16px 16px;
+        color: white;
         font-size: 1.2rem;
         font-weight: 600;
         letter-spacing: .1em;
@@ -1963,19 +2053,7 @@ header{
       }
       &.current, &:hover{
         opacity: 1;
-        a{
-          &:before{
-            content: ' ';
-            width: 3px;
-            height: 100%;
-            border-radius: 2px;
-            background-color: $primary-01;
-            position: absolute;
-            z-index: 1;
-            left: 0;
-            top: 0;
-          }
-        }
+        background-color: #666;
       }
     }
   }/* .main-menu-list */
@@ -2061,4 +2139,15 @@ header{
       padding: 4px;
     }
   }
+}
+
+/*=============================
+    Dashboard
+=============================== */
+.grid-item{
+  background: white;
+  border: 1px solid $shade-grey-02;
+  border-radius: 6px;
+  padding: 16px;
+  overflow: hidden;
 }

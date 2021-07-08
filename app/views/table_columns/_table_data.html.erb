@@ -1,0 +1,23 @@
+<% if table_column.data_type == 'name' %>
+  <td><%= object.display_name %></td>
+<% elsif %w[unique_key string integer].include? table_column.data_type %>
+  <td><%= object[table_column.table_attribute] %></td>
+<% elsif %w[calc lookup stacked].include? table_column.data_type %>
+  <td><%= object[table_column.table_attribute] %></td>
+<% elsif table_column.data_type == 'price' %>
+  <td><%= object[table_column.table_attribute]&.to_s(:delimited) %>円</td>
+<% elsif table_column.data_type == 'lead_phase' %>
+  <td><%= LeadPhase.find_by(id: object[table_column.table_attribute])&.name %></td>
+<% elsif table_column.data_type == 'select_item' %>
+  <td><%= TableColumnSelectItem.find_by(id: object[table_column.table_attribute])&.name %></td>
+<% elsif table_column.data_type == 'company' %>
+  <td><%= Company.find_by(id: object[table_column.table_attribute])&.name %></td>
+<% elsif table_column.data_type == 'product' %>
+  <td><%= Product.find_by(id: object[table_column.table_attribute])&.name %></td>
+<% elsif table_column.data_type == 'staff' %>
+  <td><%= Staff.find_by(id: object[table_column.table_attribute])&.name %></td>
+<% elsif %w[datetime created_at updated_at].include? table_column.data_type %>
+  <td><%= object[table_column.table_attribute]&.strftime("%Y/%m/%d") %></td>
+<% elsif %w[text].include? table_column.data_type %>
+  <td><%= object[table_column.table_attribute] %></td>
+<% end %>

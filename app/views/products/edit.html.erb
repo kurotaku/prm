@@ -13,8 +13,10 @@
       <h2 class="contents-box-title mb-5">商品情報</h2>
 
       <%= form_with(model: @product, url: product_path(uid: @product.uid), html: { method: :patch, class: 'form-default' }) do |f| %>
-
-        <%= render 'form', f: f %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <% @current_vendor_group.table_columns.where(table_type: 'product').order(position: 'ASC').each do |table_column| %>
+          <%= render 'table_columns/form', {f: f, table_column: table_column} %>
+        <% end %>
 
         <%= f.submit t('common.update'), class: 'btn btn-m default' %>
       <% end %>

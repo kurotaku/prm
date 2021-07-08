@@ -1,0 +1,27 @@
+<% content_for(:title, t('activerecord.models.staff') + '編集') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>企業情報編集</h1>
+    <p class="mb-0">企業情報の編集ができます</p>
+  </div>
+</header>
+
+<main class="main-contents">
+  <div class="main-center-col w-100">
+    <div class="contents-box">
+      <h2 class="contents-box-title mb-5">企業情報</h2>
+
+      <%= form_with(model: @partner, url: partner_path(uid: @partner.uid), html: { method: :patch, class: 'form-default' }) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <% @current_vendor_group.table_columns.where(table_type: 'company').order(position: 'ASC').each do |table_column| %>
+          <%= render 'table_columns/form', {f: f, table_column: table_column} %>
+        <% end %>
+        
+        <%= f.submit t('common.update'), class: 'btn btn-m default' %>
+      <% end %>
+
+    </div>
+  </div><!-- .main-center-col -->
+
+</main><!-- .main-contents -->

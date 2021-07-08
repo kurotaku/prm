@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
-RSpec.describe Admin.csvService.importLeadFromCsvService do
+RSpec.describe Admin::CsvService::ImportLeadFromCsvService do
 end

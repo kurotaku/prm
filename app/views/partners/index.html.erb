@@ -1,50 +1,44 @@
-<% content_for(:title, 'パートナー一覧') %>
+<% content_for(:title, t('activerecord.models.partner') + '一覧') %>
 
 <header class="primary-header d-flex align-items-center">
-  <div>
-    <h1 class="mb-0">パートナー一覧</h1>
+  <div class="d-flex align-items-center">
+    <h1 class="mb-0 mr-3"><%= t('activerecord.models.partner') %></h1>
+    <div class="text-sl">全件数:<%= @partners.total_count %>件</div>
   </div>
 
   <div class="d-flex ml-auto">
-    <%= link_to t('common.new'), new_partner_path, class: 'btn btn-m default before-icon plus' %>
+    <%= link_to t('common.new'), new_partner_path, class: 'btn btn-s default mr-2' %>
+    <%#= link_to t('common.import'), partners_csvs_path, class: 'btn btn-s default' %>
   </div>
 </header><!-- .primary-header -->
-<div class="secondary-header">
-  
-</div><!-- .secondary-header -->
 
 <main class="main-contents">
-  
-  <div class="table-wrap sp-none">
+
+<!--   <div class="table-header">
+    <%#= render 'filter' %>
+  </div>
+ -->
+  <div class="table-wrap">
     <table class="border-table">
       <thead>
         <tr>
-          <td><%= t 'activerecord.attributes.company.name' %></td>
-          <td>サービス連携</td>
-          <td><%= t 'activerecord.attributes.company.hierarchy' %></td>
-          <td><%= t 'activerecord.attributes.company.parent' %></td>
-          <td><%= t 'activerecord.attributes.company.vendor' %></td>
+          <% @index_columns.each do |index_column| %>
+            <td><%= index_column.name %></td>
+          <% end %>
         </tr>
       </thead>
       <tbody>
         <% @partners.each do |partner| %>
-          <tr>
-            <td><%= link_to partner.name, partner_path(uid: partner.uid) %></td>
-            <td>
-              <% if partner.organization.present? %>
-                <%= image_tag partner.organization.decorate.thumbnail, class: 'icon-image mr-3' %>
-                <%= partner.organization.name %>
-              <% else %>
-                <span>未連携</span>
-              <% end %>
-            </td>
-            <td><%= partner.hierarchy_i18n %></td>
-            <td><%= partner&.parent&.name %></td>
-            <td><%= partner.vendor_group.decorate.display_name %></td>
+          <tr class="clickable-tr" data-menu-item-path="<%= partner_path(uid: partner.uid) %>">
+            <% @index_columns.each do |index_column| %>
+              <%= render 'table_columns/table_data', table_column: index_column, object: partner %>
+            <% end %>
           </tr>
         <% end %>
-    </tbody>
-  </table>
-</div><!-- .table-wrap -->
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
 
-</main><!-- .main-contents -->
+  <div class="d-flex">
+    <%= paginate @partners %>
+  </div>

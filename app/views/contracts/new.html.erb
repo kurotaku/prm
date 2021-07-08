@@ -1,0 +1,24 @@
+<% content_for(:title, '契約新規作成') %>
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0">契約新規作成</h1>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+  <div class="contents-box">
+    <%= form_with(model: @contract, url: contracts_path, html: { method: :post, class: 'form-default' }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <% @current_vendor_group.table_columns.where(table_type: 'contract').order(position: 'ASC').each do |table_column| %>
+        <%= render 'table_columns/form', {f: f, table_column: table_column} %>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :vendor_memo %>
+        <%= f.text_area :vendor_memo, class: 'form-control', placeholder: "ベンダーのみが閲覧できるメモです".html_safe, rows: 6 %>
+      </div>
+
+      <%= f.submit t('common.create'), class: 'btn btn-m default' %>
+    <% end %>
+  </div>
+</main><!-- .main-contents -->

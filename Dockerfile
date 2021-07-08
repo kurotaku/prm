@@ -1,23 +1,29 @@
-FROM ruby:2.7.0
+FROM node:12.1-alpine as node
+
+ENV YARN_VERSION 1.21.1
+
+RUN apk add --no-cache bash curl && \
+    curl -o- -L httprm://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+
+FROM ruby:2.7.0-alpine
 
 ENV TZ Asia/Tokyo
 RUN mkdir /app
 
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+COPY --from=node /opt/yarn-* /opt/yarn
+RUN ln -fs /opt/yarn/bin/yarn /usr/local/bin/yarn
+RUN apk add --no-cache git build-base libxml2-dev libxslt-dev mysql-dev mysql-client tzdata bash less graphviz && \
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+RUN apk --no-cache add msttcorefonts-installer fontconfig font-bitstream-type1 ghostscript-fonts ttf-freefont && \
+    update-ms-fonts && \
+    fc-cache -f
+
+RUN apk --update add imagemagick
+
 ENV APP_ROOT /app
 WORKDIR $APP_ROOT
-
-RUN apt-get update
-RUN apt-get install -y nodejs npm && npm install n -g && n 12.0.0
-RUN apt-get install -y yarn graphviz vim --no-install-recommends
-
-RUN rm -rf /var/lib/apt/lists/*
-
-RUN apt-get install -y curl apt-transport-https wget && \
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-apt-get update && apt-get install -y yarn 
-
-ENV YARN_VERSION 1.21.1
 
 ADD Gemfile $APP_ROOT
 ADD Gemfile.lock $APP_ROOT
@@ -29,7 +35,9 @@ ENV BUNDLE_PATH=/bundle \
 
 ENV PATH="${BUNDLE_BIN}:${PATH}"
 
-RUN gem install bundler -v '2.2.1'
+ENV BUNDLER_VERSION 2.1.1
+
+RUN gem install --no-document bundler -v $BUNDLER_VERSION
 RUN bundle config --global build.nokogiri --use-system-libraries
 RUN bundle config --global jobs 4
 RUN bundle install

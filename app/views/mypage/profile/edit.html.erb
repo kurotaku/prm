@@ -12,20 +12,12 @@
     <div class="contents-box">
       <h2 class="contents-box-title mb-5">プロフィール情報</h2>
 
-      <%= form_for(@staff, url: mypage_profile_path, html: { method: :patch, class: 'form-default auto-submit-form' }, local: true) do |f| %>
-
+      <%= form_with(model: @staff, url: mypage_profile_path, html: { method: :patch, class: 'form-default' }) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-
-        <div class="form-group">
-          <p><%= f.label :name %></p>
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <p><%= f.label :phone %></p>
-          <%= f.text_field :phone, class: 'form-control' %>
-        </div>
-
+        <% @current_vendor_group.table_columns.where(table_type: 'staff').order(position: 'ASC').each do |table_column| %>
+          <%= render 'table_columns/form', {f: f, table_column: table_column} %>
+        <% end %>
+        
         <%= f.submit t('common.update'), class: 'btn btn-m default' %>
       <% end %>
 

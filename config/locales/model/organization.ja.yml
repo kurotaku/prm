@@ -16,11 +16,11 @@ ja:
         fax: FAX番号
         email: メールアドレス
         settlement_month: 決算月
-        contract_type: 契約タイプ
+        partnership_type: 契約タイプ
         image: ロゴ
   enums:
     organization:
-      contract_type:
+      partnership_type:
         partner: パートナー
         maker: ベンダー
   organizations:

@@ -1,0 +1,45 @@
+<% content_for(:title, t('activerecord.models.partner') + t('activerecord.models.lead') + '一覧') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div class="d-flex align-items-center">
+    <h1 class="mb-0 mr-3"><%= link_to t('activerecord.models.partner'), partners_path %><i class="icon-arrow-right"></i><%= link_to @partner.display_name, partner_path(uid: @partner.uid) %><i class="icon-arrow-right"></i><%=  t('activerecord.models.lead') %>一覧</h1>
+    <div class="text-sl">全件数:<%= @leads.total_count %>件</div>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_lead_path, class: 'btn btn-s default mr-2' %>
+  </div>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+
+  <div class="table-header">
+    <%#= render 'filter' %>
+  </div>
+
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <% @index_columns.each do |index_column| %>
+            <td><%= index_column.name %></td>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @leads.each do |lead| %>
+          <tr class="clickable-tr" data-menu-item-path="<%= lead_path(uid: lead.uid) %>">
+            <% @index_columns.each do |index_column| %>
+              <%= render 'table_columns/table_data', table_column: index_column, object: lead %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+  <div class="d-flex">
+    <%= paginate @leads %>
+  </div>
+
+</main><!-- .main-contents -->

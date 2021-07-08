@@ -7,15 +7,13 @@
   <body class="<%= yield(:body_class) %>" id="<%= yield(:body_id) %>">
     <%= render 'layouts/main_header' %>
     
-    <div class="d-flex">
-      <nav class="site-navigation">
-        <%= render 'layouts/main_menu' %>
-      </nav>
+    <nav class="site-navigation">
+      <%= render 'layouts/main_menu' %>
+    </nav>
 
-      <section class="main-col w-100">
-        <%= render 'layouts/flash_message' %>
-        <%= yield %>
-      </section>
-    </div>
+    <section class="main-col w-100">
+      <%= render 'layouts/flash_message' %>
+      <%= yield %>
+    </section>
   </body>
 </html>

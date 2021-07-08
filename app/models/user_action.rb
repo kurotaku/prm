@@ -14,5 +14,5 @@
 class UserAction < ApplicationRecord
   has_many :user_action_permissions
 
-  validates :ctrl_path, uniqueness: { scope: :act_path, message: "重複しています" }
+  validates :ctrl_path, uniqueness: { scope: :act_path, message: "\u91CD\u8907\u3057\u3066\u3044\u307E\u3059" }
 end

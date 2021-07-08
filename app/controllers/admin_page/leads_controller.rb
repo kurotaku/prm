@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AdminPage
   class LeadsController < AdminPageController
     def index

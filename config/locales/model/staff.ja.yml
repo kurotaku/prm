@@ -1,17 +1,23 @@
 ja:
   activerecord:
     models:
-      staff: ユーザー
+      staff: 担当者
     attributes:
       staff:
         uid: ID
         code: 社員コード
         name: 氏名
         phone: 電話番号
-  staff:
+  staffs:
+    create:
+      success: 担当者を作成しました
+      error: 担当者の作成に失敗しました
     update:
       success: 担当者情報を更新しました
       error: 担当者情報の更新に失敗しました
+    destroy:
+      success: 担当者を削除しました
+      error: 担当者の削除に失敗しました
   profile:
     update:
       success: プロフィールを更新しました

@@ -13,6 +13,17 @@
 
   <div class="ml-auto d-flex">
     <ul class="main-header-icon-list">
+      <li class="tricolon-menu">
+        <span class=" tricolon-icon">
+          <i class="icon-setting"></i>
+        </span>
+        <nav class="tricolon-menu-list hide">
+          <ul>
+            <li><%= link_to '項目設定', column_setting_lead_columns_path %></li>
+          </ul>
+        </nav>
+        <div class="tricolon-menu-bg hide"></div>
+      </li>
       <li><i class="icon-notification"></i></li>
     </ul>
 
@@ -23,11 +34,6 @@
       <ul class="mb-3">
         <li><%= link_to '企業プロフィール', edit_my_company_profile_path %></li>
         <li><%= link_to '担当者管理', my_company_staffs_path %></li>
-        <li><%#= link_to '会社情報', organization_page_profile_path %></li>
-        <li><%#= link_to '社員名簿', organization_page_user_profiles_path %></li>
-        <li><%#= link_to '社員アカウント', organization_page_users_path %></li>
-        <li><%#= link_to '社員権限管理', organization_page_users_roles_path %></li>
-        <li><%#= link_to '操作権限設定', organization_page_user_permissions_path %></li>
       </ul>
 
       <hr />

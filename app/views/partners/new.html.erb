@@ -4,43 +4,15 @@
   <h1 class="mb-0">パートナー新規登録</h1>
 </header>
 
-<div class="secondary-header">
-</div><!-- .secondary-header -->
-
 <main class="main-contents">
-  <%= form_with(model: @partner, url: partners_path, html: { method: :post, class: 'form-default' }) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-
-    <div class="form-group">
-      <p><%= f.label :name %></p>
-      <%= f.text_field :name, class: 'form-control half' %>
-    </div>
-
-    <div class="form-group">
-      <p><%= f.label :parent_id %></p>
-      <div class="select-wrap">
-        <%= f.collection_select :parent_id, @current_vendor_group.partners.all, :id, :name, {include_blank: '---'},{class: 'form-control'} %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <p class="mb-1"><%= f.label :hierarchy %></p>
-      <div class="select-wrap half">
-        <%= f.select :hierarchy, Company.hierarchies_i18n.invert.to_a, {}, {class: 'form-control'} %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <p><%= f.label :address %></p>
-      <%= f.text_field :address, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :vendor_memo %>
-      <%= f.text_area :vendor_memo, class: 'form-control', placeholder: "ベンダーのみが閲覧できるメモです".html_safe, rows: 6 %>
-    </div>
-
-    <%= f.submit t('common.create'), class: 'btn btn-m default' %>
-  <% end %>
-
+  <div class="contents-box">
+    <%= form_with(model: @partner, url: partners_path, html: { method: :post, class: 'form-default' }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <% @current_vendor_group.table_columns.where(table_type: 'company').order(position: 'ASC').each do |table_column| %>
+        <%= render 'table_columns/form', {f: f, table_column: table_column} %>
+      <% end %>
+        
+      <%= f.submit t('common.create'), class: 'btn btn-m default' %>
+    <% end %>
+  </div>
 </main><!-- .main-contents -->

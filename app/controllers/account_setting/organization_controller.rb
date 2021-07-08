@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module AccountSetting
   class OrganizationController < AccountSettingController
     before_action :set_organization
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @organization.update(organization_params)

@@ -84,6 +84,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts_as_list (1.0.4)
+      activerecord (>= 4.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     annotate (3.1.1)
@@ -158,6 +160,12 @@ GEM
     concurrent-ruby (1.1.8)
     connection_pool (2.2.5)
     crass (1.0.6)
+    database_cleaner (2.0.1)
+      database_cleaner-active_record (~> 2.0.0)
+    database_cleaner-active_record (2.0.1)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -314,6 +322,10 @@ GEM
       thor (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.3)
+    ransack (2.4.2)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -453,6 +465,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activerecord-import
+  acts_as_list
   annotate
   aws-sdk-rails
   aws-sdk-s3
@@ -462,6 +475,7 @@ DEPENDENCIES
   carrierwave!
   carrierwave-base64
   chart-js-rails
+  database_cleaner
   devise
   devise-i18n
   devise-i18n-views
@@ -480,6 +494,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-erd
   rails-i18n
+  ransack
   react-rails
   roo
   rspec-rails

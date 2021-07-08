@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get "boards/:related_object/:related_object_uid" => "boards#show", as: :board_messages
       resources :boards, only: [:create], param: :uid
       resources :messages, only: [:create], param: :uid
+      resources :using_lead_phase, only: [:update], param: :lead_phase_id
+      resources :dashboard_layout, only: [:update], param: :dashboard_id
     end
   end
 
@@ -49,40 +51,45 @@ Rails.application.routes.draw do
       resources :staffs, param: :uid
     end
 
-    # namespace :organization_page do
-    #   resource :organization, only: %i[show edit update], controller: "organization", as: "profile", path: "profile"
-    #   resources :user_profiles, param: :uid
-    #   resources :users, param: :uid
-    #   namespace :users, path: "user" do
-    #     resources :roles, only: %i[index update], param: :uid
-    #   end
-    #   resources :user_permissions, only: %i[index create update destroy]
-    # end
+    resource :dashboards, only: %i[show]
 
-    # namespace :vendor_page do
-    #   resource :dashboards, only: %i[show], param: :uid
-    #   resources :products, param: :uid do
-    #     member do
-    #       namespace :products, path: "" do
-    #         resources :leads
-    #         resources :lead_columns
-    #       end
-    #     end
-    #   end
-    #   resources :customers, param: :uid
-    #   resources :partners, param: :uid
-    #   resources :files, param: :uid do
-    #     member do
-    #       get "download", to: "files#download"
-    #     end
-    #   end
-    #   resources :download_histories, only: %i[index]
-    # end
+    resource :reports, only: %i[show]
+    namespace :reports, path: "report" do
+      resources :partners, controller: "partners", only: %i[index]
+      resources :leads, controller: "leads", only: %i[index]
+    end
 
-    resource :dashboards, only: %i[show], param: :uid
-    resources :products, param: :uid
+    resources :products, param: :uid do
+      member do
+        namespace :products, path: "" do
+          resources :lead_phases, controller: "lead_phases", only: %i[index]
+        end
+      end
+    end
+
     resources :leads, param: :uid
-    resources :partners, param: :uid
+    namespace :leads, path: "lead" do
+      resources :csvs, controller: "csvs"
+    end
+
+    resources :partners, param: :uid do
+      member do
+        namespace :partners, path: "" do
+          resources :leads, param: :lead_uid
+        end
+      end
+    end
+
+    resources :staffs, param: :uid do
+      member do
+        namespace :staffs, path: "" do
+          resources :leads, param: :lead_uid
+        end
+      end
+    end
+
+    resources :contracts, param: :uid
+
     resources :files, param: :uid do
       member do
         get "download", to: "files#download"
@@ -94,9 +101,41 @@ Rails.application.routes.draw do
 
     resource :profiles, only: %i[edit update], param: :uid
 
+    namespace :column_setting do
+      resources :lead_columns, param: :uid, only: %i[index create edit update destroy] do
+        collection do
+          patch :sort
+        end
+      end
+      resources :product_columns, param: :uid, only: %i[index create edit update destroy] do
+        collection do
+          patch :sort
+        end
+      end
+      resources :company_columns, param: :uid, only: %i[index create edit update destroy] do
+        collection do
+          patch :sort
+        end
+      end
+      resources :contract_columns, param: :uid, only: %i[index create edit update destroy] do
+        collection do
+          patch :sort
+        end
+      end
+    end
+
     namespace :vendor_setting do
       resource :base_setting, only: %i[edit update], controller: "base_setting"
-      resources :lead_columns
+      resources :lead_columns do
+        collection do
+          patch :sort
+        end
+      end
+      resources :lead_phases do
+        collection do
+          patch :sort
+        end
+      end
     end
   end
 end

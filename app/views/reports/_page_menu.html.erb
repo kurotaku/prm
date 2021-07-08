@@ -1,0 +1,6 @@
+<ul class="tab-menu-list">
+  <li class="<%= 'current' if controller_path == 'reports/partners' %>"><%= link_to 'パートナーレポート', reports_partners_path %></li>
+  <li class="<%= 'current' if controller_path == 'reports/leads' %>"><%= link_to '商談レポート', reports_leads_path %></li>
+  <li class="<%= 'current' if controller_path == '' %>"><%= link_to '商品レポート', reports_path %></li>
+  <li class="<%= 'current' if controller_path == '' %>"><%= link_to '担当者レポート', reports_path %></li>
+</ul>

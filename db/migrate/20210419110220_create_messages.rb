@@ -6,7 +6,6 @@ class CreateMessages < ActiveRecord::Migration[6.1]
       t.references :board, null: false, foreign_key: true
       t.references :staff, null: false, foreign_key: true
       t.text :content
-      t.integer :status, default: 10, null: false
       t.string :uid
 
       t.timestamps

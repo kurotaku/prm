@@ -1,0 +1,44 @@
+<% content_for(:title, t('activerecord.models.staff') + '一覧') %>
+
+<header class="primary-header d-flex align-items-center">
+  <div class="d-flex align-items-center">
+    <h1 class="mb-0 mr-3"><%= t('activerecord.models.staff') %></h1>
+    <div class="text-sl">全件数:<%= @staffs.total_count %>件</div>
+  </div>
+
+  <div class="d-flex ml-auto">
+    <%= link_to t('common.new'), new_staff_path, class: 'btn btn-s default mr-2' %>
+    <%#= link_to t('common.import'), staffs_csvs_path, class: 'btn btn-s default' %>
+  </div>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+
+<!--   <div class="table-header">
+    <%#= render 'filter' %>
+  </div>
+ -->
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <% @index_columns.each do |index_column| %>
+            <td><%= index_column.name %></td>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @staffs.each do |staff| %>
+          <tr class="clickable-tr" data-menu-item-path="<%= staff_path(uid: staff.uid) %>">
+            <% @index_columns.each do |index_column| %>
+              <%= render 'table_columns/table_data', table_column: index_column, object: staff %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+  <div class="d-flex">
+    <%= paginate @staffs %>
+  </div>

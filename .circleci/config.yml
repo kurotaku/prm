@@ -1,0 +1,93 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.7.0-node-browsers # 言語イメージ
+        environment:
+          BUNDLER_VERSION: 2.2.18
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+          MYSQL_HOST: 127.0.0.1
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      - image: circleci/mysql:latest  # サービス イメージ
+        command: mysqld --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'false'
+          MYSQL_USER: prm
+          MYSQL_PASSWORD: prm
+          MYSQL_ROOT_PASSWORD: prm
+          MYSQL_DATABASE: prm_test
+
+    working_directory: ~/repo
+
+    resource_class: small
+
+    steprm:
+      - checkout
+
+      # バンドル キャッシュを復元
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+
+      - run:
+          name: bundle install
+          command: bundle check --path vendor/bundle || bundle install --deployment
+
+      # バンドル キャッシュを保存
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # DB設置
+      - run:
+          command: bundle exec rails db:create
+      - run:
+          command: bundle exec rails db:migrate
+
+      # Yarnインストール
+      - run:
+          name: yarn Install
+          command: yarn install
+
+      - run:
+          command: bundle exec bin/webpack
+
+      - run:
+          name: create directory to store test results
+          command: mkdir /tmp/test-results
+
+      # Rubocop 実行
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+      # テスト実行
+      - run:
+          name: Test
+          command: |
+            mkdir test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+      # collect reports
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: test-results
+      - store_artifacts:
+          path: coverage

@@ -38,7 +38,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
 
       t.string :image
-      t.integer :status, default: 10, null: false
       t.string :uid
       t.datetime :deleted_at
 

@@ -1,0 +1,29 @@
+<%= form_tag '#', method: :get, class: 'form-default d-flex mw-100' do %>
+  <div class="form-group">
+    <div class="select-wrap">
+      <%= collection_select '', :company_id, @current_vendor_group.partners, :id, :name, {include_blank: '全パートナー', selected: params[:company_id]},{class: 'form-control mb-0 autoSubmit'} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="select-wrap">
+      <%= collection_select '', :staff_id, @current_vendor_group.staffs, :id, :name, {include_blank: '全担当者', selected: params[:staff_id]},{class: 'form-control mb-0 autoSubmit'} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="select-wrap">
+      <%= collection_select '', :product_id, @current_vendor_group.products, :id, :name, {include_blank: '全商品', selected: params[:product_id]},{class: 'form-control mb-0 autoSubmit'} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="select-wrap">
+      <%= collection_select '', :lead_phase_id, @current_vendor_group.lead_phases, :id, :name, {include_blank: '全フェーズ', selected: params[:lead_phase_id]},{class: 'form-control mb-0 autoSubmit'} %>
+    </div>
+  </div>
+
+  <%#= link_to '検索条件をクリア', request.path, class: 'btn btn-m border-gray mb-0 mb-md-4' %>
+  <%= submit_tag 'この条件で絞り込む', class: 'btn btn-m border-primary autoSubmitButton hide' %>
+  <%= submit_tag t('common.export'), class: 'btn btn-s default ml-auto', formaction: leads_path(format: :csv) %>
+<% end %>

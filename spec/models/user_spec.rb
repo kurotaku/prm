@@ -23,7 +23,6 @@
 #  reset_password_token   :string(255)
 #  role                   :integer          default("level_one"), not null
 #  sign_in_count          :integer          default(0), not null
-#  status                 :integer          default(10), not null
 #  uid                    :string(255)
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
@@ -43,5 +42,38 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '読み込みモジュールについて' do
+    subject { described_class }
+    it { is_expected.to include Uniqueable }
+  end
+
+  describe 'deviseのモジュールについて' do
+    subject { described_class.devise_modules }
+    it { is_expected.to include(:database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable, :trackable) }
+  end
+
+  describe '関連モデルについて' do
+    it { expect(described_class.reflect_on_association(:organization).macro).to eq(:belongs_to) }
+    it { expect(described_class.reflect_on_association(:staffs).macro).to eq(:has_many) }
+  end
+
+  describe 'enums' do
+    describe '#role' do
+      it '正しく値が設定されていること' do
+        expect(described_class.roles.symbolize_keys).to eq(level_one:   10,
+                                                           level_two:   20,
+                                                           level_three: 30,
+                                                           level_four:  40,
+                                                           level_five:  50,)
+      end
+    end
+
+    describe '#account_type' do
+      it '正しく値が設定されていること' do
+        expect(described_class.account_types.symbolize_keys).to eq(normal: 10,
+                                                                   demo:   20,
+                                                                   admin:  30,)
+      end
+    end
+  end
 end

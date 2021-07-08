@@ -1,0 +1,41 @@
+<% content_for(:title, 'パートナーレポート') %>
+
+<div class="secondary-header">
+  <%= render 'reports/page_menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0">パートナーレポート</h1>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+
+  <%= form_tag '#', method: :get, class: 'form-default d-flex mw-100' do %>
+    <%#= link_to '検索条件をクリア', request.path, class: 'btn btn-m border-gray mb-0 mb-md-4' %>
+    <%= submit_tag 'この条件で絞り込む', class: 'btn btn-m border-primary autoSubmitButton hide' %>
+  <% end %>
+
+  <div class="contents-box">
+    <h2 class="mb-4">売上数と売上高の相関</h2>
+    <div class="table-wrap">
+      <table class="table-default">
+        <thead>
+          <tr>
+            <th><%= t 'activerecord.attributes.company.name' %></th>
+            <th><%= my_sort_link(@q, :sales_amount, t("activerecord.attributes.company.sales_amount")) %></th>
+            <th><%= my_sort_link(@q, :sales_price_amount, t("activerecord.attributes.company.sales_price_amount")) %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @partners.each do |partner| %>
+            <tr>
+              <td><%= partner.name %></td>
+              <td class="text-right"><%= partner.sales_amount %></td>
+              <td class="text-right"><%= partner.sales_price_amount.to_s(:delimited) %>円</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- .table-wrap -->
+  </div><!-- .contents-box -->
+</main><!-- .main-contents -->

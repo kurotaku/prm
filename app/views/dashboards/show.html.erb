@@ -3,10 +3,34 @@
 <header class="primary-header d-flex align-items-center">
   <h1 class="mb-0">ダッシュボード</h1>
 </header><!-- .primary-header -->
-<div class="secondary-header">
-  
-</div><!-- .secondary-header -->
 
 <main class="main-contents">
-  <h2>準備中です</h2>
+
+<!--   <% @gadgets.each do |gadget| %>
+    <div class="contents-box mb-3">
+      <%= render gadget.chart_type, gadget: gadget, chart_data: ChartDataService.perform(gadget: gadget, vendor_group: @current_vendor_group) %>
+    </div>
+  <% end %> -->
+
+  <%= react_component 'GridDashboard/GridDashboard', gadgets_data: @gadgets_data, dashboard_layout: @layout %>
+
+ <!--  <div class="contents-box mb-3">
+    <%#= render 'dashboards/sales_price_amount_graph' %>
+  </div>
+  
+  <div class="contents-box <embed></embed>-3">
+    <%#= render 'dashboards/sales_amount_graph' %>
+  </div>
+  
+  <div class="contents-box mb-3">
+    <%#= render 'dashboards/sales_price_amount_stack_graph' %>
+  </div>
+
+  <div class="contents-box mb-3">
+    <%#= render 'dashboards/sales_amount_vs_price_graph' %>
+  </div>
+
+  <div class="contents-box mb-3">
+    <%#= render 'dashboards/contracts_scatter_graph' %>
+  </div> -->
 </main><!-- .main-contents -->

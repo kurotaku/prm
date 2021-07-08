@@ -6,7 +6,6 @@ class CreateBoards < ActiveRecord::Migration[6.1]
       t.references :vendor_group, null: false, foreign_key: true
       t.string :related_object
       t.string :related_object_uid
-      t.integer :status, default: 10, null: false
       t.string :uid
 
       t.timestamps

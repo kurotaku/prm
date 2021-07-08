@@ -26,17 +26,13 @@ module AdminPage
       end
     end
 
-    def show
-    end
+    def show; end
 
-    def edit
-    end
+    def edit; end
 
-    def update
-    end
+    def update; end
 
-    def destroy
-    end
+    def destroy; end
 
     def user_params
       params.require(:user).permit(:organization_id, :email, :role, :name, :password, :password_confirmation)

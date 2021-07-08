@@ -7,23 +7,20 @@
   </div>
 
   <div class="d-flex ml-auto">
-    <%= link_to t('common.new'), new_account_setting_user_path, class: 'btn btn-m default before-icon plus' %>
+    <%= link_to t('common.new'), new_account_setting_user_path, class: 'btn btn-s default' %>
   </div>
 </header><!-- .primary-header -->
-<div class="secondary-header">
-  
-</div><!-- .secondary-header -->
 
 <main class="main-contents">
   
-  <div class="table-wrap sp-none">
+  <div class="table-wrap">
     <table class="border-table">
       <thead>
         <tr>
           <td><%= t('activerecord.attributes.user.name') %></td>
           <td><%= t('activerecord.attributes.user.email') %></td>
           <td><%= t('activerecord.attributes.user.created_at') %></td>
-          <td>最終ログイン</td>
+          <td><%= t('activerecord.attributes.user.last_sign_in_at') %></td>
         </tr>
       </thead>
       <tbody>
@@ -37,7 +34,7 @@
             </td>
             <td><%= user.email %></td>
             <td><%= user.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-            <td></td>
+            <td><%= user.last_sign_in_at&.strftime('%Y/%m/%d %H:%M') %></td>
           </tr>
         <% end %>
       </tbody>

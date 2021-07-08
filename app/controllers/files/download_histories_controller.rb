@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Files::DownloadHistoriesController < ApplicationController
   before_action :set_file
 

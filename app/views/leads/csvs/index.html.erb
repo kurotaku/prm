@@ -1,0 +1,44 @@
+<div class="secondary-header">
+  <%= render 'leads/menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <div>
+    <h1>商談CSV履歴一覧</h1>
+    <p class="mb-0">商談CSVのインポート履歴です</p>
+  </div>
+
+  <%= link_to t('common.new'), new_leads_csv_path, class: 'btn btn-m default ml-auto' %>
+
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+
+  <div class="d-flex sp-none mb-3">
+    <div class="text-sl">表示件数:<%= @csvs.total_count %>件</div>
+    <%= paginate @csvs %>
+  </div>
+  
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td><%= t('activerecord.attributes.csv_import_history.id') %></td>
+          <td><%= t('activerecord.attributes.csv_import_history.vendor_group') %></td>
+          <td><%= t('activerecord.attributes.csv_import_history.created_at') %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @csvs.each do |csv| %>
+          <tr>
+            <td><%= csv.id %></td>
+            <td><%= csv.vendor_group.decorate.display_name %></td>
+            <td><%= csv.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+</main><!-- .main-contents -->

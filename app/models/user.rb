@@ -23,7 +23,6 @@
 #  reset_password_token   :string(255)
 #  role                   :integer          default("level_one"), not null
 #  sign_in_count          :integer          default(0), not null
-#  status                 :integer          default(10), not null
 #  uid                    :string(255)
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
@@ -46,7 +45,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable, :trackable
   belongs_to :organization
   has_many :staffs
 

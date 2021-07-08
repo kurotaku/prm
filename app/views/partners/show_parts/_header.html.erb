@@ -1,0 +1,6 @@
+<h1 class="mb-0"><%= link_to t('activerecord.models.partner'), partners_path %><i class="icon-arrow-right"></i><%= @partner.display_name %></h1>
+
+<div class="ml-auto">
+  <%= link_to '削除する', partner_path(uid: @partner.uid), method: :delete, class:'btn btn-m border-gray before-icon delete mr-2', data: {confirm: '商談を削除します。よろしいですか？'} %>
+  <%= link_to '編集する', edit_partner_path(uid: @partner.uid), class: 'btn btn-m border-gray before-icon edit' %>
+</div>     

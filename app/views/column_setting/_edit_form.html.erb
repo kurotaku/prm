@@ -1,0 +1,16 @@
+<% unless @table_column.default_column? %>
+  <div class="form-group">
+    <p><%= f.label :name %></p>
+    <%= f.text_field :name, class: 'form-control half' %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :key_name %></p>
+    <%= f.text_field :key_name, class: 'form-control half' %>
+  </div>
+<% end %>
+
+<div class="form-group">
+  <p><%= f.label :index_page_position %></p>
+  <%= f.text_field :index_page_position, class: 'form-control half' %>
+</div>

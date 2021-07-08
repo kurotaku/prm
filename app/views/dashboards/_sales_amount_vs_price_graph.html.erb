@@ -1,0 +1,75 @@
+<canvas id="salesAmountVsPriceGraph"></canvas>
+<style>
+  #salesAmountVsPriceGraph{
+    width: 100% !important;
+  }
+</style>
+<script>
+var ctx = document.getElementById('salesAmountVsPriceGraph').getContext('2d');
+
+var windowWidth = $(window).width();
+if(windowWidth > 678){
+  ctx.canvas.height = 320;
+}else{
+  ctx.canvas.height = 240;
+}
+
+var names = <%= raw @sales_amount_vs_price_graph_data[:name].to_json %>;
+var sales_amount = <%= raw @sales_amount_vs_price_graph_data[:sales_amount].to_json %>;
+var sales_price_amount = <%= raw @sales_amount_vs_price_graph_data[:sales_price_amount].to_json %>;
+
+var bubble_data = sales_amount.map(function(element, index){
+    return {
+      x: sales_amount[index],
+      y: sales_price_amount[index],
+      r: Math.floor(Math.random() * 10) + 5
+    };
+})
+
+var data = {
+  datasets: [
+    {
+      label: '代理店',
+      data: bubble_data,
+      borderColor: 'rgba(255, 135, 160, 1)',
+      backgroundColor: 'rgba(255, 135, 160, 0.5)',
+    }
+  ]
+};
+
+var config = {
+  type: 'bubble',
+  data: data,
+  options: {
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'end',
+      },
+      title: {
+        display: true,
+        text: '案件数と売り上げの散布図'
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            var label = names[context.dataIndex] || '';
+            if (label) {
+                label += ': ';
+            }
+            label += '(件数:' + context.parsed.x + ', 金額:' + context.parsed.y + ')';
+
+            return label;
+          }
+        }
+      }
+    },
+    responsive: true,
+  }
+};
+
+var salesAmountVsPriceGraph = new Chart(
+  ctx,
+  config
+)
+</script>

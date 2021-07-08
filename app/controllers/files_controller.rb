@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FilesController < ApplicationController
   def index
     @files = @current_vendor_group.shared_files.page(params[:page]).per(10)
@@ -32,6 +34,7 @@ class FilesController < ApplicationController
       params.require(:shared_file).permit(:file, :name, :description)
     end
 
+    # rubocop:disable Metrics/AbcSize
     def download_file(uid:, download_staff:)
       shared_file = SharedFile.find_by!(uid: uid)
 
@@ -43,7 +46,7 @@ class FilesController < ApplicationController
         s3 = Aws::S3::Client.new(
           region:            Rails.application.credentials.prd[:s3_region],
           access_key_id:     Rails.application.credentials.prd[:s3_access_key_id],
-          secret_access_key: Rails.application.credentials.prd[:s3_secret_access_key],
+          secret_access_key: Rails.application.credentials.prd[:s3_secret_access_key]
         )
         options = {
           bucket: Rails.application.credentials.prd[:s3_bucket_name],
@@ -56,4 +59,5 @@ class FilesController < ApplicationController
 
       DownloadFileHistory.create!(shared_file: shared_file, staff: download_staff)
     end
+  # rubocop:enable Metrics/AbcSize
 end

@@ -1,0 +1,25 @@
+<% content_for(:title, '商談項目編集') %>
+
+<div class="secondary-header">
+  <%= render 'column_setting/page_menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0">商談項目編集（<%= @table_column.name %>）</h1>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+  <div class="main-center-col w-100">
+    <div class="contents-box">
+      <h2 class="contents-box-title mb-5">商談項目情報</h2>
+
+      <%= form_with(model: @table_column, url: column_setting_lead_column_path(uid: @table_column.uid), html: { method: :patch, class: 'form-default' }) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= render 'column_setting/edit_form', f: f %>
+
+        <%= f.submit t('common.update'), class: 'btn btn-m default' %>
+      <% end %>
+
+    </div>
+  </div><!-- .main-center-col -->
+</main><!-- .main-contents -->

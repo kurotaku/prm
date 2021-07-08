@@ -17,6 +17,7 @@ $text-02: rgba(40, 60, 80, 0.24);
 $text-03: #505a64;
 $text-04: #57AD21;
 $text-05: #A0AAB4;
+$link: #00309E;
 
 .text-white{
   color: #fff !important;
@@ -77,6 +78,9 @@ $text-05: #A0AAB4;
 }
 .text-text-03{
   color: #505a64 !important;
+}
+.text-link{
+  color: $link;
 }
 
 .required{

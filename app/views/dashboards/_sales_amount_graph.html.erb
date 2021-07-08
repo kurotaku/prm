@@ -1,0 +1,73 @@
+<canvas id="salesAmountGraph"></canvas>
+<style>
+  #salesAmountGraph{
+    width: 100% !important;
+  }
+</style>
+<script>
+var ctx = document.getElementById('salesAmountGraph').getContext('2d');
+
+var windowWidth = $(window).width();
+if(windowWidth > 678){
+  ctx.canvas.height = 320;
+}else{
+  ctx.canvas.height = 240;
+}
+
+var labels = <%= raw @sales_amount_graph_data[:name].to_json %>;
+var paths = <%= raw @sales_amount_graph_data[:path].to_json %>;
+var datasets = [];
+
+var products_sales_amount = <%= raw @sales_amount_graph_data[:sales_amount].to_json %>;
+for (var key in products_sales_amount) {
+    if (products_sales_amount.hasOwnProperty(key)) {
+        datasets.push({
+          label: key,
+          data: products_sales_amount[key],
+          backgroundColor: '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6),
+        });
+    }
+}
+
+var data = {
+  labels: labels,
+  datasets: datasets,
+};
+
+var config = {
+  type: 'bar',
+  data: data,
+  options: {
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'end',
+      },
+      title: {
+        display: true,
+        text: '代理店別商材（件数）'
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true
+      }
+    },
+    onClick: function(evt){
+      var activePoints = salesAmountGraph.getElementsAtEventForMode(evt, 'point', salesAmountGraph.options);
+      if(activePoints.length > 0){
+        window.location.href = paths[activePoints[0].index]
+      }
+    }
+  }
+};
+
+var salesAmountGraph = new Chart(
+  ctx,
+  config
+)
+</script>

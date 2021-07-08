@@ -20,8 +20,7 @@ class AdminPage::OrganizationsController < AdminPage::AdminPageController
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
     def organization_params

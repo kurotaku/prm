@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StaffDecorator < ApplicationDecorator
   delegate_all
 
@@ -8,5 +10,4 @@ class StaffDecorator < ApplicationDecorator
   def thumbnail
     object.user.present? ? user.decorate.thumbnail : helpers.asset_path("user_default.png")
   end
-
 end

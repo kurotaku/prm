@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AccountSetting
   class AccountSettingController < ApplicationController
     layout "application_account_setting"

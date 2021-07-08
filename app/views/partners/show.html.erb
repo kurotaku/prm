@@ -1,35 +1,46 @@
-<% content_for(:title, 'ベンダー - パートナー詳細') %>
+<% content_for(:title, t('activerecord.models.partner') + '詳細') %>
 
 <header class="primary-header d-flex align-items-center">
-  <h1 class="mb-0"><%= @partner.name %></h1>
+  <%= render 'partners/show_parts/header' %>
 </header><!-- .primary-header -->
-<div class="secondary-header">
-</div><!-- .secondary-header -->
 
 <main class="main-contents">
-  <h2 class="mb-4">企業情報</h2>
-
-  <div class="contents-box">
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.company.name' %></dt>
-      <dd><%= @partner.name %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.company.address' %></dt>
-      <dd><%= @partner.address %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.company.hierarchy' %></dt>
-      <dd><%= @partner.hierarchy_i18n %></dd>
-    </dl>
-
-    <dl class="definition-list">
-      <dt><%= t 'activerecord.attributes.company.vendor_memo' %></dt>
-      <dd><%= @partner.vendor_memo %></dd>
-    </dl>
-
+  <div class="contents-box mb-4">
+    <h2 class="mb-4">基本情報</h2>
+    <% @current_vendor_group.table_columns.where(table_type: 'company').order(position: 'ASC').each do |table_column| %>
+      <dl class="definition-list">
+        <dt><%= table_column.name %></dt>
+        <%= render 'table_columns/list', table_column: table_column, object: @partner %>
+      </dl>
+    <% end %>
   </div>
 
+  <div class="contents-box mb-4">
+    <h2 class="mb-4"><%= t('activerecord.models.lead') %></h2>
+
+    <div class="table-wrap">
+      <table class="border-table">
+        <thead>
+          <tr>
+            <% @lead_index_columns.each do |index_column| %>
+              <td><%= index_column.name %></td>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @leads.each do |lead| %>
+            <tr class="clickable-tr" data-menu-item-path="<%= lead_path(uid: lead.uid) %>">
+              <% @lead_index_columns.each do |index_column| %>
+                <%= render 'table_columns/table_data', table_column: index_column, object: lead %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- .table-wrap -->
+
+    <div class="d-flex">
+      <%= link_to t('common.view_all'), partners_leads_path(uid: @partner.uid), class: 'btn text-btn ml-auto' %>
+    </div>
+  </div>
 </main><!-- .main-contents -->

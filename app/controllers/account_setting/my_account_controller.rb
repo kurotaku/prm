@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 module AccountSetting
   class MyAccountController < AccountSettingController
     before_action :set_user
 
-    def show
-    end
+    def show; end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @user.update(user_params)

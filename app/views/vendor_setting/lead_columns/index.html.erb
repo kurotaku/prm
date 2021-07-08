@@ -9,31 +9,33 @@
 </header><!-- .primary-header -->
 
 <main class="main-contents">
-  
+  <div class="table-header d-flex">
+    <%= content_tag(:button, t('common.new'), class: 'btn btn-s default ml-auto', id: 'modalOpen') %>
+  </div>
   <div class="table-wrap">
     <table class="border-table">
       <thead>
         <tr>
-          <td><%= t('activerecord.attributes.lead_column.name') %></td>
-          <td><%= t('activerecord.attributes.lead_column.key_name') %></td>
-          <td><%= t('activerecord.attributes.lead_column.data_type') %></td>
-          <td><%= t('activerecord.attributes.lead_column.lead_attribute') %></td>
-          <td><%= t('activerecord.attributes.lead_column.order') %></td>
-          <td><%= t('activerecord.attributes.lead_column.index_page_order') %></td>
+          <td></td>
+          <td><%= t('activerecord.attributes.table_column.name') %></td>
+          <td><%= t('activerecord.attributes.table_column.key_name') %></td>
+          <td><%= t('activerecord.attributes.table_column.data_type') %></td>
+          <td><%= t('activerecord.attributes.table_column.position') %></td>
+          <td><%= t('activerecord.attributes.table_column.index_page_position') %></td>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="sortableList" data-url="<%= sort_vendor_setting_lead_columns_path %>">
         <% @lead_columns.each do |lead_column| %>
-          <tr>
+          <tr data-id="<%= lead_column.id %>">
+            <td class="order-handler"><span class="sortable-icon"></span>
             <td>
               <%= lead_column.name %><br />
-              <%= lead_column.display_lead_column_select_items %>
+              <%#= lead_column.display_table_column_select_items %>
             </td>
             <td><%= lead_column.key_name %></td>
             <td><%= lead_column.data_type_i18n %></td>
-            <td><%= lead_column.display_lead_attribute %></td>
-            <td><%= lead_column.order %></td>
-            <td><%= lead_column.index_page_order %></td>
+            <td class="position"><%= lead_column.position %></td>
+            <td><%= lead_column.index_page_position %></td>
           </tr>
         <% end %>
       </tbody>
@@ -46,8 +48,8 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="form-group">
-      <p><%= f.label :order %></p>
-      <%= f.text_field :order, class: 'form-control half' %>
+      <p><%= f.label :position %></p>
+      <%= f.text_field :position, class: 'form-control half' %>
     </div>
 
     <div class="form-group">
@@ -63,13 +65,13 @@
     <div class="form-group">
       <p class="mb-1"><%= f.label :data_type %></p>
       <div class="select-wrap half">
-        <%= f.select :data_type, LeadColumn.data_types_i18n.invert.to_a, {}, {class: 'form-control'} %>
+        <%= f.select :data_type, TableColumn.data_types_i18n.invert.to_a, {}, {class: 'form-control'} %>
       </div>
     </div>
 
     <div class="form-group">
-      <p><%= f.label :lead_column_select_items, '選択肢の項目（項目毎に改行してください）' %></p>
-      <%= text_area_tag :lead_column_select_items, nil, {class: 'form-control half', rows: 6} %>
+      <p><%= f.label :table_column_select_items, '選択肢の項目（項目毎に改行してください）' %></p>
+      <%= text_area_tag :table_column_select_items, nil, {class: 'form-control half', rows: 6} %>
     </div>
 
     <%= f.submit t('common.create'), class: 'btn btn-m default' %>

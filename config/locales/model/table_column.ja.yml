@@ -1,0 +1,64 @@
+ja:
+  activerecord:
+    models:
+      table_column: オブジェクト項目
+    attributes:
+      table_column:
+        name: 項目名
+        key_name: キー名(CSVで使用)
+        table_attribute: オブジェクトのカラム
+        table_type: オブジェクトの種類
+        data_type: データのタイプ
+        position: 表示順
+        index_page_position: 一覧ページ表示順
+        table_column_select_items: 選択肢の項目
+  enums:
+    table_column:
+      table_type:
+        lead: 商談
+        company: パートナー
+        product: 商品
+        contract: 契約
+        staff: 担当者
+        customer: 顧客
+      data_type:
+        undefined: 未設定
+        created_at: 作成日
+        updated_at: 最終更新日
+        name: 名前
+        unique_key: ユニークキー
+        price: 価格
+        lead_phase: 商談フェイズ
+        lead: 商談名
+        company: パートナー名
+        product: 商品名
+        contract: 契約
+        staff: 担当者
+        customer: 顧客
+        select_item: 選択肢タイプ
+        datetime: 日付
+        string: 文字列1行
+        text: 文字列複数行
+        integer: 数値
+        calc: 計算
+        lookup: ルックアップ
+        stacked: 積み上げ集計
+  table_columns:
+    create:
+      success: オブジェクト項目を作成しました
+      error: オブジェクト項目を作成できませんでした
+    update:
+      success: オブジェクト項目を更新しました
+      error: オブジェクト項目を更新できませんでした
+    destroy:
+      success: オブジェクト項目を削除しました
+      error: オブジェクト項目を削除できませんでした
+  custom_columns:
+    select_item: 選択肢タイプ
+    datetime: 日付
+    string: 文字列1行
+    text: 文字列複数行
+    integer: 数値
+    calc: 計算
+    lookup: ルックアップ
+    stacked: 積み上げ集計

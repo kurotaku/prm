@@ -1,0 +1,84 @@
+<main class="main-contents">
+  <div class="table-header d-flex">
+    <%= content_tag(:button, t('common.new'), class: 'btn btn-s default ml-auto', id: 'modalOpen') %>
+    <script>
+      $('#modalOpen').modaal({
+        type: 'inline',
+        content_source: '#modal-content',
+      });
+    </script>
+  </div>
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td style="width: 40px;"></td>
+          <td><%= t('activerecord.attributes.table_column.name') %></td>
+          <td><%= t('activerecord.attributes.table_column.key_name') %></td>
+          <td><%= t('activerecord.attributes.table_column.data_type') %></td>
+          <td><%= t('activerecord.attributes.table_column.index_page_position') %></td>
+          <td style="width: 40px;"></td>
+        </tr>
+      </thead>
+      <tbody id="sortableList" data-url="<%= @sort_path %>">
+        <% @table_columns.each do |table_column| %>
+          <tr data-id="<%= table_column.id %>">
+            <td class="order-handler"><span class="sortable-icon"></span>
+            <td>
+              <%= table_column.name %><br />
+              <%#= table_column.display_table_column_select_items %>
+            </td>
+            <td><%= table_column.key_name %></td>
+            <td><%= table_column.data_type_i18n %></td>
+            <td><%= table_column.index_page_position %></td>
+            <td>
+              <nav class="tricolon-menu ml-3">
+                <div class="only-icon btn border-gray tricolon-icon"><%= content_tag(:i, '', class: 'icon-option') %></div>
+                <ul class="tricolon-menu-list hide">
+                  <li><%= link_to '編集', url_for(action: 'edit', uid: table_column.uid) %></li>
+                  <li><%= link_to '削除', url_for(action: 'destroy', uid: table_column.uid), method: :delete, class:'', data: {confirm: '商談を削除します。よろしいですか？'} %></li>
+                </ul>
+                <div class="tricolon-menu-bg hide"></div>
+              </nav>   
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+</main><!-- .main-contents -->
+
+<div id="modal-content" class="approval-content bg-white p-3" style="display: none;">
+  <%= form_with(model: @table_column, url: @form_url, html: { method: :post, class: 'form-default' }) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="form-group">
+      <p><%= f.label :name %></p>
+      <%= f.text_field :name, class: 'form-control half' %>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :key_name %></p>
+      <%= f.text_field :key_name, class: 'form-control half' %>
+    </div>
+
+    <div class="form-group">
+      <p class="mb-1"><%= f.label :data_type %></p>
+      <div class="select-wrap half">
+        <%= f.collection_select :data_type, t('custom_columns'), :first, :last, {}, {class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :table_column_select_items, '選択肢の項目（項目毎に改行してください）' %></p>
+      <%= text_area_tag :table_column_select_items, nil, {class: 'form-control half', rows: 6} %>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :index_page_position %></p>
+      <%= f.text_field :index_page_position, class: 'form-control half' %>
+    </div>
+
+    <%= f.submit t('common.create'), class: 'btn btn-m default' %>
+  <% end %>
+</div>

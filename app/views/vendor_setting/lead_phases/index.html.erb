@@ -1,0 +1,60 @@
+<% content_for(:title, '商談フェーズ一覧') %>
+
+<div class="secondary-header">
+  <%= render 'vendor_setting/page_menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0">商談フェーズ一覧</h1>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+  
+  <div class="table-wrap">
+    <table class="border-table">
+      <thead>
+        <tr>
+          <td></td>
+          <td><%= t('activerecord.attributes.lead_phase.name') %></td>
+          <td><%= t('activerecord.attributes.lead_phase.position') %></td>
+        </tr>
+      </thead>
+      <tbody id="sortableList" data-url="<%= sort_vendor_setting_lead_phases_path %>">
+        <% @lead_phases.each do |lead_phase| %>
+          <tr data-id="<%= lead_phase.id %>">
+            <td class="order-handler"><span class="sortable-icon"></span>
+            <td><%= lead_phase.name %></td>
+            <td class="position"><%= lead_phase.position %></td>
+            <td><%= lead_phase.phase_role_i18n %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .table-wrap -->
+
+  <h2 class="mb-4">新規項目追加</h2>
+
+  <%= form_with(model: @lead_phase, url: vendor_setting_lead_phases_path, html: { method: :post, class: 'form-default' }) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="form-group">
+      <p><%= f.label :position %></p>
+      <%= f.text_field :position, class: 'form-control half' %>
+    </div>
+
+    <div class="form-group">
+      <p><%= f.label :name %></p>
+      <%= f.text_field :name, class: 'form-control half' %>
+    </div>
+
+    <div class="form-group">
+      <p class="mb-1"><%= f.label :phase_role %></p>
+      <div class="select-wrap half">
+        <%= f.select :phase_role, LeadPhase.phase_roles_i18n.invert.to_a, {include_blank: '---'}, {class: 'form-control'} %>
+      </div>
+    </div>
+
+    <%= f.submit t('common.create'), class: 'btn btn-m default' %>
+  <% end %>
+
+</main><!-- .main-contents -->

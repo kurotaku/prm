@@ -1,0 +1,72 @@
+<canvas id="contractsScatterGraph"></canvas>
+<style>
+  #contractsScatterGraph{
+    width: 100% !important;
+  }
+</style>
+<script>
+var ctx = document.getElementById('contractsScatterGraph').getContext('2d');
+
+var windowWidth = $(window).width();
+if(windowWidth > 678){
+  ctx.canvas.height = 320;
+}else{
+  ctx.canvas.height = 240;
+}
+
+var sales_amount = <%= raw @contracts_scatter_graph_data[:sales_amount].to_json %>;
+var sales_price_amount = <%= raw @contracts_scatter_graph_data[:sales_price_amount].to_json %>;
+var company_names = <%= raw @contracts_scatter_graph_data[:company_name].to_json %>;
+var product_names = <%= raw @contracts_scatter_graph_data[:product_name].to_json %>;
+
+var bubble_data = sales_amount.map(function(element, index){
+    return {
+      x: sales_amount[index],
+      y: sales_price_amount[index],
+      r: Math.floor(Math.random() * 10) + 5
+    };
+})
+
+var data = {
+  datasets: [
+    {
+      label: '契約',
+      data: bubble_data,
+      borderColor: 'rgba(255, 135, 160, 1)',
+      backgroundColor: 'rgba(255, 135, 160, 0.5)',
+    }
+  ]
+};
+
+var config = {
+  type: 'bubble',
+  data: data,
+  options: {
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'end',
+      },
+      title: {
+        display: true,
+        text: '契約ごとの案件数と売り上げの散布図'
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            var label = company_names[context.dataIndex]+' x '+product_names[context.dataIndex];
+            label += '(件数:' + context.parsed.x + ', 金額:' + context.parsed.y + ')';
+            return label;
+          }
+        }
+      }
+    },
+    responsive: true,
+  }
+};
+
+var contractsScatterGraph = new Chart(
+  ctx,
+  config
+)
+</script>

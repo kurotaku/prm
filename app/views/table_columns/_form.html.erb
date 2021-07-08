@@ -1,0 +1,37 @@
+<div class="form-group">
+  <% unless %w[stacked].include? table_column.data_type %>
+    <p><%= f.label table_column.table_attribute, table_column.name %></p>
+  <% end %>
+
+  <% if %w[name string].include? table_column.data_type %>
+    <%= f.text_field table_column.table_attribute, class: 'form-control' %>
+  <% elsif %w[unique_key integer].include? table_column.data_type %>
+    <%= f.text_field table_column.table_attribute, class: 'form-control half' %>
+  <% elsif table_column.data_type == 'price' %>
+    <%= f.text_field table_column.table_attribute, class: 'form-control half' %><span class="ml-2">円</span>
+  <% elsif table_column.data_type == 'lead_phase' %>
+    <div class="select-wrap">
+      <%= f.collection_select table_column.table_attribute, @current_vendor_group.lead_phases.order(position: 'ASC'), :id, :name, {include_blank: '---'},{class: 'form-control'} %>
+    </div>
+  <% elsif table_column.data_type == 'select_item' %>
+    <div class="select-wrap">
+      <%= f.collection_select table_column.table_attribute, table_column.table_column_select_items.order(position: 'ASC'), :id, :name, {include_blank: '---'},{class: 'form-control'} %>
+    </div>
+  <% elsif table_column.data_type == 'company' %>
+    <div class="select-wrap">
+      <%= f.collection_select table_column.table_attribute, @current_vendor_group.partners.all, :id, :name, {include_blank: '---'},{class: 'form-control', required: true} %>
+    </div>
+  <% elsif table_column.data_type == 'product' %>
+    <div class="select-wrap">
+      <%= f.collection_select table_column.table_attribute, @current_vendor_group.products.all, :id, :name, {include_blank: '---'},{class: 'form-control', required: true} %>
+    </div>
+  <% elsif table_column.data_type == 'staff' %>
+    <div class="select-wrap">
+      <%= f.collection_select table_column.table_attribute, @current_vendor_group.staffs.all, :id, :name, {include_blank: '---'},{class: 'form-control', required: true} %>
+    </div>
+  <% elsif %w[datetime created_at updated_at].include? table_column.data_type %>
+    <%= f.date_field table_column.table_attribute, class: 'form-control half' %>
+  <% elsif %w[text].include? table_column.data_type %>
+    <%= f.text_area table_column.table_attribute, class: 'form-control', rows: 6 %>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      lead_phase: 商談フェーズ
+    attributes:
+      lead_phase:
+        uid: ID
+        name: 商談フェーズ名
+        product: 商品
+        position: 表示順
+        phase_role: 役割
+  enums:
+    lead_phase:
+      phase_role:
+        saled: 受注
+        lost: 失注
+  lead_phases:
+    create:
+      success: 商談フェーズを作成しました
+      error: 商談フェーズを作成できませんでした
+    update:
+      success: 商談フェーズを更新しました
+      error: 商談フェーズを更新できませんでした
+    destroy:
+      success: 商談フェーズを削除しました
+      error: 商談フェーズを削除できませんでした

@@ -1,0 +1,46 @@
+<% content_for(:title, '商談レポート') %>
+
+<div class="secondary-header">
+  <%= render 'reports/page_menu' %>
+</div><!-- .secondary-header -->
+
+<header class="primary-header d-flex align-items-center">
+  <h1 class="mb-0">商談レポート</h1>
+</header><!-- .primary-header -->
+
+<main class="main-contents">
+
+  <div class="d-flex mb-3">
+    <div class="text-sl">全件数:<%= @leads.total_count %>件</div>
+    <%= paginate @leads %>
+  </div>
+
+  <%= render 'leads/filter' %>
+
+  <div class="contents-box">
+    <div class="table-wrap">
+      <table class="table-default">
+        <thead>
+          <tr>
+            <th><%= t('lead.columns.company_id') %></th>
+            <th><%= t('lead.columns.staff_id') %></th>
+            <th><%= t('lead.columns.product_id') %></th>
+            <th><%= t('lead.columns.lead_phase_id') %></th>
+            <th>金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @leads.each do |lead| %>
+            <tr>
+              <td><%= lead.company.name %></td>
+              <td><%= lead.staff&.name %></td>
+              <td><%= lead.product.name %></td>
+              <td><%= lead.lead_phase&.name %></td>
+              <td><%= lead.contract.price.to_s(:delimited) %>円</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- .table-wrap -->
+  </div><!-- .contents-box -->
+</main><!-- .main-contents -->

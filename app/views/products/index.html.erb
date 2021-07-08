@@ -1,64 +1,46 @@
 <% content_for(:title, '商品一覧') %>
 
 <header class="primary-header d-flex align-items-center">
-  <div>
-    <h1 class="mb-0">商品管理</h1>
+  <div class="d-flex align-items-center">
+    <h1 class="mb-0 mr-3">商品</h1>
+    <div class="text-sl">全件数:<%= @products.total_count %>件</div>
   </div>
 
   <div class="d-flex ml-auto">
-    <%= link_to t('common.new'), new_product_path, class: 'btn btn-m default before-icon plus' %>
+    <%= link_to t('common.new'), new_product_path, class: 'btn btn-s default mr-2' %>
+    <%#= link_to t('common.import'), products_csvs_path, class: 'btn btn-s default' %>
   </div>
 </header><!-- .primary-header -->
-<div class="secondary-header">
-  
-</div><!-- .secondary-header -->
 
 <main class="main-contents">
-  
-  <div class="table-wrap sp-none">
+
+<!--   <div class="table-header">
+    <%#= render 'filter' %>
+  </div>
+ -->
+  <div class="table-wrap">
     <table class="border-table">
       <thead>
         <tr>
-          <td><%= t('activerecord.models.product') %></td>
-          <td>取次</td>
-          <td>紹介</td>
-          <td>卸売</td>
+          <% @index_columns.each do |index_column| %>
+            <td><%= index_column.name %></td>
+          <% end %>
         </tr>
       </thead>
       <tbody>
         <% @products.each do |product| %>
-          <tr>
-            <td>
-              <%= link_to product_path(uid: product.uid), class: 'd-flex' do %>
-                <%= image_tag product.thumbnail, class: 'item-thumb mr-3' %>
-                <div class="w-100">
-                  <p class=><%= product.code %></p>
-                  <h2><%= product.name %></h2>
-                </div>
-              <% end %>
-            </td>
-            <td>
-              <p class="text-right">
-                単価：<%= product.agency_price.to_s(:delimited) %>円<br />
-                報酬単価：<%= product.agency_incentive.to_s(:delimited) %>円
-              </p>
-            </td>
-            <td>
-              <p class="text-right">
-                単価：<%= product.agency_price.to_s(:delimited) %>円<br />
-                報酬単価：<%= product.agency_incentive.to_s(:delimited) %>円
-              </p>
-            </td>
-            <td>
-              <p class="text-right">
-                単価：<%= product.agency_price.to_s(:delimited) %>円<br />
-                報酬単価：<%= product.agency_incentive.to_s(:delimited) %>円
-              </p>
-            </td>
+          <tr class="clickable-tr" data-menu-item-path="<%= product_path(uid: product.uid) %>">
+            <% @index_columns.each do |index_column| %>
+              <%= render 'table_columns/table_data', table_column: index_column, object: product %>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div><!-- .table-wrap -->
+
+  <div class="d-flex">
+    <%= paginate @products %>
+  </div>
 
 </main><!-- .main-contents -->

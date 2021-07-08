@@ -4,68 +4,21 @@
   <h1 class="mb-0">商談新規登録</h1>
 </header><!-- .primary-header -->
 
-<div class="secondary-header">
-</div><!-- .secondary-header -->
-
 <main class="main-contents">
-  
-  <%= form_with(model: @lead, url: leads_path, html: { method: :post, class: 'form-default' }) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+  <div class="contents-box">
+    <%= form_with(model: @lead, url: leads_path, html: { method: :post, class: 'form-default' }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-    <% @current_vendor_group.lead_columns.each do |lead_column| %>
-    
-      <% if %w[unique_key string integer float price].include? lead_column.data_type %>
-        <div class="form-group">
-          <p><%= f.label lead_column.lead_attribute, lead_column.name %></p>
-          <%= f.text_field lead_column.lead_attribute, class: 'form-control' %>
-        </div>
-      <% elsif lead_column.data_type == 'select_item' %>
-        <div class="form-group">
-          <p><%= f.label lead_column.lead_attribute, lead_column.name %></p>
-          <div class="select-wrap">
-            <%= f.collection_select lead_column.lead_attribute, lead_column.lead_column_select_items.order(order: 'ASC'), :id, :name, {include_blank: '---'},{class: 'form-control'} %>
-          </div>
-        </div>
-      <% elsif lead_column.data_type == 'company' %>
-        <div class="form-group">
-          <p><%= f.label lead_column.lead_attribute, lead_column.name %></p>
-          <div class="select-wrap">
-            <%= f.collection_select lead_column.lead_attribute, @current_vendor_group.partners.all, :id, :name, {include_blank: '---'},{class: 'form-control', required: true} %>
-          </div>
-        </div>
-      <% elsif lead_column.data_type == 'product' %>
-        <div class="form-group">
-          <p><%= f.label lead_column.lead_attribute, lead_column.name %></p>
-          <div class="select-wrap">
-            <%= f.collection_select lead_column.lead_attribute, @current_vendor_group.products.all, :id, :name, {include_blank: '---'},{class: 'form-control', required: true} %>
-          </div>
-        </div>
-      <% elsif lead_column.data_type == 'prefecture' %>
-        <div class="form-group">
-          <p><%= f.label lead_column.lead_attribute, lead_column.name %></p>
-          <div class="select-wrap">
-            <%= f.collection_select lead_column.lead_attribute, Prefecture.all, :id, :name, {include_blank: '---'},{class: 'form-control'} %>
-          </div>
-        </div>
-      <% elsif lead_column.data_type == 'datetime' %>
-        <div class="form-group">
-          <p><%= f.label lead_column.lead_attribute, lead_column.name %></p>
-          <%= f.date_field lead_column.lead_attribute, class: 'form-control' %>
-        </div>
-      <% elsif %w[text].include? lead_column.data_type %>
-        <div class="form-group">
-          <p><%= f.label lead_column.lead_attribute, lead_column.name %></p>
-          <%= f.text_area lead_column.lead_attribute, class: 'form-control', rows: 6 %>
-        </div>
+      <% @current_vendor_group.table_columns.where(table_type: 'lead').order(position: 'ASC').each do |table_column| %>
+        <%= render 'table_columns/form', {f: f, table_column: table_column} %>
       <% end %>
+
+      <div class="form-group">
+        <%= f.label :vendor_memo %>
+        <%= f.text_area :vendor_memo, class: 'form-control', placeholder: "ベンダーのみが閲覧できるメモです".html_safe, rows: 6 %>
+      </div>
+
+      <%= f.submit t('common.create'), class: 'btn btn-m default' %>
     <% end %>
-
-    <div class="form-group">
-      <%= f.label :vendor_memo %>
-      <%= f.text_area :vendor_memo, class: 'form-control', placeholder: "ベンダーのみが閲覧できるメモです".html_safe, rows: 6 %>
-    </div>
-
-    <%= f.submit t('common.create'), class: 'btn btn-m default' %>
-  <% end %>
-
+  </div>
 </main><!-- .main-contents -->

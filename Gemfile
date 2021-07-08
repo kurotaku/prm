@@ -49,8 +49,8 @@ gem "carrierwave-base64"
 gem "fog-aws"
 gem "mini_magick"
 
-gem "roo"
 gem "activerecord-import"
+gem "roo"
 
 gem "annotate"
 gem "aws-sdk-rails"
@@ -61,6 +61,7 @@ gem "draper"
 gem "enum_help"
 gem "kaminari"
 gem "paranoia"
+gem "ransack"
 gem "sidekiq"
 # gem 'wicked_pdf'
 # gem 'wkhtmltopdf-binary'
@@ -94,10 +95,15 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", ">= 3.26"
+  gem 'database_cleaner'
   gem "selenium-webdriver"
   # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
+# to manage the ordering of the items in the database
+gem "acts_as_list"
