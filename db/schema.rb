@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_07_05_105109) do
 
-  create_table "boards", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "boards", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
     t.string "related_object"
     t.string "related_object_uid"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_boards_on_vendor_group_id"
   end
 
-  create_table "companies", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "companies", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
     t.bigint "organization_id"
     t.integer "hierarchy", default: 1
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_companies_on_vendor_group_id"
   end
 
-  create_table "contracts", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "contracts", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
     t.integer "sales_amount", default: 0, null: false
     t.integer "sales_price_amount", default: 0, null: false
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_contracts_on_vendor_group_id"
   end
 
-  create_table "csv_import_histories", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "csv_import_histories", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "staff_id"
     t.bigint "vendor_group_id", null: false
     t.integer "related_object", default: 10, null: false
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_csv_import_histories_on_vendor_group_id"
   end
 
-  create_table "customers", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "customers", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id"
     t.string "uid"
     t.datetime "deleted_at"
@@ -272,7 +272,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_customers_on_vendor_group_id"
   end
 
-  create_table "dashboard_layouts", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "dashboard_layouts", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "dashboard_id", null: false
     t.json "layout"
     t.datetime "created_at", precision: 6, null: false
@@ -280,7 +280,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["dashboard_id"], name: "index_dashboard_layouts_on_dashboard_id"
   end
 
-  create_table "dashboards", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "dashboards", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
     t.string "name"
     t.integer "position"
@@ -289,7 +289,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_dashboards_on_vendor_group_id"
   end
 
-  create_table "download_file_histories", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "download_file_histories", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "staff_id", null: false
     t.bigint "shared_file_id", null: false
     t.string "uid"
@@ -299,7 +299,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["staff_id"], name: "index_download_file_histories_on_staff_id"
   end
 
-  create_table "gadgets", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "gadgets", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "dashboard_id", null: false
     t.string "uid"
     t.string "name"
@@ -314,7 +314,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["target_column_id"], name: "index_gadgets_on_target_column_id"
   end
 
-  create_table "lead_phase_products", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "lead_phase_products", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "lead_phase_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -323,7 +323,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["product_id"], name: "index_lead_phase_products_on_product_id"
   end
 
-  create_table "lead_phases", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "lead_phases", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
     t.string "name"
     t.integer "position"
@@ -333,7 +333,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_lead_phases_on_vendor_group_id"
   end
 
-  create_table "leads", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "leads", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "lead_phase_id"
     t.datetime "saled_at"
     t.string "uid"
@@ -425,7 +425,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_leads_on_vendor_group_id"
   end
 
-  create_table "messages", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "messages", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "board_id", null: false
     t.bigint "staff_id", null: false
     t.text "content"
@@ -436,7 +436,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["staff_id"], name: "index_messages_on_staff_id"
   end
 
-  create_table "notification_reads", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "notification_reads", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "notification_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -445,7 +445,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["user_id"], name: "index_notification_reads_on_user_id"
   end
 
-  create_table "notifications", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "notifications", charset: "utf8mb4", force: :cascade do |t|
     t.integer "notification_type", null: false
     t.integer "viewable_permission", null: false
     t.integer "login_mode", null: false
@@ -466,7 +466,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["uid"], name: "index_notifications_on_uid", unique: true
   end
 
-  create_table "organizations", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "organizations", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "name_kana"
     t.string "coprate_number"
@@ -483,7 +483,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "products", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "products", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
     t.string "image"
     t.string "uid"
@@ -569,7 +569,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_products_on_vendor_group_id"
   end
 
-  create_table "shared_files", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "shared_files", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
     t.bigint "staff_id", null: false
     t.string "uid"
@@ -584,7 +584,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_shared_files_on_vendor_group_id"
   end
 
-  create_table "staffs", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "staffs", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_group_id", null: false
     t.bigint "user_id"
     t.string "uid"
@@ -666,7 +666,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_staffs_on_vendor_group_id"
   end
 
-  create_table "table_column_select_items", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "table_column_select_items", charset: "utf8mb4", force: :cascade do |t|
     t.string "uid"
     t.bigint "table_column_id", null: false
     t.string "name"
@@ -676,7 +676,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["table_column_id"], name: "index_table_column_select_items_on_table_column_id"
   end
 
-  create_table "table_columns", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "table_columns", charset: "utf8mb4", force: :cascade do |t|
     t.string "uid"
     t.bigint "vendor_group_id", null: false
     t.boolean "default_column", default: false
@@ -696,7 +696,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["vendor_group_id"], name: "index_table_columns_on_vendor_group_id"
   end
 
-  create_table "user_action_permissions", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "user_action_permissions", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.bigint "user_action_id", null: false
     t.integer "permit_role"
@@ -706,7 +706,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["user_action_id"], name: "index_user_action_permissions_on_user_action_id"
   end
 
-  create_table "user_actions", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "user_actions", charset: "utf8mb4", force: :cascade do |t|
     t.string "ctrl_path"
     t.string "act_path"
     t.string "name"
@@ -714,7 +714,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.bigint "organization_id", null: false
     t.integer "role", default: 10, null: false
@@ -743,7 +743,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_105109) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "vendor_groups", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "vendor_groups", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "vendor_organization_id", null: false
     t.string "name"
     t.string "uid"
