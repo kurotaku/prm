@@ -28,7 +28,7 @@ jobs:
 
     resource_class: small
 
-    steprm:
+    steps:
       - checkout
 
       # バンドル キャッシュを復元
