@@ -51,7 +51,7 @@ test:
 #
 production:
   <<: *default
-  username: <%= ENV['MYSQL_USERNAME'] || Rails.application.credentials.prd&.[](:db_name) %>
+  username: <%= ENV['MYSQL_USERNAME'] || Rails.application.credentials.prd&.[](:db_user) %>
   password: <%= ENV['MYSQL_PASSWORD'] || Rails.application.credentials.prd&.[](:db_password) %>
   host: <%= ENV['MYSQL_HOST'] || Rails.application.credentials.prd&.[](:db_host) %>
   database: <%= ENV['MYSQL_DATABASE'] || Rails.application.credentials.prd&.[](:db_name) %>
