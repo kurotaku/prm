@@ -20,15 +20,6 @@ Style/AsciiComments:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 
-# 1行の長さ
-Metrics/LineLength:
-  Max: 160
-  Exclude:
-    - 'db/**/*'
-    - 'config/initializers/*'
-    - 'bin/*'
-    - 'lib/tasks/auto_annotate_models.rake'
-
 Metrics/ClassLength:
   Max: 140
 
@@ -43,6 +34,9 @@ Metrics/BlockNesting:
 Metrics/BlockLength:
   Exclude:
     - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'db/seeds.rb'
+    - 'db/seeds/*'
     - 'app/admin/*'
     - 'config/routes.rb'
     - "Rakefile"
@@ -71,6 +65,19 @@ Metrics/PerceivedComplexity:
 Layout/HashAlignment:
   EnforcedColonStyle: table
 
+Layout/EmptyLinesAroundAccessModifier:
+  Exclude:
+    - '/app/app/controllers/account_setting/users_controller.rb'
+
+# 1行の長さ
+Layout/LineLength:
+  Max: 160
+  Exclude:
+    - 'db/**/*'
+    - 'config/initializers/*'
+    - 'bin/*'
+    - 'lib/tasks/auto_annotate_models.rake'
+    
 # 改行
 Layout/EndOfLine:
   EnforcedStyle: lf
@@ -78,6 +85,12 @@ Layout/EndOfLine:
 Naming/VariableNumber:
   Exclude:
     - 'db/seeds.rb'
+    - 'db/seeds/*'
+    - 'db/migrate/*'
+    # FIXME: 以下要リファクタリング
+    - 'app/models/lead.rb'
+    - 'app/models/table_column_select_item.rb'
+
 
 Style/Documentation:
   Enabled: false
@@ -85,7 +98,14 @@ Style/Documentation:
 Style/MixinUsage:
   Exclude:
     - 'bin/*'
+    
+Style/StringLiterals:
+ Enabled: false
 
 Lint/UselessAssignment:
   Exclude:
     - 'db/seeds.rb'
+    - 'db/seeds/*'
+    - 'app/services/base_service.rb'
+
+
